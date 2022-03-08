@@ -1,1 +1,130 @@
 %!TEX root = ../main.tex
+% manca la prima parte della lezione 6 ma non ho tempo e non la trovo :(
+
+\section{Weak(Wide sense) characterization of AR,ARMA processes}
+\textbf{Goal.} Given AR,ARMA process compute mean $m_y$ and covariance fuction $\gamma_y(\tau)$.
+
+%Since the steady-state solution is an MA($\infty$) process we could use such results but are too diffucult
+
+We'll rely on the recursive equation characterizing such processes.
+
+\textbf{Example.}
+
+Let us consider the $\operatorname{AR}(1)$ (or equivalently $\operatorname{ARMA}(1,0)$ ) process generating according to:
+\begin{align*}
+	y(t)=a \cdot y(t-1)+e(t) \quad \text{where} \quad e(t) \sim W N\left(0, \lambda^{2}\right)
+\end{align*}
+
+- Is $y(t)$ stationary?
+
+- Compute $m_{y}$ and $\gamma_{y}(\tau)$ for $\tau=0, \pm 1, \pm 2, \ldots$
+
+Operatorial representation for $y(t)$ :
+
+\begin{align*}
+	&y(t)=z^{-1} a y(t)+e(t) \\
+	&\left(1-z^{-1} a\right) y(t)=e(t) \\
+	&y(t)=\frac{1}{1-z^{-1} a} e(t)
+\end{align*}
+
+Transfer function with positive powers (to spot out zeroes and poles): $y(t)=\frac{z}{z-a} e(t) \quad$.
+
+There's just one pole: $z=a .$
+
+The process generating system is asymptotically stable if $|a| <1$. 
+
+Since $e(t)$ is a S.S.P. (by definition of white noise), when $|a| <1$ the steady-state output process $y(t)$ is a S.S.P.
+
+In order to compute the mean, start from the time-domain representation and apply expectation to 
+both sides:
+\begin{align*}
+	\mathbb{E}[y(t)]=\mathbb{E}[a \cdot y(t-1)+e(t)]
+\end{align*}
+and thanks to linearity:
+\begin{align*}
+	\mathbb{E}[y(t)]=a \cdot \mathbb{E}[y(t-1)]+]+\mathbb{E}[e(t)]
+\end{align*}
+Thanks to stationarity $\mathrm{E}[y(t)]=\mathrm{E}[y(t-1)]=m_{y}$, so that $m_{y}=a \cdot m_{y}+m_{e}$.
+Then:
+$$
+m_{e}=0 \Rightarrow m_{y}=0
+$$
+
+Let us compute $\gamma_{y}(0)=\mathrm{E}\left[\left(y(t)-m_{y}\right)^{2}\right]$
+
+(since $m_{y}=0$, we have that $\gamma_{y}(0)=\mathrm{E}\left[(y(t))^{2}\right]$ )
+
+Start from $y(t)=a \cdot y(t-1)+e(t)$, take the square and apply operator $E[\cdot]$ to both side:
+
+$$
+\mathrm{E}\left[(y(t))^{2}\right]=\mathrm{E}\left[(a \cdot y(t-1)+e(t))^{2}\right]
+$$
+
+Thanks to linearity
+$$
+\gamma_{y}(0)=a^{2} \mathrm{E}\left[y(t-1)^{2}\right]+\mathrm{E}\left[e(t)^{2}\right]+2 a \mathrm{E}[y(t-1) e(t)]
+$$
+Mid-terms evaluation :
+$2 a \mathrm{E}[y(t-1) e(t)]=0$ (we will show this later)
+
+$\mathrm{E}\left[(y(t-1))^{2}\right]=\gamma_{y}(0)$ (thanks to stationarity)
+
+$\mathrm{E}\left[(e(t))^{2}\right]=\lambda^{2}$
+
+Hence, $\gamma_{y}(0)=a^{2} \gamma_{y}(0)+\lambda^{2}$, so:
+\begin{align*}
+	\gamma_{y}(0)=\frac{\lambda^{2}}{1-a^{2}}
+\end{align*} 
+
+Let us compute $\gamma_{y}(1)=\mathrm{E}\left[\left(y(t)-m_{y}\right) \cdot\left(y(t-1)-m_{y}\right)\right]=\mathrm{E}[y(t) y(t-1)]$ (since $m_{y}=0$ )
+
+Start from $y(t)=a \cdot y(t-1)+e(t)$ and multiply both sides for $y(t-1)$.
+
+Apply operator E[.] to both side:
+
+$$\mathrm{E}[y(t) y(t-1)]=\mathrm{E}[(a \cdot y(t-1)+e(t))(y(t-1))]$$
+
+Thanks to linearity:
+
+$$\gamma_{y}(1)=a \cdot \mathrm{E}\left[(y(t-1))^{2}\right]+\mathrm{E}[e(t) y(t-1)]$$
+
+Mid-terms evaluation:
+
+$\mathrm{E}[e(t) y(t-1)]=0 \quad$ (we will show this later)
+
+$\mathrm{E}\left[(y(t-1))^{2}\right]=\gamma_{y}(0) \quad$ (we have already computed it!)
+
+$$
+\gamma_{y}(1)=a \cdot \gamma_{y}(0)=a \cdot \frac{\lambda^{2}}{1-a^{2}}
+$$
+Similar rationale for $\gamma_{y}(2)$
+$$
+\gamma_{y}(2)=\mathrm{E}\left\lfloor\left(y(t)-m_{y}\right)\left(y(t-2)-m_{y}\right)\right]=\mathrm{E}[y(t) y(t-2)]
+$$
+\begin{align*}
+	&\mathrm{E}[y(t) y(t-2)]=\mathrm{E}[(a \cdot y(t-1)+e(t))(y(t-2))] \\
+	&\gamma_{y}(2)=a \cdot \mathrm{E}[y(t-1) y(t-2)]+\mathrm{E}[e(t) y(t-2)]
+\end{align*}
+
+Since $\mathrm{E}[e(t) y(t-2)]=0$ (we will show this later)
+$$
+\gamma_{y}(2)=a \cdot \gamma_{y}(1)=a^{2} \cdot \frac{\lambda^{2}}{1-a^{2}}
+$$
+
+Summary:
+
+\begin{align*}
+	&\gamma_{y}(0)=\frac{\lambda^{2}}{1-a^{2}} \\
+	&\left\{\begin{array}{l}
+		\gamma_{y}(1)=\gamma_{y}(-1)=a \cdot \gamma_{y}(0) \\
+		\gamma_{y}(2)=\gamma_{y}(-2)=a \cdot \gamma_{y}(1) \quad \Rightarrow \gamma_{y}(\tau)=a \cdot \gamma_{y}(\tau-1) \text { con }|\tau| \geq 1 \\
+		\ldots
+	\end{array}\right.
+\end{align*}
+
+Recursive expression for $\gamma_{y}(\tau)$
+$$
+\gamma_{y}(\tau)=a^{\tau} \cdot \frac{\lambda^{2}}{1-a^{2}}
+$$
+This result has been established for a generic $\mathrm{AR}(1)$ process
+Those equations are called "Yule-Walker equations".
