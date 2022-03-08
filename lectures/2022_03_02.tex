@@ -44,69 +44,69 @@ and thanks to linearity:
 \begin{align*}
 	\mathbb{E}[y(t)]=a \cdot \mathbb{E}[y(t-1)]+]+\mathbb{E}[e(t)]
 \end{align*}
-Thanks to stationarity $\mathrm{E}[y(t)]=\mathrm{E}[y(t-1)]=m_{y}$, so that $m_{y}=a \cdot m_{y}+m_{e}$.
+Thanks to stationarity $\mathbb{E}[y(t)]=\mathbb{E}[y(t-1)]=m_{y}$, so that $m_{y}=a \cdot m_{y}+m_{e}$.
 Then:
 $$
 m_{e}=0 \Rightarrow m_{y}=0
 $$
 
-Let us compute $\gamma_{y}(0)=\mathrm{E}\left[\left(y(t)-m_{y}\right)^{2}\right]$
+Let us compute $\gamma_{y}(0)=\mathbb{E}\left[\left(y(t)-m_{y}\right)^{2}\right]$
 
-(since $m_{y}=0$, we have that $\gamma_{y}(0)=\mathrm{E}\left[(y(t))^{2}\right]$ )
+(since $m_{y}=0$, we have that $\gamma_{y}(0)=\mathbb{E}\left[(y(t))^{2}\right]$ )
 
-Start from $y(t)=a \cdot y(t-1)+e(t)$, take the square and apply operator $E[\cdot]$ to both side:
+Start from $y(t)=a \cdot y(t-1)+e(t)$, take the square and apply operator $\mathbb[\cdot]$ to both side:
 
 $$
-\mathrm{E}\left[(y(t))^{2}\right]=\mathrm{E}\left[(a \cdot y(t-1)+e(t))^{2}\right]
+\mathbb{E}\left[(y(t))^{2}\right]=\mathbb{E}\left[(a \cdot y(t-1)+e(t))^{2}\right]
 $$
 
 Thanks to linearity
 $$
-\gamma_{y}(0)=a^{2} \mathrm{E}\left[y(t-1)^{2}\right]+\mathrm{E}\left[e(t)^{2}\right]+2 a \mathrm{E}[y(t-1) e(t)]
+\gamma_{y}(0)=a^{2} \mathbb{E}\left[y(t-1)^{2}\right]+\mathbb{E}\left[e(t)^{2}\right]+2 a \mathbb{E}[y(t-1) e(t)]
 $$
 Mid-terms evaluation :
-$2 a \mathrm{E}[y(t-1) e(t)]=0$ (we will show this later)
+$2 a \mathbb{E}[y(t-1) e(t)]=0$ (we will show this later)
 
-$\mathrm{E}\left[(y(t-1))^{2}\right]=\gamma_{y}(0)$ (thanks to stationarity)
+$\mathbb{E}\left[(y(t-1))^{2}\right]=\gamma_{y}(0)$ (thanks to stationarity)
 
-$\mathrm{E}\left[(e(t))^{2}\right]=\lambda^{2}$
+$\mathbb{E}\left[(e(t))^{2}\right]=\lambda^{2}$
 
 Hence, $\gamma_{y}(0)=a^{2} \gamma_{y}(0)+\lambda^{2}$, so:
 \begin{align*}
 	\gamma_{y}(0)=\frac{\lambda^{2}}{1-a^{2}}
 \end{align*} 
 
-Let us compute $\gamma_{y}(1)=\mathrm{E}\left[\left(y(t)-m_{y}\right) \cdot\left(y(t-1)-m_{y}\right)\right]=\mathrm{E}[y(t) y(t-1)]$ (since $m_{y}=0$ )
+Let us compute $\gamma_{y}(1)=\mathbb{E}\left[\left(y(t)-m_{y}\right) \cdot\left(y(t-1)-m_{y}\right)\right]=\mathbb{E}[y(t) y(t-1)]$ (since $m_{y}=0$ )
 
 Start from $y(t)=a \cdot y(t-1)+e(t)$ and multiply both sides for $y(t-1)$.
 
 Apply operator E[.] to both side:
 
-$$\mathrm{E}[y(t) y(t-1)]=\mathrm{E}[(a \cdot y(t-1)+e(t))(y(t-1))]$$
+$$\mathbb{E}[y(t) y(t-1)]=\mathbb{E}[(a \cdot y(t-1)+e(t))(y(t-1))]$$
 
 Thanks to linearity:
 
-$$\gamma_{y}(1)=a \cdot \mathrm{E}\left[(y(t-1))^{2}\right]+\mathrm{E}[e(t) y(t-1)]$$
+$$\gamma_{y}(1)=a \cdot \mathbb{E}\left[(y(t-1))^{2}\right]+\mathbb{E}[e(t) y(t-1)]$$
 
 Mid-terms evaluation:
 
-$\mathrm{E}[e(t) y(t-1)]=0 \quad$ (we will show this later)
+$\mathbb{E}[e(t) y(t-1)]=0 \quad$ (we will show this later)
 
-$\mathrm{E}\left[(y(t-1))^{2}\right]=\gamma_{y}(0) \quad$ (we have already computed it!)
+$\mathbb{E}\left[(y(t-1))^{2}\right]=\gamma_{y}(0) \quad$ (we have already computed it!)
 
 $$
 \gamma_{y}(1)=a \cdot \gamma_{y}(0)=a \cdot \frac{\lambda^{2}}{1-a^{2}}
 $$
 Similar rationale for $\gamma_{y}(2)$
 $$
-\gamma_{y}(2)=\mathrm{E}\left\lfloor\left(y(t)-m_{y}\right)\left(y(t-2)-m_{y}\right)\right]=\mathrm{E}[y(t) y(t-2)]
+\gamma_{y}(2)=\mathbb{E}\left\lfloor\left(y(t)-m_{y}\right)\left(y(t-2)-m_{y}\right)\right]=\mathbb{E}[y(t) y(t-2)]
 $$
 \begin{align*}
-	&\mathrm{E}[y(t) y(t-2)]=\mathrm{E}[(a \cdot y(t-1)+e(t))(y(t-2))] \\
-	&\gamma_{y}(2)=a \cdot \mathrm{E}[y(t-1) y(t-2)]+\mathrm{E}[e(t) y(t-2)]
+	&\mathbb{E}[y(t) y(t-2)]=\mathbb{E}[(a \cdot y(t-1)+e(t))(y(t-2))] \\
+	&\gamma_{y}(2)=a \cdot \mathbb{E}[y(t-1) y(t-2)]+\mathbb{E}[e(t) y(t-2)]
 \end{align*}
 
-Since $\mathrm{E}[e(t) y(t-2)]=0$ (we will show this later)
+Since $\mathbb{E}[e(t) y(t-2)]=0$ (we will show this later)
 $$
 \gamma_{y}(2)=a \cdot \gamma_{y}(1)=a^{2} \cdot \frac{\lambda^{2}}{1-a^{2}}
 $$
