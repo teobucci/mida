@@ -136,535 +136,66 @@ Per segnalare eventuali errori o suggerimenti potete mandare una pull request.
 
 \part{MIDA I}
 
-\chapter{Stochastic Processes}
-A stochastic process (SP) is an infinite sequence of random variables all defined on the same probabilistic space:
-\[
-	\ldots,v(1,s),v(2,s),v(3,s),\ldots,v(t,s),\ldots
-\]
-with $s$: random experiment realization and $t=0,\pm 1,\pm 2,\ldots$: time index.
-
-\textbf{Observation.} SP extends the notion of random vector (SP is a random vector with infinite entries).
-
-\textbf{Observation.} For a fixed value of the random experiment $s = \overline{s}$, the stochastic process becomes the numeric sequence:
-\[
-	\ldots,v(1,\overline{s}),v(2,\overline{s}),v(3,\overline{s}),\ldots,v(t,\overline{s}),\ldots
-\]
-which is called \textbf{realization} of the stochastic process.
-For different values of $s$, one gets different realizations of the stochastic process.
-
-We will think of available observations ${u(1),u(2),\ldots,u(N)}$ and ${y(1), y(2),\ldots, y(N)}$ as finite length realizations of stochastic process (stochastic process = uncertain model for a time series or I/O system).
-
-\textbf{Mean value} $m(t)$: it is the expected value of random variable $v(t,s)$ at time $t$:
-\[
-	m(t)=\mathbb{E}[v(t, s)]=\int v(t, s) \mathbb{P}(ds)
-\]
-$m(t)$ returns the value around which the process take value at time $t$.
-
-\textbf{Covariance function} $\gamma(t_{1}, t_{2})$: it is the expected value of the product of unbiased random variables $(v(t, s)-m(t))$ at two time instants $(t_{1}, t_{2}):$
-\begin{align*}
-	\gamma(t_{1}, t_{2}) &=\mathbb{E}[(v(t_{1}, s)-m(t_{1}))(v(t_{2}, s)-m(t_{2}))] \\
-	&=\int(v(t_{1}, s)-m(t_{1}))(v(t_{2}, s)-m(t_{2})) \mathbb{P}(ds)
-\end{align*}
-$\gamma(t_{1}, t_{2})$ quantifies the relation existing between the \emph{gaps} between the process realizations and the mean value at two different time instants.
-
-Particular case: $t_{1}=t_{2}=t$.
-\[
-	\gamma(t, t)=\mathbb{E}[(v(t, s)-m(t))^{2}]=\int(v(t, s)-m(t))^{2} \mathbb{P}(ds)
-\]
-is called the process \textbf{variance function} (it quantifies the process dispersion around its mean value at each time instant).
-
-\section{Stationary Stochastic Processes (SSP)}
-A stochastic process is called stationary (wide sense) if:
-\begin{itemize}
-	\item $m(t)=m \quad \forall t$
-	\item $\gamma(t_{1}, t_{2})$ depends on $\tau=t_{1}-t_{2}$ only, i.e.: $\gamma(t_{1}, t_{2})=\gamma(t_{3}, t_{4})$ if $t_{1}-t_{2}=t_{3}-t_{4}=\tau \quad \forall t_{1}, t_{2}, t_{3}, t_{4}$
-\end{itemize}
-Idea: the probabilistic properties of a SSP are time-translation invariant.
-
-Stationary stochastic processes admit a \emph{simplified} representation of the covariance function:
-\begin{gather*}
-\gamma(\tau)=\gamma(t, t-\tau)=\mathbb{E}[(v(t)-m)(v(t-\tau)-m)]\qquad (t_{1}=t, t_{2}=t-\tau, t_{1}-t_{2}=\tau)
-\end{gather*}
-and
-\[
-	\gamma(0)=\mathbb{E}[(v(t)-m)^{2}]=\lambda^2  \qquad \text{is the variance of the process}
-\]
-Why stationary stochastic processes?
-\begin{itemize}
-	\item \emph{Stationary} means \emph{time-invariant} data generating system (situation often encountered in practice).
-	\item S.S.P. are easier to study.
-	\item Non-stationary processes can be recast in the framework of S.S.P. by first eliminating the non-stationary part from data (data pre-processing).
-\end{itemize}
-
-\textbf{Covariance function properties for an S.S.P.}
-$$
-\gamma(\tau)=\mathbb{E}[(v(t)-m)(v(t-\tau)-m)]
-$$
-\begin{itemize}
-	\item $\gamma(0)=\mathbb{E}[(v(t)-m)^{2}] \geq 0$ (non negative at initial time)
-	\item $|\gamma(\tau)| \leq \gamma(0)$ (bounded)
-	\item $\gamma(\tau)=\gamma(-\tau)$ (symmetric) indeed
-	\begin{align*}
-		\gamma(-\tau)&=\mathbb{E}[(v(t)-m)(v(t-(-\tau))-m)]\\
-		&=\mathbb{E}[(v(t)-m)(v(t+\tau))-m)]\\
-		&=\mathbb{E}[(v(t+\tau)-m)(v(t))-m)]\\
-		&=\gamma(\tau) \quad(t+\tau-t=\tau)
-	\end{align*}
-\end{itemize}
-
-\fg{0.7}{Screen Shot 2022-03-06 at 00.50.16}
-
-\textbf{Observation}
-\begin{enumerate}
-	\item Given a S.S.P. $x(t)$, we will write $m_{x}$ e $\gamma_{x}(\tau)$ for its mean and covariance function
-	\item Two S.S.P. $y_{1}(t)$ and $y_{2}(t)$ are wide-sense equivalent if $m_{y_{1}}=m_{y_{2}}$ e $\gamma_{y_{1}}(\tau)=\gamma_{y_{2}}(\tau), \forall \tau$
-	\item The \emph{covariance function}
-	$$
-		\mathbb{E}[(v(t)-m) \cdot(v(t-\tau)-m)]
-	$$
-	is very \emph{different} from the $2^{\text{nd}}$ order moment function $\mathbb{E}[v(t) \cdot v(t-\tau)]$.
-\end{enumerate}
-
-\textbf{Example 1}
-
-$v(t,s)=\alpha (s),\forall t$ where $\alpha (s)\sim G(1,3)$ (Gaussian random variable with mean = 1 and variance = 3)
-
-Is the process stationary? Yes:
-\begin{itemize}
-	\item $m_{v}(t)=\mathbb{E}[v(t, s)]=\mathbb{E}[\alpha(s)]=1=m_{v}$ doesn't depend on $t$.
-	\item recalling that $v(t, s)=\alpha(s), \forall t$ and that $m_{v}(t)=1=m_{v}$
-	\begin{align*}
-		\gamma_{v}(t, t-\tau)&=\mathbb{E}[(v(t, s)-m_{v}(t))(v(t-\tau, s)-m_{v}(t-\tau))]\\
-		&=\mathbb{E}[(\alpha(s)-1)(\alpha(s)-1)]=3=\gamma_{v}(\tau)
-	\end{align*}
-	 doesn't depend on $t$.
-\end{itemize}
-
-\textbf{Example 2}
-
-$v(t, s)=t \cdot \alpha(s)-t$, where $\alpha(s) \sim G(1,3)$.
-\begin{itemize}
-	\item $m_{v}(t)=\mathbb{E}[v(t, s)]=\mathbb{E}[t \cdot \alpha(s)-t]=t \cdot \mathbb{E}[\alpha(s)]-t=t-t=0$ doesn't depend on $t$.
-	\item \begin{align*}
-		\gamma_{v}(t, t-\tau)&=\mathbb{E}[(v(t, s)-m_{v}(t))(v(t-\tau, s)-m_{v}(t-\tau))]\\
-	&=\mathbb{E}[(t \cdot \alpha(s)-t)((t-\tau) \cdot \alpha(s)-(t-\tau))]\\
-	&=\mathbb{E}[t \cdot(t-\tau)(\alpha(s)-1)^{2}]\\
-	&=t \cdot(t-\tau) \cdot \mathbb{E}[(\alpha(s)-1)^{2}]=t \cdot(t-\tau) \cdot 3
-	\end{align*}
-	\emph{does} depend on $t$.
-\end{itemize}
-The process is not stationary.
-
-\textbf{Observation.}
-
-If $\gamma(t, \tau)>0$ then there is a tendency of preserving the sign of the deviation from $t$ to $\tau $. Otherwise there is a tendency of changing the sign.
-
-\section{White Noise}
-
-An S.S.P. $e(t)$ is called White Noise (WN) with mean $\mu$ and variance $\lambda^{2}$, we shall write
-\[
-	e(t) \sim W N(\mu, \lambda^{2}),
-\]
-if the following conditions hold:
-\begin{itemize}
-	\item $\mathbb{E}[e(t)]=\mu \quad \forall t$
-	\item $\gamma_{e}(0)=\mathbb{E}[(e(t)-\mu)^{2}]=\lambda^{2} \quad \forall t$
-	\item $\gamma_{e}(\tau)=\mathbb{E}[(e(t)-\mu) \cdot(e(t-\tau)-\mu)]=0 \quad \forall t, \forall \tau \neq 0$
-\end{itemize}
-
-The last property is the fundamental one. It says that there is complete incorrelation between random variables at different time instants. The realizations of $e(t)$ are erratic and unpredictable (\textbf{whiteness property}).
-
-\fg{0.7}{Screen Shot 2022-03-08 at 09.53.35}
-
-\textbf{Observation.} The probability distribution of each single random variables $e(t,s)$ does not matter and is not made explicit in general (wide-sense description of S.S.P.).
-It could be Gaussian, uniform, etc. (WGN = White Gaussian Noise, WUN = White Uniform Noise, etc.).
-
-\textbf{Observation.} Is a constant realization admissible? Yes, it is, but such a realization is \emph{highly unlikely}.
-
-White Noise is a sort of \emph{building block} to construct a number of different stationary stochastic processes.
-
-\textbf{Remark.} To ease the notation, in the following we will consider \emph{zero mean} white noise. The extension to the general case presents no conceptual difficulties.
-
-\subsection{MA(\texorpdfstring{$n$}{n}) processes}
-
-Read \emph{Moving Average of order $n$}.
-
-Let $e(t) \sim W N(0, \lambda^{2})$, and MA process is obtained as
-\[
-	\boxed{y(t)=c_{0} e(t)+c_{1} e(t-1)+c_{2} e(t-2)+\ldots+c_{n} e(t-n).}
-\]
-In other words, the output $y(t)$ of a MA process is given by a linear combination of the last $n+1$ past values of the input noise $e(t)$.
-While $t$ is let vary, the linear combination is made on a sliding window (moving average).
-
-\textbf{Mean.}
-\[
-	m_{y}(t)=\mathbb{E}[y(t)] = \mathbb{E}[c_{0} e(t)+c_{1} e(t-1)+c_{2} e(t-2)+\cdots+c_{n} e(t-n)] = 0+0+\cdots+0=m_{y}=0 \quad \forall t
-\]
-hence $m_{y}(t)$ doesn't depend on $t$.
-
-\textbf{Variance.} (i.e. covariance when $\tau =0$)
-\begin{align*}
-	\gamma (0)&=\mathbb{E}[(y(t)-m_{y})(y(t)-m_{y})]=\mathbb{E}[(y(t))^2]\\
-	&=\mathbb{E}[(c_{0} e(t)+c_{1} e(t-1)+\ldots+c_{n} e(t-n))^{2}]\\
-	&=\mathbb{E}[c_{0}^{2} e(t)^{2}+\ldots+c_{n}^{2} e(t-n)^{2}\\
-	&\qquad+2 c_{0} c_{1} e(t) e(t-1)+\ldots+2 c_{n-1} c_{n} e(t-n-1) e(t-n)]\\
-	&=c_{0}^{2} \mathbb{E}[e(t)^{2}]+c_{1}^{2} \mathbb{E}[e(t-1)^{2}]+\ldots+c_{n}^{2} \mathbb{E}[e(t-n)^{2}]\\
-	&\qquad+2 c_{0} c_{1} \mathbb{E}[e(t) e(t-1)]+\ldots+2 c_{n-1} c_{n} \mathbb{E}[e(t-n-1) e(t-n)]
-\end{align*}
-
-Since $e(t) \sim W N(0, \lambda^{2})$, we have that:
-$$
-\mathbb{E}[e(t)^{2}]=\mathbb{E}[e(t-1)^{2}]=\ldots=\mathbb{E}[e(t-n)^{2}]=\lambda^{2}
-$$
-and that
-$$
-\mathbb{E}[e(t) e(t-1)]=\ldots=\mathbb{E}[e(t-n-1) e(t-n)]=0
-$$
-thus
-\[
-	\boxed{\gamma (t,t)=\gamma (0)=(c_{1}^2 +c_{1}^2 +\cdots+c_{n}^2 )\cdot\lambda^2}
-\]
-hence $\gamma (0)$ doesn't depend on $t$.
-
-\textbf{Covariance.}
-
-To calculate the generic covariance, let us proceed with $\tau =1$.
-\begin{align*}
-	\gamma(t, t-1)&=\mathbb{E}[(y(t)-m_{y})(y(t-1)-m_{y})]\\
-	&=\mathbb{E}[y(t) y(t-1)]\\
-	&=\mathbb{E}[(c_{0} e(t)+c_{1} e(t-1)+\ldots+c_{n} e(t-n))\cdot (y(t-1))]\\
-	&=\mathbb{E}[(c_{0} e(t)+c_{1} e(t-1)+\ldots+c_{n} e(t-n))\cdot (c_{0} e(t-1)+\ldots+c_{n-1} e(t-n)+c_{n} e(t-n-1))]
-\end{align*}
-
-Only those terms where the white noise is multiplied by itself at the same time instant are non null.
-\[
-	\gamma(t, t-1)=\gamma (1)=(c_{0}c_{1}+c_{1}c_{2}+\cdots+c_{n-1}c_{n})\cdot\lambda^2
-\]
-hence $\gamma (1)$ doesn't depend on $t$.
-
-Similarly
-\begin{align*}
-	\gamma (t,t-2)=\gamma (2) &= (c_{0}c_{2}+c_{1}c_{3}+\cdots+c_{n-2}c_{n})\cdot\lambda^2\\
-	&\vdots\\
-	\gamma (t,t-n)=\gamma (n) &= (c_{0}c_{n})\cdot\lambda^2\\
-	\gamma (t,t-n-1)=\gamma (n+1) &= 0
-\end{align*}
-since all products are uncorrelated. In conclusion
-\[
-	\gamma (\tau )=\begin{cases}
-		(c_{1}^2 +c_{1}^2 +\cdots+c_{n}^2 )\cdot\lambda^2 & \text{if}\ \tau =0\\
-		(c_{0}c_{1}+c_{1}c_{2}+\cdots+c_{n-1}c_{n})\cdot\lambda^2 & \text{if}\ \tau =\pm 1\\
-		(c_{0}c_{2}+c_{1}c_{3}+\cdots+c_{n-2}c_{n})\cdot\lambda^2 & \text{if}\ \tau =\pm 2\\
-		\vdots\\
-		(c_{0}c_{n})\cdot\lambda^2 & \text{if}\ \tau =\pm n\\
-		0 & \text{if}\ \tau > \pm 1\\
-	\end{cases}
-\]
-\subsection{MA(\texorpdfstring{$\infty$}{infinity}) processes}
-
-\[
-	y(t)=c_{0} e(t)+c_{1} e(t-1)+\cdots+c_{i} e(t-i)+\cdots=\sum_{i=0}^{\infty} c_{i} e(t-i) \quad e(t) \sim W N\left(0, \lambda^{2}\right)
-\]
-Assumption: $\sum_{i=0}^{\infty} c_{i}^{2}<\infty$ (it guarantees that $y(t)$ is well defined).
-
-\textbf{Mean.}
-\[
-	m_{y}(t)=\mathrm{E}[y(t)]=\mathrm{E}\left[\sum_{i=0}^{\infty} c_{i} e(t-i)\right]=\sum_{i=0}^{\infty} c_{i} \mathrm{E}[e(t-i)]=\sum_{i=0}^{\infty} c_{i} \cdot 0=0
-\]
-doesn't depend on $t$.
-
-\textbf{Variance.}
-\begin{align*}
-	\gamma_{y}(t, t)&=\mathrm{E}[(y(t)-m_{y})^{2}]\\
-	&=\mathrm{E}\left[\sum_{i=0}^{\infty} c_{i} e(t-i) \cdot \sum_{j=0}^{\infty} c_{j} e(t-j)\right]\\
-	&=\mathrm{E}\left[\sum_{i, j=0}^{\infty} c_{i} c_{j} \cdot e(t-i) e(t-j)\right]\\
-	&=\sum_{i, j=0}^{\infty} c_{i} c_{j} \cdot \mathrm{E}[e(t-i) e(t-j)]\\
-	&=\{\text{non null only when }i=j\}\\
-	&=\sum_{i=0}^{\infty} c_{i}^2 \cdot\lambda^2 
-\end{align*}
-doesn't depend on $t$.
-
-\textbf{Covariance.}
-\begin{align*}
-	\gamma_{y}(t, t-\tau) &=\mathrm{E}[(y(t)-m_{y}) (y(t-\tau)-m_{y})]\\
-	&=\mathrm{E}[y(t) y(t-\tau)]\\
-	&=\mathrm{E}\left[\sum_{i=0}^{\infty} c_{i} e(t-i) \cdot \sum_{j=0}^{\infty} c_{j} e(t-j-\tau)\right]\\
-	&=\mathrm{E}\left[\sum_{i, j=0}^{\infty} c_{i} c_{j} \cdot e(t-i) e(t-j-\tau)\right]\\
-	&=\sum_{i, j=0}^{\infty} c_{i} c_{j} \cdot \mathrm{E}[e(t-i) e(t-j-\tau)]\\
-	&=\{\text{non null only when }i=j+\tau\}\\
-	&=\sum_{i=0}^{\infty} c_{j+\tau}c_{j}\cdot\lambda^2 
-\end{align*}
-doesn't depend on $t$.
-
-So if $\sum_{i=0}^{\infty} c_{i}^{2}<\infty$ then the MA($\infty $) process is well defined and is a S.S.P.
-
-\textbf{Observation.} MA($\infty$) processes are very general, they almost \emph{cover} the class of stationary stochastic processes (i.e. apart from few exceptions, all S.S.P. can be written as MA($\infty$)).
-
-However, MA($\infty$) are difficult to handle since there are infinite coefficients and, moreover, the computation of the covariance function requires the computation of the sum of an infinite series (hard in general).
-
-On the other hand, MA($n$) are too limited, that is why we will look into AR and ARMA models.
-
-\section{AR and ARMA processes}
-
-\subsection{AR(Auto Regressive) processes}
-A process $y(t)$ is an AR process if it is generated as:
-\begin{align*}
-	y(t)=a_{1} y(t-1)+a_{2} y(t-2)+\ldots+a_{m} y(t-m)+e(t)
-\end{align*}
-where $e(t) \approx W N\left(\mu, \lambda^{2}\right)$.
-
-Terminology:
-
-$\begin{array}{ll}a_{1}, a_{2}, \ldots, a_{m} & \text { AR process (model) coefficient } \\ m & \text { process (model) order; } \\ \operatorname{AR}(m) & \text { AR process of order } m .\end{array}$
- 
-Hence, the output $y(t)$ of an AR process is recursively defined as the linear combination of last $m$ past values of the process itself plus the input $e(t)$ at the same time instant.
-
-\textbf{Observation.} The difference equation generating the AR process admits non-unique solution unless we specify an initial condition. Which solution do we consider as the AR process?
-
-By AR process we mean the solution obtained by taking the initial condition $\mathbf{y}\left(t_{0}\right)=0$ and letting the initial time instant tends to minus infinity, $t_{0} \rightarrow-\infty$ (in short, we will write $\mathbf{y}(-\infty)=0$ )). In other words, the AR process is the steady-state solution.
-
-\textbf{Example}
-
-$y(t)=a y(t-1)+e(t)$, where $e(t) \approx W N\left(\mu, \lambda^{2}\right)(\operatorname{AR}(1)$ process $)$
-
-What is the steady state solution?
-$$
-\begin{array}{rlr}
-	y(t) & =a y(t-1)+e(t)= & (y(t-1)=a y(t-2)+e(t-1)) \\
-	& =e(t)+a e(t-1)+a^{2} y(t-2)= & (y(t-2)=a y(t-3)+e(t-2)) \\
-	& \cdots & \\
-	& =e(t)+a e(t-1)+a^{2} e(t-2)+\ldots+a^{t-t_{0}} y\left(t_{0}\right)= & (y\left(t_{0}\right)=0) \\
-	& \cdots & (t_{0} \rightarrow-\infty) \\
-	& =e(t)+a e(t-1)+a^{2} e(t-2)+\ldots+a^{n} e(t-n)+\ldots=\sum_{i=0}^{\infty} a^{i} e(t-i)
-\end{array}
-$$
-The steady state solution is an $\mathrm{MA}(\infty)$ process with coefficients: $c_{0}=1, c_{1}=a, c_{2}=a^{2}, \ldots, c_{i}=a^{i}, \ldots$
-
-In general, AR processes are $\mathrm{MA}(\infty)$ processes with coefficients determined by the AR model coefficients by recursively apply the difference equation.
-
-$\mathrm{MA}(\infty)$ processes are well defined if 
-\begin{align*}
-	\sum_{i=0}^{\infty} \left(c_{i}\right)^2=\sum_{i=0}^{\infty} \left(a^{i}\right)^2< +\infty
-\end{align*}
-The geometric series converges $\iff a^2\leq 1$.
-
-So if $|a|\leq1$ the steady-state solution is well defined and SSP.
-
-\subsection{ARMA(Auto Regressive Moving Average) processes}
-
-A process $y(t)$ is an ARMA process if it is generated as:
-\begin{align*}
-	y(t)&=\\
-	&=a_{1} y(t-1)+a_{2} y(t-2)+\ldots+a_{m} y(t-m)+\quad &\operatorname{AR}(m) \text{ part}\\ &+c_{0} e(t)+c_{1} e(t-1)+\ldots+c_{n} e(t-n) . \quad &\operatorname{MA}(n) \text{ part}
-\end{align*}
-
-where $e(t) \approx W N\left(\mu, \lambda^{2}\right)$.
-
-Again by ARMA process we mean the steady-state solution obtained by letting $\mathbf{y}(-\infty)=0$.
- 
- Similarly to AR processes, the steady-state solution is an MA( $\infty)$ process whose coefficients are obtained from the ARMA model coefficients by recursively apply the difference equation.
- 
-Terminology:
-
-$m \quad$ AR part order
-
-$n \quad$ MA part order
-
-$\operatorname{ARMA}(m, n) \quad$ ARMA process of orders $m$ and $n$
-
-An ARMA process is well defined and stationary under some conditions which are too complicated to verify directly.
-We'll see how to solve this problem after introducing the operatorial 
-representation of ARMA processes.
-
-\subsection{Operatorial 
-	representation of ARMA processes}
-
-\textbf{Definition} (backward and forward shift operators)
-
-The backward shift operator $z^{-1}$ (from the space of discrete-time signals to the same space) is defined as: $z^{-1} x(t)=x(t-1)$.
-
-Similarly, $z$ is the forward shift operator and: $z x(t)=x(t+1)$.
-
-\textbf{Properties of operators $z^{-1}$ and $z$}
-
-$z^{-1}$ and $z$ are linear:
-
-\begin{align*}
-	&z^{-1}(a \cdot x(t)+b \cdot y(t))=a \cdot x(t-1)+b \cdot y(t-1) \\
-	&z(a \cdot x(t)+b \cdot y(t))=a \cdot x(t+1)+b \cdot y(t+1)
-\end{align*}
-
-$z^{-1}$ and $z$ can be recursively applied:
-
-\begin{align*}
-	&z^{-1}\left(z^{-1}\left(z^{-1}(x(t))\right)\right)= \\
-	&=z^{-1}\left(z^{-1}(x(t-1))\right)=z^{-1}(x(t-2))=x(t-3)= \\
-	&=z^{-3} x(t) \text { (compact notation) }
-\end{align*}
-
-(similarly for $z$ )
-
-$z^{-1}$ and $z$ can be linearly composed:
-
-\begin{align*}
-	&\left(a z^{-1}+b z+c z^{-3}+d z^{2}\right) x(t)= \\
-	&=a\left(z^{-1} x(t)\right)+b(z x(t))+c\left(z^{-3} x(t)\right)+d\left(z^{2} x(t)\right)= \\
-	&=a x(t-1)+b x(t+2)+c x(t-3)+d x(t+2)
-\end{align*}
-
-We can rewrite an ARMA process as follows:
-\begin{align*}
-	\left(1-a_{1} z^{-1}-a_{2} z^{-2}-\ldots-a_{m} z^{-m}\right) y(t)=\left(c_{0}+c_{1} z^{-1}+\ldots+c_{n} z^{-n}\right) e(t)
-\end{align*}
-
-Even more compact notation:
-\begin{align*}
-	y(t)=\frac{\left(c_{0}+c_{1} z^{-1}+\ldots+c_{n} z^{-n}\right)}{\left(1-a_{1} z^{-1}-a_{2} z^{-2}-\ldots-a_{m} z^{-m}\right)} e(t)=\frac{C(z)}{A(z)} e(t)
-\end{align*}
-where:
-\begin{align*}
-	&C(z)=\left(c_{0}+c_{1} z^{-1}+\ldots+c_{n} z^{-n}\right) \\
-	&A(z)=\left(1-a_{1} z^{-1}-a_{2} z^{-2}-\ldots-a_{m} z^{-m}\right)
-\end{align*}
-
-$\frac{C(z)}{A(z)}$ is called discrete time transfer function and it simply says that $y(t)$ is generated as the steady-state output of a linear operator that receive as input $e(t)$.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-% lecture 01/03/2022
-Say that $y(t)=W(z)u(t)$, where $W(z)=\frac{C(z)}{A(z)}$ means that $y(t)$ is the steady state solution to the recursive equation:
-\[
-	A(z)y(t)=C(z)u(t)
-\]
-
-\section{Composition of transfer functions and output processes}
-\subsection{Series}
-Given $u(t)$ stochastic process, consider
-\begin{align*}
-	x(t)&=W_{1}(z)u(t)=\frac{C_{1}(z)}{A_{1}(z)}u(t)\\
-	y(t)&=W_{2}(z)x(t)=\frac{C_{2}(z)}{A_{2}(z)}x(t)
-\end{align*}
-\fg{0.7}{Screen Shot 2022-03-08 at 16.28.23}
-\begin{theorem}
-	The process $y(t)$ is the steady state output of a new filter having transfer function $W_{1}(z)\cdot W_{2}(z)$ fed by $u(t)$. That is,
-	\[
-		y(t)=[W_{1}(z)\cdot W_{2}(z)]u(t)=\frac{C_{1}(z)\cdot C_{2}(z)}{A_{1}(z)\cdot A_{2}(z)}u(t)
-	\]
-	meaning that $y(t)$ is the solution to the recursive equation $A_{1}(z)\cdot A_{2}(z) y(t) = C_{1}(z)\cdot C_{2}(z)u(t)$.
-\end{theorem}
-
-\subsection{Parallel}
-Given $u(t)$ stochastic process, consider
-\begin{align*}
-	y_{1}(t)&=W_{1}(z)u(t)\\
-	y_{2}(t)&=W_{2}(z)u(t)\\
-	y(t)&=y_{1}(t)+y_{2}(t)=W_{1}(z)u(t)+W_{2}(z)u(t)=[W_{1}(z)+W_{2}(z)]u(t)
-\end{align*}
-\fg{0.7}{Screen Shot 2022-03-08 at 16.36.03}
-\begin{theorem}
-	The process $y(t)$ is the steady state output of a new filter having transfer function $W_{1}(z)+W_{2}(z)$ fed by $u(t)$.
-\end{theorem}
-
-\section{Poles and zeros}
-
-\textbf{Remark.}
-One can always multiply a transfer function by $z^{m}/z^{m}$.
-
-Consider now $W(z)$ a complex-valued transfer function. Then one can identify:
-\begin{itemize}
-	\item \textbf{zeros}: all $z\in \mathbb{C}$ such that $W(z)=0$.
-	\item \textbf{poles}: all $z\in \mathbb{C}$ such that $W^{-1} (z)=0$.
-\end{itemize}
-When $C(z),A(z)$ are polynomials with positive powers, then
-\[
-	\text{zeros}=\{z:(C(z)=0\} \qquad \text{poles}=\{z:(A(z)=0\}
-\]
-
-\textbf{Example.}
-\begin{align*}
-y(t) &=e(t)+\frac{1}{2} e(t-1)+\frac{1}{4} e(t-2) =\left(1+\frac{1}{2} z^{-1}+\frac{1}{4} z^{-2}\right) e(t) \\
-&=\frac{1+\frac{1}{2} z^{-1}+\frac{1}{4} z^{-2}}{1} \cdot \frac{z^{2}}{z^{2}}\cdot e(t) =\frac{z^{2}+\frac{1}{2} z+\frac{1}{4}}{z^{2}} e(t)
-\end{align*}
-Poles are $z_{1}=z_{2}=0$.\\
-Zeros are $z$ such that $z^{2}+\frac{1}{2} z+\frac{1}{4}=0$
-\[
-	z_{1,2}=\frac{-\frac{1}{2} \pm \sqrt{\left( \frac{1}{2}  \right) ^2 -4\cdot\frac{1}{4} } }{2} = -\frac{1}{4}\pm i\frac{\sqrt{3} }{4}
-\]
-\fg{0.7}{Screen Shot 2022-03-08 at 16.57.50}
-
-\textbf{Remark.}
-We say that $W(z)=C(z)/A(z)$ is
-\begin{itemize}
-	\item \textbf{asymptotically stable} if all \emph{poles} are such that $|z|<1$.
-	\item \textbf{minimum phase} if all \emph{zeros} are such that $|z|<1$.
-\end{itemize}
-
-When ARMA processes are well-defined? Consider $W(z)$ rational transfer function, $v(t)$ stochastic process (input), $y(t)=W(z)v(t)$.
-
-\begin{theorem}
-	If
-	\begin{itemize}
-		\item $v(t)$ is a \emph{stationary} stochastic process;
-		\item $W(z)$ is asymptotically stable;
-	\end{itemize}
-	then $y(t)$ is well-defined and is \emph{stationary}.
-\end{theorem}
-
-In the case of ARMA processes, the input is a White Noise, which is stationary by definition. Thus we just need to check the second condition.
-
-In general one can factorize the denominator:
-\begin{align*}
-	y(t)&=\frac{C(z)}{A(z)}v(t)=\frac{C(z)}{(z-p_{1})(z-p_{2})\cdots(z-p_{m})}v(t)\\
-	&=C(z)\cdot\frac{1}{z-p_{1}}\cdot\frac{1}{z-p_{2}}\cdots\frac{1}{z-p_{m}}v(t)\\
-	&=\frac{1}{z-p_{m}}\left[ \frac{1}{z-p_{m-1}}\left[ \cdots\frac{1}{z-p_{1}}\left[ C(z)v(t) \right]   \right]   \right]  
-\end{align*}
-\fg{0.7}{Screen Shot 2022-03-08 at 17.10.36}
-
-
-
-
-
+\input{lectures/2022_02_21} %ok
+\input{lectures/2022_02_22} %ok
+\input{lectures/2022_02_23} %ok
+\input{lectures/2022_02_24} %ese
+\input{lectures/2022_02_28} %ok
+\input{lectures/2022_03_01} %ok
+\input{lectures/2022_03_02}
+\input{lectures/2022_03_03} %ese
+\input{lectures/2022_03_07} %ese
+\input{lectures/2022_03_08}
+\input{lectures/2022_03_09}
+\input{lectures/2022_03_10}
+\input{lectures/2022_03_14}
+\input{lectures/2022_03_15}
+\input{lectures/2022_03_16}
+\input{lectures/2022_03_17}
+\input{lectures/2022_03_21}
+\input{lectures/2022_03_22}
+\input{lectures/2022_03_23}
+\input{lectures/2022_03_24}
+\input{lectures/2022_03_28}
+\input{lectures/2022_03_29}
+\input{lectures/2022_03_30}
+\input{lectures/2022_03_31}
+\input{lectures/2022_04_04}
+\input{lectures/2022_04_05}
+\input{lectures/2022_04_06}
+\input{lectures/2022_04_07}
+\input{lectures/2022_04_11}
+\input{lectures/2022_04_12}
+\input{lectures/2022_04_13}
+\input{lectures/2022_04_14}
+\input{lectures/2022_04_18}
+\input{lectures/2022_04_19}
+\input{lectures/2022_04_20}
+\input{lectures/2022_04_21}
+\input{lectures/2022_04_25}
+\input{lectures/2022_04_26}
+\input{lectures/2022_04_27}
+\input{lectures/2022_04_28}
+\input{lectures/2022_05_02}
+\input{lectures/2022_05_03}
+\input{lectures/2022_05_04}
+\input{lectures/2022_05_05}
+\input{lectures/2022_05_09}
+\input{lectures/2022_05_10}
+\input{lectures/2022_05_11}
+\input{lectures/2022_05_12}
+\input{lectures/2022_05_16}
+\input{lectures/2022_05_17}
+\input{lectures/2022_05_18}
+\input{lectures/2022_05_19}
+\input{lectures/2022_05_23}
+\input{lectures/2022_05_24}
+\input{lectures/2022_05_25}
+\input{lectures/2022_05_26}
+\input{lectures/2022_05_30}
+\input{lectures/2022_05_31}
+\input{lectures/2022_06_01}
+\input{lectures/2022_06_02}
+\input{lectures/2022_06_06}
 
 \end{document}

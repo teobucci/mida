@@ -1,0 +1,88 @@
+%!TEX root = ../main.tex
+Say that $y(t)=W(z)u(t)$, where $W(z)=\frac{C(z)}{A(z)}$ means that $y(t)$ is the steady state solution to the recursive equation:
+\[
+	A(z)y(t)=C(z)u(t)
+\]
+
+\section{Composition of transfer functions and output processes}
+\subsection{Series}
+Given $u(t)$ stochastic process, consider
+\begin{align*}
+	x(t)&=W_{1}(z)u(t)=\frac{C_{1}(z)}{A_{1}(z)}u(t)\\
+	y(t)&=W_{2}(z)x(t)=\frac{C_{2}(z)}{A_{2}(z)}x(t)
+\end{align*}
+\fg{0.7}{Screen Shot 2022-03-08 at 16.28.23}
+\begin{theorem}
+	The process $y(t)$ is the steady state output of a new filter having transfer function $W_{1}(z)\cdot W_{2}(z)$ fed by $u(t)$. That is,
+	\[
+		y(t)=[W_{1}(z)\cdot W_{2}(z)]u(t)=\frac{C_{1}(z)\cdot C_{2}(z)}{A_{1}(z)\cdot A_{2}(z)}u(t)
+	\]
+	meaning that $y(t)$ is the solution to the recursive equation $A_{1}(z)\cdot A_{2}(z) y(t) = C_{1}(z)\cdot C_{2}(z)u(t)$.
+\end{theorem}
+
+\subsection{Parallel}
+Given $u(t)$ stochastic process, consider
+\begin{align*}
+	y_{1}(t)&=W_{1}(z)u(t)\\
+	y_{2}(t)&=W_{2}(z)u(t)\\
+	y(t)&=y_{1}(t)+y_{2}(t)=W_{1}(z)u(t)+W_{2}(z)u(t)=[W_{1}(z)+W_{2}(z)]u(t)
+\end{align*}
+\fg{0.7}{Screen Shot 2022-03-08 at 16.36.03}
+\begin{theorem}
+	The process $y(t)$ is the steady state output of a new filter having transfer function $W_{1}(z)+W_{2}(z)$ fed by $u(t)$.
+\end{theorem}
+
+\section{Poles and zeros}
+
+\textbf{Remark.}
+One can always multiply a transfer function by $z^{m}/z^{m}$.
+
+Consider now $W(z)$ a complex-valued transfer function. Then one can identify:
+\begin{itemize}
+	\item \textbf{zeros}: all $z\in \mathbb{C}$ such that $W(z)=0$.
+	\item \textbf{poles}: all $z\in \mathbb{C}$ such that $W^{-1} (z)=0$.
+\end{itemize}
+When $C(z),A(z)$ are polynomials with positive powers, then
+\[
+	\text{zeros}=\{z:(C(z)=0\} \qquad \text{poles}=\{z:(A(z)=0\}
+\]
+
+\textbf{Example.}
+\begin{align*}
+y(t) &=e(t)+\frac{1}{2} e(t-1)+\frac{1}{4} e(t-2) =\left(1+\frac{1}{2} z^{-1}+\frac{1}{4} z^{-2}\right) e(t) \\
+&=\frac{1+\frac{1}{2} z^{-1}+\frac{1}{4} z^{-2}}{1} \cdot \frac{z^{2}}{z^{2}}\cdot e(t) =\frac{z^{2}+\frac{1}{2} z+\frac{1}{4}}{z^{2}} e(t)
+\end{align*}
+Poles are $z_{1}=z_{2}=0$.\\
+Zeros are $z$ such that $z^{2}+\frac{1}{2} z+\frac{1}{4}=0$
+\[
+	z_{1,2}=\frac{-\frac{1}{2} \pm \sqrt{\left( \frac{1}{2}  \right) ^2 -4\cdot\frac{1}{4} } }{2} = -\frac{1}{4}\pm i\frac{\sqrt{3} }{4}
+\]
+\fg{0.7}{Screen Shot 2022-03-08 at 16.57.50}
+
+\textbf{Remark.}
+We say that $W(z)=C(z)/A(z)$ is
+\begin{itemize}
+	\item \textbf{asymptotically stable} if all \emph{poles} are such that $|z|<1$.
+	\item \textbf{minimum phase} if all \emph{zeros} are such that $|z|<1$.
+\end{itemize}
+
+When ARMA processes are well-defined? Consider $W(z)$ rational transfer function, $v(t)$ stochastic process (input), $y(t)=W(z)v(t)$.
+
+\begin{theorem}
+	If
+	\begin{itemize}
+		\item $v(t)$ is a \emph{stationary} stochastic process;
+		\item $W(z)$ is asymptotically stable;
+	\end{itemize}
+	then $y(t)$ is well-defined and is \emph{stationary}.
+\end{theorem}
+
+In the case of ARMA processes, the input is a White Noise, which is stationary by definition. Thus we just need to check the second condition.
+
+In general one can factorize the denominator:
+\begin{align*}
+	y(t)&=\frac{C(z)}{A(z)}v(t)=\frac{C(z)}{(z-p_{1})(z-p_{2})\cdots(z-p_{m})}v(t)\\
+	&=C(z)\cdot\frac{1}{z-p_{1}}\cdot\frac{1}{z-p_{2}}\cdots\frac{1}{z-p_{m}}v(t)\\
+	&=\frac{1}{z-p_{m}}\left[ \frac{1}{z-p_{m-1}}\left[ \cdots\frac{1}{z-p_{1}}\left[ C(z)v(t) \right]   \right]   \right]  
+\end{align*}
+\fg{0.7}{Screen Shot 2022-03-08 at 17.10.36}

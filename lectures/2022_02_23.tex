@@ -1,0 +1,102 @@
+%!TEX root = ../main.tex
+\textbf{Variance.} (i.e. covariance when $\tau =0$)
+\begin{align*}
+	\gamma (0)&=\mathbb{E}[(y(t)-m_{y})(y(t)-m_{y})]=\mathbb{E}[(y(t))^2]\\
+	&=\mathbb{E}[(c_{0} e(t)+c_{1} e(t-1)+\ldots+c_{n} e(t-n))^{2}]\\
+	&=\mathbb{E}[c_{0}^{2} e(t)^{2}+\ldots+c_{n}^{2} e(t-n)^{2}\\
+	&\qquad+2 c_{0} c_{1} e(t) e(t-1)+\ldots+2 c_{n-1} c_{n} e(t-n-1) e(t-n)]\\
+	&=c_{0}^{2} \mathbb{E}[e(t)^{2}]+c_{1}^{2} \mathbb{E}[e(t-1)^{2}]+\ldots+c_{n}^{2} \mathbb{E}[e(t-n)^{2}]\\
+	&\qquad+2 c_{0} c_{1} \mathbb{E}[e(t) e(t-1)]+\ldots+2 c_{n-1} c_{n} \mathbb{E}[e(t-n-1) e(t-n)]
+\end{align*}
+
+Since $e(t) \sim W N(0, \lambda^{2})$, we have that:
+$$
+\mathbb{E}[e(t)^{2}]=\mathbb{E}[e(t-1)^{2}]=\ldots=\mathbb{E}[e(t-n)^{2}]=\lambda^{2}
+$$
+and that
+$$
+\mathbb{E}[e(t) e(t-1)]=\ldots=\mathbb{E}[e(t-n-1) e(t-n)]=0
+$$
+thus
+\[
+	\boxed{\gamma (t,t)=\gamma (0)=(c_{1}^2 +c_{1}^2 +\cdots+c_{n}^2 )\cdot\lambda^2}
+\]
+hence $\gamma (0)$ doesn't depend on $t$.
+
+\textbf{Covariance.}
+
+To calculate the generic covariance, let us proceed with $\tau =1$.
+\begin{align*}
+	\gamma(t, t-1)&=\mathbb{E}[(y(t)-m_{y})(y(t-1)-m_{y})]\\
+	&=\mathbb{E}[y(t) y(t-1)]\\
+	&=\mathbb{E}[(c_{0} e(t)+c_{1} e(t-1)+\ldots+c_{n} e(t-n))\cdot (y(t-1))]\\
+	&=\mathbb{E}[(c_{0} e(t)+c_{1} e(t-1)+\ldots+c_{n} e(t-n))\cdot (c_{0} e(t-1)+\ldots+c_{n-1} e(t-n)+c_{n} e(t-n-1))]
+\end{align*}
+
+Only those terms where the white noise is multiplied by itself at the same time instant are non null.
+\[
+	\gamma(t, t-1)=\gamma (1)=(c_{0}c_{1}+c_{1}c_{2}+\cdots+c_{n-1}c_{n})\cdot\lambda^2
+\]
+hence $\gamma (1)$ doesn't depend on $t$.
+
+Similarly
+\begin{align*}
+	\gamma (t,t-2)=\gamma (2) &= (c_{0}c_{2}+c_{1}c_{3}+\cdots+c_{n-2}c_{n})\cdot\lambda^2\\
+	&\vdots\\
+	\gamma (t,t-n)=\gamma (n) &= (c_{0}c_{n})\cdot\lambda^2\\
+	\gamma (t,t-n-1)=\gamma (n+1) &= 0
+\end{align*}
+since all products are uncorrelated. In conclusion
+\[
+	\gamma (\tau )=\begin{cases}
+		(c_{1}^2 +c_{1}^2 +\cdots+c_{n}^2 )\cdot\lambda^2 & \text{if}\ \tau =0\\
+		(c_{0}c_{1}+c_{1}c_{2}+\cdots+c_{n-1}c_{n})\cdot\lambda^2 & \text{if}\ \tau =\pm 1\\
+		(c_{0}c_{2}+c_{1}c_{3}+\cdots+c_{n-2}c_{n})\cdot\lambda^2 & \text{if}\ \tau =\pm 2\\
+		\vdots\\
+		(c_{0}c_{n})\cdot\lambda^2 & \text{if}\ \tau =\pm n\\
+		0 & \text{if}\ \tau > \pm 1\\
+	\end{cases}
+\]
+\subsection{MA(\texorpdfstring{$\infty$}{infinity}) processes}
+
+\[
+	y(t)=c_{0} e(t)+c_{1} e(t-1)+\cdots+c_{i} e(t-i)+\cdots=\sum_{i=0}^{\infty} c_{i} e(t-i) \quad e(t) \sim W N\left(0, \lambda^{2}\right)
+\]
+Assumption: $\sum_{i=0}^{\infty} c_{i}^{2}<\infty$ (it guarantees that $y(t)$ is well defined).
+
+\textbf{Mean.}
+\[
+	m_{y}(t)=\mathrm{E}[y(t)]=\mathrm{E}\left[\sum_{i=0}^{\infty} c_{i} e(t-i)\right]=\sum_{i=0}^{\infty} c_{i} \mathrm{E}[e(t-i)]=\sum_{i=0}^{\infty} c_{i} \cdot 0=0
+\]
+doesn't depend on $t$.
+
+\textbf{Variance.}
+\begin{align*}
+	\gamma_{y}(t, t)&=\mathrm{E}[(y(t)-m_{y})^{2}]\\
+	&=\mathrm{E}\left[\sum_{i=0}^{\infty} c_{i} e(t-i) \cdot \sum_{j=0}^{\infty} c_{j} e(t-j)\right]\\
+	&=\mathrm{E}\left[\sum_{i, j=0}^{\infty} c_{i} c_{j} \cdot e(t-i) e(t-j)\right]\\
+	&=\sum_{i, j=0}^{\infty} c_{i} c_{j} \cdot \mathrm{E}[e(t-i) e(t-j)]\\
+	&=\{\text{non null only when }i=j\}\\
+	&=\sum_{i=0}^{\infty} c_{i}^2 \cdot\lambda^2 
+\end{align*}
+doesn't depend on $t$.
+
+\textbf{Covariance.}
+\begin{align*}
+	\gamma_{y}(t, t-\tau) &=\mathrm{E}[(y(t)-m_{y}) (y(t-\tau)-m_{y})]\\
+	&=\mathrm{E}[y(t) y(t-\tau)]\\
+	&=\mathrm{E}\left[\sum_{i=0}^{\infty} c_{i} e(t-i) \cdot \sum_{j=0}^{\infty} c_{j} e(t-j-\tau)\right]\\
+	&=\mathrm{E}\left[\sum_{i, j=0}^{\infty} c_{i} c_{j} \cdot e(t-i) e(t-j-\tau)\right]\\
+	&=\sum_{i, j=0}^{\infty} c_{i} c_{j} \cdot \mathrm{E}[e(t-i) e(t-j-\tau)]\\
+	&=\{\text{non null only when }i=j+\tau\}\\
+	&=\sum_{i=0}^{\infty} c_{j+\tau}c_{j}\cdot\lambda^2 
+\end{align*}
+doesn't depend on $t$.
+
+So if $\sum_{i=0}^{\infty} c_{i}^{2}<\infty$ then the MA($\infty $) process is well defined and is a S.S.P.
+
+\textbf{Observation.} MA($\infty$) processes are very general, they almost \emph{cover} the class of stationary stochastic processes (i.e. apart from few exceptions, all S.S.P. can be written as MA($\infty$)).
+
+However, MA($\infty$) are difficult to handle since there are infinite coefficients and, moreover, the computation of the covariance function requires the computation of the sum of an infinite series (hard in general).
+
+On the other hand, MA($n$) are too limited, that is why we will look into AR and ARMA models.
