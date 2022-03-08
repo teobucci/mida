@@ -3,123 +3,114 @@
 
 \subsection{AR(Auto Regressive) processes}
 A process $y(t)$ is an AR process if it is generated as:
-\begin{align*}
-	y(t)=a_{1} y(t-1)+a_{2} y(t-2)+\ldots+a_{m} y(t-m)+e(t)
-\end{align*}
+\[
+	\boxed{y(t)=a_{1} y(t-1)+a_{2} y(t-2)+\cdots+a_{m} y(t-m)+e(t)}
+\]
 where $e(t) \approx W N\left(\mu, \lambda^{2}\right)$.
 
 Terminology:
-
-$\begin{array}{ll}a_{1}, a_{2}, \ldots, a_{m} & \text { AR process (model) coefficient } \\ m & \text { process (model) order; } \\ \operatorname{AR}(m) & \text { AR process of order } m .\end{array}$
+\begin{itemize}
+	\item $a_{1}, a_{2}, \ldots, a_{m}$: AR process (model) coefficient.
+	\item $m$: process (model) order.
+	\item AR($m$): AR process of order $m$.
+\end{itemize}
  
 Hence, the output $y(t)$ of an AR process is recursively defined as the linear combination of last $m$ past values of the process itself plus the input $e(t)$ at the same time instant.
 
-\textbf{Observation.} The difference equation generating the AR process admits non-unique solution unless we specify an initial condition. Which solution do we consider as the AR process?
+\textbf{Observation.}
+The difference equation generating the AR process admits non-unique solution unless we specify an \emph{initial condition}. Which solution do we consider as the AR process?
 
-By AR process we mean the solution obtained by taking the initial condition $\mathbf{y}\left(t_{0}\right)=0$ and letting the initial time instant tends to minus infinity, $t_{0} \rightarrow-\infty$ (in short, we will write $\mathbf{y}(-\infty)=0$ )). In other words, the AR process is the steady-state solution.
+By AR process we mean the solution obtained by taking the initial condition $\boxed{\mathbf{y}(t_{0})=0}$ and letting $t_{0} \to -\infty$ (in short, we will write $\mathbf{y}(-\infty)=0$)). In other words, the AR process is the \textbf{steady-state solution}.
 
-\textbf{Example}
+\textbf{Example.} (AR($1$) process)
 
-$y(t)=a y(t-1)+e(t)$, where $e(t) \approx W N\left(\mu, \lambda^{2}\right)(\operatorname{AR}(1)$ process $)$
+$y(t)=a y(t-1)+e(t)$, where $e(t) \approx W N\left(\mu, \lambda^{2}\right)$
 
 What is the steady state solution?
-$$
-\begin{array}{rlr}
-	y(t) & =a y(t-1)+e(t)= & (y(t-1)=a y(t-2)+e(t-1)) \\
-	& =e(t)+a e(t-1)+a^{2} y(t-2)= & (y(t-2)=a y(t-3)+e(t-2)) \\
-	& \cdots & \\
-	& =e(t)+a e(t-1)+a^{2} e(t-2)+\ldots+a^{t-t_{0}} y\left(t_{0}\right)= & (y\left(t_{0}\right)=0) \\
-	& \cdots & (t_{0} \rightarrow-\infty) \\
-	& =e(t)+a e(t-1)+a^{2} e(t-2)+\ldots+a^{n} e(t-n)+\ldots=\sum_{i=0}^{\infty} a^{i} e(t-i)
-\end{array}
-$$
+\begin{align*}
+	y(t) & =a y(t-1)+e(t) & (y(t-1)=a y(t-2)+e(t-1)) \\
+	& =e(t)+a e(t-1)+a^{2} y(t-2) & (y(t-2)=a y(t-3)+e(t-2)) \\
+	& \vdots & \\
+	& =e(t)+a e(t-1)+a^{2} e(t-2)+\cdots+a^{t-t_{0}} y\left(t_{0}\right) & (y\left(t_{0}\right)=0,t_{0} \to-\infty) \\
+	& \vdots & \\
+	& =e(t)+a e(t-1)+a^{2} e(t-2)+\cdots+a^{n} e(t-n)+\cdots\\
+	&=\sum_{i=0}^{\infty} a^{i} e(t-i)
+\end{align*}
 The steady state solution is an $\mathrm{MA}(\infty)$ process with coefficients: $c_{0}=1, c_{1}=a, c_{2}=a^{2}, \ldots, c_{i}=a^{i}, \ldots$
 
 In general, AR processes are $\mathrm{MA}(\infty)$ processes with coefficients determined by the AR model coefficients by recursively apply the difference equation.
 
 $\mathrm{MA}(\infty)$ processes are well defined if 
 \begin{align*}
-	\sum_{i=0}^{\infty} \left(c_{i}\right)^2=\sum_{i=0}^{\infty} \left(a^{i}\right)^2< +\infty
+	\sum_{i=0}^{\infty} \left(c_{i}\right)^2=\sum_{i=0}^{\infty} \left(a^{i}\right)^2< +\infty \iff a^2\leq 1
 \end{align*}
-The geometric series converges $\iff a^2\leq 1$.
 
-So if $|a|\leq1$ the steady-state solution is well defined and SSP.
+So if $|a|\leq1$ the steady-state solution is well defined and S.S.P.
 
 \subsection{ARMA(Auto Regressive Moving Average) processes}
 
 A process $y(t)$ is an ARMA process if it is generated as:
 \begin{align*}
-	y(t)&=\\
-	&=a_{1} y(t-1)+a_{2} y(t-2)+\ldots+a_{m} y(t-m)+\quad &\operatorname{AR}(m) \text{ part}\\ &+c_{0} e(t)+c_{1} e(t-1)+\ldots+c_{n} e(t-n) . \quad &\operatorname{MA}(n) \text{ part}
+	y(t)&=a_{1} y(t-1)+a_{2} y(t-2)+\cdots+a_{m} y(t-m)+\quad &\operatorname{AR}(m) \text{ part}\\ &+c_{0} e(t)+c_{1} e(t-1)+\cdots+c_{n} e(t-n) . \quad &\operatorname{MA}(n) \text{ part}
 \end{align*}
 
 where $e(t) \approx W N\left(\mu, \lambda^{2}\right)$.
 
 Again by ARMA process we mean the steady-state solution obtained by letting $\mathbf{y}(-\infty)=0$.
  
- Similarly to AR processes, the steady-state solution is an MA( $\infty)$ process whose coefficients are obtained from the ARMA model coefficients by recursively apply the difference equation.
+Similarly to AR processes, the steady-state solution is an MA( $\infty)$ process whose coefficients are obtained from the ARMA model coefficients by recursively apply the difference equation.
  
 Terminology:
-
-$m \quad$ AR part order
-
-$n \quad$ MA part order
-
-$\operatorname{ARMA}(m, n) \quad$ ARMA process of orders $m$ and $n$
+\begin{itemize}
+	\item $m$ AR part order.
+	\item $n$ MA part order.
+	\item ARMA($m,n$) ARMA process of orders $m$ and $n$.
+\end{itemize}
 
 An ARMA process is well defined and stationary under some conditions which are too complicated to verify directly.
 We'll see how to solve this problem after introducing the operatorial 
 representation of ARMA processes.
 
-\subsection{Operatorial 
-	representation of ARMA processes}
+\subsection{Operatorial representation of ARMA processes}
 
-\textbf{Definition} (backward and forward shift operators)
-
-The backward shift operator $z^{-1}$ (from the space of discrete-time signals to the same space) is defined as: $z^{-1} x(t)=x(t-1)$.
-
-Similarly, $z$ is the forward shift operator and: $z x(t)=x(t+1)$.
+\begin{definition}[backward and forward shift operators]
+Backward shift operator $z^{-1}$ is defined as: $z^{-1} x(t)=x(t-1)$.\\
+Forward shift operator, $z$ is defined as: $z x(t)=x(t+1)$.	
+\end{definition}
 
 \textbf{Properties of operators $z^{-1}$ and $z$}
 
-$z^{-1}$ and $z$ are linear:
-
-\begin{align*}
-	&z^{-1}(a \cdot x(t)+b \cdot y(t))=a \cdot x(t-1)+b \cdot y(t-1) \\
-	&z(a \cdot x(t)+b \cdot y(t))=a \cdot x(t+1)+b \cdot y(t+1)
-\end{align*}
-
-$z^{-1}$ and $z$ can be recursively applied:
-
-\begin{align*}
-	&z^{-1}\left(z^{-1}\left(z^{-1}(x(t))\right)\right)= \\
-	&=z^{-1}\left(z^{-1}(x(t-1))\right)=z^{-1}(x(t-2))=x(t-3)= \\
-	&=z^{-3} x(t) \text { (compact notation) }
-\end{align*}
-
-(similarly for $z$ )
-
-$z^{-1}$ and $z$ can be linearly composed:
-
-\begin{align*}
-	&\left(a z^{-1}+b z+c z^{-3}+d z^{2}\right) x(t)= \\
-	&=a\left(z^{-1} x(t)\right)+b(z x(t))+c\left(z^{-3} x(t)\right)+d\left(z^{2} x(t)\right)= \\
-	&=a x(t-1)+b x(t+2)+c x(t-3)+d x(t+2)
-\end{align*}
+\begin{itemize}
+	\item $z^{-1}$ and $z$ are \textbf{linear}:
+		\begin{align*}
+			z^{-1}(a \cdot x(t)+b \cdot y(t))&=a \cdot x(t-1)+b \cdot y(t-1) \\
+			z(a \cdot x(t)+b \cdot y(t))&=a \cdot x(t+1)+b \cdot y(t+1)
+		\end{align*}
+	\item $z^{-1}$ and $z$ can be \textbf{recursively applied}:
+		\[
+			z^{-1}(z^{-1}(z^{-1}(x(t))))=z^{-1}(z^{-1}(x(t-1)))=z^{-1}(x(t-2))=x(t-3)=z^{-3} x(t)
+		\]
+		similarly for $z$.
+	\item $z^{-1}$ and $z$ can be \textbf{linearly composed}:
+		\begin{align*}
+			(a z^{-1}+b z+c z^{-3}+d z^{2}) x(t)&=a(z^{-1} x(t))+b(z x(t))+c(z^{-3} x(t))+d(z^{2} x(t))= \\
+			&=a x(t-1)+b x(t+2)+c x(t-3)+d x(t+2)
+		\end{align*}
+\end{itemize}
 
 We can rewrite an ARMA process as follows:
 \begin{align*}
-	\left(1-a_{1} z^{-1}-a_{2} z^{-2}-\ldots-a_{m} z^{-m}\right) y(t)=\left(c_{0}+c_{1} z^{-1}+\ldots+c_{n} z^{-n}\right) e(t)
+	\left(1-a_{1} z^{-1}-a_{2} z^{-2}-\cdots-a_{m} z^{-m}\right) y(t)=\left(c_{0}+c_{1} z^{-1}+\cdots+c_{n} z^{-n}\right) e(t)
 \end{align*}
 
 Even more compact notation:
 \begin{align*}
-	y(t)=\frac{\left(c_{0}+c_{1} z^{-1}+\ldots+c_{n} z^{-n}\right)}{\left(1-a_{1} z^{-1}-a_{2} z^{-2}-\ldots-a_{m} z^{-m}\right)} e(t)=\frac{C(z)}{A(z)} e(t)
+	y(t)=\frac{\left(c_{0}+c_{1} z^{-1}+\cdots+c_{n} z^{-n}\right)}{\left(1-a_{1} z^{-1}-a_{2} z^{-2}-\cdots-a_{m} z^{-m}\right)} e(t)=\frac{C(z)}{A(z)} e(t)
 \end{align*}
 where:
 \begin{align*}
-	&C(z)=\left(c_{0}+c_{1} z^{-1}+\ldots+c_{n} z^{-n}\right) \\
-	&A(z)=\left(1-a_{1} z^{-1}-a_{2} z^{-2}-\ldots-a_{m} z^{-m}\right)
+	C(z)&=\left(c_{0}+c_{1} z^{-1}+\cdots+c_{n} z^{-n}\right) \\
+	A(z)&=\left(1-a_{1} z^{-1}-a_{2} z^{-2}-\cdots-a_{m} z^{-m}\right)
 \end{align*}
 
-$\frac{C(z)}{A(z)}$ is called discrete time transfer function and it simply says that $y(t)$ is generated as the steady-state output of a linear operator that receive as input $e(t)$.
+$\frac{C(z)}{A(z)}$ is called \textbf{discrete time transfer function} and it simply says that $y(t)$ is generated as the steady-state output of a linear operator that receive as input $e(t)$.
