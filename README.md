@@ -1,4 +1,4 @@
-# Appunti di Equazioni alle Derivate Parziali
+# Appunti di Model Identification and Data Analysis
 
 ## Quali sono i file importanti
 
