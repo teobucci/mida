@@ -1,0 +1,476 @@
+\documentclass[10pt,a4paper,twoside,openright]{book}
+
+\input{style}
+
+\usepackage{geometry}
+\geometry{
+	nomarginpar, % Toglie doppi margini
+	margin=1in, % Imposta i margini a 1 inch
+}
+
+% Comandi per numero lezioni automatico
+
+\newcounter{conteggioS}
+\newcommand{\LezioneS}[1]{
+	\stepcounter{conteggioS}
+	\textit{Lezione Salsa \arabic{conteggioS} (#1)}
+	}
+
+\newcounter{conteggioV}
+\newcommand{\LezioneV}[1]{
+	\stepcounter{conteggioV}
+	\textit{Lezione Verzini \arabic{conteggioV} (#1)}
+	}
+
+
+% Comandi pratici
+
+% Lettere comuni in grassetto
+\newcommand{\x}{\mathbf{x}}
+\newcommand{\y}{\mathbf{y}}
+\newcommand{\zer}{\mathbf{0}}
+
+% Lettere comuni in grassetto greche
+\usepackage{bm} % per avere le lettere greche in bold con \bm{\sigma}
+\newcommand{\sigg}{\bm{\sigma}}
+\newcommand{\nuu}{\bm{\nu}}
+\newcommand{\alphaa}{\bm{\alpha}}
+
+% d nell'integrale e i rispettivi usi
+\newcommand{\de}{\,\mathrm d}
+\newcommand{\dx}{\de x}
+\newcommand{\dy}{\de y}
+\newcommand{\dl}{\de l}
+\newcommand{\dr}{\de r}
+\newcommand{\ds}{\de s}
+\newcommand{\dt}{\de t}
+\newcommand{\dv}{\de v}
+\newcommand{\dxi}{\de \xi}
+\newcommand{\drho}{\de \rho}
+
+% d nell'integrale con differenziale vettoriale
+\newcommand{\dxx}{\de \x}
+\newcommand{\dyy}{\de \y}
+\newcommand{\dsig}{\de \sigg}
+
+\allowdisplaybreaks[4] % Consente di rompere equazioni su più pagine
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\frontmatter
+\pagestyle{empty}
+\vspace*{\fill}
+\begin{center}
+	{\large \textsc{Appunti di}}\\
+	\vspace*{0.4cm}
+	{\Huge \textsc{Equazioni alle Derivate Parziali}}\\
+	\vspace*{0.3cm}
+	{\huge \textsc{Parte Analitica}}\\
+	\vspace*{1cm}
+	{\large {Dalle lezioni del Prof. Sandro Salsa \& del Prof. Gianmaria Verzini}}\\
+	\vspace*{0.1cm}
+	{\large per il corso di Ingegneria Matematica}\\
+	\vspace*{0.4cm}
+	{\large {di Teo Bucci \& Filippo Cipriani}}\\
+	\vspace*{1cm}
+	Politecnico di Milano\\A.A. 2020/2021
+\end{center}
+\vspace*{\fill}
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+{\Large \textit{Appunti di Equazioni alle Derivate Parziali}}
+
+\vspace*{\fill}
+
+\input{licenza}
+
+\vspace*{1cm}
+
+Revisione del \today
+
+Developed by\\
+Teo Bucci - \texttt{teobucci8@gmail.com}\\
+Filippo Cipriani - \texttt{filippo.cipriani99@hotmail.it}\\ \\
+Compiled with \ensuremath\heartsuit \\
+
+%\textbf{Prefazione}
+
+Per segnalare eventuali errori o suggerimenti potete mandare una pull request.
+
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% INDICE
+\addtocontents{toc}{\protect\thispagestyle{empty}}
+\tableofcontents
+%\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% PAGINA VUOTA PER FAR PARTIRE IL CAPITOLO IN UNA PAGINA DISPARI
+%\myNewEmptyPage
+
+\AtEndDocument{\cleardoublepage}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\mainmatter
+\pagestyle{fancy} % Riswitcha per riavere il numero pagina
+%\setcounter{page}{1} % Fa ripartire il contatore pagina da 1
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\part{MIDA I}
+
+\chapter{Stochastic Processes}
+A stochastic process (SP) is an infinite sequence of random variables all defined on the same probabilistic space:
+\[
+	\ldots,v(1,s),v(2,s),v(3,s),\ldots,v(t,s),\ldots
+\]
+with $s$: random experiment realization and $t=0,\pm 1,\pm 2,\ldots$: time index.
+
+\textbf{Observation.} SP extends the notion of random vector (SP is a random vector with infinite entries).
+
+\textbf{Observation.} For a fixed value of the random experiment $s = \overline{s}$, the stochastic process becomes the numeric sequence:
+\[
+	\ldots,v(1,\overline{s}),v(2,\overline{s}),v(3,\overline{s}),\ldots,v(t,\overline{s}),\ldots
+\]
+which is called \textbf{realization} of the stochastic process.
+For different values of $s$, one gets different realizations of the stochastic process.
+
+We will think of available observations ${u(1),u(2),\ldots,u(N)}$ and ${y(1), y(2),\ldots, y(N)}$ as finite length realizations of stochastic process (stochastic process = uncertain model for a time series or I/O system).
+
+\textbf{Mean value} $m(t)$: it is the expected value of random variable $v(t,s)$ at time $t$:
+\[
+	m(t)=\mathbb{E}[v(t, s)]=\int v(t, s) \mathbb{P}(ds)
+\]
+$m(t)$ returns the value around which the process take value at time $t$.
+
+\textbf{Covariance function} $\gamma(t_{1}, t_{2})$: it is the expected value of the product of unbiased random variables $(v(t, s)-m(t))$ at two time instants $(t_{1}, t_{2}):$
+\begin{align*}
+	\gamma(t_{1}, t_{2}) &=\mathbb{E}[(v(t_{1}, s)-m(t_{1}))(v(t_{2}, s)-m(t_{2}))] \\
+	&=\int(v(t_{1}, s)-m(t_{1}))(v(t_{2}, s)-m(t_{2})) \mathbb{P}(ds)
+\end{align*}
+$\gamma(t_{1}, t_{2})$ quantifies the relation existing between the \emph{gaps} between the process realizations and the mean value at two different time instants.
+
+Particular case: $t_{1}=t_{2}=t$.
+\[
+	\gamma(t, t)=\mathbb{E}[(v(t, s)-m(t))^{2}]=\int(v(t, s)-m(t))^{2} \mathbb{P}(ds)
+\]
+is called the process \textbf{variance function} (it quantifies the process dispersion around its mean value at each time instant).
+
+\section{Stationary Stochastic Processes (SSP)}
+A stochastic process is called stationary (wide sense) if:
+\begin{itemize}
+	\item $m(t)=m \quad \forall t$
+	\item $\gamma(t_{1}, t_{2})$ depends on $\tau=t_{1}-t_{2}$ only, i.e.: $\gamma(t_{1}, t_{2})=\gamma(t_{3}, t_{4})$ if $t_{1}-t_{2}=t_{3}-t_{4}=\tau \quad \forall t_{1}, t_{2}, t_{3}, t_{4}$
+\end{itemize}
+Idea: the probabilistic properties of a SSP are time-translation invariant.
+
+Stationary stochastic processes admit a \emph{simplified} representation of the covariance function:
+\begin{gather*}
+\gamma(\tau)=\gamma(t, t-\tau)=\mathbb{E}[(v(t)-m)(v(t-\tau)-m)]\qquad (t_{1}=t, t_{2}=t-\tau, t_{1}-t_{2}=\tau)
+\end{gather*}
+and
+\[
+	\gamma(0)=\mathbb{E}[(v(t)-m)^{2}]=\lambda^2  \qquad \text{is the variance of the process}
+\]
+Why stationary stochastic processes?
+\begin{itemize}
+	\item \emph{Stationary} means \emph{time-invariant} data generating system (situation often encountered in practice).
+	\item S.S.P. are easier to study.
+	\item Non-stationary processes can be recast in the framework of S.S.P. by first eliminating the non-stationary part from data (data pre-processing).
+\end{itemize}
+
+\textbf{Covariance function properties for an S.S.P.}
+$$
+\gamma(\tau)=\mathbb{E}[(v(t)-m)(v(t-\tau)-m)]
+$$
+\begin{itemize}
+	\item $\gamma(0)=\mathbb{E}[(v(t)-m)^{2}] \geq 0$ (non negative at initial time)
+	\item $|\gamma(\tau)| \leq \gamma(0)$ (bounded)
+	\item $\gamma(\tau)=\gamma(-\tau)$ (symmetric) indeed
+	\begin{align*}
+		\gamma(-\tau)&=\mathbb{E}[(v(t)-m)(v(t-(-\tau))-m)]\\
+		&=\mathbb{E}[(v(t)-m)(v(t+\tau))-m)]\\
+		&=\mathbb{E}[(v(t+\tau)-m)(v(t))-m)]\\
+		&=\gamma(\tau) \quad(t+\tau-t=\tau)
+	\end{align*}
+\end{itemize}
+
+\fg{0.7}{Screen Shot 2022-03-06 at 00.50.16}
+
+\textbf{Observation}
+\begin{enumerate}
+	\item Given a S.S.P. $x(t)$, we will write $m_{x}$ e $\gamma_{x}(\tau)$ for its mean and covariance function
+	\item Two S.S.P. $y_{1}(t)$ and $y_{2}(t)$ are wide-sense equivalent if $m_{y_{1}}=m_{y_{2}}$ e $\gamma_{y_{1}}(\tau)=\gamma_{y_{2}}(\tau), \forall \tau$
+	\item The \emph{covariance function}
+	$$
+		\mathbb{E}[(v(t)-m) \cdot(v(t-\tau)-m)]
+	$$
+	is very \emph{different} from the $2^{\text{nd}}$ order moment function $\mathbb{E}[v(t) \cdot v(t-\tau)]$.
+\end{enumerate}
+
+\textbf{Example 1}
+
+$v(t,s)=\alpha (s),\forall t$ where $\alpha (s)\sim G(1,3)$ (Gaussian random variable with mean = 1 and variance = 3)
+
+Is the process stationary? Yes:
+\begin{itemize}
+	\item $m_{v}(t)=\mathbb{E}[v(t, s)]=\mathbb{E}[\alpha(s)]=1=m_{v}$ doesn't depend on $t$.
+	\item recalling that $v(t, s)=\alpha(s), \forall t$ and that $m_{v}(t)=1=m_{v}$
+	\begin{align*}
+		\gamma_{v}(t, t-\tau)&=\mathbb{E}[(v(t, s)-m_{v}(t))(v(t-\tau, s)-m_{v}(t-\tau))]\\
+		&=\mathbb{E}[(\alpha(s)-1)(\alpha(s)-1)]=3=\gamma_{v}(\tau)
+	\end{align*}
+	 doesn't depend on $t$.
+\end{itemize}
+
+\textbf{Example 2}
+
+$v(t, s)=t \cdot \alpha(s)-t$, where $\alpha(s) \sim G(1,3)$.
+\begin{itemize}
+	\item $m_{v}(t)=\mathbb{E}[v(t, s)]=\mathbb{E}[t \cdot \alpha(s)-t]=t \cdot \mathbb{E}[\alpha(s)]-t=t-t=0$ doesn't depend on $t$.
+	\item \begin{align*}
+		\gamma_{v}(t, t-\tau)&=\mathbb{E}[(v(t, s)-m_{v}(t))(v(t-\tau, s)-m_{v}(t-\tau))]\\
+	&=\mathbb{E}[(t \cdot \alpha(s)-t)((t-\tau) \cdot \alpha(s)-(t-\tau))]\\
+	&=\mathbb{E}[t \cdot(t-\tau)(\alpha(s)-1)^{2}]\\
+	&=t \cdot(t-\tau) \cdot \mathbb{E}[(\alpha(s)-1)^{2}]=t \cdot(t-\tau) \cdot 3
+	\end{align*}
+	\emph{does} depend on $t$.
+\end{itemize}
+The process is not stationary.
+
+\textbf{Observation.}
+
+If $\gamma(t, \tau)>0$ then there is a tendency of preserving the sign of the deviation from $t$ to $\tau $. Otherwise there is a tendency of changing the sign.
+
+\section{White Noise}
+
+An S.S.P. $e(t)$ is called White Noise (WN) with mean $\mu$ and variance $\lambda^{2}$, we shall write
+\[
+	e(t) \sim W N(\mu, \lambda^{2}),
+\]
+if the following conditions hold:
+\begin{itemize}
+	\item $\mathbb{E}[e(t)]=\mu \quad \forall t$
+	\item $\gamma_{e}(0)=\mathbb{E}[(e(t)-\mu)^{2}]=\lambda^{2} \quad \forall t$
+	\item $\gamma_{e}(\tau)=\mathbb{E}[(e(t)-\mu) \cdot(e(t-\tau)-\mu)]=0 \quad \forall t, \forall \tau \neq 0$
+\end{itemize}
+
+The last property is the fundamental one. It says that there is complete incorrelation between random variables at different time instants. The realizations of $e(t)$ are erratic and unpredictable (\textbf{whiteness property}).
+
+\fg{0.7}{Screen Shot 2022-03-08 at 09.53.35}
+
+\textbf{Observation.} The probability distribution of each single random variables $e(t,s)$ does not matter and is not made explicit in general (wide-sense description of S.S.P.).
+It could be Gaussian, uniform, etc. (WGN = White Gaussian Noise, WUN = White Uniform Noise, etc.).
+
+\textbf{Observation.} Is a constant realization admissible? Yes, it is, but such a realization is \emph{highly unlikely}.
+
+White Noise is a sort of \emph{building block} to construct a number of different stationary stochastic processes.
+
+\textbf{Remark.} To ease the notation, in the following we will consider \emph{zero mean} white noise. The extension to the general case presents no conceptual difficulties.
+
+\subsection{MA(\texorpdfstring{$n$}{n}) processes}
+
+Read \emph{Moving Average of order $n$}.
+
+Let $e(t) \sim W N(0, \lambda^{2})$, and MA process is obtained as
+\[
+	\boxed{y(t)=c_{0} e(t)+c_{1} e(t-1)+c_{2} e(t-2)+\ldots+c_{n} e(t-n).}
+\]
+In other words, the output $y(t)$ of a MA process is given by a linear combination of the last $n+1$ past values of the input noise $e(t)$.
+While $t$ is let vary, the linear combination is made on a sliding window (moving average).
+
+\textbf{Mean.}
+\[
+	m_{y}(t)=\mathbb{E}[y(t)] = \mathbb{E}[c_{0} e(t)+c_{1} e(t-1)+c_{2} e(t-2)+\cdots+c_{n} e(t-n)] = 0+0+\cdots+0=m_{y}=0 \quad \forall t
+\]
+hence $m_{y}(t)$ doesn't depend on $t$.
+
+\textbf{Variance.} (i.e. covariance when $\tau =0$)
+\begin{align*}
+	\gamma (0)&=\mathbb{E}[(y(t)-m_{y})(y(t)-m_{y})]=\mathbb{E}[(y(t))^2]\\
+	&=\mathbb{E}[(c_{0} e(t)+c_{1} e(t-1)+\ldots+c_{n} e(t-n))^{2}]\\
+	&=\mathbb{E}[c_{0}^{2} e(t)^{2}+\ldots+c_{n}^{2} e(t-n)^{2}\\
+	&\qquad+2 c_{0} c_{1} e(t) e(t-1)+\ldots+2 c_{n-1} c_{n} e(t-n-1) e(t-n)]\\
+	&=c_{0}^{2} \mathbb{E}[e(t)^{2}]+c_{1}^{2} \mathbb{E}[e(t-1)^{2}]+\ldots+c_{n}^{2} \mathbb{E}[e(t-n)^{2}]\\
+	&\qquad+2 c_{0} c_{1} \mathbb{E}[e(t) e(t-1)]+\ldots+2 c_{n-1} c_{n} \mathbb{E}[e(t-n-1) e(t-n)]
+\end{align*}
+
+Since $e(t) \sim W N(0, \lambda^{2})$, we have that:
+$$
+\mathbb{E}[e(t)^{2}]=\mathbb{E}[e(t-1)^{2}]=\ldots=\mathbb{E}[e(t-n)^{2}]=\lambda^{2}
+$$
+and that
+$$
+\mathbb{E}[e(t) e(t-1)]=\ldots=\mathbb{E}[e(t-n-1) e(t-n)]=0
+$$
+thus
+\[
+	\boxed{\gamma (t,t)=\gamma (0)=(c_{1}^2 +c_{1}^2 +\cdots+c_{n}^2 )\cdot\lambda^2}
+\]
+hence $\gamma (0)$ doesn't depend on $t$.
+
+\textbf{Covariance.}
+
+To calculate the generic covariance, let us proceed with $\tau =1$.
+\begin{align*}
+	\gamma(t, t-1)&=\mathbb{E}[(y(t)-m_{y})(y(t-1)-m_{y})]\\
+	&=\mathbb{E}[y(t) y(t-1)]\\
+	&=\mathbb{E}[(c_{0} e(t)+c_{1} e(t-1)+\ldots+c_{n} e(t-n))\cdot (y(t-1))]\\
+	&=\mathbb{E}[(c_{0} e(t)+c_{1} e(t-1)+\ldots+c_{n} e(t-n))\cdot (c_{0} e(t-1)+\ldots+c_{n-1} e(t-n)+c_{n} e(t-n-1))]
+\end{align*}
+
+Only those terms where the white noise is multiplied by itself at the same time instant are non null.
+\[
+	\gamma(t, t-1)=\gamma (1)=(c_{0}c_{1}+c_{1}c_{2}+\cdots+c_{n-1}c_{n})\cdot\lambda^2
+\]
+hence $\gamma (1)$ doesn't depend on $t$.
+
+Similarly
+\begin{align*}
+	\gamma (t,t-2)=\gamma (2) &= (c_{0}c_{2}+c_{1}c_{3}+\cdots+c_{n-2}c_{n})\cdot\lambda^2\\
+	&\vdots\\
+	\gamma (t,t-n)=\gamma (n) &= (c_{0}c_{n})\cdot\lambda^2\\
+	\gamma (t,t-n-1)=\gamma (n+1) &= 0
+\end{align*}
+since all products are uncorrelated. In conclusion
+\[
+	\gamma (\tau )=\begin{cases}
+		(c_{1}^2 +c_{1}^2 +\cdots+c_{n}^2 )\cdot\lambda^2 & \text{if}\ \tau =0\\
+		(c_{0}c_{1}+c_{1}c_{2}+\cdots+c_{n-1}c_{n})\cdot\lambda^2 & \text{if}\ \tau =\pm 1\\
+		(c_{0}c_{2}+c_{1}c_{3}+\cdots+c_{n-2}c_{n})\cdot\lambda^2 & \text{if}\ \tau =\pm 2\\
+		\vdots\\
+		(c_{0}c_{n})\cdot\lambda^2 & \text{if}\ \tau =\pm n\\
+		0 & \text{if}\ \tau > \pm 1\\
+	\end{cases}
+\]
+\subsection{MA(\texorpdfstring{$\infty$}{infinity}) processes}
+
+\[
+	y(t)=c_{0} e(t)+c_{1} e(t-1)+\cdots+c_{i} e(t-i)+\cdots=\sum_{i=0}^{\infty} c_{i} e(t-i) \quad e(t) \sim W N\left(0, \lambda^{2}\right)
+\]
+Assumption: $\sum_{i=0}^{\infty} c_{i}^{2}<\infty$ (it guarantees that $y(t)$ is well defined).
+
+\textbf{Mean.}
+\[
+	m_{y}(t)=\mathrm{E}[y(t)]=\mathrm{E}\left[\sum_{i=0}^{\infty} c_{i} e(t-i)\right]=\sum_{i=0}^{\infty} c_{i} \mathrm{E}[e(t-i)]=\sum_{i=0}^{\infty} c_{i} \cdot 0=0
+\]
+doesn't depend on $t$.
+
+\textbf{Variance.}
+\begin{align*}
+	\gamma_{y}(t, t)&=\mathrm{E}[(y(t)-m_{y})^{2}]\\
+	&=\mathrm{E}\left[\sum_{i=0}^{\infty} c_{i} e(t-i) \cdot \sum_{j=0}^{\infty} c_{j} e(t-j)\right]\\
+	&=\mathrm{E}\left[\sum_{i, j=0}^{\infty} c_{i} c_{j} \cdot e(t-i) e(t-j)\right]\\
+	&=\sum_{i, j=0}^{\infty} c_{i} c_{j} \cdot \mathrm{E}[e(t-i) e(t-j)]\\
+	&=\{\text{non null only when }i=j\}\\
+	&=\sum_{i=0}^{\infty} c_{i}^2 \cdot\lambda^2 
+\end{align*}
+doesn't depend on $t$.
+
+\textbf{Covariance.}
+\begin{align*}
+	\gamma_{y}(t, t-\tau) &=\mathrm{E}[(y(t)-m_{y}) (y(t-\tau)-m_{y})]\\
+	&=\mathrm{E}[y(t) y(t-\tau)]\\
+	&=\mathrm{E}\left[\sum_{i=0}^{\infty} c_{i} e(t-i) \cdot \sum_{j=0}^{\infty} c_{j} e(t-j-\tau)\right]\\
+	&=\mathrm{E}\left[\sum_{i, j=0}^{\infty} c_{i} c_{j} \cdot e(t-i) e(t-j-\tau)\right]\\
+	&=\sum_{i, j=0}^{\infty} c_{i} c_{j} \cdot \mathrm{E}[e(t-i) e(t-j-\tau)]\\
+	&=\{\text{non null only when }i=j+\tau\}\\
+	&=\sum_{i=0}^{\infty} c_{j+\tau}c_{j}\cdot\lambda^2 
+\end{align*}
+doesn't depend on $t$.
+
+So if $\sum_{i=0}^{\infty} c_{i}^{2}<\infty$ then the MA($\infty $) process is well defined and is a S.S.P.
+
+\textbf{Observation.} MA($\infty$) processes are very general, they almost \emph{cover} the class of stationary stochastic processes (i.e. apart from few exceptions, all S.S.P. can be written as MA($\infty$)).
+
+However, MA($\infty$) are difficult to handle since there are infinite coefficients and, moreover, the computation of the covariance function requires the computation of the sum of an infinite series (hard in general).
+
+On the other hand, MA($n$) are too limited, that is why we will look into AR and ARMA models.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
