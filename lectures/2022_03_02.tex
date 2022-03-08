@@ -8,6 +8,7 @@
 
 We'll rely on the recursive equation characterizing such processes.
 
+\subsection{AR processes}
 \textbf{Example.}
 
 Let us consider the $\operatorname{AR}(1)$ (or equivalently $\operatorname{ARMA}(1,0)$ ) process generating according to:
@@ -64,8 +65,21 @@ Thanks to linearity
 $$
 \gamma_{y}(0)=a^{2} \mathbb{E}\left[y(t-1)^{2}\right]+\mathbb{E}\left[e(t)^{2}\right]+2 a \mathbb{E}[y(t-1) e(t)]
 $$
-Mid-terms evaluation :
+Mid-terms evaluation:
+
 $2 a \mathbb{E}[y(t-1) e(t)]=0$ (we will show this later)
+
+Indeed, by using the MA($\infty$) representation for $y(t-1)$ (AR process)):
+$$
+y(t-1)=e(t-1)+a \cdot e(t-2)+a^{2} \cdot e(t-3)+a^{3} \cdot e(t-4)+\ldots
+$$
+we have that:
+\begin{align*}
+	&\mathbb{E}[e(t) y(t-1)]= \\
+	&=\mathbb{E}\left[e(t) \cdot\left(e(t-1)+a \cdot e(t-2)+a^{2} \cdot e(t-3)+a^{3} \cdot e(t-4)+\ldots\right)\right]=0
+\end{align*}
+(all products give null contribution)
+
 
 $\mathbb{E}\left[(y(t-1))^{2}\right]=\gamma_{y}(0)$ (thanks to stationarity)
 
@@ -90,7 +104,7 @@ $$\gamma_{y}(1)=a \cdot \mathbb{E}\left[(y(t-1))^{2}\right]+\mathbb{E}[e(t) y(t-
 
 Mid-terms evaluation:
 
-$\mathbb{E}[e(t) y(t-1)]=0 \quad$ (we will show this later)
+$\mathbb{E}[e(t) y(t-1)]=0 \quad$ (same as before)
 
 $\mathbb{E}\left[(y(t-1))^{2}\right]=\gamma_{y}(0) \quad$ (we have already computed it!)
 
@@ -128,5 +142,70 @@ $$
 $$
 This result has been established for a generic AR($1$) process
 Those equations are called "Yule-Walker equations".
+
+Grafical representation:
+
+\fg{0.7}{Screenshot (14)}
+
+\fg{0.7}{Screenshot (16)}
+
+\subsection{ARMA processes}
+$$
+y(t)=a_{1} y(t-1)+\ldots+a_{m} y(t-m)+c_{0} e(t)+_{\ldots}+c_{n} e(t-n)
+$$
+where $e(t) \sim W N\left(0, \lambda^{2}\right)$.
+
+\textbf{Mean}
+\begin{align*}
+	\mathbb{E}[y(t)] &=\mathbb{E}\left[a_{1} y(t-1)+\ldots+a_{m} y(t-m)+c_{0} e(t)+\ldots+c_{n} e(t-n)\right] \\
+	&=a_{1} \mathbb{E}[y(t-1)]+\ldots+a_{m} \mathbb{E}[y(t-m)]+c_{0} \mathbb{E}[e(t)]+\ldots+c_{n} \mathbb{E}[e(t-n)]
+\end{align*}
+$$
+m_{y}=a_{1} m_{y}+\ldots+a_{m} m_{y}+c_{0} \cdot 0+\ldots+c_{n} \cdot 0
+$$
+
+By asintotical stability we can prove that $(1-a_1-\ldots-a_m)\neq0$
+
+i.e. $m_{y}=0$.
+
+\textbf{Covariance function}
+\begin{align*}
+	\mathbb{E}\left[y(t)^{2}\right]&=\mathbb{E}\left[\left(a_{1} y(t-1)+\ldots+a_{m} y(t-m)+c_{0} e(t)+\ldots+c_{n} e(t-n)\right)^{2}\right]=\\
+	&= a_{1}{ }^{2} \mathbb{E}\left[y(t-1)^{2}\right]+a_{2}{ }^{2} \mathbb{E}\left[y(t-2)^{2}\right]+2 a_{1} a_{2} \mathbb{E}[y(t-1) y(t-2)]+\ldots \\
+	&+c_{0}{ }^{2} \mathbb{E}\left[e(t)^{2}\right]+2 a_{1} c_{0} \mathbb{E}[y(t-1) e(t)]+\ldots
+\end{align*}
+
+Hence
+$$
+\gamma_{y}(0)=a_{1}^{2} \gamma_{y}(0)+a_{2}^{2} \gamma_{y}(0)+2 a_{1} a_{2} \gamma_{y}(1)+\ldots
+$$
+
+Then
+\begin{align*}
+	&\mathbb{E}[y(t) y(t-1)]= \\
+	&=\mathbb{E}\left[\left(a_{1} y(t-1)+\ldots+a_{m} y(t-m)+c_{0} e(t)+\ldots+c_{n} e(t-n)\right) y(t-1)\right]= \\
+	&=a_{1} \mathbb{E}\left[y(t-1)^{2}\right]+\ldots+c_{0} \mathbb{E}[e(t) y(t-1)]+\ldots
+\end{align*}
+
+Proceeding this way:
+$$
+\left\{\begin{array}{l}
+	\gamma_{y}(0)=a_{1}^{2} \gamma_{y}(0)+a_{2}^{2} \gamma_{y}(0)+2 a_{1} a_{2} \gamma \\
+	\gamma_{y}(1)=a_{1} \gamma_{y}(0)+\ldots+c_{0} \mathrm{E}[e(t) y(t-1)] \\
+	\vdots \\
+	\gamma_{y}(m-1)=a_{1} \gamma_{y}(m-2)+\ldots
+\end{array}\right.
+$$
+
+$m$ variables$-m$ linear equations (YULE-WALKER equations for an ARMA process)
+
+Then, $\gamma_{y}(m), \gamma_{y}(m+1), \ldots$ can be recursevely computed from
+$$
+\gamma_{y}(0), \gamma_{y}(1), \ldots, \gamma_{y}(m-1)
+$$
+\begin{align*}
+	\gamma_{y}(m)&=\mathrm{E}[y(t) y(t-m)]= \\
+	&=\mathrm{E}\left[\left(a_{1} y(t-1)+\ldots+a_{m} y(t-m)+c_{0} e(t)+\ldots+c_{n} e(t-n)\right) y(t-m)\right]=\ldots
+\end{align*}
 
 %ancora lunga rip
