@@ -66,16 +66,16 @@ Assumption: $\sum_{i=0}^{\infty} c_{i}^{2}<\infty$ (it guarantees that $y(t)$ is
 
 \textbf{Mean.}
 \[
-	m_{y}(t)=\mathrm{E}[y(t)]=\mathrm{E}\left[\sum_{i=0}^{\infty} c_{i} e(t-i)\right]=\sum_{i=0}^{\infty} c_{i} \mathrm{E}[e(t-i)]=\sum_{i=0}^{\infty} c_{i} \cdot 0=0
+	m_{y}(t)=\mathbb{E}[y(t)]=\mathbb{E}\left[\sum_{i=0}^{\infty} c_{i} e(t-i)\right]=\sum_{i=0}^{\infty} c_{i} \mathbb{E}[e(t-i)]=\sum_{i=0}^{\infty} c_{i} \cdot 0=0
 \]
 doesn't depend on $t$.
 
 \textbf{Variance.}
 \begin{align*}
-	\gamma_{y}(t, t)&=\mathrm{E}[(y(t)-m_{y})^{2}]\\
-	&=\mathrm{E}\left[\sum_{i=0}^{\infty} c_{i} e(t-i) \cdot \sum_{j=0}^{\infty} c_{j} e(t-j)\right]\\
-	&=\mathrm{E}\left[\sum_{i, j=0}^{\infty} c_{i} c_{j} \cdot e(t-i) e(t-j)\right]\\
-	&=\sum_{i, j=0}^{\infty} c_{i} c_{j} \cdot \mathrm{E}[e(t-i) e(t-j)]\\
+	\gamma_{y}(t, t)&=\mathbb{E}[(y(t)-m_{y})^{2}]\\
+	&=\mathbb{E}\left[\sum_{i=0}^{\infty} c_{i} e(t-i) \cdot \sum_{j=0}^{\infty} c_{j} e(t-j)\right]\\
+	&=\mathbb{E}\left[\sum_{i, j=0}^{\infty} c_{i} c_{j} \cdot e(t-i) e(t-j)\right]\\
+	&=\sum_{i, j=0}^{\infty} c_{i} c_{j} \cdot \mathbb{E}[e(t-i) e(t-j)]\\
 	&=\{\text{non null only when }i=j\}\\
 	&=\sum_{i=0}^{\infty} c_{i}^2 \cdot\lambda^2 
 \end{align*}
@@ -83,11 +83,11 @@ doesn't depend on $t$.
 
 \textbf{Covariance.}
 \begin{align*}
-	\gamma_{y}(t, t-\tau) &=\mathrm{E}[(y(t)-m_{y}) (y(t-\tau)-m_{y})]\\
-	&=\mathrm{E}[y(t) y(t-\tau)]\\
-	&=\mathrm{E}\left[\sum_{i=0}^{\infty} c_{i} e(t-i) \cdot \sum_{j=0}^{\infty} c_{j} e(t-j-\tau)\right]\\
-	&=\mathrm{E}\left[\sum_{i, j=0}^{\infty} c_{i} c_{j} \cdot e(t-i) e(t-j-\tau)\right]\\
-	&=\sum_{i, j=0}^{\infty} c_{i} c_{j} \cdot \mathrm{E}[e(t-i) e(t-j-\tau)]\\
+	\gamma_{y}(t, t-\tau) &=\mathbb{E}[(y(t)-m_{y}) (y(t-\tau)-m_{y})]\\
+	&=\mathbb{E}[y(t) y(t-\tau)]\\
+	&=\mathbb{E}\left[\sum_{i=0}^{\infty} c_{i} e(t-i) \cdot \sum_{j=0}^{\infty} c_{j} e(t-j-\tau)\right]\\
+	&=\mathbb{E}\left[\sum_{i, j=0}^{\infty} c_{i} c_{j} \cdot e(t-i) e(t-j-\tau)\right]\\
+	&=\sum_{i, j=0}^{\infty} c_{i} c_{j} \cdot \mathbb{E}[e(t-i) e(t-j-\tau)]\\
 	&=\{\text{non null only when }i=j+\tau\}\\
 	&=\sum_{i=0}^{\infty} c_{j+\tau}c_{j}\cdot\lambda^2 
 \end{align*}
