@@ -1,5 +1,11 @@
 %!TEX root = ../main.tex
-% manca la prima parte della lezione 6 ma non ho tempo e non la trovo :(
+Now, let us consider the stochastic processes $y(t)$ obtained as output of an asymptotically stable digital filter $F(z)$ fed by a stationary stochastic process $v(t)$ as input, but with a generic initialization (not steady-state output).
+
+\fg{0.4}{Screenshot (17)}
+
+\textbf{Theorem.} There is just one stationary output which corresponds to the steady-state solution. However, if $F(z)$ is asymptotically stable, then all possible outputs obtained for different initialization of the digital filter $F(z)$ tends asymptotically (as $t \rightarrow \infty$ ) to the steady-state solution, i.e. to the stationary output.
+
+\fg{0.7}{Screenshot (18)}
 
 \section{Weak(Wide sense) characterization of AR,ARMA processes}
 \textbf{Goal.} Given AR,ARMA process compute mean $m_y$ and covariance fuction $\gamma_y(\tau)$.
@@ -208,4 +214,3 @@ $$
 	&=\mathrm{E}\left[\left(a_{1} y(t-1)+\ldots+a_{m} y(t-m)+c_{0} e(t)+\ldots+c_{n} e(t-n)\right) y(t-m)\right]=\ldots
 \end{align*}
 
-%ancora lunga rip
