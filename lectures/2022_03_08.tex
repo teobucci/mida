@@ -145,7 +145,7 @@ $e(t)\sim W N(0,\lambda^{2} )$
 \end{align*}
 Spectral density (via the definition):
 \begin{align*}
-	&\Gamma_{y}(\omega)=\sum_{\tau=-\infty}^{+\infty} \gamma_{y}(\tau) \cdot e^{-j \omega \tau}= \\
+	\Gamma_{y}(\omega)&=\sum_{\tau=-\infty}^{+\infty} \gamma_{y}(\tau) \cdot e^{-j \omega \tau}= \\
 	&\left(\text { only }=\gamma_{y}(0), \gamma_{y}(\pm 1)\left(e^{-j \omega}\right) \text { are not null }\right) \\
 	&=\gamma_{y}(0)+\gamma_{y}(1)\left(e^{-j \omega}\right)+\gamma_{y}(-1)\left(e^{+j \omega}\right)+0= \\
 	&=1+c^{2}+c\left(e^{-j \omega}+e^{j \omega}\right)
@@ -159,3 +159,58 @@ $$
 We have:
 $$\Gamma_y(\omega)=1+c^{2}+2 c \cos (\omega).$$
 which is real, even and periodic with period $2 \pi$.
+
+Let the process $y(t)$ the steady-state output of an asymptotically stable digital filter fed by an S.S.P., i.e. $y(t)=F(z) v(t)$.
+
+Then, the following formula for the spectral density of $y(t)$ holds:
+$$\Gamma_{y}(\omega)=|F\left(e^{j \omega}\right)|^{2} \cdot \Gamma_{v}(\omega)$$
+
+- $\Gamma_{y}(\omega) \quad$ output spectral density
+
+- $\left|F\left(e^{j \omega}\right)\right|^{2}$ square absolute value of the filter transfer function evaluate for $z=e^{j \omega}$ (filter frequency response)
+
+- $\Gamma_{v}(\omega) \quad$ input spectral density
+
+If the input $v(t)$ is a White Noise with variance $\lambda^{2}$, then:
+$$
+\Gamma_{y}(\omega)=\left|F\left(e^{j \omega}\right)\right|^{2} \lambda^{2}
+$$
+
+\textbf{Example} (MA(1) process)
+
+$y(t)=e(t)+c \cdot e(t-1), c \in \mathcal{R}$ (real coefficient)
+$e(t)\sim W N(0,\lambda^{2} )$
+
+$$
+y(t)=\left(1+c z^{-1}\right) e(t)
+$$
+$$
+\Gamma_{y}(\omega)=\left|1+c e^{-j \omega}\right|^{2} \cdot \lambda^{2}
+$$
+Recalling that:
+
+1. $|a+j b|^{2}=(a+j b)(a-j b)=a^{2}+b^{2}$
+
+2. $1+c e^{-j \omega}=1+c \cos (-\omega)+j \sin (-\omega)=1+c \cos (\omega)-j \sin (\omega)$ $1+c e^{+j \omega}=1+c \cos (\omega)+j \sin (\omega)$
+
+$$
+\Gamma_{y}(\omega)=\left(1+c e^{-j \omega}\right)\left(1+c e^{+j \omega}\right)\cdot \lambda^{2}=(1+c^{2}+c\left(e^{j \omega}+e^{-j \omega}\right))\cdot \lambda^{2}=(1+c^{2}+2 c \cos (\omega))\cdot \lambda^{2}
+$$
+
+%\fg{0.7}{Screenshot (20)}
+
+Moreover:
+\begin{align*}
+	|1+c e^{-j \omega}|^2&=\left(1+c e^{-j \omega}\right)\left(1+c e^{+j \omega}\right)\\
+	&=\underbrace{\left(1+c z^{-1}\right)}_\text{where $z=e^{j \omega}$}\underbrace{\left(1+c z^{-1}\right)}_\text{where $z=e^{-j \omega}$}
+\end{align*}
+\begin{align*}
+	W(z)=\frac{C(z)}{A(z)}=\frac{(1+q_1z^{-1})\cdots(1+q_nz^{-1})}{(1+p_1z^{-1})\cdots(1+p_mz^{-1})}
+\end{align*}
+where $q_i$ are the zeros and $p_i$ the poles.
+
+\begin{align*}
+	\left|W\left(e^{j \omega}\right)\right|^{2}&=\frac{|1+q_1e^{-j \omega}|^2\cdots|1+q_ne^{-j \omega}|^2}{|1+p_1e^{-j \omega}|^2\cdots|1+p_me^{-j \omega}|^2}\\
+	&=\frac{(1+q_1e^{-j \omega})\cdots(1+q_ne^{-j \omega})}{(1+p_1e^{-j \omega})\cdots(1+p_me^{-j \omega})}\cdot\frac{(1+q_1e^{j \omega})\cdots(1+q_ne^{j \omega})}{(1+p_1e^{j \omega})\cdots(1+p_me^{j \omega})}\\
+			&=W\left(e^{j \omega}\right)\cdot W\left(e^{-j \omega}\right)
+\end{align*}
