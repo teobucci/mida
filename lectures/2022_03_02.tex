@@ -3,12 +3,14 @@ Now, let us consider the stochastic processes $y(t)$ obtained as output of an as
 
 \fg{0.4}{Screenshot (17)}
 
-\textbf{Theorem.} There is just one stationary output which corresponds to the steady-state solution. However, if $F(z)$ is asymptotically stable, then all possible outputs obtained for different initialization of the digital filter $F(z)$ tends asymptotically (as $t \rightarrow \infty$ ) to the steady-state solution, i.e. to the stationary output.
+\begin{theorem}
+	There is just one stationary output which corresponds to the steady-state solution. However, if $F(z)$ is asymptotically stable, then all possible outputs obtained for different initialization of the digital filter $F(z)$ tends asymptotically (as $t \rightarrow \infty$) to the steady-state solution, i.e. to the stationary output.
+\end{theorem}
 
 \fg{0.7}{Screenshot (18)}
 
 \section{Weak(Wide sense) characterization of AR,ARMA processes}
-\textbf{Goal.} Given AR,ARMA process compute mean $m_y$ and covariance fuction $\gamma_y(\tau)$.
+\textbf{Goal.} Given an AR, ARMA process compute the mean $m_y$ and covariance function $\gamma_y(\tau)$.
 
 %Since the steady-state solution is an MA($\infty$) process we could use such results but are too diffucult
 
@@ -17,137 +19,109 @@ We'll rely on the recursive equation characterizing such processes.
 \subsection{AR processes}
 \textbf{Example.}
 
-Let us consider the $\operatorname{AR}(1)$ (or equivalently $\operatorname{ARMA}(1,0)$ ) process generating according to:
+Let us consider the AR($1$) (or equivalently ARMA($1,0$)) process generated according to:
 \begin{align*}
 	y(t)=a \cdot y(t-1)+e(t) \quad \text{where} \quad e(t) \sim W N\left(0, \lambda^{2}\right)
 \end{align*}
 
-- Is $y(t)$ stationary?
+\begin{itemize}
+	\item Is $y(t)$ stationary?
+	\item Compute $m_{y}$ and $\gamma_{y}(\tau)$ for $\tau=0, \pm 1, \pm 2, \ldots$
+\end{itemize}
 
-- Compute $m_{y}$ and $\gamma_{y}(\tau)$ for $\tau=0, \pm 1, \pm 2, \ldots$
-
-Operatorial representation for $y(t)$ :
+Operatorial representation for $y(t)$:
 
 \begin{align*}
-	&y(t)=z^{-1} a y(t)+e(t) \\
-	&\left(1-z^{-1} a\right) y(t)=e(t) \\
-	&y(t)=\frac{1}{1-z^{-1} a} e(t)
+	y(t)&=z^{-1} a y(t)+e(t) \\
+	\left(1-z^{-1} a\right) y(t)&=e(t) \\
+	y(t)&=\frac{1}{1-z^{-1} a} e(t)
 \end{align*}
 
-Transfer function with positive powers (to spot out zeroes and poles): $y(t)=\frac{z}{z-a} e(t) \quad$.
+The transfer function with positive powers (to identify zeroes and poles) is $y(t)=\frac{z}{z-a} e(t) \quad$.
 
-There's just one pole: $z=a .$
+There is just one pole: $z=a .$
 
 The process generating system is asymptotically stable if $|a| <1$. 
 
 Since $e(t)$ is a S.S.P. (by definition of white noise), when $|a| <1$ the steady-state output process $y(t)$ is a S.S.P.
 
-In order to compute the mean, start from the time-domain representation and apply expectation to 
-both sides:
-\begin{align*}
-	\mathbb{E}[y(t)]=\mathbb{E}[a \cdot y(t-1)+e(t)]
-\end{align*}
-and thanks to linearity:
-\begin{align*}
-	\mathbb{E}[y(t)]=a \cdot \mathbb{E}[y(t-1)]+]+\mathbb{E}[e(t)]
-\end{align*}
+\textbf{Mean.}
+Start from the time-domain representation and apply expectation to both sides:
+\[
+	\mathbb{E}[y(t)]=\mathbb{E}[a \cdot y(t-1)+e(t)] \implies \mathbb{E}[y(t)]=a \cdot \mathbb{E}[y(t-1)]+\mathbb{E}[e(t)]
+\]
 Thanks to stationarity $\mathbb{E}[y(t)]=\mathbb{E}[y(t-1)]=m_{y}$, so that $m_{y}=a \cdot m_{y}+m_{e}$.
 Then:
 $$
-m_{e}=0 \Rightarrow m_{y}=0
+m_{e}=0 \implies  m_{y}=0
 $$
-
-Let us compute $\gamma_{y}(0)=\mathbb{E}\left[\left(y(t)-m_{y}\right)^{2}\right]$
-
-(since $m_{y}=0$, we have that $\gamma_{y}(0)=\mathbb{E}\left[(y(t))^{2}\right]$ )
-
-Start from $y(t)=a \cdot y(t-1)+e(t)$, take the square and apply operator $\mathbb[\cdot]$ to both side:
-
-$$
-\mathbb{E}\left[(y(t))^{2}\right]=\mathbb{E}\left[(a \cdot y(t-1)+e(t))^{2}\right]
-$$
-
-Thanks to linearity
-$$
-\gamma_{y}(0)=a^{2} \mathbb{E}\left[y(t-1)^{2}\right]+\mathbb{E}\left[e(t)^{2}\right]+2 a \mathbb{E}[y(t-1) e(t)]
-$$
+\textbf{Variance.}
+Let us compute
+\[
+	\gamma_{y}(0)=\mathbb{E}\left[\left(y(t)-m_{y}\right)^{2}\right]
+\]
+Remember that $m_{y}=0$. Start from $y(t)=a \cdot y(t-1)+e(t)$, take the square and apply operator $\mathbb{E}[\cdot]$ to both side:
+\begin{align*}
+	\gamma_{y}(0)&=\mathbb{E}\left[(y(t))^{2}\right]\\
+	&=\mathbb{E}\left[(a \cdot y(t-1)+e(t))^{2}\right]\\
+	&=a^{2} \mathbb{E}\left[y(t-1)^{2}\right]+\mathbb{E}\left[e(t)^{2}\right]+2 a \mathbb{E}[y(t-1) e(t)]\\
+\end{align*}
 Mid-terms evaluation:
-
-$2 a \mathbb{E}[y(t-1) e(t)]=0$ (we will show this later)
-
-Indeed, by using the MA($\infty$) representation for $y(t-1)$ (AR process)):
+\[
+	2 a \mathbb{E}[y(t-1) e(t)]=0 \qquad \text{(we will show this later)}
+\]
+Indeed, by using the MA($\infty$) representation for $y(t-1)$ (AR process):
 $$
-y(t-1)=e(t-1)+a \cdot e(t-2)+a^{2} \cdot e(t-3)+a^{3} \cdot e(t-4)+\ldots
+y(t-1)=e(t-1)+a \cdot e(t-2)+a^{2} \cdot e(t-3)+a^{3} \cdot e(t-4)+\cdots
 $$
 we have that:
-\begin{align*}
-	&\mathbb{E}[e(t) y(t-1)]= \\
-	&=\mathbb{E}\left[e(t) \cdot\left(e(t-1)+a \cdot e(t-2)+a^{2} \cdot e(t-3)+a^{3} \cdot e(t-4)+\ldots\right)\right]=0
-\end{align*}
-(all products give null contribution)
+\[
+	\mathbb{E}[e(t) y(t-1)]=\mathbb{E}\left[e(t) \cdot\left(e(t-1)+a \cdot e(t-2)+a^{2} \cdot e(t-3)+a^{3} \cdot e(t-4)+\cdots\right)\right]=0
+\]
+(all products give null contribution).
 
 
 $\mathbb{E}\left[(y(t-1))^{2}\right]=\gamma_{y}(0)$ (thanks to stationarity)
 
 $\mathbb{E}\left[(e(t))^{2}\right]=\lambda^{2}$
 
-Hence, $\gamma_{y}(0)=a^{2} \gamma_{y}(0)+\lambda^{2}$, so:
+Hence,
+\[
+	\gamma_{y}(0)=a^{2} \gamma_{y}(0)+\lambda^{2} \implies \gamma_{y}(0)=\frac{\lambda^{2}}{1-a^{2}}
+\]
+\textbf{Covariance.}
+Remember that $m_{y}=0$ and substitute $y(t)=a \cdot y(t-1)+e(t)$,
 \begin{align*}
-	\gamma_{y}(0)=\frac{\lambda^{2}}{1-a^{2}}
-\end{align*} 
+	\gamma_{y}(1)&=\mathbb{E}\left[\left(y(t)-m_{y}\right) \cdot\left(y(t-1)-m_{y}\right)\right]\\
+	&=\mathbb{E}[y(t) y(t-1)]\\
+	&=\mathbb{E}[(a \cdot y(t-1)+e(t))y(t-1)]\\
+	&=a \cdot \mathbb{E}\left[(y(t-1))^{2}\right]+\mathbb{E}[e(t) y(t-1)]
+\end{align*}
 
-Let us compute $\gamma_{y}(1)=\mathbb{E}\left[\left(y(t)-m_{y}\right) \cdot\left(y(t-1)-m_{y}\right)\right]=\mathbb{E}[y(t) y(t-1)]$ (since $m_{y}=0$ )
-
-Start from $y(t)=a \cdot y(t-1)+e(t)$ and multiply both sides for $y(t-1)$.
-
-Apply operator E[.] to both side:
-
-$$\mathbb{E}[y(t) y(t-1)]=\mathbb{E}[(a \cdot y(t-1)+e(t))(y(t-1))]$$
-
-Thanks to linearity:
-
-$$\gamma_{y}(1)=a \cdot \mathbb{E}\left[(y(t-1))^{2}\right]+\mathbb{E}[e(t) y(t-1)]$$
-
-Mid-terms evaluation:
-
-$\mathbb{E}[e(t) y(t-1)]=0 \quad$ (same as before)
-
-$\mathbb{E}\left[(y(t-1))^{2}\right]=\gamma_{y}(0) \quad$ (we have already computed it!)
-
+We already know that $\mathbb{E}\left[(y(t-1))^{2}\right]=\gamma_{y}(0)$, while as before $\mathbb{E}[e(t) y(t-1)]=0$.
 $$
 \gamma_{y}(1)=a \cdot \gamma_{y}(0)=a \cdot \frac{\lambda^{2}}{1-a^{2}}
 $$
-Similar rationale for $\gamma_{y}(2)$
-$$
-\gamma_{y}(2)=\mathbb{E}\left\lfloor\left(y(t)-m_{y}\right)\left(y(t-2)-m_{y}\right)\right]=\mathbb{E}[y(t) y(t-2)]
-$$
-\begin{align*}
-	&\mathbb{E}[y(t) y(t-2)]=\mathbb{E}[(a \cdot y(t-1)+e(t))(y(t-2))] \\
-	&\gamma_{y}(2)=a \cdot \mathbb{E}[y(t-1) y(t-2)]+\mathbb{E}[e(t) y(t-2)]
-\end{align*}
-
-Since $\mathbb{E}[e(t) y(t-2)]=0$ (we will show this later)
-$$
-\gamma_{y}(2)=a \cdot \gamma_{y}(1)=a^{2} \cdot \frac{\lambda^{2}}{1-a^{2}}
-$$
-
+Arguing the same way,
+\[
+	\gamma_{y}(2)=a \cdot \gamma_{y}(1)=a^{2} \cdot \frac{\lambda^{2}}{1-a^{2}}
+\]
 Summary:
-
-\begin{align*}
-	&\gamma_{y}(0)=\frac{\lambda^{2}}{1-a^{2}} \\
-	&\left\{\begin{array}{l}
+\begin{equation*}
+	\begin{cases}
+		\gamma_{y}(0)=\frac{\lambda^{2}}{1-a^{2}} \\
 		\gamma_{y}(1)=\gamma_{y}(-1)=a \cdot \gamma_{y}(0) \\
-		\gamma_{y}(2)=\gamma_{y}(-2)=a \cdot \gamma_{y}(1) \quad \Rightarrow \gamma_{y}(\tau)=a \cdot \gamma_{y}(\tau-1) \text { con }|\tau| \geq 1 \\
-		\ldots
-	\end{array}\right.
-\end{align*}
+		\gamma_{y}(2)=\gamma_{y}(-2)=a \cdot \gamma_{y}(1) \\
+		\vdots
+	\end{cases}
+\end{equation*}
 
 Recursive expression for $\gamma_{y}(\tau)$
 $$
-\gamma_{y}(\tau)=a^{\tau} \cdot \frac{\lambda^{2}}{1-a^{2}}
+	\gamma_{y}(\tau)=a^{\tau} \cdot \frac{\lambda^{2}}{1-a^{2}}
 $$
-This result has been established for a generic AR($1$) process
-Those equations are called "Yule-Walker equations".
+This result has been established for a generic AR($1$) process.
+Those equations are called \emph{Yule-Walker equations}.
 
 Grafical representation:
 
@@ -157,60 +131,56 @@ Grafical representation:
 
 \subsection{ARMA processes}
 $$
-y(t)=a_{1} y(t-1)+\ldots+a_{m} y(t-m)+c_{0} e(t)+_{\ldots}+c_{n} e(t-n)
+y(t)=a_{1} y(t-1)+\cdots+a_{m} y(t-m)+c_{0} e(t)+\cdots+c_{n} e(t-n)
 $$
 where $e(t) \sim W N\left(0, \lambda^{2}\right)$.
 
-\textbf{Mean}
+\textbf{Mean.}
 \begin{align*}
-	\mathbb{E}[y(t)] &=\mathbb{E}\left[a_{1} y(t-1)+\ldots+a_{m} y(t-m)+c_{0} e(t)+\ldots+c_{n} e(t-n)\right] \\
-	&=a_{1} \mathbb{E}[y(t-1)]+\ldots+a_{m} \mathbb{E}[y(t-m)]+c_{0} \mathbb{E}[e(t)]+\ldots+c_{n} \mathbb{E}[e(t-n)]
+	\mathbb{E}[y(t)] &=\mathbb{E}\left[a_{1} y(t-1)+\cdots+a_{m} y(t-m)+c_{0} e(t)+\cdots+c_{n} e(t-n)\right] \\
+	&=a_{1} \mathbb{E}[y(t-1)]+\cdots+a_{m} \mathbb{E}[y(t-m)]+c_{0} \mathbb{E}[e(t)]+\cdots+c_{n} \mathbb{E}[e(t-n)]
 \end{align*}
 $$
-m_{y}=a_{1} m_{y}+\ldots+a_{m} m_{y}+c_{0} \cdot 0+\ldots+c_{n} \cdot 0
+m_{y}=a_{1} m_{y}+\cdots+a_{m} m_{y}+c_{0} \cdot 0+\cdots+c_{n} \cdot 0
 $$
 
-By asintotical stability we can prove that $(1-a_1-\ldots-a_m)\neq0$
+By asintotical stability we can prove that $(1-a_1-\cdots-a_m)\neq0$, i.e. $m_{y}=0$.
 
-i.e. $m_{y}=0$.
-
-\textbf{Covariance function}
+\textbf{Covariance.}
 \begin{align*}
-	\mathbb{E}\left[y(t)^{2}\right]&=\mathbb{E}\left[\left(a_{1} y(t-1)+\ldots+a_{m} y(t-m)+c_{0} e(t)+\ldots+c_{n} e(t-n)\right)^{2}\right]=\\
-	&= a_{1}{ }^{2} \mathbb{E}\left[y(t-1)^{2}\right]+a_{2}{ }^{2} \mathbb{E}\left[y(t-2)^{2}\right]+2 a_{1} a_{2} \mathbb{E}[y(t-1) y(t-2)]+\ldots \\
-	&+c_{0}{ }^{2} \mathbb{E}\left[e(t)^{2}\right]+2 a_{1} c_{0} \mathbb{E}[y(t-1) e(t)]+\ldots
+	\gamma_{y}(0) = \mathbb{E}\left[y(t)^{2}\right]&=\mathbb{E}\left[\left(a_{1} y(t-1)+\cdots+a_{m} y(t-m)+c_{0} e(t)+\cdots+c_{n} e(t-n)\right)^{2}\right]=\\
+	&= a_{1}^{2} \mathbb{E}\left[y(t-1)^{2}\right]+a_{2}^{2} \mathbb{E}\left[y(t-2)^{2}\right]+2 a_{1} a_{2} \mathbb{E}[y(t-1) y(t-2)]+\cdots \\
+	&\qquad+c_{0}^{2} \mathbb{E}\left[e(t)^{2}\right]+2 a_{1} c_{0} \mathbb{E}[y(t-1) e(t)]+\cdots
 \end{align*}
 
 Hence
 $$
-\gamma_{y}(0)=a_{1}^{2} \gamma_{y}(0)+a_{2}^{2} \gamma_{y}(0)+2 a_{1} a_{2} \gamma_{y}(1)+\ldots
+\gamma_{y}(0)=a_{1}^{2} \gamma_{y}(0)+a_{2}^{2} \gamma_{y}(0)+2 a_{1} a_{2} \gamma_{y}(1)+\cdots
 $$
 
 Then
 \begin{align*}
-	&\mathbb{E}[y(t) y(t-1)]= \\
-	&=\mathbb{E}\left[\left(a_{1} y(t-1)+\ldots+a_{m} y(t-m)+c_{0} e(t)+\ldots+c_{n} e(t-n)\right) y(t-1)\right]= \\
-	&=a_{1} \mathbb{E}\left[y(t-1)^{2}\right]+\ldots+c_{0} \mathbb{E}[e(t) y(t-1)]+\ldots
+	\mathbb{E}[y(t) y(t-1)]&=\mathbb{E}\left[\left(a_{1} y(t-1)+\cdots+a_{m} y(t-m)+c_{0} e(t)+\cdots+c_{n} e(t-n)\right) y(t-1)\right]= \\
+	&=a_{1} \mathbb{E}\left[y(t-1)^{2}\right]+\cdots+c_{0} \mathbb{E}[e(t) y(t-1)]+\cdots
 \end{align*}
 
 Proceeding this way:
 $$
-\left\{\begin{array}{l}
+\begin{cases}
 	\gamma_{y}(0)=a_{1}^{2} \gamma_{y}(0)+a_{2}^{2} \gamma_{y}(0)+2 a_{1} a_{2} \gamma \\
-	\gamma_{y}(1)=a_{1} \gamma_{y}(0)+\ldots+c_{0} \mathrm{E}[e(t) y(t-1)] \\
+	\gamma_{y}(1)=a_{1} \gamma_{y}(0)+\cdots+c_{0} \mathbb{E}[e(t) y(t-1)] \\
 	\vdots \\
-	\gamma_{y}(m-1)=a_{1} \gamma_{y}(m-2)+\ldots
-\end{array}\right.
+	\gamma_{y}(m-1)=a_{1} \gamma_{y}(m-2)+\cdots
+\end{cases}
 $$
 
-$m$ variables$-m$ linear equations (YULE-WALKER equations for an ARMA process)
+$m$ variables and $m$ linear equations (\emph{Yule-walker equations} for an ARMA process).
 
 Then, $\gamma_{y}(m), \gamma_{y}(m+1), \ldots$ can be recursevely computed from
 $$
 \gamma_{y}(0), \gamma_{y}(1), \ldots, \gamma_{y}(m-1)
 $$
 \begin{align*}
-	\gamma_{y}(m)&=\mathrm{E}[y(t) y(t-m)]= \\
-	&=\mathrm{E}\left[\left(a_{1} y(t-1)+\ldots+a_{m} y(t-m)+c_{0} e(t)+\ldots+c_{n} e(t-n)\right) y(t-m)\right]=\ldots
+	\gamma_{y}(m)&=\mathbb{E}[y(t) y(t-m)] \\
+	&=\mathbb{E}\left[\left(a_{1} y(t-1)+\ldots+a_{m} y(t-m)+c_{0} e(t)+\ldots+c_{n} e(t-n)\right) y(t-m)\right]=\ldots
 \end{align*}
-
