@@ -22,8 +22,8 @@ $$
 	\tilde{y}(t)=y(t)-m_{y} \quad\forall t\\
 	\tilde{e}(t)=e(t)-m_{e} \quad\forall t
 \end{array} \rightarrow \begin{array}{l}
-	\mathrm{E}[\tilde{y}(t)]=\mathrm{E}[y(t)]-m_{y}=0 \\
-	\mathrm{E}[\tilde{e}(t)]=\mathrm{E}[e(t)]-m_{e}=0
+	\mathbb{E}[\tilde{y}(t)]=\mathbb{E}[y(t)]-m_{y}=0 \\
+	\mathbb{E}[\tilde{e}(t)]=\mathbb{E}[e(t)]-m_{e}=0
 \end{array}\right.
 $$
 \begin{align*}
@@ -50,7 +50,7 @@ $$
 
 Pay attention, we cannot drop $m_{y} \neq 0 $! ! ! 
 
-$$\quad \gamma_{y}(\tau) \neq \mathrm{E}[y(t) \cdot y(t-\tau)]$$
+$$\quad \gamma_{y}(\tau) \neq \mathbb{E}[y(t) \cdot y(t-\tau)]$$
 
 We can see this method graphically:
 
@@ -81,8 +81,9 @@ $$
 y(t)=\frac{B(z) z^{-k}}{A(z)} u(t)+\frac{C(z)}{A(z)} e(t)
 $$
 where:
-
- $\begin{array}{ll}\quad & B(z)=\left(b_{0}+b_{1} z^{-1}+\ldots+b_{p} z^{-p}\right) \\ & C(z)=\left(c_{0}+c_{1} z^{-1}+\ldots+c_{n} z^{-n}\right) \\ &A(z) =\left(1-a_{1} z^{-1}-a_{2} z^{-2}-\ldots-a_{m} z^{-m}\right)\end{array}$
+$\begin{array}{ll}\quad & B(z)=\left(b_{0}+b_{1} z^{-1}+\ldots+b_{p} z^{-p}\right)\\
+ & C(z)=\left(c_{0}+c_{1} z^{-1}+\ldots+c_{n} z^{-n}\right)\\
+ & A(z)=\left(1-a_{1} z^{-1}-a_{2} z^{-2}-\ldots-a_{m} z^{-m}\right)\end{array}$
 
 Both $\frac{B(z) z^{-k}}{A(z)}$ and $\frac{C(z)}{A(z)}$ are transfer functions.
 
@@ -90,7 +91,7 @@ An ARMAX processes can be seen as the sum of a deterministic part (output of $\f
 
 In the ARX process $C(z)=1$.
 
-\section{ANALYSIS IN THE FREQUENCY DOMAIN}
+\section{Analysis in the Frequency Domain}
 \textbf{Definition.}
 The spectral density of a S.S.P. $y(t)$ (also called the \textbf{spectrum} of $y(t)$ ) is defined as:
 \begin{align*}
@@ -99,20 +100,18 @@ The spectral density of a S.S.P. $y(t)$ (also called the \textbf{spectrum} of $y
 In other words, $\Gamma_y(\omega)$ is defined as the Fourier transform $\left\{\gamma_{y}(\tau)\right\}$ of the covariance function.
 
 Properties of $\Gamma_{1}(\omega)$:
-
-1. $\Gamma_{y}(\omega)$ is a real function of the real variable $\omega$, $\operatorname{Im}\left(\Gamma_{y}(\omega)\right)=0 \quad \forall \omega \in \Re$
-
-2. $\Gamma_{y}(\omega)$ is a positive function,
-$$
-\Gamma_{y}(\omega) \geq 0 \quad \forall \omega \in \mathbb{Y}^{\mathrm{r}}
-$$
-
-3. $\Gamma_{y}(\omega)$ is a even function,
-$$
-\Gamma_{y}(\omega)=\Gamma_{y}(-\omega) \quad \forall \omega \in \Re
-$$
-
-4. $\Gamma_{y}(\omega)$ is a periodic function with period equal to $2 \pi$.  $\Gamma_{y}(\omega)=\Gamma_{y}(\omega+k \cdot 2 \pi) \quad \forall \omega \in \Re, \forall k \in Z$.
+\begin{itemize}
+	\item $\Gamma_{y}(\omega)$ is a real function of the real variable $\omega$, $\operatorname{Im}\left(\Gamma_{y}(\omega)\right)=0 \quad \forall \omega \in \Re$
+	\item $\Gamma_{y}(\omega)$ is a positive function,
+	$$
+		\Gamma_{y}(\omega) \geq 0 \quad \forall \omega \in \mathbb{Y}^{\mathrm{r}}
+	$$
+	\item $\Gamma_{y}(\omega)$ is a even function,
+	$$
+		\Gamma_{y}(\omega)=\Gamma_{y}(-\omega) \quad \forall \omega \in \Re
+	$$
+	\item $\Gamma_{y}(\omega)$ is a periodic function with period equal to $2 \pi$.  $\Gamma_{y}(\omega)=\Gamma_{y}(\omega+k \cdot 2 \pi) \quad \forall \omega \in \Re, \forall k \in Z$.
+\end{itemize}
 
 \textbf{Observation}: as a consequence of 3 and 4 , we will plot the spectral density in the interval $[0, \pi]$.
 
@@ -165,11 +164,11 @@ Let the process $y(t)$ the steady-state output of an asymptotically stable digit
 Then, the following formula for the spectral density of $y(t)$ holds:
 $$\Gamma_{y}(\omega)=|F\left(e^{j \omega}\right)|^{2} \cdot \Gamma_{v}(\omega)$$
 
-- $\Gamma_{y}(\omega) \quad$ output spectral density
-
-- $\left|F\left(e^{j \omega}\right)\right|^{2}$ square absolute value of the filter transfer function evaluate for $z=e^{j \omega}$ (filter frequency response)
-
-- $\Gamma_{v}(\omega) \quad$ input spectral density
+\begin{itemize}
+	\item $\Gamma_{y}(\omega) \quad$ output spectral density;
+	\item $\left|F\left(e^{j \omega}\right)\right|^{2}$ square absolute value of the filter transfer function evaluate for $z=e^{j \omega}$ (filter frequency response);
+	\item $\Gamma_{v}(\omega) \quad$ input spectral density.
+\end{itemize}
 
 If the input $v(t)$ is a White Noise with variance $\lambda^{2}$, then:
 $$
@@ -188,10 +187,10 @@ $$
 \Gamma_{y}(\omega)=\left|1+c e^{-j \omega}\right|^{2} \cdot \lambda^{2}
 $$
 Recalling that:
-
-1. $|a+j b|^{2}=(a+j b)(a-j b)=a^{2}+b^{2}$
-
-2. $1+c e^{-j \omega}=1+c \cos (-\omega)+j \sin (-\omega)=1+c \cos (\omega)-j \sin (\omega)$ $1+c e^{+j \omega}=1+c \cos (\omega)+j \sin (\omega)$
+\begin{itemize}
+	\item $|a+j b|^{2}=(a+j b)(a-j b)=a^{2}+b^{2}$
+	\item $1+c e^{-j \omega}=1+c \cos (-\omega)+j \sin (-\omega)=1+c \cos (\omega)-j \sin (\omega)$ $1+c e^{+j \omega}=1+c \cos (\omega)+j \sin (\omega)$
+\end{itemize}
 
 $$
 \Gamma_{y}(\omega)=\left(1+c e^{-j \omega}\right)\left(1+c e^{+j \omega}\right)\cdot \lambda^{2}=(1+c^{2}+c\left(e^{j \omega}+e^{-j \omega}\right))\cdot \lambda^{2}=(1+c^{2}+2 c \cos (\omega))\cdot \lambda^{2}
