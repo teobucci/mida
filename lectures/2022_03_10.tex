@@ -1,76 +1,64 @@
 %!TEX root = ../main.tex
 
 \begin{theorem}{Spectral Factorization}
-	Let $y(t)$ be a S.S.P. with rational spectral density. 
-	Then, there exists an unique white noise process $\xi(t)$ with suitable 
-	mean and variance and an unique rational transfer function $W (z)$ such 
-	that:
+	Let $y(t)$ be a \ssp with rational spectral density. 
+	Then, there exists an unique white noise process $\xi(t)$ with suitable mean and variance and an unique rational transfer function $W(z)$ such that:
 	\begin{align*}
-		y(t) = W (z)\xi (t)
+		y(t) = W(z)\xi(t)
 	\end{align*}
-    and, ($C(z)$ and $A(z)$ are the numerator and denominator of $W (z)$):
+    and, ($C(z)$ and $A(z)$ are the numerator and denominator of $W(z)$):
     \begin{itemize}
-   \item $C(z)$ and $A(z)$ are monic (i.e. the coefficients of the maximum 
-    	degree terms of $C(z)$ and $A(z)$ are equal to 1) 
-    	\item $C(z)$ and $A(z)$ have null relative degree
-    	\item $C(z)$ and $A(z)$ are coprime (i.e. they have no common factors) 
-    	\item the absolute value of the poles and the zeroes of $W (z)$ is less than 
-    	or equal to 1 (i.e. poles and zeroes are inside the unit circle)
+		\item $C(z)$ and $A(z)$ are monic (i.e. the coefficients of the maximum degree terms of $C(z)$ and $A(z)$ are equal to 1)
+		\item $C(z)$ and $A(z)$ have null relative degree
+		\item $C(z)$ and $A(z)$ are coprime (i.e. they have no common factors) 
+		\item the absolute value of the poles and the zeroes of $W(z)$ is less than or equal to 1 (i.e. poles and zeroes are inside the unit circle)
     \end{itemize}
 \end{theorem}
 
-When all the four conditions above are satisfied, we will say that 
-$y(t) = W (z)\xi(t)$ is a canonical representation of $y(t)$.
+When all the four conditions above are satisfied, we will say that $y(t) = W(z)\xi(t)$ is a canonical representation of $y(t)$.
 
-\textbf{Observation.} Conditions 1, 2, and 3 remove any ambiguity as due to the process 
-described in Case 1, Case 2, and Case 3, respectively. 
+\textbf{Observation.} Conditions 1, 2, and 3 remove any ambiguity as due to the process described in Case 1, Case 2, and Case 3, respectively. 
 
-The first part of Condition 4 assure that W (z) is asymptotically stable 
-so that y(t) is well defined, while the second part removes any
-ambiguity as due to the process described in Case 4.
+The first part of Condition 4 assure that $W(z)$ is asymptotically stable so that $y(t)$ is well defined, while the second part removes any ambiguity as due to the process described in Case 4.
 
 %ci sarebbe da fare un esempio lungo da zero
 
 \section{Linear Optimal prediction theory (for ARMA processes) }
 Let us consider a zero mean ARMA process:
-$$ y(t) =W (z) e(t)  \quad \text{where }e(t)\sim W N(0,\lambda^{2} )$$
+\[
+	y(t)=W(z)e(t) \quad \text{where }e(t)\sim W N(0,\lambda^{2} )
+\]
 $W(z)=\frac{C(z)}{A(z)}$ is an asymptotically stable rational transfer function $\implies$ $y(t)$ is well defined and a S.S.P.
 
 \textbf{Further Assumptions:}
 \begin{itemize}
-	\item $y(t) =W (z) e(t)$ is a canonical representation.
-	\item $W(z)$ has no zeroes on the unit circle boundary (i.e. no 
-	zeroes with absolute value equal to 1)
+	\item $y(t) =W(z)e(t)$ is a canonical representation.
+	\item $W(z)$ has no zeroes on the unit circle boundary (i.e. no zeroes with absolute value equal to 1)
 \end{itemize}
  
 \textbf{Observations:}
-First assumption is not much a hurdle since every ARMA
-process admits a canonical representation, and if y(t) is not given in 
-its canonical representation one can easily reconstruct it. Why 
-first assumption is required will be clear later. 
+First assumption is not much a hurdle since every ARMA process admits a canonical representation, and if $y(t)$ is not given in its canonical representation one can easily reconstruct it. Why first assumption is required will be clear later. 
 
-The second one is a limitating assumption(mild) that exclude models belonging to a small subclass that can be approximated by other ARMA.
+The second one is a limitating assumption (mild) that exclude models belonging to a small subclass that can be approximated by other ARMA.
 
-\textbf{Problem}(k -step prediction) 
+\textbf{Problem} ($k$-step prediction.)
 
 Given the observations of the process $y(t)$ up to time $t$:
 $$
-\ldots , y(t-101), y(t-100), \ldots , y(t-2), y(t-1), y(t)
+	\ldots , y(t-101), y(t-100), \ldots , y(t-2), y(t-1), y(t)
 $$
 predict the future value of the process at time $t + k$.
 
 
-A predictor is any function of the available information which is used 
-to guess the future value of the process.
+A predictor is any function of the available information which is used to guess the future value of the process.
 
 $\hat{y}(t + k | t) =$ predictor of $y(t + k)$ given the observations up to time $t$.
 
 In general: 
 $$\hat{y}(t + k | t) = f ( y(t), y(t-1), y(t-2),\ldots)$$
-i.e. the predictor is any function of the available observations of the 
-process $y(t)$.
+i.e. the predictor is any function of the available observations of the process $y(t)$.
 
-\textbf{Abstraction.} we suppose to have the whole observations from $-\infty$ up to $t$ (infinite sequence of observations)
+\textbf{Abstraction.} we suppose to have the whole observations from $-\infty$ up to $t$ (infinite sequence of observations).
 
 Then we can write:
 \begin{align*}
@@ -82,8 +70,7 @@ where ${\{\alpha_i\}}_0^\infty$ are parameters to be selected in order to achiev
 We want a predictor which is good w.r.t $S$ (of the specific experiment).
 $$\hat{y}(t + k | t)\approx y(t+k) $$
 
-We need to quantify this intuitive closeness concept be rewritten in 
-some rigorous mathematical notion of distance valid for random variables.
+We need to quantify this intuitive closeness concept be rewritten in some rigorous mathematical notion of distance valid for random variables.
 
 \begin{definition}{Mean square prediction error}
 	
