@@ -1,1 +1,239 @@
 %!TEX root = ../main.tex
+\section{Spectrum of a \ssp.}
+Given $y(t)$ a \ssp, we can calculate:
+\begin{itemize}
+	\item Fourier transform
+	\[
+		\Gamma _{y}(\omega)=\fou{\gamma _{y}(\tau )}=\sum_{\tau =-\infty }^{+\infty} \gamma _{y}(\tau ) e^{-j\omega \tau } \qquad \omega \in [0,\pi ]
+	\]
+	\item Anti-Fourier transform
+	\[
+		\gamma _{y}(\tau)=\ifou{\Gamma _{y}(\omega)}=\frac{1}{2\pi }\int_{-\pi }^{\pi } \Gamma _{y}(\omega )e^{j\omega \tau }d\omega  
+	\]
+\end{itemize}
+
+\textbf{Observation.}
+If $\tau =0$ we have
+\[
+	\gamma _{y}(0)=\E[(y(t)-m_{y})^2 ]=\frac{1}{2\pi }\int_{-\pi }^{\pi } \Gamma _{y}(\omega )d\omega 
+\]
+
+\textbf{Remark.}
+There is bijective relationship between the spectrum and the covariance function. Namely to describe $y(t)$ one could use $m_{y}$ and $\gamma _{y}(\tau )$ or $m_{y}$ and $\Gamma _{y}(\omega)$. It gives the same information from a different perspective, but it's useful to understand some properties.
+
+\subsection{An alternative interpretation of the spectral density}
+Suppose that an \ssp $y(t)$ is filtered through an (ideal) pass-band filter:
+\fg{0.7}{Screen Shot 2022-03-12 at 16.36.12}
+where $\tilde{y}(t)$ is the filtered output process.
+\begin{theorem}[Kinchine-Wiener]
+	The spectral density at a fixed $\omega$ equals to the mean energy of process realizations frequency by frequency:
+	\[
+		\Gamma _{y}(\overline{\omega})=\lim_{\delta  \to 0} \gamma _{\tilde{y}}(0)
+	\]
+\end{theorem}
+
+\emph{Example (White Noise).}
+The WN spectral density is constant, i.e. WN energy is \emph{equally-distributed} all over the frequency domain.
+\fg{0.7}{Screen Shot 2022-03-12 at 16.41.55}
+
+\emph{Example (AR($1$)).}
+Consider $y(t)=ay(t-1)+e(t)$.
+\begin{itemize}
+	\item if $a>0$ the sign tends to be maintained
+	\item if $a<0$ the sign tends to changed
+\end{itemize}
+The transfer function is $y(t)=\frac{1}{1-az^{-1} }e(t)$, then
+\begin{align*}
+	\Gamma _{y}(\omega )&=\left|\frac{1}{1-ae^{-j\omega } }\right|^2 \cdot\underbrace{\Gamma _{e}(\omega )}_{=\lambda^2 } = \frac{1}{1-ae^{-j\omega}}\cdot\frac{1}{1-ae^{j\omega}} \cdot\lambda^2\\
+	&=\frac{1}{1+a^2 e^{-j\omega }\cdot e^{j\omega }-ae^{-j\omega}-ae^{j\omega}} \cdot \lambda^2\\
+	&=\frac{1}{1+a^2 -a\left( \frac{e^{j\omega}+e^{-j\omega}}{2} \right)\cdot 2}\\
+	&=\frac{1}{1+a^2-2a\cos (\omega)} \cdot\lambda^2
+\end{align*}
+Depending on the values of $a$ we have different behaviors.
+
+If $a>0$ energy is concentrated at low frequencies
+\fg{0.8}{Screen Shot 2022-03-12 at 16.59.06}
+If $a<0$ energy is concentrated at larger frequencies
+\fg{0.8}{Screen Shot 2022-03-12 at 16.58.25}
+
+\emph{Example (ARMA).}
+Consider $y(t)=\frac{C(z)}{A(z)}e(t)$
+\[
+	\Gamma _{y}(\omega )=\left|\frac{C(e^{j\omega})}{A(e^{j\omega})}\right|^2 \cdot\lambda^2 =\frac{C(e^{j\omega})}{A(e^{j\omega} )} \cdot \frac{C(e^{-j\omega})}{A(e^{-j\omega} )}\cdot\lambda^2 
+\]
+$y(t)$ has a \emph{rational} spectral density. Is the reverse (i.e. having a spectral density means that the process is ARMA) true? Yes.
+
+\begin{theorem}
+	Let $y(t)$ be a \ssp with rational spectral density.
+	Then, there exists a white noise process $\xi(t)$ with suitable mean and variance and a rational transfer function $W(z)$ such that:
+	\[
+		y(t)=W(z)\xi(t)
+	\]
+	i.e. $y(t)$ is an ARMA process.
+\end{theorem}
+
+Question: is the ARMA representation (i.e. the \emph{choice} of $\xi(t)$ and of $W(z))$ \emph{unique}? No.
+
+The \emph{same} process $y(t)$ can be generated according to an infinite number of different ARMA models.
+
+Let $y(t)=W(z)\xi(t)$, where $\xi(t)$ is a WN. Our goal is show how to construct $\tilde{W}(z)$ and $\tilde{\xi}(t)$ such that $\tilde{W}(z)\neq W(z)$ and $\tilde{\xi}(t)\neq \xi(t)$, but $y(t)=\tilde W(z)\tilde\xi(t)$
+
+\textbf{Case 1.}
+Let $\alpha \in \R$
+\[
+	y(t)=W(z) \xi(t)=W(z) \cdot \frac{\alpha}{\alpha} \xi(t)=\left[\frac{1}{\alpha} \cdot W(z)\right] \alpha \xi(t)=\tilde{W}(z) \tilde{\xi}(t)
+\]
+where they are still both respectively a rational transfer function and a white noise, indeed:
+\begin{align*}
+	\E[\tilde{\xi}(t)]&=\E[\alpha \xi(t)]=\alpha \E[\xi(t)]=\alpha \mu\\
+	\gamma_{\tilde{\xi}}(\tau)&=\E[(\alpha\xi(t)-\alpha\mu)(\alpha \xi(t-\tau)-\alpha \mu)]\\
+	&=\alpha \E[(\xi(t)-\mu)( \xi(t-\tau)- \mu)] = \alpha \gamma_{\xi}(\tau)
+\end{align*}
+
+\textbf{Case 2.}
+Let $n \in \N$
+\[
+	y(t)=W(z) \xi(t)=W(z) \cdot \frac{z^{n}}{z^{n}} \xi(t)=\left[z^{n} \cdot W(z)\right] \xi(t-n)=\tilde{W}(z) \tilde{\xi}(t)
+\]
+where they are still both respectively a rational transfer function and a white noise, indeed:
+\begin{align*}
+	\E[\tilde{\xi}(t)]&=\E[\xi(t-n)]=\mu \\
+	\gamma_{\tilde{\xi}}(\tau)&=\E[(\xi(t-n)-\mu)(\xi(t-n-\tau)-\mu)]=\gamma_{\xi}(\tau)
+\end{align*}
+
+\textbf{Case 3.}
+Let $p \in \C$ such that $|p|<1$
+\[
+	y(t)=W(z) \xi(t)=\left[W(z) \cdot \frac{z-p}{z-p}\right] \xi(t)=\tilde{W}(z) \tilde{\xi}(t)
+\]
+where they are still both respectively a rational transfer function and a white noise.
+
+\textbf{Case 4.}
+Let $q$ be a zero of $W(z)$ such that $|q|>1$, that is
+\[
+	W(z)=W_{1}(z)⋅(z-q)
+\]
+then
+\begin{align*}
+	y(t)&=W(z) \xi(t)=W_{1}(z) \cdot(z-q) \xi(t)=\left[W_{1}(z) \cdot(z-q) \cdot \frac{z-\frac{1}{q}}{z-\frac{1}{q}}\right] \xi(t)= \\
+	&=W_{1}(z) \cdot\left(z-\frac{1}{q}\right)\left[\frac{z-q}{z-\frac{1}{q}} \xi(t)\right]=\tilde{W}(z) \tilde{\xi}(t)
+\end{align*}
+where they are still both respectively a rational transfer function and a white noise, indeed let us computer the spectral density of $\tilde{\xi}(t)$
+\begin{align*}
+	\Gamma_{\tilde\xi}(\omega) &=\frac{\left|e^{j \omega}-q\right|^{2}}{\left|e^{j \omega}-\frac{1}{q}\right|^{2}} \cdot \lambda^{2}=\frac{\left(e^{j \omega}-q\right)\left(e^{-j \omega}-q\right)}{\left(e^{j \omega}-\frac{1}{q}\right)\left(e^{-j \omega}-\frac{1}{q}\right)} \cdot \lambda^{2}\\
+	&=\frac{1+q^{2}-q\left(e^{j \omega}+e^{-j \omega}\right)}{1+\frac{1}{q^{2}}-\frac{1}{q}\left(e^{j \omega}+e^{-j \omega}\right)} \cdot \lambda^{2}=\frac{1+q^{2}-2 q \cos (\omega)}{1+\frac{1}{q^{2}}-\frac{2}{q} \cos (\omega)} \cdot \lambda^{2}=\\
+	&=q^{2} \frac{\frac{1}{q^{2}}+1-\frac{2}{q} \cos (\omega)}{1+\frac{1}{q^{2}}-\frac{2}{q} \cos (\omega)} \cdot \lambda^{2}=q^{2} \cdot \lambda^{2}
+\end{align*}
+while
+\[
+	\E[\tilde{\xi}_{(t)}]=\frac{1-q}{1-\frac{1}{q}} \cdot \E[\xi(t)]=q \cdot \frac{1-\frac{1}{q}}{1-\frac{1}{q}} \cdot \mu=q \cdot \mu
+\]
+% manca ultima pagina di MIDA 1.4
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
