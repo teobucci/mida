@@ -319,13 +319,12 @@
 \numberwithin{dummy}{chapter}
 
 \theoremstyle{blacknumbox}
-\newtheorem{definitionT}[dummy]{Definizione}
-\newtheorem{theoremT}[dummy]{Teorema}
+\newtheorem{definitionT}[dummy]{Definition}
+\newtheorem{theoremT}[dummy]{Theorem}
 
 \theoremstyle{unnumbered}
-\newtheorem*{NBT}{NB}
-\newtheorem*{ossT}{Osservazione}
-\newtheorem*{dimT}{Dimostrazione}
+\newtheorem*{ossT}{Remark}
+\newtheorem*{dimT}{Proof}
 
 \RequirePackage[framemethod=default]{mdframed} % Required for creating the theorem, definition, exercise and corollary boxes
 
@@ -399,7 +398,6 @@ innerbottommargin=5pt]{dimBox}
 
 \newenvironment{theorem}{\begin{gBox}\begin{theoremT}}{\end{theoremT}\end{gBox}}	
 \newenvironment{definition}{\begin{bBox}\begin{definitionT}}{\end{definitionT}\end{bBox}}	
-\newenvironment{nb}{\begin{oBox}\begin{NBT}}{\end{NBT}\end{oBox}}	
 \newenvironment{oss}{\begin{oBox}\begin{ossT}}{\end{ossT}\end{oBox}}
 \newenvironment{dimostrazione}{\begin{dimBox}\begin{dimT}}{\[\qed\]\end{dimT}\end{dimBox}}
 
