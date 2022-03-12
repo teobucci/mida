@@ -1,15 +1,4 @@
 %!TEX root = ../main.tex
-Let us compute the spectral density of $\tilde{\xi}(t)$:
-\begin{align*}
-	\Gamma_{\tilde{\xi}}(\omega) &=\frac{\left|e^{j \omega}-q\right|^{2}}{\left|e^{j \omega}-\frac{1}{q}\right|^{2}} \cdot \lambda^{2}=\frac{\left(e^{j \omega}-q\right)\left(e^{-j \omega}-q\right)}{\left(e^{j \omega}-\frac{1}{q}\right)\left(e^{-j \omega}-\frac{1}{q}\right)} \cdot \lambda^{2}=\\
-	&=\frac{1+q^{2}-q\left(e^{j \omega}+e^{-j \omega}\right)}{1+\frac{1}{q^{2}}-\frac{1}{q}\left(e^{j \omega}+e^{-j \omega}\right)} \cdot \lambda^{2}=\frac{1+q^{2}-2 q \cos (\omega)}{1+\frac{1}{q^{2}}-\frac{2}{q} \cos (\omega)} \cdot \lambda^{2}=\\
-	&=q^2\cdot\frac{1+\frac{1}{q^{2}}-\frac{2}{q} \cos (\omega)}{1+\frac{1}{q^{2}}-\frac{2}{q} \cos (\omega)}\cdot \lambda^{2}=q^2\cdot \lambda^{2}
-\end{align*}
-The spectral density is constant for all values of $\omega$ , so that $\tilde{\xi}(t)$ is a white noise!
-
-Moreover:
-$$\mathrm{E}[\tilde{\xi}(t)]=\frac{1-q}{1-\frac{1}{q}} \cdot \mathrm{E}[\xi(t)]=q \cdot \frac{1-\frac{1}{q}}{1-\frac{1}{q}} \cdot \mu=q \cdot \mu$$
-Hence, $\tilde{\xi}(t) \sim W N\left(q \cdot \mu, q^2 \cdot \lambda^{2}\right)$ and $y(t)=\tilde{W}(z) \tilde{\xi}(t)$ is a new ARMA representation of the process $y(t)$ (note that $y(t)$ is always the same, it never changed).
 
 \begin{theorem}{Spectral Factorization}
 	Let $y(t)$ be a S.S.P. with rational spectral density. 
