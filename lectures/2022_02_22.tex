@@ -124,7 +124,7 @@ If $\gamma(t, \tau)>0$ then there is a tendency of preserving the sign of the de
 
 \section{White Noise}
 
-An S.S.P. $e(t)$ is called White Noise (WN) with mean $\mu$ and variance $\lambda^{2}$, we shall write
+An S.S.P. $e(t)$ is called \gls{wn} with mean $\mu$ and variance $\lambda^{2}$, we shall write
 \[
 	e(t) \sim W N(\mu, \lambda^{2}),
 \]
@@ -144,9 +144,9 @@ It could be Gaussian, uniform, etc. (WGN = White Gaussian Noise, WUN = White Uni
 
 \textbf{Observation.} Is a constant realization admissible? Yes, it is, but such a realization is \emph{highly unlikely}.
 
-White Noise is a sort of \emph{building block} to construct a number of different stationary stochastic processes.
+\gls{wn} is a sort of \emph{building block} to construct a number of different stationary stochastic processes.
 
-\textbf{Remark.} To ease the notation, in the following we will consider \emph{zero mean} white noise. The extension to the general case presents no conceptual difficulties.
+\textbf{Remark.} To ease the notation, in the following we will consider \emph{zero mean} \gls{wn}. The extension to the general case presents no conceptual difficulties.
 
 \subsection{MA(\texorpdfstring{$n$}{n}) processes}
 
@@ -156,7 +156,7 @@ Let $e(t) \sim W N(0, \lambda^{2})$, and MA process is obtained as
 \[
 	\boxed{y(t)=c_{0} e(t)+c_{1} e(t-1)+c_{2} e(t-2)+\ldots+c_{n} e(t-n).}
 \]
-In other words, the output $y(t)$ of a MA process is given by a linear combination of the last $n+1$ past values of the input noise $e(t)$.
+In other words, the output $y(t)$ of a MA process is given by a linear combination of the last $n+1$ past values of the input \gls{wn} $e(t)$.
 While $t$ is let vary, the linear combination is made on a sliding window (moving average).
 
 \textbf{Mean.}

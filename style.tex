@@ -410,6 +410,9 @@ innerbottommargin=5pt]{dimBox}
 
 \usepackage[hidelinks]{hyperref} % Rende l'indice interattivo e hidelinks nasconde il bordo rosso dai riferimenti
 
+\usepackage{glossaries} % certain packages that must be loaded before glossaries, if they are required: hyperref, babel, polyglossia, inputenc and fontenc
+\setacronymstyle{long-short}
+
 % Questo comando e quello dopo servono per avere il comando \tocless da mettere prima di una sezione che non voglio far apparire nell'indice
 \newcommand{\nocontentsline}[3]{}
 \newcommand{\tocless}[2]{\bgroup\let\addcontentsline=\nocontentsline#1{#2}\egroup}

@@ -2,7 +2,7 @@
 
 \begin{theorem}{Spectral Factorization}
 	Let $y(t)$ be a \ssp with rational spectral density. 
-	Then, there exists an unique white noise process $\xi(t)$ with suitable mean and variance and an unique rational transfer function $W(z)$ such that:
+	Then, there exists an unique \gls{wn} process $\xi(t)$ with suitable mean and variance and an unique rational transfer function $W(z)$ such that:
 	\begin{align*}
 		y(t) = W(z)\xi(t)
 	\end{align*}
@@ -72,10 +72,10 @@ $$\hat{y}(t + k | t)\approx y(t+k) $$
 
 We need to quantify this intuitive closeness concept be rewritten in some rigorous mathematical notion of distance valid for random variables.
 
-\begin{definition}[Mean square prediction error (MSE)]
+\begin{definition}[\gls{mse} of prediction]
 	\[
 		\mathbb{E}[(y(t+k,s)-\hat{y}(t+k|t,s))^2]
 	\]
 \end{definition}
 
-\textbf{Goal:} choose $\alpha_0,\ldots,\alpha_i,\ldots$ in order to minimize the MSE.
+\textbf{Goal:} choose $\alpha_0,\ldots,\alpha_i,\ldots$ in order to minimize the \gls{mse}.
