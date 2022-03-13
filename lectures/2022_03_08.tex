@@ -1,6 +1,6 @@
 %!TEX root = ../main.tex
 \section{Non-zero mean ARMA processes}
-Consider now $y(t)$ ARMA process generated as the steady-state output of a linear operator $W(z)$ that receive as input $e(t)$, where $e(t) \approx W N\left(\mu, \lambda^{2}\right)$, with $\mu\neq0$.
+Consider now $y(t)$ ARMA process generated as the steady-state output of a linear operator $W(z)$ that receive as input $e(t)$, where $e(t) \approx \WN\left(\mu, \lambda^{2}\right)$, with $\mu\neq0$.
 
 \begin{theorem}[Gain theorem]
 	The steady-state output is constant and it holds that:
@@ -42,7 +42,7 @@ Hence,
 $$
 \tilde{y}(t)=a_{1} \tilde{y}(t-1)+\cdots+a_{m} \tilde{y}(t-m)+c_{0} \tilde{e}(t)+\cdots+c_{n} \tilde{e}(t-n)
 $$
-where $\tilde{e}(t)\approx W N\left(0, \lambda^{2}\right)$, is Standard zero mean ARMA process.
+where $\tilde{e}(t)\approx \WN\left(0, \lambda^{2}\right)$, is Standard zero mean ARMA process.
 
 $\tilde{y}(t)$ is the steady-state solution to $W(z)=\frac{A(z)}{C(z)}$ (same transfer function as before) fed by $\tilde{e}(t)$.
 
@@ -120,7 +120,7 @@ Properties of $\Gamma_{y}(\omega)$:
 As a consequence of 3) and 4), we will plot the spectral density in the interval $[0, \pi]$.
 
 \textbf{Example.}
-Let us consider $e(t) \sim W N\left(\mu, \lambda^{2}\right)$. 
+Let us consider $e(t) \sim \WN\left(\mu, \lambda^{2}\right)$. 
 
 Covariance function:
 \[
@@ -137,7 +137,7 @@ Spectral density:
 \textbf{Example} (MA(1) process)
 
 $y(t)=e(t)+c \cdot e(t-1), c \in \mathcal{R}$ (real coefficient)
-$e(t)\sim W N(0,\lambda^{2} )$
+$e(t)\sim \WN(0,\lambda^{2} )$
 
 \begin{align*}
 	&\gamma_{y}(0)=\left(1^{2}+c^{2}\right) \cdot \lambda^{2}=(1+c^{2})\lambda^{2}\\
@@ -180,7 +180,7 @@ $$
 \textbf{Example.} (MA(1) process)
 
 $y(t)=e(t)+c \cdot e(t-1), c \in \mathcal{R}$ (real coefficient)
-$e(t)\sim W N(0,\lambda^{2} )$
+$e(t)\sim \WN(0,\lambda^{2} )$
 
 $$
 y(t)=\left(1+c z^{-1}\right) e(t)
