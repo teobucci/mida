@@ -1,7 +1,7 @@
 %!TEX root = ../main.tex
 
 \begin{theorem}{Spectral Factorization}
-	Let $y(t)$ be a \ssp with rational spectral density. 
+	Let $y(t)$ be a \gls{ssp} with rational spectral density. 
 	Then, there exists an unique \gls{wn} process $\xi(t)$ with suitable mean and variance and an unique rational transfer function $W(z)$ such that:
 	\begin{align*}
 		y(t) = W(z)\xi(t)
@@ -28,7 +28,7 @@ Let us consider a zero mean ARMA process:
 \[
 	y(t)=W(z)e(t) \quad \text{where }e(t)\sim \WN(0,\lambda^{2} )
 \]
-$W(z)=\frac{C(z)}{A(z)}$ is an asymptotically stable rational transfer function $\implies$ $y(t)$ is well defined and a S.S.P.
+$W(z)=\frac{C(z)}{A(z)}$ is an asymptotically stable rational transfer function $\implies$ $y(t)$ is well defined and a \gls{ssp}.
 
 \textbf{Further Assumptions:}
 \begin{itemize}
@@ -72,7 +72,7 @@ $$\hat{y}(t + k | t)\sim y(t+k) $$
 
 We need to quantify this intuitive closeness concept be rewritten in some rigorous mathematical notion of distance valid for random variables.
 
-\begin{definition}[\gls{mse} of prediction]
+\begin{definition}[\Gls{mse} of prediction]
 	\[
 		\mathbb{E}[(y(t+k,s)-\hat{y}(t+k|t,s))^2]
 	\]

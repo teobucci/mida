@@ -1,6 +1,6 @@
 %!TEX root = ../main.tex
-\section{Spectrum of a \ssp.}
-Given $y(t)$ a \ssp, we can calculate:
+\section{Spectrum of a \glsentrylong{ssp}}
+Given $y(t)$ a \gls{ssp}, we can calculate:
 \begin{itemize}
 	\item Fourier transform
 	\[
@@ -22,7 +22,7 @@ If $\tau =0$ we have
 There is bijective relationship between the spectrum and the covariance function. Namely to describe $y(t)$ one could use $m_{y}$ and $\gamma _{y}(\tau )$ or $m_{y}$ and $\Gamma _{y}(\omega)$. It gives the same information from a different perspective, but it's useful to understand some properties.
 
 \subsection{An alternative interpretation of the spectral density}
-Suppose that an \ssp $y(t)$ is filtered through an (ideal) pass-band filter:
+Suppose that an \gls{ssp} $y(t)$ is filtered through an (ideal) pass-band filter:
 \fg{0.7}{Screen Shot 2022-03-12 at 16.36.12}
 where $\tilde{y}(t)$ is the filtered output process.
 \begin{theorem}[Kinchine-Wiener]
@@ -64,7 +64,7 @@ Consider $y(t)=\frac{C(z)}{A(z)}e(t)$
 $y(t)$ has a \emph{rational} spectral density. Is the reverse (i.e. having a spectral density means that the process is ARMA) true? Yes.
 
 \begin{theorem}
-	Let $y(t)$ be a \ssp with rational spectral density.
+	Let $y(t)$ be a \gls{ssp} with rational spectral density.
 	Then, there exists a \gls{wn} process $\xi(t)$ with suitable mean and variance and a rational transfer function $W(z)$ such that:
 	\[
 		y(t)=W(z)\xi(t)

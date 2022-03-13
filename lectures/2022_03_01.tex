@@ -6,7 +6,7 @@ Say that $y(t)=W(z)u(t)$, where $W(z)=\frac{C(z)}{A(z)}$ means that $y(t)$ is th
 
 \section{Composition of transfer functions and output processes}
 \subsection{Series}
-Given $u(t)$ stochastic process, consider
+Given $u(t)$ \gls{sp}, consider
 \begin{align*}
 	x(t)&=W_{1}(z)u(t)=\frac{C_{1}(z)}{A_{1}(z)}u(t)\\
 	y(t)&=W_{2}(z)x(t)=\frac{C_{2}(z)}{A_{2}(z)}x(t)
@@ -21,7 +21,7 @@ Given $u(t)$ stochastic process, consider
 \end{theorem}
 
 \subsection{Parallel}
-Given $u(t)$ stochastic process, consider
+Given $u(t)$ \gls{sp}, consider
 \begin{align*}
 	y_{1}(t)&=W_{1}(z)u(t)\\
 	y_{2}(t)&=W_{2}(z)u(t)\\
@@ -66,15 +66,15 @@ We say that $W(z)=C(z)/A(z)$ is
 	\item \textbf{minimum phase} if all \emph{zeros} are such that $|z|<1$.
 \end{itemize}
 
-When ARMA processes are well-defined? Consider $W(z)$ rational transfer function, $v(t)$ stochastic process (input), $y(t)=W(z)v(t)$.
+When ARMA processes are well-defined? Consider $W(z)$ rational transfer function, $v(t)$ \gls{sp} (input), $y(t)=W(z)v(t)$.
 
 \begin{theorem}
 	If
 	\begin{itemize}
-		\item $v(t)$ is a \emph{stationary} stochastic process;
+		\item $v(t)$ is a \gls{ssp};
 		\item $W(z)$ is asymptotically stable;
 	\end{itemize}
-	then $y(t)$ is well-defined and is \emph{stationary}.
+	then $y(t)$ is well-defined and is also \emph{stationary}.
 \end{theorem}
 
 In the case of ARMA processes, the input is a \gls{wn}, which is stationary by definition. Thus we just need to check the second condition.

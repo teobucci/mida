@@ -1,6 +1,6 @@
 %!TEX root = ../main.tex
 \chapter{Stochastic Processes}
-A stochastic process (SP) is an infinite sequence of random variables all defined on the same probabilistic space:
+A \gls{sp} is an infinite sequence of random variables all defined on the same probabilistic space:
 \[
 	\ldots,v(1,s),v(2,s),v(3,s),\ldots,v(t,s),\ldots
 \]
@@ -8,14 +8,14 @@ with $s$: random experiment realization and $t=0,\pm 1,\pm 2,\ldots$: time index
 
 \textbf{Observation.} SP extends the notion of random vector (SP is a random vector with infinite entries).
 
-\textbf{Observation.} For a fixed value of the random experiment $s = \overline{s}$, the stochastic process becomes the numeric sequence:
+\textbf{Observation.} For a fixed value of the random experiment $s = \overline{s}$, the \gls{sp} becomes the numeric sequence:
 \[
 	\ldots,v(1,\overline{s}),v(2,\overline{s}),v(3,\overline{s}),\ldots,v(t,\overline{s}),\ldots
 \]
-which is called \textbf{realization} of the stochastic process.
-For different values of $s$, one gets different realizations of the stochastic process.
+which is called \textbf{realization} of the \gls{sp}.
+For different values of $s$, one gets different realizations of the \gls{sp}.
 
-We will think of available observations ${u(1),u(2),\ldots,u(N)}$ and ${y(1), y(2),\ldots, y(N)}$ as finite length realizations of stochastic process (stochastic process = uncertain model for a time series or I/O system).
+We will think of available observations ${u(1),u(2),\ldots,u(N)}$ and ${y(1), y(2),\ldots, y(N)}$ as finite length realizations of \gls{sp} (stochastic process = uncertain model for a time series or I/O system).
 
 \textbf{Mean value} $m(t)$: it is the expected value of random variable $v(t,s)$ at time $t$:
 \[
@@ -36,15 +36,15 @@ Particular case: $t_{1}=t_{2}=t$.
 \]
 is called the process \textbf{variance function} (it quantifies the process dispersion around its mean value at each time instant).
 
-\section{Stationary Stochastic Processes (SSP)}
-A stochastic process is called stationary (wide sense) if:
+\section{Stationary Stochastic Processes}
+A stochastic process is called \textbf{\gls{ssp}} (wide sense) if:
 \begin{itemize}
 	\item $m(t)=m \quad \forall t$
 	\item $\gamma(t_{1}, t_{2})$ depends on $\tau=t_{1}-t_{2}$ only, i.e.: $\gamma(t_{1}, t_{2})=\gamma(t_{3}, t_{4})$ if $t_{1}-t_{2}=t_{3}-t_{4}=\tau \quad \forall t_{1}, t_{2}, t_{3}, t_{4}$
 \end{itemize}
-Idea: the probabilistic properties of a SSP are time-translation invariant.
+Idea: the probabilistic properties of a \gls{ssp} are time-translation invariant.
 
-Stationary stochastic processes admit a \emph{simplified} representation of the covariance function:
+\glspl{ssp} admit a \emph{simplified} representation of the covariance function:
 \begin{gather*}
 \gamma(\tau)=\gamma(t, t-\tau)=\mathbb{E}[(v(t)-m)(v(t-\tau)-m)]\qquad (t_{1}=t, t_{2}=t-\tau, t_{1}-t_{2}=\tau)
 \end{gather*}
@@ -52,14 +52,14 @@ and
 \[
 	\gamma(0)=\mathbb{E}[(v(t)-m)^{2}]=\lambda^2  \qquad \text{is the variance of the process}
 \]
-Why stationary stochastic processes?
+Why \glspl{ssp}?
 \begin{itemize}
 	\item \emph{Stationary} means \emph{time-invariant} data generating system (situation often encountered in practice).
-	\item S.S.P. are easier to study.
-	\item Non-stationary processes can be recast in the framework of S.S.P. by first eliminating the non-stationary part from data (data pre-processing).
+	\item \gls{ssp} are easier to study.
+	\item Non-stationary processes can be recast in the framework of \gls{ssp} by first eliminating the non-stationary part from data (data pre-processing).
 \end{itemize}
 
-\textbf{Covariance function properties for an S.S.P.}
+\textbf{Covariance function properties for an \gls{ssp}}
 $$
 \gamma(\tau)=\mathbb{E}[(v(t)-m)(v(t-\tau)-m)]
 $$
@@ -79,8 +79,8 @@ $$
 
 \textbf{Observation}
 \begin{enumerate}
-	\item Given a S.S.P. $x(t)$, we will write $m_{x}$ e $\gamma_{x}(\tau)$ for its mean and covariance function
-	\item Two S.S.P. $y_{1}(t)$ and $y_{2}(t)$ are wide-sense equivalent if $m_{y_{1}}=m_{y_{2}}$ e $\gamma_{y_{1}}(\tau)=\gamma_{y_{2}}(\tau), \forall \tau$
+	\item Given a \gls{ssp} $x(t)$, we will write $m_{x}$ e $\gamma_{x}(\tau)$ for its mean and covariance function
+	\item Two \gls{ssp} $y_{1}(t)$ and $y_{2}(t)$ are wide-sense equivalent if $m_{y_{1}}=m_{y_{2}}$ e $\gamma_{y_{1}}(\tau)=\gamma_{y_{2}}(\tau), \forall \tau$
 	\item The \emph{covariance function}
 	$$
 		\mathbb{E}[(v(t)-m) \cdot(v(t-\tau)-m)]
@@ -124,7 +124,7 @@ If $\gamma(t, \tau)>0$ then there is a tendency of preserving the sign of the de
 
 \section{White Noise}
 
-An S.S.P. $e(t)$ is called \gls{wn} with mean $\mu$ and variance $\lambda^{2}$, we shall write
+An \gls{ssp} $e(t)$ is called \gls{wn} with mean $\mu$ and variance $\lambda^{2}$, we shall write
 \[
 	e(t) \sim \WN(\mu, \lambda^{2}),
 \]
@@ -139,12 +139,12 @@ The last property is the fundamental one. It says that there is complete incorre
 
 \fg{0.7}{Screen Shot 2022-03-08 at 09.53.35}
 
-\textbf{Observation.} The probability distribution of each single random variables $e(t,s)$ does not matter and is not made explicit in general (wide-sense description of S.S.P.).
+\textbf{Observation.} The probability distribution of each single random variables $e(t,s)$ does not matter and is not made explicit in general (wide-sense description of \gls{ssp}).
 It could be Gaussian, uniform, etc. (WGN = White Gaussian Noise, WUN = White Uniform Noise, etc.).
 
 \textbf{Observation.} Is a constant realization admissible? Yes, it is, but such a realization is \emph{highly unlikely}.
 
-\gls{wn} is a sort of \emph{building block} to construct a number of different stationary stochastic processes.
+\gls{wn} is a sort of \emph{building block} to construct a number of different \glspl{ssp}.
 
 \textbf{Remark.} To ease the notation, in the following we will consider \emph{zero mean} \gls{wn}. The extension to the general case presents no conceptual difficulties.
 
