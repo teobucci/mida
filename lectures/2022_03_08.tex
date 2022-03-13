@@ -1,6 +1,6 @@
 %!TEX root = ../main.tex
 \section{Non-zero mean ARMA processes}
-Consider now $y(t)$ ARMA process generated as the steady-state output of a linear operator $W(z)$ that receive as input $e(t)$, where $e(t) \approx \WN\left(\mu, \lambda^{2}\right)$, with $\mu\neq0$.
+Consider now $y(t)$ ARMA process generated as the steady-state output of a linear operator $W(z)$ that receive as input $e(t)$, where $e(t) \sim \WN\left(\mu, \lambda^{2}\right)$, with $\mu\neq0$.
 
 \begin{theorem}[Gain theorem]
 	The steady-state output is constant and it holds that:
@@ -42,7 +42,7 @@ Hence,
 $$
 \tilde{y}(t)=a_{1} \tilde{y}(t-1)+\cdots+a_{m} \tilde{y}(t-m)+c_{0} \tilde{e}(t)+\cdots+c_{n} \tilde{e}(t-n)
 $$
-where $\tilde{e}(t)\approx \WN\left(0, \lambda^{2}\right)$, is Standard zero mean ARMA process.
+where $\tilde{e}(t)\sim \WN\left(0, \lambda^{2}\right)$, is Standard zero mean ARMA process.
 
 $\tilde{y}(t)$ is the steady-state solution to $W(z)=\frac{A(z)}{C(z)}$ (same transfer function as before) fed by $\tilde{e}(t)$.
 
