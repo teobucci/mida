@@ -22,7 +22,35 @@ When all the four conditions above are satisfied, we will say that $y(t) = W(z)\
 The first part of Condition 4 assure that $W(z)$ is asymptotically stable so that $y(t)$ is well defined, while the second part removes any ambiguity as due to the process described in Case 4.
 
 %ci sarebbe da fare un esempio lungo da zero
+\textbf{Example.}
 
+\begin{align*}
+	y(t)=\frac{2+5z^{-1}+2z^{-2}}{z^2+\frac{5}{6}z+\frac{1}{6}}\cdot e(t)  \qquad \text{where } e(t)\sim \WN(0,1)
+\end{align*}
+$W(z)$ is not monic so we can procced modifying the input in order to have a transfer function that satisfies all the above properties.
+\begin{align*}
+	y(t)&=\frac{2+5z^{-1}+2z^{-2}}{z^2+\frac{5}{6}z+\frac{1}{6}}\cdot e(t) \\
+	&=\frac{2+5z^{-1}+2z^{-2}}{z^2+\frac{5}{6}z+\frac{1}{6}}\cdot\frac{z^2}{2}\cdot\frac{2}{z^2}\cdot e(t)\\
+	&=\frac{z^2+\frac{5}{2}z+1}{z^2+\frac{5}{6}z+\frac{1}{6}}\cdot \eta(t)
+\end{align*}
+where $\eta(t)=2z^{-2}e(t)=2e(t-2)\sim WN(2\cdot0,4\cdot1)\sim WN(0,4)$.
+
+zeros: $z^2+\frac{5}{2}z+1=(z+2)(z+\frac{1}{2})$    $z_{1,2}=-2,-\frac{1}{2}$.
+
+poles: $z^2+\frac{5}{6}z+\frac{1}{6}=(z+\frac{1}{3})(z+\frac{1}{2})$    $z_{1,2}=-\frac{1}{3},-\frac{1}{2}$.
+
+Then:
+\begin{align*}
+	y(t)=\frac{(z+2)\cancel{(z+\frac{1}{2})}}{(z+\frac{1}{3})\cancel{(z+\frac{1}{2})}}\cdot \eta(t) 
+\end{align*}
+Since numerator and denominator are not coprime, we can proceed as follows:
+\begin{align*}
+	y(t)=\frac{(z+\frac{1}{2})}{(z+\frac{1}{3})}\left[\frac{z+2}{(z+\frac{1}{2})}\eta(t)\right]=\frac{(z+\frac{1}{2})}{(z+\frac{1}{3})}\cdot \xi(t)
+\end{align*}
+where $\xi(t)=\frac{z+2}{(z+\frac{1}{2})}\eta(t)\sim WN(0,4\cdot2^2)\sim WN(0,16)$.
+
+Finally we reduce our problem in a Canonical form.
+% c'è un ultima parte che non capisco rip
 \section{Linear Optimal prediction theory (for ARMA processes) }
 Let us consider a zero mean ARMA process:
 \[
