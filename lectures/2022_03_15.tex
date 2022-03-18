@@ -1,1 +1,145 @@
 %!TEX root = ../main.tex
+
+In order to solve the optimal linear prediction problem, let us start from a simpler problem.
+
+$y(t)$ is an ARMA process: $y(t)=W(z) \cdot e(t),\quad e(t) \sim W N\left(0, \lambda^{2}\right)$
+
+Consider its MA( $\infty)$ representation:
+$$
+y(t)=w_{0} e(t)+w_{1} e(t-1)+w_{2} e(t-2)+\cdots=\sum_{i=0}^{\infty} w_{i} e(t-i)
+$$
+where $W(z)=\frac{C(z)}{A(z)}=w_{0}+w_{1} z^{-1}+w_{2} z^{-2}+\cdots$
+
+Clearly, $ y(t-1)=\sum_{i=0}^{\infty} w_{i} e(t-1-i), \quad y(t-2)=\sum_{i=0}^{\infty} w_{i} e(t-2-i),\ldots$
+
+Hence,
+\begin{align*}
+	\hat{y}(t+k \mid t) &=\alpha_{0} y(t)+\alpha_{1} y(t-1)+\cdots \\
+	&=\alpha_{0} \sum_{i=0}^{\infty} w_{i} e(t-i)+\alpha_{1} \sum_{i=0}^{\infty} w_{i} e(t-1-i)+\cdots \\
+	&=\beta_{0} e(t)+\beta_{1} e(t-1)+\beta_{2} e(t-2)+\cdots\\
+	&=\sum_{i=0}^{\infty} \beta_{i} e(t-i)
+\end{align*}
+Any linear predictor based on past output observations, can be rewritten as a (linear) predictor based on noise measurements up to time $t$.
+
+\textbf{Idea:} instead of computing the optimal coefficient $\alpha_{0}^{0},\alpha_{1}^{0},\alpha_{2}^{0},\ldots $first, 
+let us work out directly with the optimal linear predictor based on 
+noise measurements up to time t :
+\begin{align*}
+	\hat{y}(t+k \mid t) = \sum_{i=0}^{\infty} \beta_{i}^0 e(t-i)
+\end{align*}
+
+Again, the optimal coefficients $\beta_{0}^{0}, \beta_{1}^{0}, \beta_{2}^{0}, \ldots$ must be found so as to minimize the mean square prediction error, i.e.
+$$
+\min _{\beta_{0}, \beta_{1}, \beta_{2}, \ldots} \mathrm{E}\left[(y(t+k)-\hat{y}(t+k \mid t))^{2}\right]
+$$
+
+\textbf{Observation:} $y(t+k)$ admits a MA( $(\infty)$ representation too
+\begin{align*}
+	y(t+k)=& \sum_{i=0}^{\infty} w_{i} e(t+k-i) \\
+	=& w_{0} e(t+k)+w_{1} e(t+k-1)+\cdots+w_{k-1} e(t+1)+\\
+	&+w_{k} e(t)+w_{k+1} e(t-1)+w_{k+2} e(t-2)+\cdots
+\end{align*}
+i.e.
+\begin{align*}
+	y(t+k) &=\sum_{j=0}^{k-1} w_{j} e(t+k-j)+\sum_{j=k}^{\infty} w_{j} e(t+k-j) \\
+	&=\sum_{j=0}^{k-1} w_{j} e(t+k-j)+\sum_{i=0}^{\infty} w_{k+i} e(t-i)
+\end{align*}
+( simply, call $i=j-k$ )
+
+Then:
+
+\begin{align*}
+	&\mathrm{E}\left[(y(t+k)-\hat{y}(t+k \mid t))^{2}\right]= \\
+	&=\mathrm{E}\left[\left(\sum_{j=0}^{k-1} w_{j} e(t+k-j)+\sum_{i=0}^{\infty} w_{k+i} e(t-i)-\sum_{i=0}^{\infty} \beta_{i} e(t-i)\right)^{2}\right]= \\
+	&=\mathrm{E}\left[\left(\sum_{j=0}^{k-1} w_{j} e(t+k-j)\right)^{2}+\left(\sum_{i=0}^{\infty} w_{k+i} e(t-i)-\sum_{i=0}^{\infty} \beta_{i} e(t-i)\right)^{2}+\right. \\
+	&\left.\quad+2\left(\sum_{j=0}^{k-1} w_{j} e(t+k-j)\right)\left(\sum_{i=0}^{\infty} w_{k+i} e(t-i)-\sum_{i=0}^{\infty} \beta_{i} e(t-i)\right)\right]=
+\end{align*}
+(thanks to linearity)
+\begin{align*}
+	=& \mathrm{E}\left[\left(\sum_{j=0}^{k-1} w_{j} e(t+k-j)\right)^{2}\right]+\mathrm{E}\left[\left(\sum_{i=0}^{\infty} w_{k+i} e(t-i)-\sum_{i=0}^{\infty} \beta_{i} e(t-i)\right)^{2}\right]+\\
+	&+2 \cdot \mathrm{E}\left[\left(\sum_{j=0}^{k-1} w_{j} e(t+k-j)\right)\left(\sum_{i=0}^{\infty} w_{k+i} e(t-i)-\sum_{i=0}^{\infty} \beta_{i} e(t-i)\right)\right]
+\end{align*}
+However,
+\begin{align*}
+	\mathrm{E}\left[\underbrace{\left(\sum_{j=0}^{k-1} w_{j} e(t+k-j)\right)}_{\text{depends on }e(t+k),e(t+k-1),\ldots,e(t+1)}\underbrace{\left( \sum_{i=0}^{\infty} w_{k+i} e(t-i)-\sum_{i=0}^{\infty} \beta_{i} e(t-i)\right)}_{\text{depends on }e(t),e(t-1),\ldots}\right]=0
+\end{align*}
+All the resulting products are between uncorrelated terms
+$\mathrm{E}[e(t+k-j) e(t-i)]=0$ (recall that we assumed $e(t) \sim W N\left(0, \lambda^{2}\right)$, i.e.
+noise was zero mean).
+
+Hence,
+\begin{align*}
+	\mathrm{E}\left[(y(t+k)-\hat{y}(t+k \mid t))^{2}\right]= =\mathrm{E}\left[\left(\sum_{j=0}^{k-1} w_{j} e(t+k-j)\right)^{2}\right]+\mathrm{E}\left[\left(\sum_{i=0}^{\infty} w_{k+i} e(t-i)-\sum_{i=0}^{\infty} \beta_{i} e(t-i)\right)^{2}\right]
+\end{align*}
+When we minimize with respect to $\beta_{0}^{0}, \beta_{1}^{0}, \beta_{2}^{0}, \ldots$, the first term cannot 
+be modified, while at best the second term can be made $= 0$. 
+
+Hence the optimal solution can be obtained by putting 
+$\beta_{i}^{0}= w_{k+i}$ which gives as optimal solution.
+
+So,the optimal linear predictor based on noise measurements is:
+\begin{align*}
+	\hat{y}(t+k \mid t) = \sum_{i=0}^{\infty}w_{k+i} e(t-i)
+\end{align*}
+Note that $y(t+k)$ can be written as the sum of a function of future, unpredictable from the info at $t$, and a predictable part. 
+\begin{align*}
+	y(t+k)=\sum_{j=0}^{k-1} w_{j} e(t+k-j)+\sum_{i=0}^{\infty} w_{k+i} e(t-i)
+\end{align*}
+$\hat{y}(t+k \mid t) $ drops the unpredictable part.
+
+\textbf{How to compute $w_{k+i}$?}
+
+Numerator and denominator $k$-steps division:
+%\figure
+
+\begin{align*}
+	\frac{C(z)}{A(z)}=E(z)+z^{-k} \frac{F(z)}{A(z)}
+\end{align*}
+where,
+\begin{align*}
+	&E(z)=w_{0}+w_{1} z^{-1}+\cdots+w_{k-1} z^{-k+1} \\
+	&z^{-k} \frac{F(z)}{A(z)}=w_{k} z^{-k}+w_{k+1} z^{-k-1}+w_{k+2} z^{-k-2}+\cdots
+\end{align*}
+Hence,
+\begin{align*}
+	y(t+k) &=\frac{C(z)}{A(z)} e(t+k)=\left[E(z)+z^{-k} \frac{F(z)}{A(z)}\right] e(t+k)=\\
+	&=\underbrace{E(z)e(t+k)}_{\text{unpredictable at }t}+\underbrace{\frac{F(z)}{A(z)}e(t)}_{\text{predictable at }t}
+\end{align*}
+The optimal predictor is given by the predictable part of $y(t + k)$:
+$$
+\hat{y}(t+k \mid t) = \frac{F(z)}{A(z)}e(t)
+$$
+$\hat{y}(t+k \mid t)$ is the steady-state output of a suitable linear filter 
+fed by $e(t)$.
+
+\textbf{Unfortunately} this result is 
+completely useless in practice!!! 
+
+In order to actually compute the predicted value for the output 
+variable based on the above expression for $\hat{y}(t+k \mid t)$, past values of the noise process $e(t),e(t_1),e(t_2),\ldots$ should be accessible, but the output $y(t)$ is the only 
+information on reality to 
+which we can access.
+
+In order to use it practice, we need to express the predict value as a 
+function of past values of the output variable $y(t), y(t_1), y(t_2),\ldots$.
+
+\textbf{Idea:} is it possible to reconstruct 
+the noise $e(t)$ from the output $y(t)$? 
+
+If the transfer function s canonical and as. stabl the answer is yes.
+$$
+e(t)=W(z)^{-1} y(t)=\frac{A(z)}{C(z)} y(t)=\widetilde{w}_{0} y(t)+\widetilde{w}_{1} y(t-1)+\widetilde{w}_{2} y(t-2)+\cdots
+$$
+Moreover the computed $\hat{y}^e(t+k \mid t)$ is also the solution to our orginal problem.
+$$
+\hat{y}^e(t+k \mid t)=\sum_{i=0}^{\infty} w_{k+i}\left(\breve{w}_{0} y(t-i)+\breve{w}_{1} y(t-i-1)+\cdots\right)
+$$
+Indeed, is a predictor form ouput and it is also optimal.
+
+Suppose it is not, then $\exists \hat{y}(t+k \mid t)=\sum_{i=0}^{\infty} \tilde{\alpha_i}y(t-i)$ which ia better.
+$$
+\mathrm{E}\left[(y(t+k)-\sum_{i=0}^{\infty} \tilde{\alpha_i}y(t-i))^2\right]<\mathrm{E}\left[(y(t+k)-\hat{y}^e(t+k \mid t))^{2}\right]
+$$
+
+
+ 
