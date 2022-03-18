@@ -2,7 +2,7 @@
 
 In order to solve the optimal linear prediction problem, let us start from a simpler problem.
 
-$y(t)$ is an ARMA process: $y(t)=W(z) \cdot e(t),\quad e(t) \sim W N\left(0, \lambda^{2}\right)$
+$y(t)$ is an ARMA process: $y(t)=W(z) \cdot e(t),\quad e(t) \sim \WN\left(0, \lambda^{2}\right)$
 
 Consider its MA( $\infty)$ representation:
 $$
@@ -30,14 +30,14 @@ noise measurements up to time t :
 
 Again, the optimal coefficients $\beta_{0}^{0}, \beta_{1}^{0}, \beta_{2}^{0}, \ldots$ must be found so as to minimize the mean square prediction error, i.e.
 $$
-\min _{\beta_{0}, \beta_{1}, \beta_{2}, \ldots} \mathrm{E}\left[(y(t+k)-\hat{y}(t+k \mid t))^{2}\right]
+\min _{\beta_{0}, \beta_{1}, \beta_{2}, \ldots} \E\left[(y(t+k)-\hat{y}(t+k \mid t))^{2}\right]
 $$
 
 \textbf{Observation:} $y(t+k)$ admits a MA( $(\infty)$ representation too
 \begin{align*}
-	y(t+k)=& \sum_{i=0}^{\infty} w_{i} e(t+k-i) \\
-	=& w_{0} e(t+k)+w_{1} e(t+k-1)+\cdots+w_{k-1} e(t+1)+\\
-	&+w_{k} e(t)+w_{k+1} e(t-1)+w_{k+2} e(t-2)+\cdots
+	y(t+k)&= \sum_{i=0}^{\infty} w_{i} e(t+k-i) \\
+	&= w_{0} e(t+k)+w_{1} e(t+k-1)+\cdots+w_{k-1} e(t+1)+\\
+	&\quad+w_{k} e(t)+w_{k+1} e(t-1)+w_{k+2} e(t-2)+\cdots
 \end{align*}
 i.e.
 \begin{align*}
@@ -49,27 +49,27 @@ i.e.
 Then:
 
 \begin{align*}
-	&\mathrm{E}\left[(y(t+k)-\hat{y}(t+k \mid t))^{2}\right]= \\
-	&=\mathrm{E}\left[\left(\sum_{j=0}^{k-1} w_{j} e(t+k-j)+\sum_{i=0}^{\infty} w_{k+i} e(t-i)-\sum_{i=0}^{\infty} \beta_{i} e(t-i)\right)^{2}\right]= \\
-	&=\mathrm{E}\left[\left(\sum_{j=0}^{k-1} w_{j} e(t+k-j)\right)^{2}+\left(\sum_{i=0}^{\infty} w_{k+i} e(t-i)-\sum_{i=0}^{\infty} \beta_{i} e(t-i)\right)^{2}+\right. \\
+	&\E\left[(y(t+k)-\hat{y}(t+k \mid t))^{2}\right]= \\
+	&=\E\left[\left(\sum_{j=0}^{k-1} w_{j} e(t+k-j)+\sum_{i=0}^{\infty} w_{k+i} e(t-i)-\sum_{i=0}^{\infty} \beta_{i} e(t-i)\right)^{2}\right]= \\
+	&=\E\left[\left(\sum_{j=0}^{k-1} w_{j} e(t+k-j)\right)^{2}+\left(\sum_{i=0}^{\infty} w_{k+i} e(t-i)-\sum_{i=0}^{\infty} \beta_{i} e(t-i)\right)^{2}+\right. \\
 	&\left.\quad+2\left(\sum_{j=0}^{k-1} w_{j} e(t+k-j)\right)\left(\sum_{i=0}^{\infty} w_{k+i} e(t-i)-\sum_{i=0}^{\infty} \beta_{i} e(t-i)\right)\right]=
 \end{align*}
 (thanks to linearity)
 \begin{align*}
-	=& \mathrm{E}\left[\left(\sum_{j=0}^{k-1} w_{j} e(t+k-j)\right)^{2}\right]+\mathrm{E}\left[\left(\sum_{i=0}^{\infty} w_{k+i} e(t-i)-\sum_{i=0}^{\infty} \beta_{i} e(t-i)\right)^{2}\right]+\\
-	&+2 \cdot \mathrm{E}\left[\left(\sum_{j=0}^{k-1} w_{j} e(t+k-j)\right)\left(\sum_{i=0}^{\infty} w_{k+i} e(t-i)-\sum_{i=0}^{\infty} \beta_{i} e(t-i)\right)\right]
+	=& \E\left[\left(\sum_{j=0}^{k-1} w_{j} e(t+k-j)\right)^{2}\right]+\E\left[\left(\sum_{i=0}^{\infty} w_{k+i} e(t-i)-\sum_{i=0}^{\infty} \beta_{i} e(t-i)\right)^{2}\right]+\\
+	&+2 \cdot \E\left[\left(\sum_{j=0}^{k-1} w_{j} e(t+k-j)\right)\left(\sum_{i=0}^{\infty} w_{k+i} e(t-i)-\sum_{i=0}^{\infty} \beta_{i} e(t-i)\right)\right]
 \end{align*}
 However,
 \begin{align*}
-	\mathrm{E}\left[\underbrace{\left(\sum_{j=0}^{k-1} w_{j} e(t+k-j)\right)}_{\text{depends on }e(t+k),e(t+k-1),\ldots,e(t+1)}\underbrace{\left( \sum_{i=0}^{\infty} w_{k+i} e(t-i)-\sum_{i=0}^{\infty} \beta_{i} e(t-i)\right)}_{\text{depends on }e(t),e(t-1),\ldots}\right]=0
+	\E\left[\underbrace{\left(\sum_{j=0}^{k-1} w_{j} e(t+k-j)\right)}_{\text{depends on }e(t+k),e(t+k-1),\ldots,e(t+1)}\underbrace{\left( \sum_{i=0}^{\infty} w_{k+i} e(t-i)-\sum_{i=0}^{\infty} \beta_{i} e(t-i)\right)}_{\text{depends on }e(t),e(t-1),\ldots}\right]=0
 \end{align*}
 All the resulting products are between uncorrelated terms
-$\mathrm{E}[e(t+k-j) e(t-i)]=0$ (recall that we assumed $e(t) \sim W N\left(0, \lambda^{2}\right)$, i.e.
+$\E[e(t+k-j) e(t-i)]=0$ (recall that we assumed $e(t) \sim \WN\left(0, \lambda^{2}\right)$, i.e.
 noise was zero mean).
 
 Hence,
 \begin{align*}
-	\mathrm{E}\left[(y(t+k)-\hat{y}(t+k \mid t))^{2}\right]= =\mathrm{E}\left[\left(\sum_{j=0}^{k-1} w_{j} e(t+k-j)\right)^{2}\right]+\mathrm{E}\left[\left(\sum_{i=0}^{\infty} w_{k+i} e(t-i)-\sum_{i=0}^{\infty} \beta_{i} e(t-i)\right)^{2}\right]
+	\E\left[(y(t+k)-\hat{y}(t+k \mid t))^{2}\right]=\E\left[\left(\sum_{j=0}^{k-1} w_{j} e(t+k-j)\right)^{2}\right]+\E\left[\left(\sum_{i=0}^{\infty} w_{k+i} e(t-i)-\sum_{i=0}^{\infty} \beta_{i} e(t-i)\right)^{2}\right]
 \end{align*}
 When we minimize with respect to $\beta_{0}^{0}, \beta_{1}^{0}, \beta_{2}^{0}, \ldots$, the first term cannot 
 be modified, while at best the second term can be made $= 0$. 
@@ -126,7 +126,7 @@ function of past values of the output variable $y(t), y(t_1), y(t_2),\ldots$.
 \textbf{Idea:} is it possible to reconstruct 
 the noise $e(t)$ from the output $y(t)$? 
 
-If the transfer function s canonical and as. stabl the answer is yes.
+If the transfer function is canonical and asymptotically stable the answer is yes.
 $$
 e(t)=W(z)^{-1} y(t)=\frac{A(z)}{C(z)} y(t)=\widetilde{w}_{0} y(t)+\widetilde{w}_{1} y(t-1)+\widetilde{w}_{2} y(t-2)+\cdots
 $$
@@ -138,7 +138,7 @@ Indeed, is a predictor form ouput and it is also optimal.
 
 Suppose it is not, then $\exists \hat{y}(t+k \mid t)=\sum_{i=0}^{\infty} \tilde{\alpha_i}y(t-i)$ which ia better.
 $$
-\mathrm{E}\left[(y(t+k)-\sum_{i=0}^{\infty} \tilde{\alpha_i}y(t-i))^2\right]<\mathrm{E}\left[(y(t+k)-\hat{y}^e(t+k \mid t))^{2}\right]
+\E\left[(y(t+k)-\sum_{i=0}^{\infty} \tilde{\alpha_i}y(t-i))^2\right]<\E\left[(y(t+k)-\hat{y}^e(t+k \mid t))^{2}\right]
 $$
 
 
