@@ -22,7 +22,7 @@ $e(t)$ is indeed reconstructible from the ??? available imp ($y(t), y(t-1),\ldot
 % blablabla
 
 \begin{align*}
-	\hat y ^{0}(t+k|t)&=\frac{F(z)}{A(z)}\left[ \frac{A(z)}{C(z)}y(t) \right]  \\
+	\hat y ^{0}(t+k\mid t)&=\frac{F(z)}{A(z)}\left[ \frac{A(z)}{C(z)}y(t) \right]  \\
 	&=\frac{F(z)}{\cancel{A(z)}}\cdot\frac{\cancel{A(z)}}{C(z)}y(t)\\
 	&=\frac{F(z)}{C(z)}y(t) \quad \text{where }\frac{C(z)}{A(z)}=E(z)+\frac{z^{-k}F(z) }{A(z)}
 \end{align*}
@@ -42,7 +42,7 @@ where $\xi(t)\sim \WN(0,4)$.
 \]
 then
 \[
-	\hat y ^{e}(t+1|t)=-2e(t) \quad \text{optimal predictor from measurements of $e$ up to time $t$} 
+	\hat y ^{e}(t+1\mid t)=-2e(t) \quad \text{optimal predictor from measurements of $e$ up to time $t$} 
 \]
 One can write
 \[
@@ -50,17 +50,17 @@ One can write
 \]
 then
 \[
-	\hat y^{\xi} (t+1|t)=-\frac{1}{2} \xi(t) \quad \text{optimal predictor from measurements of $\xi$ up to time $t$} 
+	\hat y^{\xi} (t+1\mid t)=-\frac{1}{2} \xi(t) \quad \text{optimal predictor from measurements of $\xi$ up to time $t$} 
 \]
 \[
-	\hat y^{e}(t+1|t)=-2e(t) 
+	\hat y^{e}(t+1\mid t)=-2e(t) 
 \]
 % rec
 
 
 Prediction error
 \[
-	\E\left[ \left( y(t+1)-\hat y^{e}(t+1|t)  \right) ^2   \right]  =\E[e(t+1)^2 ]=1\neq 4=\E[\xi(t+1)^2 ]=\E\left[ \left( y(t+1)-\hat y ^{\xi}(t+1|t)  \right)^2    \right]  
+	\E\left[ \left( y(t+1)-\hat y^{e}(t+1\mid t)  \right) ^2   \right]  =\E[e(t+1)^2 ]=1\neq 4=\E[\xi(t+1)^2 ]=\E\left[ \left( y(t+1)-\hat y ^{\xi}(t+1\mid t)  \right)^2    \right]  
 \]
 $\hat y^{e} $ and $\hat y^{\xi} $ cannot be simultaneously the predictor from output.
 \todo{canonical?}
@@ -97,7 +97,7 @@ Diverges.
 	y(t)=\frac{C(z)}{A(z)}e(t)\qquad e(t)\sim \WN(\mu,\lambda^2 )
 \]
 Hypothesis: canonical and minimum phase.
-$\hat y(t+k|t)=?$
+$\hat y(t+k\mid t)=?$
 \[
 	\E[e(t)]=\mu \implies \E[y(t)]=\frac{C(1)}{A(1)}\cdot\mu=m_{y} \quad \forall t
 \]
@@ -112,15 +112,15 @@ We construct
 \]
 $\tilde y$ is a zero mean ARMA
 \[
-	\hat{\tilde y} (t+k|t) = \frac{F(z)}{C(z)}\tilde y(t) \qquad \frac{C(z)}{A(z)}=E(z)+\frac{z^{-k}F(z) }{A(z)}
+	\hat{\tilde y} (t+k\mid t) = \frac{F(z)}{C(z)}\tilde y(t) \qquad \frac{C(z)}{A(z)}=E(z)+\frac{z^{-k}F(z) }{A(z)}
 \]
 So that we have
 \[
 	y(t)=\tilde y(t)+m_{y} \qquad y(t+k)=\tilde y(t+k)+\underbrace{m_{y}}_{\text{known}}
 \]
 \begin{align*}
-	\hat y(t+k|t)&=\widehat{\tilde y(t+k)+m_{y}}\\
-	&= \hat{\tilde y}(t+k|t)+m_{y}\\
+	\hat y(t+k\mid t)&=\widehat{\tilde y(t+k)+m_{y}}\\
+	&= \hat{\tilde y}(t+k\mid t)+m_{y}\\
 	&=\frac{F(z)}{C(z)}\tilde y(t)+m_{y}\\
 	&=\frac{F(z)}{C(z)}(y(t)-m_{y})+m_{y}\\
 	&=\frac{F(z)}{C(z)}y(t)-\frac{F(z)}{C(z)}m_{y}+m_{y}\\
