@@ -29,6 +29,7 @@ Let us consider the AR($1$) (or equivalently ARMA($1,0$)) process generated acco
 	\item Compute $m_{y}$ and $\gamma_{y}(\tau)$ for $\tau=0, \pm 1, \pm 2, \ldots$
 \end{itemize}
 
+\todo{have a check here}
 Operatorial representation for $y(t)$:
 
 \begin{align*}
@@ -148,7 +149,7 @@ By asintotical stability we can prove that $(1-a_1-\cdots-a_m)\neq0$, i.e. $m_{y
 
 \textbf{Covariance.}
 \begin{align*}
-	\gamma_{y}(0) = \E\left[y(t)^{2}\right]&=\E\left[\left(a_{1} y(t-1)+\cdots+a_{m} y(t-m)+c_{0} e(t)+\cdots+c_{n} e(t-n)\right)^{2}\right]=\\
+	\gamma_{y}(0) = \E\left[y(t)^{2}\right]&=\E\left[\left(a_{1} y(t-1)+\cdots+a_{m} y(t-m)+c_{0} e(t)+\cdots+c_{n} e(t-n)\right)^{2}\right]\\
 	&= a_{1}^{2} \E\left[y(t-1)^{2}\right]+a_{2}^{2} \E\left[y(t-2)^{2}\right]+2 a_{1} a_{2} \E[y(t-1) y(t-2)]+\cdots \\
 	&\qquad+c_{0}^{2} \E\left[e(t)^{2}\right]+2 a_{1} c_{0} \E[y(t-1) e(t)]+\cdots
 \end{align*}
