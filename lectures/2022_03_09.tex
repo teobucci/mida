@@ -118,13 +118,19 @@ then
 	y(t)&=W(z) \xi(t)=W_{1}(z) \cdot(z-q) \xi(t)=\left[W_{1}(z) \cdot(z-q) \cdot \frac{z-\frac{1}{q}}{z-\frac{1}{q}}\right] \xi(t)= \\
 	&=W_{1}(z) \cdot\left(z-\frac{1}{q}\right)\left[\frac{z-q}{z-\frac{1}{q}} \xi(t)\right]=\tilde{W}(z) \tilde{\xi}(t)
 \end{align*}
-where they are still both respectively a rational transfer function and a \gls{wn}, indeed let us computer the spectral density of $\tilde{\xi}(t)$
+Note that $\tilde{\xi}$ is well-defined and stationary since we multiplied $\xi$ by an asymptotically stable transfer function ($|z|=\left|\frac{1}{q}\right|<1$).\\
+Moreover they are still both respectively a rational transfer function and a \gls{wn}, indeed let us computer the spectral density of $\tilde{\xi}(t)$
 \begin{align*}
 	\Gamma_{\tilde\xi}(\omega) &=\frac{\left|e^{j \omega}-q\right|^{2}}{\left|e^{j \omega}-\frac{1}{q}\right|^{2}} \cdot \lambda^{2}=\frac{\left(e^{j \omega}-q\right)\left(e^{-j \omega}-q\right)}{\left(e^{j \omega}-\frac{1}{q}\right)\left(e^{-j \omega}-\frac{1}{q}\right)} \cdot \lambda^{2}\\
 	&=\frac{1+q^{2}-q\left(e^{j \omega}+e^{-j \omega}\right)}{1+\frac{1}{q^{2}}-\frac{1}{q}\left(e^{j \omega}+e^{-j \omega}\right)} \cdot \lambda^{2}=\frac{1+q^{2}-2 q \cos (\omega)}{1+\frac{1}{q^{2}}-\frac{2}{q} \cos (\omega)} \cdot \lambda^{2}=\\
 	&=q^{2} \frac{\frac{1}{q^{2}}+1-\frac{2}{q} \cos (\omega)}{1+\frac{1}{q^{2}}-\frac{2}{q} \cos (\omega)} \cdot \lambda^{2}=q^{2} \cdot \lambda^{2}
 \end{align*}
-while
+which is always constant and characterises a \gls{wn}; while
 \[
-	\E[\tilde{\xi}_{(t)}]=\frac{1-q}{1-\frac{1}{q}} \cdot \E[\xi(t)]=q \cdot \frac{1-\frac{1}{q}}{1-\frac{1}{q}} \cdot \mu=q \cdot \mu
+	\tilde \xi(t) = \frac{z-q}{z-\frac{1}{q}} \xi(t) \implies \tilde \xi(t+1)-\frac{1}{q}\tilde \xi(t)=\xi(t+1)-q\xi(t)
 \]
+taking $\E[\cdot]$ on both sides
+\[
+	m_{\tilde\xi} - \frac{1}{q} m_{\tilde\xi} = \mu - q\mu \implies m_{\tilde\xi} = \frac{1-q}{1-\frac{1}{q}} \cdot \mu = -q \frac{\cancel{1-\frac{1}{q}}}{\cancel{1-\frac{1}{q}}}=  - q \cdot \mu
+\]
+so in the end we have $\tilde\xi(t)\sim \WN(-q\mu,q^2 \lambda^2 )$.
