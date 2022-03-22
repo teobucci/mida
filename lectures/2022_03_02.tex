@@ -48,9 +48,9 @@ Since $e(t)$ is a \gls{ssp} (by definition of \gls{wn}), when $|a| <1$ the stead
 \textbf{Mean.}
 Start from the time-domain representation and apply expectation to both sides:
 \[
-	\mathbb{E}[y(t)]=\mathbb{E}[a \cdot y(t-1)+e(t)] \implies \mathbb{E}[y(t)]=a \cdot \mathbb{E}[y(t-1)]+\mathbb{E}[e(t)]
+	\E[y(t)]=\E[a \cdot y(t-1)+e(t)] \implies \E[y(t)]=a \cdot \E[y(t-1)]+\E[e(t)]
 \]
-Thanks to stationarity $\mathbb{E}[y(t)]=\mathbb{E}[y(t-1)]=m_{y}$, so that $m_{y}=a \cdot m_{y}+m_{e}$.
+Thanks to stationarity $\E[y(t)]=\E[y(t-1)]=m_{y}$, so that $m_{y}=a \cdot m_{y}+m_{e}$.
 Then:
 $$
 m_{e}=0 \implies  m_{y}=0
@@ -58,17 +58,17 @@ $$
 \textbf{Variance.}
 Let us compute
 \[
-	\gamma_{y}(0)=\mathbb{E}\left[\left(y(t)-m_{y}\right)^{2}\right]
+	\gamma_{y}(0)=\E\left[\left(y(t)-m_{y}\right)^{2}\right]
 \]
-Remember that $m_{y}=0$. Start from $y(t)=a \cdot y(t-1)+e(t)$, take the square and apply operator $\mathbb{E}[\cdot]$ to both side:
+Remember that $m_{y}=0$. Start from $y(t)=a \cdot y(t-1)+e(t)$, take the square and apply operator $\E[\cdot]$ to both side:
 \begin{align*}
-	\gamma_{y}(0)&=\mathbb{E}\left[(y(t))^{2}\right]\\
-	&=\mathbb{E}\left[(a \cdot y(t-1)+e(t))^{2}\right]\\
-	&=a^{2} \mathbb{E}\left[y(t-1)^{2}\right]+\mathbb{E}\left[e(t)^{2}\right]+2 a \mathbb{E}[y(t-1) e(t)]\\
+	\gamma_{y}(0)&=\E\left[(y(t))^{2}\right]\\
+	&=\E\left[(a \cdot y(t-1)+e(t))^{2}\right]\\
+	&=a^{2} \E\left[y(t-1)^{2}\right]+\E\left[e(t)^{2}\right]+2 a \E[y(t-1) e(t)]\\
 \end{align*}
 Mid-terms evaluation:
 \[
-	2 a \mathbb{E}[y(t-1) e(t)]=0 \qquad \text{(we will show this later)}
+	2 a \E[y(t-1) e(t)]=0 \qquad \text{(we will show this later)}
 \]
 Indeed, by using the MA($\infty$) representation for $y(t-1)$ (AR process):
 $$
@@ -76,14 +76,14 @@ y(t-1)=e(t-1)+a \cdot e(t-2)+a^{2} \cdot e(t-3)+a^{3} \cdot e(t-4)+\cdots
 $$
 we have that:
 \[
-	\mathbb{E}[e(t) y(t-1)]=\mathbb{E}\left[e(t) \cdot\left(e(t-1)+a \cdot e(t-2)+a^{2} \cdot e(t-3)+a^{3} \cdot e(t-4)+\cdots\right)\right]=0
+	\E[e(t) y(t-1)]=\E\left[e(t) \cdot\left(e(t-1)+a \cdot e(t-2)+a^{2} \cdot e(t-3)+a^{3} \cdot e(t-4)+\cdots\right)\right]=0
 \]
 (all products give null contribution).
 
 
-$\mathbb{E}\left[(y(t-1))^{2}\right]=\gamma_{y}(0)$ (thanks to stationarity)
+$\E\left[(y(t-1))^{2}\right]=\gamma_{y}(0)$ (thanks to stationarity)
 
-$\mathbb{E}\left[(e(t))^{2}\right]=\lambda^{2}$
+$\E\left[(e(t))^{2}\right]=\lambda^{2}$
 
 Hence,
 \[
@@ -92,13 +92,13 @@ Hence,
 \textbf{Covariance.}
 Remember that $m_{y}=0$ and substitute $y(t)=a \cdot y(t-1)+e(t)$,
 \begin{align*}
-	\gamma_{y}(1)&=\mathbb{E}\left[\left(y(t)-m_{y}\right) \cdot\left(y(t-1)-m_{y}\right)\right]\\
-	&=\mathbb{E}[y(t) y(t-1)]\\
-	&=\mathbb{E}[(a \cdot y(t-1)+e(t))y(t-1)]\\
-	&=a \cdot \mathbb{E}\left[(y(t-1))^{2}\right]+\mathbb{E}[e(t) y(t-1)]
+	\gamma_{y}(1)&=\E\left[\left(y(t)-m_{y}\right) \cdot\left(y(t-1)-m_{y}\right)\right]\\
+	&=\E[y(t) y(t-1)]\\
+	&=\E[(a \cdot y(t-1)+e(t))y(t-1)]\\
+	&=a \cdot \E\left[(y(t-1))^{2}\right]+\E[e(t) y(t-1)]
 \end{align*}
 
-We already know that $\mathbb{E}\left[(y(t-1))^{2}\right]=\gamma_{y}(0)$, while as before $\mathbb{E}[e(t) y(t-1)]=0$.
+We already know that $\E\left[(y(t-1))^{2}\right]=\gamma_{y}(0)$, while as before $\E[e(t) y(t-1)]=0$.
 $$
 \gamma_{y}(1)=a \cdot \gamma_{y}(0)=a \cdot \frac{\lambda^{2}}{1-a^{2}}
 $$
@@ -137,8 +137,8 @@ where $e(t) \sim \WN\left(0, \lambda^{2}\right)$.
 
 \textbf{Mean.}
 \begin{align*}
-	\mathbb{E}[y(t)] &=\mathbb{E}\left[a_{1} y(t-1)+\cdots+a_{m} y(t-m)+c_{0} e(t)+\cdots+c_{n} e(t-n)\right] \\
-	&=a_{1} \mathbb{E}[y(t-1)]+\cdots+a_{m} \mathbb{E}[y(t-m)]+c_{0} \mathbb{E}[e(t)]+\cdots+c_{n} \mathbb{E}[e(t-n)]
+	\E[y(t)] &=\E\left[a_{1} y(t-1)+\cdots+a_{m} y(t-m)+c_{0} e(t)+\cdots+c_{n} e(t-n)\right] \\
+	&=a_{1} \E[y(t-1)]+\cdots+a_{m} \E[y(t-m)]+c_{0} \E[e(t)]+\cdots+c_{n} \E[e(t-n)]
 \end{align*}
 $$
 m_{y}=a_{1} m_{y}+\cdots+a_{m} m_{y}+c_{0} \cdot 0+\cdots+c_{n} \cdot 0
@@ -148,9 +148,9 @@ By asintotical stability we can prove that $(1-a_1-\cdots-a_m)\neq0$, i.e. $m_{y
 
 \textbf{Covariance.}
 \begin{align*}
-	\gamma_{y}(0) = \mathbb{E}\left[y(t)^{2}\right]&=\mathbb{E}\left[\left(a_{1} y(t-1)+\cdots+a_{m} y(t-m)+c_{0} e(t)+\cdots+c_{n} e(t-n)\right)^{2}\right]=\\
-	&= a_{1}^{2} \mathbb{E}\left[y(t-1)^{2}\right]+a_{2}^{2} \mathbb{E}\left[y(t-2)^{2}\right]+2 a_{1} a_{2} \mathbb{E}[y(t-1) y(t-2)]+\cdots \\
-	&\qquad+c_{0}^{2} \mathbb{E}\left[e(t)^{2}\right]+2 a_{1} c_{0} \mathbb{E}[y(t-1) e(t)]+\cdots
+	\gamma_{y}(0) = \E\left[y(t)^{2}\right]&=\E\left[\left(a_{1} y(t-1)+\cdots+a_{m} y(t-m)+c_{0} e(t)+\cdots+c_{n} e(t-n)\right)^{2}\right]=\\
+	&= a_{1}^{2} \E\left[y(t-1)^{2}\right]+a_{2}^{2} \E\left[y(t-2)^{2}\right]+2 a_{1} a_{2} \E[y(t-1) y(t-2)]+\cdots \\
+	&\qquad+c_{0}^{2} \E\left[e(t)^{2}\right]+2 a_{1} c_{0} \E[y(t-1) e(t)]+\cdots
 \end{align*}
 
 Hence
@@ -160,15 +160,15 @@ $$
 
 Then
 \begin{align*}
-	\mathbb{E}[y(t) y(t-1)]&=\mathbb{E}\left[\left(a_{1} y(t-1)+\cdots+a_{m} y(t-m)+c_{0} e(t)+\cdots+c_{n} e(t-n)\right) y(t-1)\right]= \\
-	&=a_{1} \mathbb{E}\left[y(t-1)^{2}\right]+\cdots+c_{0} \mathbb{E}[e(t) y(t-1)]+\cdots
+	\E[y(t) y(t-1)]&=\E\left[\left(a_{1} y(t-1)+\cdots+a_{m} y(t-m)+c_{0} e(t)+\cdots+c_{n} e(t-n)\right) y(t-1)\right]= \\
+	&=a_{1} \E\left[y(t-1)^{2}\right]+\cdots+c_{0} \E[e(t) y(t-1)]+\cdots
 \end{align*}
 
 Proceeding this way:
 $$
 \begin{cases}
 	\gamma_{y}(0)=a_{1}^{2} \gamma_{y}(0)+a_{2}^{2} \gamma_{y}(0)+2 a_{1} a_{2} \gamma \\
-	\gamma_{y}(1)=a_{1} \gamma_{y}(0)+\cdots+c_{0} \mathbb{E}[e(t) y(t-1)] \\
+	\gamma_{y}(1)=a_{1} \gamma_{y}(0)+\cdots+c_{0} \E[e(t) y(t-1)] \\
 	\vdots \\
 	\gamma_{y}(m-1)=a_{1} \gamma_{y}(m-2)+\cdots
 \end{cases}
@@ -181,6 +181,6 @@ $$
 \gamma_{y}(0), \gamma_{y}(1), \ldots, \gamma_{y}(m-1)
 $$
 \begin{align*}
-	\gamma_{y}(m)&=\mathbb{E}[y(t) y(t-m)] \\
-	&=\mathbb{E}\left[\left(a_{1} y(t-1)+\ldots+a_{m} y(t-m)+c_{0} e(t)+\ldots+c_{n} e(t-n)\right) y(t-m)\right]=\ldots
+	\gamma_{y}(m)&=\E[y(t) y(t-m)] \\
+	&=\E\left[\left(a_{1} y(t-1)+\ldots+a_{m} y(t-m)+c_{0} e(t)+\ldots+c_{n} e(t-n)\right) y(t-m)\right]=\ldots
 \end{align*}

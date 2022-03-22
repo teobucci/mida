@@ -5,14 +5,14 @@ Consider now $y(t)$ ARMA process generated as the steady-state output of a linea
 \begin{theorem}[Gain theorem]
 	The steady-state output is constant and it holds that:
 	\[
-		\mathbb{E}[y(t)]=m_{y}=W(z)|_{z=1} \cdot \mu
+		\E[y(t)]=m_{y}=W(z)|_{z=1} \cdot \mu
 	\]
 \end{theorem}
 
 Indeed:
 \begin{align*}
-		\mathbb{E}[y(t)] &=\mathbb{E}\left[a_{1} y(t-1)+\cdots+a_{m} y(t-m)+c_{0} e(t)+\cdots+c_{n} e(t-n)\right] \\
-		&=a_{1} \mathbb{E}[y(t-1)]+\cdots+a_{m} \mathbb{E}[y(t-m)]+c_{0} \mathbb{E}[e(t)]+\cdots+c_{n} \mathbb{E}[e(t-n)]
+		\E[y(t)] &=\E\left[a_{1} y(t-1)+\cdots+a_{m} y(t-m)+c_{0} e(t)+\cdots+c_{n} e(t-n)\right] \\
+		&=a_{1} \E[y(t-1)]+\cdots+a_{m} \E[y(t-m)]+c_{0} \E[e(t)]+\cdots+c_{n} \E[e(t-n)]
 \end{align*}
 $$
 m_{y}=a_{1} m_{y}+\cdots+a_{m} m_{y}+c_{0} \cdot \mu+\cdots+c_{n} \cdot \mu
@@ -26,8 +26,8 @@ $$
 	\tilde{e}(t)=e(t)-m_{e} \quad\forall t
 \end{cases}
 \rightarrow \begin{array}{l}
-	\mathbb{E}[\tilde{y}(t)]=\mathbb{E}[y(t)]-m_{y}=0 \\
-	\mathbb{E}[\tilde{e}(t)]=\mathbb{E}[e(t)]-m_{e}=0
+	\E[\tilde{y}(t)]=\E[y(t)]-m_{y}=0 \\
+	\E[\tilde{e}(t)]=\E[e(t)]-m_{e}=0
 \end{array}
 $$
 \begin{align*}
@@ -48,12 +48,12 @@ $\tilde{y}(t)$ is the steady-state solution to $W(z)=\frac{A(z)}{C(z)}$ (same tr
 
 Moreover,
 $$
-\gamma_{y}(\tau)=\mathbb{E}\left[\left(y(t)-m_{y}\right) \cdot\left(y(t-\tau)-m_{y}\right)\right]=\mathbb{E}[(\tilde{y}(t)) \cdot(\tilde{y}(t-\tau))]=\gamma_{\tilde{y}}(\tau)
+\gamma_{y}(\tau)=\E\left[\left(y(t)-m_{y}\right) \cdot\left(y(t-\tau)-m_{y}\right)\right]=\E[(\tilde{y}(t)) \cdot(\tilde{y}(t-\tau))]=\gamma_{\tilde{y}}(\tau)
 $$
 
 \textbf{Remark.} We cannot drop $m_{y} \neq 0$.
 
-$$\quad \gamma_{y}(\tau) \neq \mathbb{E}[y(t) \cdot y(t-\tau)]$$
+$$\quad \gamma_{y}(\tau) \neq \E[y(t) \cdot y(t-\tau)]$$
 
 We can see this method graphically:
 
