@@ -1,5 +1,11 @@
 %!TEX root = ../main.tex
 
+The quantity
+\[
+	\frac{z-q}{z-\frac{1}{q}}
+\]
+is known as \textbf{all-pass filter}.
+
 \begin{theorem}[Spectral Factorization]
 	Let $y(t)$ be a \gls{ssp} with rational spectral density. 
 	Then, there exists an unique \gls{wn} process $\xi(t)$ with suitable mean and variance and an unique rational transfer function $W(z)$ such that:
@@ -46,13 +52,11 @@ Then:
 \end{align*}
 Since numerator and denominator are not coprime, we can proceed as follows:
 \begin{align*}
-	y(t)=\frac{(z+\frac{1}{2})}{(z+\frac{1}{3})}\left[\frac{z+2}{(z+\frac{1}{2})}\eta(t)\right]=\frac{(z+\frac{1}{2})}{(z+\frac{1}{3})}\cdot \xi(t)
+	y(t)=\frac{z+2}{z+\frac{1}{3}}\cdot\frac{z+\frac{1}{2} }{z+\frac{1}{2}}\cdot\eta(t)=\frac{z+\frac{1}{2}}{z+\frac{1}{3}}\underbrace{\frac{z+2}{(z+\frac{1}{2})}\eta(t)}_{\xi(t)}=\frac{(z+\frac{1}{2})}{(z+\frac{1}{3})}\cdot \xi(t)
 \end{align*}
-where $\xi(t)=\frac{z+2}{(z+\frac{1}{2})}\eta(t)\sim \WN(0,4\cdot2^2)\sim \WN(0,16)$.
+where $\xi(t)\sim \WN(0,4\cdot2^2)\sim \WN(0,16)$. So this is our canonical representation. Most of the times if we have zeros or poles outside the unit circle we can take advantage of an all-pass filter.
 
-Finally we reduce our problem in a Canonical form.
-% c'è un ultima parte che non capisco rip
-\section{Linear Optimal prediction theory (for ARMA processes) }
+\section{Linear optimal prediction theory (for ARMA processes)}
 Let us consider a zero mean ARMA process:
 \[
 	y(t)=W(z)e(t) \quad \text{where }e(t)\sim \WN(0,\lambda^{2} )
@@ -60,15 +64,15 @@ Let us consider a zero mean ARMA process:
 $W(z)=\frac{C(z)}{A(z)}$ is an asymptotically stable rational transfer function $\implies$ $y(t)$ is well defined and a \gls{ssp}.
 
 \textbf{Further Assumptions:}
-\begin{itemize}
-	\item $y(t) =W(z)e(t)$ is a canonical representation.
-	\item $W(z)$ has no zeroes on the unit circle boundary (i.e. no zeroes with absolute value equal to 1)
-\end{itemize}
+\begin{enumerate}
+	\item $y(t) = W(z)e(t)$ is a canonical representation.
+	\item $W(z)$ is minimum phase (i.e. all zeros are such that $|z|<1$.\footnote{Note that \emph{canonical} implies that all zeros are such that $|z|\le 1$, but it's not enough, we have to exclude zeros on the unit circle.}
+\end{enumerate}
  
-\textbf{Observations:}
-First assumption is not much a hurdle since every ARMA process admits a canonical representation, and if $y(t)$ is not given in its canonical representation one can easily reconstruct it. Why first assumption is required will be clear later. 
+\textbf{Observations.}
+The first assumption is not much of a hurdle since every ARMA process admits a canonical representation, and if $y(t)$ is not given in its canonical representation one can easily reconstruct it. The reason why ask for it will be clear later. 
 
-The second one is a limitating assumption (mild) that exclude models belonging to a small subclass that can be approximated by other ARMA.
+The second one is a limitating assumption (mild) that excludes models belonging to a small subclass that can be approximated by other ARMA. For example the process $y(t)=e(t)+e(t-1)$, which can be written as $y(t)=(1+z^{-1})e(t)$ has a zero in $-1$, but it can be approximated with $y(t)=(1+0.999z^{-1})e(t)$.
 
 \textbf{Problem} ($k$-step prediction.)
 
@@ -81,29 +85,31 @@ predict the future value of the process at time $t + k$.
 
 A predictor is any function of the available information which is used to guess the future value of the process.
 
-$\hat{y}(t + k | t) =$ predictor of $y(t + k)$ given the observations up to time $t$.
+$\hat{y}(t + k \mid t) =$ predictor of $y(t + k)$ given the observations up to time $t$.
 
 In general: 
-$$\hat{y}(t + k | t) = f ( y(t), y(t-1), y(t-2),\ldots)$$
+$$\hat{y}(t + k \mid t) = f ( y(t), y(t-1), y(t-2),\ldots)$$
 i.e. the predictor is any function of the available observations of the process $y(t)$.
 
-\textbf{Abstraction.} we suppose to have the whole observations from $-\infty$ up to $t$ (infinite sequence of observations).
+\textbf{Abstraction.} We suppose to have the whole observations from $-\infty$ up to $t$ (infinite sequence of observations).
 
-Then we can write:
+We will restrict ourselves to functions $f$ which are linear:
 \begin{align*}
-	\hat{y}(t + k | t)=\sum_{i=0}^{\infty}\alpha_i y(t-i)
+	\hat{y}(t + k \mid t)=\sum_{i=0}^{\infty}\alpha_i y(t-i)
 \end{align*}
-where ${\{\alpha_i\}}_{i=0}^\infty$ are parameters to be selected in order to achieve the best result.
+where ${\{\alpha_i\}}_{i=0}^\infty$ are parameters to be selected in order to achieve the \emph{best} result.
 
 \textbf{Intuitive Goal.} 
-We want a predictor which is good w.r.t $S$ (of the specific experiment).
-$$\hat{y}(t + k | t)\sim y(t+k) $$
+We want a predictor which is good with respect $S$ (of the specific experiment).
+\[
+	\hat{y}(t + k \mid t)\approx y(t+k)
+\]
 
 We need to quantify this intuitive closeness concept be rewritten in some rigorous mathematical notion of distance valid for random variables.
 
 \begin{definition}[\Gls{mse} of prediction]
 	\[
-		\E[(y(t+k,s)-\hat{y}(t+k|t,s))^2]
+		\E[(y(t+k,s)-\hat{y}(t+k\mid t,s))^2]
 	\]
 \end{definition}
 
