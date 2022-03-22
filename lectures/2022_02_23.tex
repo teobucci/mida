@@ -19,7 +19,7 @@ $$
 $$
 thus
 \[
-	\boxed{\gamma (t,t)=\gamma (0)=(c_{1}^2 +c_{1}^2 +\cdots+c_{n}^2 )\cdot\lambda^2}
+	\boxed{\gamma (t,0)=\gamma (0)=(c_{1}^2 +c_{1}^2 +\cdots+c_{n}^2 )\cdot\lambda^2}
 \]
 hence $\gamma (0)$ doesn't depend on $t$.
 
@@ -54,7 +54,7 @@ since all products are uncorrelated. In conclusion
 		(c_{0}c_{2}+c_{1}c_{3}+\cdots+c_{n-2}c_{n})\cdot\lambda^2 & \text{if}\ \tau =\pm 2\\
 		\vdots\\
 		(c_{0}c_{n})\cdot\lambda^2 & \text{if}\ \tau =\pm n\\
-		0 & \text{if}\ \tau > \pm 1\\
+		0 & \text{if}\ |\tau| > \pm n\\
 	\end{cases}
 \]
 \subsection{MA(\texorpdfstring{$\infty$}{infinity}) processes}
@@ -89,7 +89,7 @@ doesn't depend on $t$.
 	&=\E\left[\sum_{i, j=0}^{\infty} c_{i} c_{j} \cdot e(t-i) e(t-j-\tau)\right]\\
 	&=\sum_{i, j=0}^{\infty} c_{i} c_{j} \cdot \E[e(t-i) e(t-j-\tau)]\\
 	&=\{\text{non null only when }i=j+\tau\}\\
-	&=\sum_{i=0}^{\infty} c_{j+\tau}c_{j}\cdot\lambda^2 
+	&=\sum_{j=0}^{\infty} c_{j+\tau}c_{j}\cdot\lambda^2 
 \end{align*}
 doesn't depend on $t$.
 

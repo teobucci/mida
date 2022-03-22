@@ -40,14 +40,15 @@ The steady state solution is an MA($\infty$) process with coefficients: $c_{0}=1
 
 In general, AR processes are MA($\infty$) processes with coefficients determined by the AR model coefficients by recursively apply the difference equation.
 
-MA($\infty$) processes are well defined if 
+MA($\infty$) processes are well defined if
+\todo{check this shit}
 \begin{align*}
 	\sum_{i=0}^{\infty} \left(c_{i}\right)^2=\sum_{i=0}^{\infty} \left(a^{i}\right)^2< +\infty \iff a^2\leq 1
 \end{align*}
 
 So if $|a|\leq1$ the steady-state solution is well defined and \gls{ssp}.
 
-\subsection{ARMA(Auto Regressive Moving Average) processes}
+\subsection{ARMA (Auto Regressive Moving Average) processes}
 
 A process $y(t)$ is an ARMA process if it is generated as:
 \begin{align*}
