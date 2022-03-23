@@ -1,6 +1,6 @@
 %!TEX root = ../main.tex
 
-What we did \eqref{eq:reconstruction-noise-from-data} is indeed possibile (meaning we can reconstruct $e(t)$ from $y(t)$) thanks to the further assumptions we made at page \pageref{assumptions-prediction-theory}. In fact, this means that $W(z)^{-1}=\frac{A(z)}{C(z)}$ is asymptotically stable too.
+What we did \eqref{eq:reconstruction-noise-from-data} is indeed possibile (meaning we can reconstruct $e(t)$ from $y(t)$) thanks to the further assumptions we made at page \pageref{further-assumptions-prediction-theory}. In fact, this means that $W(z)^{-1}=\frac{A(z)}{C(z)}$ is asymptotically stable too.
 
 From the point of view of transfer functions we have that:
 \[
@@ -73,58 +73,36 @@ If instead we try to get something using values from the past we get a term whic
 	&\quad\vdots
 \end{align*}
 
-\textbf{Remark.}
-In the assumptions we made at page \pageref{assumptions-prediction-theory} the really fundamental ones are that all zeros and poles are such that $|z|<1$, without this we cannot proceed; the other requests ($C(z),A(z)$ monic, coprime, null relative degree) allows for simplified formulas.
 
-\textbf{Remark.}
-Given the construction of $\hat y(t+k\mid t)$, since it's the output of an asymptotically stable filter ($F/C$) fed by $y(t)$ (which is a \gls{ssp}), also $\hat y(t+k\mid t)$ is a \gls{ssp}. The statistical properties of $\hat y(t+k\mid t)$ don't depend on $t$, thus
-\[
-	\hat y(t+k\mid t)\frac{F(z)}{C(z)}y(t) \quad \text{and} \quad \hat y(t\mid t-k)\frac{F(z)}{C(z)}y(t-k)
-\]
-are completely equivalent.
+\todo{saltone incredibile fino a}
 
-\textbf{Remark.}
-From what we said so far, in order to compute $\hat y(t+k\mid t)$ one should know:
-\[
-	y(t),y(t-1),y(t-2),\ldots
-\]
-but in practice we only have a finite sequence back until $t=1$, the time where we started collecting information:
-\[
-	y(t),y(t-1),y(t-2),\ldots,y(1)
-\]
-so usually we use the optimal predictor, but instead of considering the steady-solution, we initialize it with:
-\[
-	\hat y(k\mid 0) = \hat y(k-1\mid -1) = \hat y(k-2\mid -2) = \cdots = 0 = y(0) = y(-1) = y(-2) = \cdots
-\]
-Thanks to the asymptotic stability of $F(z)/C(z)$ the effect of the conventional initialization rapidly vanishes, and is negligible provided that $t$ is large enough.
 
 \section{Optimal prediction of non zero mean ARMA}
 \[
 	y(t)=\frac{C(z)}{A(z)}e(t)\qquad e(t)\sim \WN(\mu,\lambda^2 )
 \]
-Hypothesis: canonical and minimum phase (i.e. all zeros are such that $|z|<1$). How do we compute $\hat y(t+k\mid t)$?
+Hypothesis: canonical and minimum phase.
+$\hat y(t+k\mid t)=?$
 \[
-	\E[e(t)] = \mu \implies \E[y(t)]=\frac{C(1)}{A(1)}\cdot\mu=m_{y} \quad \forall t
+	\E[e(t)]=\mu \implies \E[y(t)]=\frac{C(1)}{A(1)}\cdot\mu=m_{y} \quad \forall t
 \]
-We construct the unbiased processes:
+We construct
 \[
 	\begin{cases}
 		\tilde y(t)=y(t)-m_{y}\\
 		\tilde e(t)=e(t)-\mu
 	\end{cases}
-	\text{then (see section \ref{sec:non-zero-mean-arma})}
-	\quad
+	\implies 
 	\tilde y(t)=\frac{C(z)}{A(z)}\tilde e(t) \quad \tilde e(t)\sim \WN(0,\lambda^2)
 \]
-so that we have:
+$\tilde y$ is a zero mean ARMA
 \[
-	y(t)=\tilde y(t)+m_{y} \quad\text{and}\quad y(t+k)=\tilde y(t+k)+m_{y}.
+	\hat{\tilde y} (t+k\mid t) = \frac{F(z)}{C(z)}\tilde y(t) \qquad \frac{C(z)}{A(z)}=E(z)+\frac{z^{-k}F(z) }{A(z)}
 \]
-$\tilde y$ is a zero mean ARMA for which we know the solution:
+So that we have
 \[
-	\hat{\tilde y} (t+k\mid t) = \frac{F(z)}{C(z)}\tilde y(t) \qquad \frac{C(z)}{A(z)}=E(z)+z^{-k}\frac{F(z) }{A(z)},
+	y(t)=\tilde y(t)+m_{y} \qquad y(t+k)=\tilde y(t+k)+\underbrace{m_{y}}_{\text{known}}
 \]
-However we are not interested in predicting $\tilde y$, we want to predict $y$:
 \begin{align*}
 	\hat y(t+k\mid t)&=\widehat{\tilde y(t+k)+m_{y}}\\
 	&= \hat{\tilde y}(t+k\mid t)+m_{y}\\
@@ -133,7 +111,37 @@ However we are not interested in predicting $\tilde y$, we want to predict $y$:
 	&=\frac{F(z)}{C(z)}y(t)-\frac{F(z)}{C(z)}m_{y}+m_{y}\\
 	&=\frac{F(z)}{C(z)}y(t)+\left( 1-\frac{F(1)}{C(1)} \right)  \cdot m_{y}
 \end{align*}
-where we used the Gain theorem (see \ref{thm:gain-theorem}). Our final solution is:
-\[
-	\boxed{\hat y(t+k\mid t) = \frac{F(z)}{C(z)}y(t)+\left( 1-\frac{F(1)}{C(1)} \right) m_{y}}
-\]
+\todo{passaggio non chiaro}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
