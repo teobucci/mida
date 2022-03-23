@@ -109,12 +109,14 @@ Arguing the same way,
 \]
 Summary:
 \begin{equation*}
-	\begin{cases}
-		\gamma_{y}(0)=\frac{\lambda^{2}}{1-a^{2}} \\
-		\gamma_{y}(1)=\gamma_{y}(-1)=a \cdot \gamma_{y}(0) \\
-		\gamma_{y}(2)=\gamma_{y}(-2)=a \cdot \gamma_{y}(1) \\
-		\vdots
-	\end{cases}
+	\boxed{
+		\begin{cases}
+			\gamma_{y}(0)=\frac{\lambda^{2}}{1-a^{2}} \\
+			\gamma_{y}(1)=\gamma_{y}(-1)=a \cdot \gamma_{y}(0) \\
+			\gamma_{y}(2)=\gamma_{y}(-2)=a \cdot \gamma_{y}(1) \\
+			\vdots
+		\end{cases}
+	}
 \end{equation*}
 
 Recursive expression for $\gamma_{y}(\tau)$
@@ -166,14 +168,16 @@ Then
 \end{align*}
 
 Proceeding this way:
-$$
-\begin{cases}
-	\gamma_{y}(0)=a_{1}^{2} \gamma_{y}(0)+a_{2}^{2} \gamma_{y}(0)+2 a_{1} a_{2} \gamma \\
-	\gamma_{y}(1)=a_{1} \gamma_{y}(0)+\cdots+c_{0} \E[e(t) y(t-1)] \\
-	\vdots \\
-	\gamma_{y}(m-1)=a_{1} \gamma_{y}(m-2)+\cdots
-\end{cases}
-$$
+\[
+	\boxed{
+		\begin{cases}
+			\gamma_{y}(0)=a_{1}^{2} \gamma_{y}(0)+a_{2}^{2} \gamma_{y}(0)+2 a_{1} a_{2} \gamma_{y}(1) \\
+			\gamma_{y}(1)=a_{1} \gamma_{y}(0)+\cdots+c_{0} \E[e(t) y(t-1)] \\
+			\vdots \\
+			\gamma_{y}(m-1)=a_{1} \gamma_{y}(m-2)+\cdots
+		\end{cases}
+	}
+\]
 
 $m$ variables and $m$ linear equations (\emph{Yule-walker equations} for an ARMA process).
 
