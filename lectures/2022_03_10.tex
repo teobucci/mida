@@ -13,21 +13,20 @@ is known as \textbf{all-pass filter}.
 		y(t) = W(z)\xi(t)
 	\end{align*}
     and, ($C(z)$ and $A(z)$ are the numerator and denominator of $W(z)$):
-    \begin{itemize}
-		\item $C(z)$ and $A(z)$ are monic (i.e. the coefficients of the maximum degree terms of $C(z)$ and $A(z)$ are equal to 1)
-		\item $C(z)$ and $A(z)$ have null relative degree
-		\item $C(z)$ and $A(z)$ are coprime (i.e. they have no common factors) 
-		\item the absolute value of the poles and the zeroes of $W(z)$ is less than or equal to 1 (i.e. poles and zeroes are inside the unit circle)
-    \end{itemize}
+    \begin{enumerate}
+		\item $C(z)$ and $A(z)$ are monic (i.e. the coefficients of the maximum degree terms of $C(z)$ and $A(z)$ are equal to 1);
+		\item $C(z)$ and $A(z)$ have null relative degree;
+		\item $C(z)$ and $A(z)$ are coprime (i.e. they have no common factors);
+		\item the poles and the zeroes of $W(z)$ are such that $|z|\geq 1$.
+    \end{enumerate}
 \end{theorem}
 
-When all the four conditions above are satisfied, we will say that $y(t) = W(z)\xi(t)$ is a canonical representation of $y(t)$.
+When all the four conditions above are satisfied, we will say that $y(t) = W(z)\xi(t)$ is a \textbf{canonical representation} of $y(t)$.
 
 \textbf{Observation.} Conditions 1, 2, and 3 remove any ambiguity as due to the process described in Case 1, Case 2, and Case 3, respectively. 
 
-The first part of Condition 4 assure that $W(z)$ is asymptotically stable so that $y(t)$ is well defined, while the second part removes any ambiguity as due to the process described in Case 4.
+The first part of Condition 4 assure that $W(z)$ is asymptotically stable\todo{in realtà no, chiede solo $|z|\le 1$, mentre per l'a.s. serve $|z|<1$.} so that $y(t)$ is well defined, while the second part removes any ambiguity as due to the process described in Case 4.
 
-%ci sarebbe da fare un esempio lungo da zero
 \textbf{Example.}
 
 \begin{align*}
@@ -61,12 +60,12 @@ Let us consider a zero mean ARMA process:
 \[
 	y(t)=W(z)e(t) \quad \text{where }e(t)\sim \WN(0,\lambda^{2} )
 \]
-$W(z)=\frac{C(z)}{A(z)}$ is an asymptotically stable rational transfer function $\implies$ $y(t)$ is well defined and a \gls{ssp}.
 
-\textbf{Further Assumptions:}\label{further-assumptions-prediction-theory}
+\textbf{Fundamental assumptions:}\label{assumptions-prediction-theory}
 \begin{enumerate}
-	\item $y(t) = W(z)e(t)$ is a canonical representation.
-	\item $W(z)$ is minimum phase (i.e. all zeros are such that $|z|<1$.\footnote{Note that \emph{canonical} implies that all zeros are such that $|z|\le 1$, but it's not enough, we have to exclude zeros on the unit circle.}
+	\item[0] $W(z)=\frac{C(z)}{A(z)}$ is an asymptotically stable rational transfer function (i.e. all poles are such that $|z|<1$), which also implies that $y(t)$ is well defined and a \gls{ssp};
+	\item $y(t) = W(z)e(t)$ is a canonical representation;
+	\item $W(z)$ is minimum phase (i.e. all zeros are such that $|z|<1$).\footnote{Note that \emph{canonical} implies that all zeros are such that $|z|\le 1$, but it's not enough, we have to exclude zeros on the unit circle.}
 \end{enumerate}
  
 \textbf{Observations.}
