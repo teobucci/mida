@@ -1,12 +1,20 @@
-\documentclass[10pt,a4paper,twoside,openright]{book}
+\documentclass[10pt,a4paper,oneside,openright]{book}
 
 \input{style}
 
-\usepackage{geometry}
-\geometry{
-	nomarginpar, % Toglie doppi margini
-	margin=1in, % Imposta i margini a 1 inch
-}
+%\usepackage[nomarginpar,margin=1in]{geometry}
+
+\usepackage[paperwidth=210mm,
+            paperheight=297mm,
+            left=1in,
+            %top=50pt,
+            textwidth=400pt,
+            marginparsep=25pt,
+            marginparwidth=1in,
+            %textheight=692pt,
+            footskip=50pt
+            ]
+           {geometry}
 
 % Comandi per numero lezioni automatico
 
