@@ -109,9 +109,9 @@ In order to use it practice, we need to express the predict value as a function 
 If the transfer function is \emph{canonical} and \emph{asymptotically stable} the answer is yes.
 
 Since
-$$
+\begin{equation}\label{eq:reconstruction-noise-from-data}
 	e(t)=W(z)^{-1} y(t)=\frac{A(z)}{C(z)} y(t)=\breve{w}_{0} y(t)+\breve{w}_{1} y(t-1)+\breve{w}_{2} y(t-2)+\cdots = \sum_{j=0}^{\infty} \breve{w}_{j}y(t-j)
-$$
+\end{equation}
 then we can substitute this expression in the predictor
 \[
 	\boxed{\hat{y}(t+k \mid t)=\sum_{i=0}^{\infty} w_{k+i}\left(\sum_{j=0}^{\infty} \breve{w}_{j}y(t-j-i)\right)}

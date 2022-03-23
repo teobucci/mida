@@ -1,23 +1,7 @@
 %!TEX root = ../main.tex
 
-% di questa lezione bisogna capire un bel po' di cose
+What we did \eqref{eq:reconstruction-noise-from-data} is indeed possibile (meaning we can reconstruct $e(t)$ from $y(t)$) thanks to the further assumptions we made at page \pageref{further-assumptions-prediction-theory}.
 
-\[
-	y(t+k)=\frac{C(z)}{A(z)}e(t+k) \quad e(t)\sim\WN(0,\lambda^2 )
-\]
-and
-\[
-	y(t+k)=\sum_{j=0}^{\infty} c_{j} e(t-j)
-\]
-
-
-% parte da inserire dopo aver fatto quella precedente
-
-$e(t)$ is indeed reconstructible from the ??? available imp ($y(t), y(t-1),\ldots$, observation of the output up to the current time $t$) thanks to:
-\begin{itemize}
-	\item $\frac{C(z)}{A(z)}e(t)$ canonical
-	\item $\frac{C(z)}{A(z)}$ minimal phase ($|\text{zeros}<1|$)
-\end{itemize}
 
 % blablabla
 
@@ -72,7 +56,7 @@ $\hat y^{e} $ and $\hat y^{\xi} $ cannot be simultaneously the predictor from ou
 	e(t)&=-\frac{1}{2} y(t+1)+\frac{1}{2} e(t+1)\\
 	&= \ldots \text{recursion}\ldots \\
 	&= -\frac{1}{2} y(t+1)-\frac{1}{2} y(t+2)+\frac{1}{4}e(t+2)\\
-	&=-\frac{1}{2} y(t+1)-\frac{1}{4}y(t+2)-\frac{1}{8}y(t+3)+\frac{1}{8}e(t+3)\\
+	&= -\frac{1}{2} y(t+1)-\frac{1}{4}y(t+2)-\frac{1}{8}y(t+3)+\frac{1}{8}e(t+3)\\
 	&\vdots
 \end{align*}
 Converges.
@@ -86,7 +70,7 @@ It is instead reconstructible from the future of $y$, it's not suitable to compu
 	e(t)&=y(t)+2e(t-1)\\
 	&=y(t)+2(y(t-1)+2e(t-2))\\
 	&=y(t)+2y(t-1)+2e(t-2)\\
-	\vdots
+	&\vdots
 \end{align*}
 Diverges.
 \todo{saltone incredibile fino a}
