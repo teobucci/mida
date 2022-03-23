@@ -1,78 +1,79 @@
 %!TEX root = ../main.tex
 
-What we did \eqref{eq:reconstruction-noise-from-data} is indeed possibile (meaning we can reconstruct $e(t)$ from $y(t)$) thanks to the further assumptions we made at page \pageref{further-assumptions-prediction-theory}.
+What we did \eqref{eq:reconstruction-noise-from-data} is indeed possibile (meaning we can reconstruct $e(t)$ from $y(t)$) thanks to the further assumptions we made at page \pageref{further-assumptions-prediction-theory}. In fact, this means that $W(z)^{-1}=\frac{A(z)}{C(z)}$ is asymptotically stable too.
 
+From the point of view of transfer functions we have that:
+\[
+	\hat y (t+k\mid t) = \frac{F(z)}{A(z)}e(t) =\frac{F(z)}{\cancel{A(z)}}\cdot\frac{\cancel{A(z)}}{C(z)}y(t) =\frac{F(z)}{C(z)}y(t) \implies \boxed{\hat y (t+k\mid t) = \frac{F(z)}{C(z)}y(t)}
+\]
+meaning that the optimal predictor from output is obtained as the output of a digital filter $F(z)/C(z)$ fed by $y(t)$ up to time $t$.
 
-% blablabla
+\textbf{Remark.}
+The correct expression of the linear predictor can \emph{only} be obtained by using the canonical representation, otherwise there may be zeros of $C(z)$ which becomes unstable poles when reconstructing $e(t)$.
 
-\begin{align*}
-	\hat y ^{0}(t+k\mid t)&=\frac{F(z)}{A(z)}\left[ \frac{A(z)}{C(z)}y(t) \right]  \\
-	&=\frac{F(z)}{\cancel{A(z)}}\cdot\frac{\cancel{A(z)}}{C(z)}y(t)\\
-	&=\frac{F(z)}{C(z)}y(t) \quad \text{where }\frac{C(z)}{A(z)}=E(z)+\frac{z^{-k}F(z) }{A(z)}
-\end{align*}
-optimal predictor from ouput obtained as output of a digital filter $F/C$ fed by $y$ up to time $t$.
+Let us illustrate this fact through an example.
 
-\emph{Example. (MA$1$)}
-Let $e(t)\sim \WN(0,1)$
+\emph{Example. MA($1$)}
+Let $e(t)\sim \WN(0,1)$.
 \begin{align*}
 	y(t) &= e(t) - 2 e(t-1)\\
-	&= (1-2z^{-1} )e(t) &\text{not canonical, zeros: }\{2\}\\
+	&= (1-2z^{-1} )e(t) &\text{non-canonical}\\
 	&=\left( 1-\frac{1}{2} z^{-1}  \right) \cdot\frac{1-2z^{-1}}{1-\frac{1}{2} z^{-1}} e(t)\\
 	&=\left( 1-\frac{1}{2} z^{-1}  \right) \xi(t) &\text{canonical}
 \end{align*}
-where $\xi(t)\sim \WN(0,4)$.
-\[
-	y(t+1)=\underbrace{e(t+1)}_{\text{unpredictable}}-\underbrace{2e(t)}_{\text{predictable at }t}
-\]
-then
-\[
-	\hat y ^{e}(t+1\mid t)=-2e(t) \quad \text{optimal predictor from measurements of $e$ up to time $t$} 
-\]
-One can write
-\[
-	y(t+1)=\underbrace{\xi(t+1)}_{\text{unpredictable}}-\underbrace{\frac{1}{2} \xi(t)}_{\text{predictable at }t}
-\]
-then
-\[
-	\hat y^{\xi} (t+1\mid t)=-\frac{1}{2} \xi(t) \quad \text{optimal predictor from measurements of $\xi$ up to time $t$} 
-\]
-\[
-	\hat y^{e}(t+1\mid t)=-2e(t) 
-\]
-% rec
+where $\xi(t)\sim \WN(0,4)$. The first form was non-canonical because there was a zero ($2$) outside the unit circle.
 
+The process original process (non-canonical) can be written as
+\[
+	y(t+1)=\underbrace{e(t+1)}_{\substack{\text{unpred.}\\\text{at $t$}}}-\underbrace{2e(t)}_{\substack{\text{pred.}\\\text{at $t$}}}
+\]
+thus our optimal predictor from noise would be
+\[
+	\hat y^{e} (t+1\mid t) = -2e(t)
+\]
+Whereas the process in canonical form can be written as 
+\[
+	y(t+1) =\underbrace{\xi(t+1)}_{\substack{\text{unpred.}\\\text{at $t$}}}-\underbrace{\frac{1}{2} \xi(t)}_{\substack{\text{pred.}\\\text{at $t$}}}
+\]
+thus our optimal predictor from noise would be
+\[
+	\hat y^{\xi} (t+1\mid t)=-\frac{1}{2} \xi(t).
+\]
+The problem now is that if we try to reconstruct the noise from the output in the predictor $\hat y^{e} (t+1\mid t) = -2e(t)$ obtained by the non canonical form, we get:
+\[
+	y(t)=(1-2z^{-1})e(t) \iff e(t) \frac{1}{1-2z^{-1}} y(t) \implies \hat y^{e} (t+1\mid t) = -2e(t) = -\frac{2}{1-2z^{-1}}y(t)
+\]
+this is a \textbf{fatal mistake}, because it's not well defined, $e(t)$ cannot be reconstructed here!
 
-Prediction error
+The corret way is indeed using the canonical representation:
+\[
+	y(t) = \left( 1-\frac{1}{2} z^{-1}  \right) \xi(t) \iff \xi(t) = \frac{1}{1-\frac{1}{2} z^{-1} } y(t) \implies \boxed{\hat y^{\xi} (t+1\mid t)= -\frac{1}{2} \xi(t) = \frac{-\frac{1}{2} }{1-\frac{1}{2} z^{-1} } y(t)}
+\]
+If we consider the prediction error we see that they are different:
 \[
 	\E\left[ \left( y(t+1)-\hat y^{e}(t+1\mid t)  \right) ^2   \right]  =\E[e(t+1)^2 ]=1\neq 4=\E[\xi(t+1)^2 ]=\E\left[ \left( y(t+1)-\hat y ^{\xi}(t+1\mid t)  \right)^2    \right]  
 \]
-$\hat y^{e} $ and $\hat y^{\xi} $ cannot be simultaneously the predictor from output.
-\todo{canonical?}
+this means that $\hat y^{e} $ and $\hat y^{\xi} $ cannot be both the canonical predictor from output.
 
 \textbf{Observation.}
 
 \begin{align*}
-	y(t+1)&=e(t+1)-2e(t)\\
-	e(t)&=-\frac{1}{2} y(t+1)+\frac{1}{2} e(t+1)\\
-	&= \ldots \text{recursion}\ldots \\
-	&= -\frac{1}{2} y(t+1)-\frac{1}{2} y(t+2)+\frac{1}{4}e(t+2)\\
+	y(t+1)=e(t+1)-2e(t) \iff e(t)&=-\frac{1}{2} y(t+1)+\frac{1}{2} e(t+1)\\
+	&= -\frac{1}{2} y(t+1)\underbrace{-\frac{1}{2} y(t+2)+\frac{1}{4}e(t+2)}_{\frac{1}{2} e(t+1)}\\
 	&= -\frac{1}{2} y(t+1)-\frac{1}{4}y(t+2)-\frac{1}{8}y(t+3)+\frac{1}{8}e(t+3)\\
-	&\vdots
+	&\quad\vdots
 \end{align*}
-Converges.
+This term is well-defined because the series converges, however we see that the noise of the non-canonical process cannot be reconstructed from the \emph{past} but from the \emph{future}! This is why it is not suitable to produce a predictor.
 
-$e(t)$ is the now canonical form \todo{what's this shit?}
-It is instead reconstructible from the future of $y$, it's not suitable to compute the optimal predictor from output (by definition one must use the measurements from output up to time $t$ only).
-
-\textbf{Observation.}
+If instead we try to get something using values from the past we get a term which diverges:
 \begin{align*}
-	y(t)&=e(t)-2e(t-1)\\
-	e(t)&=y(t)+2e(t-1)\\
-	&=y(t)+2(y(t-1)+2e(t-2))\\
-	&=y(t)+2y(t-1)+2e(t-2)\\
-	&\vdots
+	y(t)=e(t)-2e(t-1) \iff e(t)&=y(t)+2e(t-1)\\
+	&=y(t)+\underbrace{2y(t-1)+2e(t-2)}_{2e(t-1)}\\
+	&=y(t)+2y(t-1)+4y(t-2)+4e(t-3)\\
+	&\quad\vdots
 \end{align*}
-Diverges.
+
+
 \todo{saltone incredibile fino a}
 
 
