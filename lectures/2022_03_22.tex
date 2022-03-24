@@ -1,8 +1,9 @@
 %!TEX root = ../main.tex
 \section{Optimal prediction of ARMAX processes}
+
 \[
-y(t)=\underbrace{\frac{B(z)}{A(z)} u(t-a)}_{\text{deterministic}}+
-\underbrace{\frac{C(z)}{A(z)} e(t)}_{\text{stochastic}}\qquad e(t)\sim \WN(0,\lambda^2 )
+	y(t)=\underbrace{\frac{B(z)}{A(z)} u(t-a)}_{\text{deterministic}}+
+	\underbrace{\frac{C(z)}{A(z)} e(t)}_{\text{stochastic}}\qquad e(t)\sim \WN(0,\lambda^2 )
 \]
 Without loss of generality NON zero mean can be always incorporated in $u$.
 
@@ -19,56 +20,56 @@ available information:
 \end{itemize}
 
 Let 
-$$z(t)=y(t)-\frac{B(z)}{A(z)} u(t-d)$$
+$$
+	z(t)=y(t)-\frac{B(z)}{A(z)} u(t-d)
+$$
 
 Then, $z(t)=\frac{C(z)}{A(z)} e(t)$ i.e. it is an ARMA process s.t.:
 
-$$\frac{C(z)}{A(z)}=E(z)+z^{-k} \frac{F(z)}{A(z)} \quad\text{($k$-steps division between $C(z)$ and $A(z)$)}
+$$
+	\frac{C(z)}{A(z)}=E(z)+z^{-k} \frac{F(z)}{A(z)} \quad\text{($k$-steps division between $C(z)$ and $A(z)$)}
 $$
 Then:
 $$
-\hat{z}(t+k \mid t)=\frac{F(z)}{C(z)} z(t)
+	\hat{z}(t+k \mid t)=\frac{F(z)}{C(z)} z(t)
 $$
 
 <<<<<<< Updated upstream
-$$y(t)=\frac{B(z)}{A(z)} u(t+k-d)+z(t+k)$$
-The first part is deterministically 
-known, and hence can 
-be trivially predicted.
+$$
+	y(t)=\frac{B(z)}{A(z)} u(t+k-d)+z(t+k)
+$$
+The first part is deterministically known, and hence can be trivially predicted.
 \begin{align*}
 	\hat{y}(t+k \mid t)&=\frac{B(z)}{A(z)} u(t+k-d)+z(t+k \mid t) \\
 	&=\frac{B(z)}{A(z)} u(t+k-d)+\frac{F(z)}{C(z)} z(t) \\
-	& =\frac{B(z)}{A(z)} u(t+k-d)+\frac{F(z)}{C(z)}\left(y(t)-\frac{B(z)}{A(z)} \underbrace{u(t-d)}_{z^{-k}u(t+k-d)}\right) \\
-	&=\frac{B(z)}{C(z)} \cdot\left(\underbrace{\frac{C(z)}{A(z)}-\frac{z^{-k} F(z)}{A(z)}}_{E(z)}\right) u(t+k-d)+\frac{F(z)}{C(z)} y(t)
+	& =\frac{B(z)}{A(z)} u(t+k-d)+\frac{F(z)}{C(z)}\Bigg(y(t)-\frac{B(z)}{A(z)} \underbrace{u(t-d)}_{z^{-k}u(t+k-d)}\Bigg) \\
+	&=\frac{B(z)}{C(z)} \cdot\Bigg(\underbrace{\frac{C(z)}{A(z)}-\frac{z^{-k} F(z)}{A(z)}}_{E(z)}\Bigg) u(t+k-d)+\frac{F(z)}{C(z)} y(t)
 \end{align*}
 $$
-\hat{y}(t+k \mid t) =\frac{B(z) E(z)}{C(z)} \underbrace{u(t+k-d)}_{\text{known}}+\frac{F(z)}{C(z)} y(t)
+	\hat{y}(t+k \mid t) =\frac{B(z) E(z)}{C(z)} \underbrace{u(t+k-d)}_{\text{known}}+\frac{F(z)}{C(z)} y(t)
 $$
 
 \section{Model Identification}
-Up to now, we considered (ARMA/ARMAX) models and studied their properties: covariance and spectrum computation, 
-prediction.
 
-But where does the model comes from?
+Up to now, we considered (ARMA/ARMAX) models and studied their properties: covariance and spectrum computation, prediction.
 
-Model identification: retrieve suitable model from experiments on 
-the real system 
+But where does the model come from?
 
-\fg{0.7}{Screenshot (25)}
+Model identification: retrieve suitable model from experiments on the real system 
 
-Identification problem: define an automatic procedure to find a 
-model for S based on available (input/output or time series) data 
+\fg{0.4}{Screenshot (25)}
+
+Identification problem: define an automatic procedure to find a model for $S$ based on available (input/output or time series) data.
 
 \fg{0.7}{Screenshot (26)}
 
 \subsection{Parametric model identification}
-First we select a parametric model class $\mathcal{M}(\vartheta)$
-($\vartheta$= parameters vector – each different $\vartheta$ corresponds to a 
-different model).
+
+First we select a parametric model class $\mathcal{M}(\vartheta)$ ($\vartheta$= parameters vector – each different $\vartheta$ corresponds to a different model).
 
 For example:
 $$
-\mathcal{M}=\left\{y(t)=\frac{B(z, \vartheta)}{A(z, \vartheta)} u(t-d)+\frac{C(z, \vartheta)}{A(z, \vartheta)} e(t), \quad e(t) \sim WN\left(0, \lambda^{2}\right), \vartheta\in\Theta\right\}
+	\mathcal{M}=\left\{y(t)=\frac{B(z, \vartheta)}{A(z, \vartheta)} u(t-d)+\frac{C(z, \vartheta)}{A(z, \vartheta)} e(t), \quad e(t) \sim WN\left(0, \lambda^{2}\right), \vartheta\in\Theta\right\}
 $$
 is the family of ARMAX models whose coefficients are polynomjals.
 \begin{align*}
@@ -77,9 +78,7 @@ is the family of ARMAX models whose coefficients are polynomjals.
 	C(z, \vartheta)&=c_0(\vartheta)+c_{1}(\vartheta) z^{-1}+\cdots+c_{n}(\vartheta) z^{-n}
 \end{align*}
 
-We will talk of \textbf{black-box identification} when no knowledge 
-on the system is available and the model structure must be found from 
-data only.
+We will talk of \textbf{black-box identification} when no knowledge on the system is available and the model structure must be found from data only.
 
 $\vartheta$ is directly the vector of coefficients of $A(z, \vartheta),B(z, \vartheta),C(z, \vartheta)$.
 
@@ -87,44 +86,39 @@ $$
 	\vartheta=\left[a_{1}  \ldots a_{m},  b_{1} \ldots b_{p} ,c_{1} \ldots c_{n}\right]\transpose
 $$
 
-In all other cases: \textbf{grey-box identification}
+In all other cases: \textbf{grey-box identification}.
 
 We try to incorporate some a priori information about the real $S$ in the model class. $\vartheta$ may have some physical interpretation.
 
-$\underline{\text { Example }}$
+\emph{Example.}
 $$
-M(\vartheta): y(t)=\frac{b+b^{2} z^{-1}}{1-a z^{-1}} u(t-d)+\frac{1+a z^{-1}}{1-a z^{-1}} e(t)
+	M(\vartheta): y(t)=\frac{b+b^{2} z^{-1}}{1-a z^{-1}} u(t-d)+\frac{1+a z^{-1}}{1-a z^{-1}} e(t)
 $$
-Here, the parameter vector is given by $\vartheta=\left[\begin{array}{l}a \\ b\end{array}\right]$ only.
+Here, the parameter vector is given by $\vartheta=\begin{bmatrix}a \\ b\end{bmatrix}$ only.
 
 
-\textbf{Observation:} $\lambda^2$ is a parameter too which needs to be identified, however, $\lambda^2$ is much less important than other parameters. So, we will indicate by $\vartheta$ the vector of “important” 
-parameters and keep $\lambda^2$ aside.
+\textbf{Observation.}
+$\lambda^2$ is a parameter too which needs to be identified, however, $\lambda^2$ is much less important than other parameters. So, we will indicate by $\vartheta$ the vector of \emph{important} parameters and keep $\lambda^2$ aside.
 
 $\Theta$ is the set of admissible values for the parameter vector $\vartheta$.
 
-It incorporates a-priori information on the possible value for the 
-parameters. In the blackbox case $\Theta$ is as free as possible.
+It incorporates a-priori information on the possible value for the parameters. In the blackbox case $\Theta$ is as free as possible.
 
-As we will see, to perform identification we will rely on the theory of 
-prediction. Hence, we will assume the following assumption:
+As we will see, to perform identification we will rely on the theory of prediction. Hence, we will assume the following assumption:
 
 For every $\vartheta \in \Theta$, the stochastic part of $M(\vartheta)$ (i.e. the part depending on the white noise $\left.e(t) \sim W N\left(0, \lambda^{2}\right)\right)$ is \textbf{canonical} and has \textbf{no zeroes on the unit circle}.
 
-The requirement that there are no zeroes on the unit circle instead 
-poses some limitations on the systems we can identify. However:
+The requirement that there are no zeroes on the unit circle instead poses some limitations on the systems we can identify. However:
 \begin{itemize}
-	\item zeroes on the unit circle are not usually required to model the 
-	behavior of a given system
-	\item the behavior of models with zeroes on the unit circle can be 
-	approximate by means of models with zeroes close to the unit 
-	circle
+	\item zeroes on the unit circle are not usually required to model the behavior of a given system
+	\item the behavior of models with zeroes on the unit circle can be approximate by means of models with zeroes close to the unit circle
 \end{itemize} 
 
 \subsection{PEM (Prediction Error Minimization) identification}
+
 Paradigm to map data into a value of $\bar{\vartheta}$.
 $$
-D^N=\left\{\bar{y(1)},\ldots,\bar{y(N)},\bar{u(1)},\ldots,\bar{u(N)}\right\}
+	D^N=\left\{\bar{y(1)},\ldots,\bar{y(N)},\bar{u(1)},\ldots,\bar{u(N)}\right\}
 $$
 $D^N$ is a finite sequence of real numbers, observation of $y$ and $u$ over some horizon. $N$ is the length of the dataset.
 
