@@ -83,7 +83,7 @@ We will talk of \textbf{black-box identification} when no knowledge on the syste
 $\vartheta$ is directly the vector of coefficients of $A(z, \vartheta),B(z, \vartheta),C(z, \vartheta)$.
 
 $$
-	\vartheta=\left[a_{1}  \ldots a_{m},  b_{1} \ldots b_{p} ,c_{1} \ldots c_{n}\right]\transpose
+	\vartheta=[a_{1},\ldots,a_{m},b_{1},\ldots,b_{p},c_{1},\ldots,c_{n}]\transpose
 $$
 
 In all other cases: \textbf{grey-box identification}.
@@ -116,15 +116,15 @@ The requirement that there are no zeroes on the unit circle instead poses some l
 
 \subsection{PEM (Prediction Error Minimization) identification}
 
-Paradigm to map data into a value of $\bar{\vartheta}$.
+Paradigm to map data into a value of $\overline{\vartheta}$.
 $$
-	D^N=\left\{\bar{y(1)},\ldots,\bar{y(N)},\bar{u(1)},\ldots,\bar{u(N)}\right\}
+	D^N=\left\{\overline{y(1)},\ldots,\overline{y(N)},\overline{u(1)},\ldots,\overline{u(N)}\right\}
 $$
 $D^N$ is a finite sequence of real numbers, observation of $y$ and $u$ over some horizon. $N$ is the length of the dataset.
 
-\fg{0.5}{Screenshot (27)}
+\fg{0.3}{Screenshot (27)}
 
-How to compare $\bar{y(1)},\ldots,\bar{y(N)}$ with $y(1,s),\ldots,y(N,s)$?
+How to compare $\overline{y(1)},\ldots,\overline{y(N)}$ with $y(1,s),\ldots,y(N,s)$?
 
 \fg{0.7}{Screenshot (28)}
 
@@ -135,9 +135,9 @@ $M(\vartheta)\implies \hat{M}(\vartheta)$ from stochastic models to predictive m
 ARMAX in $\mathcal{M}$ for a given value of $\vartheta$:
 
 \begin{align*}
-	M(\vartheta):\quad y(t)&=\frac{B(z, \vartheta)}{A(z, \vartheta)} u(t-d)+\frac{C(z, \vartheta)}{A(z, \vartheta)} e(t)\\
-	&\Downarrow\\
-	\hat{M}(\vartheta): \quad \hat{y}(t \mid t-1) &=\frac{B(z,\vartheta) E(z,\vartheta)}{C(z,\vartheta)} u(t-d)+\frac{F(z,\vartheta)}{C(z,\vartheta)} y(t-1) \qquad \text{one step prediction}
+	M(\vartheta)&:\quad y(t)=\frac{B(z, \vartheta)}{A(z, \vartheta)} u(t-d)+\frac{C(z, \vartheta)}{A(z, \vartheta)} e(t)\\
+	&\qquad\Downarrow\\
+	\hat{M}(\vartheta)&: \quad \hat{y}(t \mid t-1) =\frac{B(z,\vartheta) E(z,\vartheta)}{C(z,\vartheta)} u(t-d)+\frac{F(z,\vartheta)}{C(z,\vartheta)} y(t-1) \qquad \text{one step prediction}
 \end{align*}
 
 \fg{0.7}{Screenshot (29)}
