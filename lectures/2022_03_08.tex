@@ -57,7 +57,52 @@ $$\quad \gamma_{y}(\tau) \neq \E[y(t) \cdot y(t-\tau)]$$
 
 We can see this method graphically:
 
-\fg{0.6}{Screenshot (19)}
+%\fg{0.6}{Screenshot (19)}
+\begin{figure}[htpb]
+	\centering
+	\begin{tikzpicture}
+		% place nodes
+		\node [sum] (sum) at (0,0){};
+		\node [block,right=2cm of sum] (w) {$W(z)$};
+
+		% connect nodes
+		\draw[stealth-] (sum.north) -- ++(0, 1)
+			node[midway, left]{$\mu$}
+			node[very near start, right] {$+$};
+
+		\draw[stealth-] (sum.south) -- ++(0,-1)
+			node[midway, left]{$\tilde e(t)$}
+			node[very near start, right] {$+$};
+
+		\draw[-stealth] (sum.east) -- (w.west) node[midway, above] {$e(t)$};
+		\draw[-stealth] (w.east) -- ++(2,0) node[midway, above] {$y(t)$};
+	\end{tikzpicture}
+\end{figure}
+\FloatBarrier
+thanks to linearity:
+\begin{figure}[htpb]
+	\centering
+	\begin{tikzpicture}
+		% place nodes
+		\node [sum] (sum) at (0,0){};
+		\node [block,above left=0.5cm and 2cm of sum] (wm) {$W(z)$};
+		\node [block,below left=0.5cm and 2cm of sum] (we) {$W(z)$};
+
+		% connect nodes
+		\draw[stealth-] (wm.west) -- ++(-2,0) node[midway, above]{$\mu$};
+		\draw[stealth-] (we.west) -- ++(-2,0) node[midway, above]{$\tilde e(t)$};
+
+		\draw[-stealth] (wm.east) -| (sum.north)
+			node[near start,above] {$m_y$}
+			node[very near end, right] {$+$};
+		\draw[-stealth] (we.east) -| (sum.south)
+			node[near start,above] {$\tilde y(t)$}
+			node[very near end, right] {$+$};
+
+		\draw[-stealth] (sum.east) -- ++(2,0) node[midway, above] {$y(t)$};
+	\end{tikzpicture}
+\end{figure}
+\FloatBarrier
 
 \section{ARMAX(ARX) processes}
 ARMA processes with eXogenous input.
