@@ -11,7 +11,22 @@ Given $u(t)$ \gls{sp}, consider
 	x(t)&=W_{1}(z)u(t)=\frac{C_{1}(z)}{A_{1}(z)}u(t)\\
 	y(t)&=W_{2}(z)x(t)=\frac{C_{2}(z)}{A_{2}(z)}x(t)
 \end{align*}
-\fg{0.7}{Screen Shot 2022-03-08 at 16.28.23}
+%\fg{0.7}{Screen Shot 2022-03-08 at 16.28.23}
+\begin{figure}[htpb]
+	\centering
+	\begin{tikzpicture}
+		% place nodes
+		\node [block] (w1) at (0,0) {$W_{1}(z)$};
+		\node [block,right=2cm of w1] (w2) {$W_{2}(z)$};
+
+		% connect nodes
+		\draw [stealth-] (w1.west) -- ++(-2,0) node[midway,above] {$u(t)$};
+		\draw [-stealth] (w1.east) -- (w2.west) node[midway,above] {$x(t)$};
+		\draw [-stealth] (w2.east) -- ++(2,0)  node[midway,above] {$y(t)$};
+	\end{tikzpicture}
+\end{figure}
+\FloatBarrier
+
 \begin{theorem}
 	The process $y(t)$ is the steady state output of a new filter having transfer function $W_{1}(z)\cdot W_{2}(z)$ fed by $u(t)$. That is,
 	\[
