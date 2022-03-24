@@ -137,7 +137,20 @@ if the following conditions hold:
 
 The last property is the fundamental one. It says that there is complete incorrelation between random variables at different time instants. The realizations of $e(t)$ are erratic and unpredictable (\textbf{whiteness property}).
 
-\fg{0.7}{Screen Shot 2022-03-08 at 09.53.35}
+%\fg{0.7}{Screen Shot 2022-03-08 at 09.53.35}
+\begin{figure}[htpb]
+	\centering
+	\begin{tikzpicture}
+		\draw [-stealth] (-4,0) -- (4,0) node [at end,below] {$\tau$};
+		\foreach \x in {-3,-2,-1,1,2,3}{
+		    \node [circle,inner sep=1.5pt,fill=black,label=below:{$\x$}] at (\x,0) {};
+		}
+		\node [below] at (0,0) {$0$};
+		\draw [-stealth] (0,0) -- (0,3) node [at end,right] {$\gamma_e(\tau)$};
+		\node [circle,inner sep=1.5pt,fill=black,label=right:{$\lambda^2$}] at (0,2) {};
+	\end{tikzpicture}
+\end{figure}
+\FloatBarrier
 
 \textbf{Observation.} The probability distribution of each single random variables $e(t,s)$ does not matter and is not made explicit in general (wide-sense description of \gls{ssp}).
 It could be Gaussian, uniform, etc. (WGN = White Gaussian Noise, WUN = White Uniform Noise, etc.).
