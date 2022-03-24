@@ -61,7 +61,27 @@ Model identification: retrieve suitable model from experiments on the real syste
 
 Identification problem: define an automatic procedure to find a model for $S$ based on available (input/output or time series) data.
 
-\fg{0.7}{Screenshot (26)}
+%\fg{0.7}{Screenshot (26)}
+\begin{figure}[htpb]
+	\centering
+	\begin{tikzpicture}
+
+	% place nodes
+		\node [sum] (sum) at (0,0) {};
+		\node [block,above=1cm of sum]  (ca) {$\frac{C(z)}{A(z)}$};
+		\node [block,left =1cm of sum]  (ba) {$\frac{B(z)}{A(z)}$};
+		%\node [above left = 0cm and 2.5cm of ba] {$\begin{array}{c} y(1),y(2),\ldots,y(N) \\ u(1),u(2),\ldots,u(N) \end{array}\implies$};
+
+		% connect nodes
+		\draw[-stealth] (ba.east) -- (sum.west) node[near end,above]{$+$};
+		\draw[-stealth] (ca.south) -- (sum.north) node[near end,left]{$+$};
+		\draw[-stealth] (sum.east) -- ++(2,0) node[midway,above]{$y(t)$};
+		\draw[stealth-] (ca.west) -- ++(-2,0) node[midway, above]{$e(t)$};
+		\draw[stealth-] (ba.west) -- ++(-2,0) node[midway, above]{$u(t-d)$};
+
+	\end{tikzpicture}
+\end{figure}
+\FloatBarrier
 
 \subsection{Parametric model identification}
 
