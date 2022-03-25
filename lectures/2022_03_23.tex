@@ -7,17 +7,17 @@ We have to move from stochastic models (ARMAX models) of type:
 
 $$
 M(\theta):
-y( t) \ =\ \frac{B( z,\theta )}{A( z,\theta )} u( t-d) \ +\ \frac{C( z,\theta )}{A( z,\theta )} e( t) ,\ e( t) \ \sim \ WN\left( 0,\lambda ^{2}\right)
+y( t) \ =\ \frac{B( z,\theta )}{A( z,\theta )} u( t-d) \ +\ \frac{C( z,\theta )}{A( z,\theta )} e( t) ,\ e( t)\sim \WN \left( 0,\lambda ^{2}\right)
 $$
 
-to models in prediction form, i.e. the optimal predictors obtained through the theory we developed. In particular, we can focus on the one-step predictor already introduced
+to models in prediction form, i.e. the optimal predictors obtained through the theory we developed. In particular, we can focus on the one-step predictor already introduced:
 
 $$
 \hat{M}( \theta ) :
-\ \hat{y}( t|-1) \ =\frac{B( z,\theta ) E( z,\theta ) \ }{C( z,\theta )} u( t-d) \ +\ \frac{F( z,\theta )}{C( z,\theta )} y( t-1)
+\ \hat{y}( t|t-1) \ =\frac{B( z,\theta ) E( z,\theta ) \ }{C( z,\theta )} u( t-d) \ +\ \frac{F( z,\theta )}{C( z,\theta )} y( t-1)
 $$
 
-The predictor has a different structure: while $ M( \theta )$ is fed by $ WN$ and input $ u$, the predictor $ \hat{M}( \theta ) \ $ is fed by measurements of $ u$ and $ y$ and returns the predicted future values of output, \textbf{there isn't $ WN$}. The predictor model is returning the predicted values for \textit{that} realization of input and output.
+The predictor has a different structure: while $ M( \theta )$ is fed by WN and input $ u$, the predictor $ \hat{M}( \theta ) \ $ is fed by measurements of $ u$ and $ y$ and returns the predicted future values of output, \textbf{there isn't WN}. The predictor model is returning the predicted values for \textit{that} realization of input and output.
 
 
 \tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
@@ -68,7 +68,8 @@ The predictor has a different structure: while $ M( \theta )$ is fed by $ WN$ an
 
 \end{tikzpicture}
 
-The idea is that, when dealing with a real system, values of $ u$ and $ y$ from time $ 1...n$ can be collected, subsequently taking the predictor (introducing proper delays $ z^{-1}$) and feeding it with the measurement of $ u$ and $ y$ collected during the experiment. Then, the output of the predictor $ \hat{M}( \theta $) can be used to construct the value of the \textbf{prediction error} $ \varepsilon $. 
+The idea is that, when dealing with a real system, values of $ u$ and $ y$ from time $t=1...n$ can be collected, subsequently taking the predictor (introducing proper delays $ z^{-1}$) and feeding it with the measurement of $ u$ and $ y$ collected during the experiment. Then, the output of the predictor $ \hat{M}( \theta $) can be used to construct the value of the \textbf{prediction error} $ \varepsilon $. 
+
 
 
 
@@ -84,8 +85,8 @@ The idea is that, when dealing with a real system, values of $ u$ and $ y$ from 
 \draw    (19,88) -- (95,88) ;
 \draw [shift={(97,88)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
 %Straight Lines [id:da25912476814098584] 
-\draw    (245,86) -- (329.6,86) ;
-\draw [shift={(331.6,86)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+\draw    (241,86.27) -- (329.6,86.01) ;
+\draw [shift={(331.6,86)}, rotate = 179.83] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
 %Straight Lines [id:da5081454591632601] 
 \draw    (121,222) -- (159,222) ;
 \draw [shift={(161,222)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
@@ -100,7 +101,7 @@ The idea is that, when dealing with a real system, values of $ u$ and $ y$ from 
 %Straight Lines [id:da908171537673635] 
 \draw    (32,87) -- (32,259.2) ;
 %Straight Lines [id:da8800162432572618] 
-\draw    (33,220) -- (66,220) ;
+\draw    (49,220) -- (66,220) ;
 %Straight Lines [id:da8482189437756391] 
 \draw    (32,259.2) -- (67,259.2) ;
 %Shape: Rectangle [id:dp380347788068776] 
@@ -118,6 +119,12 @@ The idea is that, when dealing with a real system, values of $ u$ and $ y$ from 
 %Straight Lines [id:da8300058804860804] 
 \draw    (328.1,165.7) -- (412.7,165.7) ;
 \draw [shift={(414.7,165.7)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+%Straight Lines [id:da9207367364892305] 
+\draw    (50,179.27) -- (50,220) ;
+%Straight Lines [id:da5900746064451419] 
+\draw    (50,179.27) -- (251,179.27) ;
+%Straight Lines [id:da918142101550995] 
+\draw    (251,86.27) -- (251,179.27) ;
 
 % Text Node
 \draw (160,83.4) node [anchor=north west][inner sep=0.75pt]    {$S$};
@@ -157,6 +164,7 @@ The idea is that, when dealing with a real system, values of $ u$ and $ y$ from 
 
 
 
+
 \begin{center}
 
 \begin{tabular}{ccccc}
@@ -191,18 +199,18 @@ The better the prediction, the better the model to unveil the mechanisms through
 
 $ \hat{M}( \theta )$ depends only on $ \theta $ and $ \min J_{N}( \theta )$ returns only the best estimate for  parameter $ \theta $, the part of the model that we need in order to reconstruct the predictor.
 
-However, if I'm interested in the description of the complete ARMA process I'll need to estimate the variance for $ \lambda ^{2}$. 
+However, if I'm interested in the description of the complete ARMA process, $ \lambda ^{2}$ is to be estimated. 
 \begin{equation*}
 \hat{\lambda }_{N}^{2} =J_{N}(\hat{\theta }_{N}) =\frac{1}{N}\sum _{i=1}^{N} \varepsilon ( i|i-1,\hat{\theta }_{N})^{2}
 \end{equation*}
 
-The proposed estimate is the \textbf{empirical variance} of prediction error for the optimal model. The idea behind the formula is simple: suppose $ S\in \mathcal{M} $ (i.e. our model class is rich enough to describe perfectly the true mechanism by which $ y$ is generated) and $ \hat{\theta }_{N}$ is so good that $ \ M(\hat{\theta }_{N}) =S$ (i.e. the information collected is enough to unveil $ S$).
+The proposed estimate is the \textbf{empirical variance} of the prediction error for the optimal model. The idea behind the formula is simple: suppose $ S\in \mathcal{M} $ (i.e. our model class is rich enough to describe perfectly the true mechanism by which $ y$ is generated) and $\hat{\theta }_{N}$ is so good that $M(\hat{\theta }_{N}) =S$ (i.e. the information collected is enough to unveil $ S$).
 
-Since $ S\in \mathcal{M} \Longrightarrow S$ is an $ ARMAX$. Thus, there is a white noise $ \xi ( t) \ \sim \ WN\left( 0,\lambda ^{2}\right)$ in the real world that generates the $ y$. Then $ \hat{y}( t|t-1,\hat{\theta }_{N})$ is the optimal predictor not only for the model, but also for the system $ S$. Most importantly
+Since $ S\in \mathcal{M} \Longrightarrow S$ is an ARMAX process. Thus, there is a white noise $ \xi ( t) \sim \text{WN}\left( 0,\lambda ^{2}\right)$ in the real world that generates $ y$. Then $ \hat{y}( t|t-1,\hat{\theta }_{N})$ is the optimal predictor not only for the model, but also for the system $ S$. Most importantly
 \begin{equation*}
 \varepsilon ( t|t-1,\hat{\theta }_{N}) =\xi ( t)
 \end{equation*}
-the one-step prediction error in optimal prediction \textit{is} the $ WN$ in the system. It makes sense to approximate the true variance by means of an empirical variance:
+the one-step prediction error in optimal prediction \textit{is} the WN in the system. It makes sense to approximate the true variance by means of an empirical variance:
 \begin{gather*}
 \lambda ^{2} =\mathbb{E}\left[ \xi ( t)^{2}\right] =\mathbb{E}[ \varepsilon ( t|t-1,\hat{\theta }_{N}]\\
 \hat{\lambda }_{N}^{2} =J_{N}(\hat{\theta }_{N}) =\frac{1}{N}\sum _{i=1}^{N} \varepsilon ( i|i-1,\hat{\theta }_{N})^{2}
@@ -211,11 +219,11 @@ the one-step prediction error in optimal prediction \textit{is} the $ WN$ in the
 \subsection{Least Squares Identification}
 Now that we have our model, we need to study its computational aspect: how can the cost function be minimized with respect to $ \theta ?$
 
-In general $ J_{N}( \theta )$ is a very complicated and non-convex function of $ \theta $, with local minima and often without analytical or explicit expression. However, the subset of $ AR/ARX$ models, with good descriptive capabilities, has a quadratic cost function wich can be explicitedly minimized.
+In general $ J_{N}( \theta )$ is a very complicated and non-convex function of $ \theta $, with local minima and often without analytical or explicit expression. However, the subset of AR/ARX models, with good descriptive capabilities, has a quadratic cost function wich can be explicitedly minimized.
 
 In this case \textit{PEM identification} takes the name of \textit{Least Squares Identification. }
 
-Given a generic $ ARX$ model
+Given a generic ARX model
 \begin{gather*}
 y( t) \ =\ \frac{B( z,\theta )}{A( z,\theta )} u( t-d) \ +\ \frac{1}{A( z,\theta )} e( t) ,\ e( t) \ \sim \ WN\left( 0,\lambda ^{2}\right)\\
 A( z,\theta ) \ =\ 1-a_{1} z^{-1} -\dotsc -a_{m} z^{-m}\\
@@ -256,15 +264,15 @@ It is now possible to compute the one-step predictor for $ ARX$ model easily: we
 \end{align*}
 The predictor is a very simple expression, a linear function of $ \theta $.
 
-Let's compute the identification cost:		
+The identification cost is quadratic and positive:		
 \begin{align*}
 J_{N}( \theta ) & =\frac{1}{N}\sum _{i=1}^{N}( y( i) -\hat{y}( i|i-1,\theta ))^{2} & \\
- & =\frac{1}{N}\sum _{i=1}^{N}\left( y( i) -\theta ^{T} \varphi ( i)\right)^{2} & \text{quadratic function of} \ \theta \\
- & \geq \ 0 & \text{sum of squares}
+ & =\frac{1}{N}\sum _{i=1}^{N}\left( y( i) -\theta ^{T} \varphi ( i)\right)^{2} & (\text{quadratic function of} \ \theta) \\
+ & \geq \ 0 & \text{(sum of squares)}
 \end{align*}
 
 
-$ \hat{\theta }_{N}$ is the minimum of a quadratic and positive function, and is determined by the first order condition:
+$ \hat{\theta }_{N}$ is the minimum of a quadratic and positive function, and is therefore determined by the first order condition:
 \begin{equation*}
 \frac{d}{d\theta } J_{N}( \theta ) =\begin{bmatrix}
 \frac{\partial J_{N}}{\partial a_{1}}( \theta )\\
@@ -277,7 +285,7 @@ i.e. a system of linear equations whose solutions are all and only minimizers of
 By substitution:
 \begin{equation*}
 \begin{aligned}
-\frac{d}{d\theta } J_{N}( \theta ) & =\frac{d}{d\theta }[\frac{1}{N}\sum _{i=1}^{N}\left( y( i) -\theta ^{T} \varphi ( i)\right)^{2}] & ( linearity)\\
+\frac{d}{d\theta } J_{N}( \theta ) & =\frac{d}{d\theta }[\frac{1}{N}\sum _{i=1}^{N}\left( y( i) -\theta ^{T} \varphi ( i)\right)^{2}] & \text{(linearity)}\\
  & =\frac{1}{N}\sum _{i=1}^{N}\frac{d}{d\theta }\left( y( i) -\theta ^{T} \varphi ( i)\right)^{2} & \\
  & =\frac{1}{N}\sum _{i=1}^{N} 2\left( y( i) -\theta ^{T} \varphi ( i)\right)\frac{d}{d\theta }\left( y( i) -\theta ^{T} \varphi ( i)\right) & \frac{d}{d\theta } y( i) =\begin{bmatrix}
 0\\
@@ -299,7 +307,7 @@ Setting $ \frac{d}{d\theta } J_{N}( \theta ) =0$
 \left[\sum _{i=1}^{N} \varphi ( i) \varphi ( i)^{T}\right] \theta  & =\sum _{i=1}^{N} \varphi ( i) y( i) & \text{system of linear eqs in} \ \theta 
 \end{aligned}
 \end{equation*}
-This sistem of linear equations is commonly referred as \textit{Least Squares Normal Equations}. If 
+This sistem of linear equations is commonly referred to as \textit{Least Squares Normal Equations}. If 
 \begin{equation*}
 \sum _{i=1}^{N} \varphi ( i) \varphi ( i)^{T} \ \text{is nonsingular}
 \end{equation*}
