@@ -7,17 +7,17 @@ We have to move from stochastic models (ARMAX models) of type:
 
 $$
 M(\theta):
-y( t) \ =\ \frac{B( z,\theta )}{A( z,\theta )} u( t-d) \ +\ \frac{C( z,\theta )}{A( z,\theta )} e( t) ,\ e( t)\sim \WN \left( 0,\lambda ^{2}\right)
+y(t) \ =\ \frac{B(z,\theta)}{A(z,\theta)} u(t-d) \ +\ \frac{C(z,\theta)}{A(z,\theta)} e(t) ,\ e(t)\sim \WN \left(0,\lambda ^{2}\right)
 $$
 
 to models in prediction form, i.e. the optimal predictors obtained through the theory we developed. In particular, we can focus on the one-step predictor already introduced:
 
 $$
-\hat{M}( \theta ) :
-\ \hat{y}( t|t-1) \ =\frac{B( z,\theta ) E( z,\theta ) \ }{C( z,\theta )} u( t-d) \ +\ \frac{F( z,\theta )}{C( z,\theta )} y( t-1)
+\hat{M}(\theta) :
+\ \hat{y}(t|t-1) \ =\frac{B(z,\theta) E(z,\theta) \ }{C(z,\theta)} u(t-d) \ +\ \frac{F(z,\theta)}{C(z,\theta)} y(t-1)
 $$
 
-The predictor has a different structure: while $ M( \theta )$ is fed by \gls{wn} and input $ u$, the predictor $ \hat{M}( \theta ) \ $ is fed by measurements of $ u$ and $ y$ and returns the predicted future values of output, \textbf{there isn't \gls{wn}}. The predictor model is returning the predicted values for \textit{that} realization of input and output.
+The predictor has a different structure: while $ M(\theta)$ is fed by \gls{wn} and input $ u$, the predictor $ \hat{M}(\theta) \ $ is fed by measurements of $ u$ and $ y$ and returns the predicted future values of output, \textbf{there isn't \gls{wn}}. The predictor model is returning the predicted values for \textit{that} realization of input and output.
 
 
 \tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
@@ -49,26 +49,26 @@ The predictor has a different structure: while $ M( \theta )$ is fed by \gls{wn}
 \draw [shift={(348,131.94)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
 
 % Text Node
-\draw (95,93.4) node [anchor=north west][inner sep=0.75pt]    {$M( \theta )$};
+\draw (95,93.4) node [anchor=north west][inner sep=0.75pt]    {$M(\theta)$};
 % Text Node
-\draw (85,18.4) node [anchor=north west][inner sep=0.75pt]    {$e( t)$};
+\draw (85,18.4) node [anchor=north west][inner sep=0.75pt]    {$e(t)$};
 % Text Node
-\draw (24,77.4) node [anchor=north west][inner sep=0.75pt]    {$u( t)$};
+\draw (24,77.4) node [anchor=north west][inner sep=0.75pt]    {$u(t)$};
 % Text Node
-\draw (176,78.4) node [anchor=north west][inner sep=0.75pt]    {$y( t)$};
+\draw (176,78.4) node [anchor=north west][inner sep=0.75pt]    {$y(t)$};
 % Text Node
-\draw (378,87.34) node [anchor=north west][inner sep=0.75pt]    {$\hat{M}( \theta )$};
+\draw (378,87.34) node [anchor=north west][inner sep=0.75pt]    {$\hat{M}(\theta)$};
 % Text Node
-\draw (295,70.34) node [anchor=north west][inner sep=0.75pt]    {$u( t-d)$};
+\draw (295,70.34) node [anchor=north west][inner sep=0.75pt]    {$u(t-d)$};
 % Text Node
-\draw (455,80.34) node [anchor=north west][inner sep=0.75pt]    {$\hat{y}( t|t-1)$};
+\draw (455,80.34) node [anchor=north west][inner sep=0.75pt]    {$\hat{y}(t|t-1)$};
 % Text Node
-\draw (296,110.34) node [anchor=north west][inner sep=0.75pt]    {$y( t-1)$};
+\draw (296,110.34) node [anchor=north west][inner sep=0.75pt]    {$y(t-1)$};
 
 
 \end{tikzpicture}
 
-The idea is that, when dealing with a real system, values of $ u$ and $ y$ from time $t=1,\ldots,n$ can be collected, subsequently taking the predictor (introducing proper delays $ z^{-1}$) and feeding it with the measurement of $ u$ and $ y$ collected during the experiment. Then, the output of the predictor $ \hat{M}( \theta $) can be used to construct the value of the \textbf{prediction error} $ \varepsilon $. 
+The idea is that, when dealing with a real system, values of $ u$ and $ y$ from time $t=1,\ldots,n$ can be collected, subsequently taking the predictor (introducing proper delays $ z^{-1}$) and feeding it with the measurement of $ u$ and $ y$ collected during the experiment. Then, the output of the predictor $ \hat{M}(\theta $) can be used to construct the value of the \textbf{prediction error} $ \varepsilon $. 
 
 
 
@@ -129,7 +129,7 @@ The idea is that, when dealing with a real system, values of $ u$ and $ y$ from 
 % Text Node
 \draw (160,83.4) node [anchor=north west][inner sep=0.75pt]    {$S$};
 % Text Node
-\draw (173,227.34) node [anchor=north west][inner sep=0.75pt]    {$\hat{M}( \theta )$};
+\draw (173,227.34) node [anchor=north west][inner sep=0.75pt]    {$\hat{M}(\theta)$};
 % Text Node
 \draw (82,210.4) node [anchor=north west][inner sep=0.75pt]    {$z^{-1}$};
 % Text Node
@@ -140,24 +140,24 @@ The idea is that, when dealing with a real system, values of $ u$ and $ y$ from 
 \draw (277,64.4) node [anchor=north west][inner sep=0.75pt]    {$y$};
 % Text Node
 \draw (51,99.4) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize]  {$ \begin{array}{l}
-\overline{u}( 1)\\
+\overline{u}(1)\\
 \vdots \\
-\overline{u}( n)
+\overline{u}(n)
 \end{array}$};
 % Text Node
 \draw (265,97.4) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize]  {$ \begin{array}{l}
-\overline{y}( 1)\\
+\overline{y}(1)\\
 \vdots \\
-\overline{y}( n)
+\overline{y}(n)
 \end{array}$};
 % Text Node
-\draw (235,219.4) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize]  {$\hat{y}( t|t-1,\theta )$};
+\draw (235,219.4) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize]  {$\hat{y}(t|t-1,\theta)$};
 % Text Node
 \draw (329,140.4) node [anchor=north west][inner sep=0.75pt]    {$+$};
 % Text Node
 \draw (330.1,169.1) node [anchor=north west][inner sep=0.75pt]    {$-$};
 % Text Node
-\draw (349,138.4) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize]  {$\varepsilon ( t|t-1,\theta ) =y( t) -\hat{y}( t|t-1,\theta )$};
+\draw (349,138.4) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize]  {$\varepsilon (t|t-1,\theta) =y(t) -\hat{y}(t|t-1,\theta)$};
 
 
 \end{tikzpicture}
@@ -171,10 +171,10 @@ The idea is that, when dealing with a real system, values of $ u$ and $ y$ from 
 \toprule 
  $ t$ & $ u$ & $ y$ & $ \hat{y}$ & $ \varepsilon $ \\
 \midrule 
- $ 1$ & $ u( 1)$ & $ y( 1)$ & $ \hat{y}( 1|0)$ & $ \varepsilon ( 1|0,\theta )$ \\
-$ 2$ & $ u( 2)$ & $ y( 2)$ & $ \hat{y}( 2|1)$ & $ \varepsilon ( 2|1,\theta )$ \\
+ $ 1$ & $ u(1)$ & $ y(1)$ & $ \hat{y}(1|0)$ & $ \varepsilon (1|0,\theta)$ \\
+$ 2$ & $ u(2)$ & $ y(2)$ & $ \hat{y}(2|1)$ & $ \varepsilon (2|1,\theta)$ \\
 $ \vdots $ & $ \vdots $ & $ \vdots $ & $ \vdots $ & $ \vdots $ \\
-$ n$ & $ u( n)$ & $ y( n)$ & $ \hat{y}( n|n-1)$ & $ \varepsilon ( n|n-1,\theta )$ \\
+$ n$ & $ u(n)$ & $ y(n)$ & $ \hat{y}(n|n-1)$ & $ \varepsilon (n|n-1,\theta)$ \\
  \bottomrule
 \end{tabular}
 \end{center}
@@ -187,47 +187,47 @@ choose $ \hat{\theta }_{N}$ that minimizes the magnitude of prediction error.
 
 We have to introduce a metric to formalize the magnitude of the error. We define a \textbf{cost funtion} 
 \begin{equation*}
-J_{N}( \theta ) =\frac{1}{N}\sum _{i=1}^{N}( y( i) -\hat{y}( i|i-1,\theta ))^{2} =\frac{1}{N}\sum _{i=1}^{N} \varepsilon ( i|i-1,\theta )^{2}
+J_{N}(\theta) =\frac{1}{N}\sum _{i=1}^{N}(y(i) -\hat{y}(i|i-1,\theta))^{2} =\frac{1}{N}\sum _{i=1}^{N} \varepsilon (i|i-1,\theta)^{2}
 \end{equation*}
 also known as \textbf{PEM minimization cost}, which can be interpreted as the "empirical variance" of prediction error over the collected data. Then 
 \begin{equation*}
-\hat{\theta }_{N} =\underset{\theta \ \in \ \Theta }{\mathrm{arg}\min} J_{N}( \theta ) =\underset{\theta \ \in \ \Theta }{\mathrm{arg}\min}\frac{1}{N}\sum _{i=1}^{N} \varepsilon ( i|i-1,\theta )^{2}
+\hat{\theta }_{N} =\underset{\theta \ \in \ \Theta }{\mathrm{arg}\min} J_{N}(\theta) =\underset{\theta \ \in \ \Theta }{\mathrm{arg}\min}\frac{1}{N}\sum _{i=1}^{N} \varepsilon (i|i-1,\theta)^{2}
 \end{equation*}
 The better the prediction, the better the model to unveil the mechanisms through which $ y$ is generated in $ S$. 
 
 \subsection{Estimation of $\lambda$}
 
-$ \hat{M}( \theta )$ depends only on $ \theta $ and $ \min J_{N}( \theta )$ returns only the best estimate for  parameter $ \theta $, the part of the model that we need in order to reconstruct the predictor.
+$ \hat{M}(\theta)$ depends only on $ \theta $ and $ \min J_{N}(\theta)$ returns only the best estimate for  parameter $ \theta $, the part of the model that we need in order to reconstruct the predictor.
 
 However, if I'm interested in the description of the complete ARMA process, $ \lambda ^{2}$ is to be estimated. 
 \begin{equation*}
-\hat{\lambda }_{N}^{2} =J_{N}(\hat{\theta }_{N}) =\frac{1}{N}\sum _{i=1}^{N} \varepsilon ( i|i-1,\hat{\theta }_{N})^{2}
+\hat{\lambda }_{N}^{2} =J_{N}(\hat{\theta }_{N}) =\frac{1}{N}\sum _{i=1}^{N} \varepsilon (i|i-1,\hat{\theta }_{N})^{2}
 \end{equation*}
 
 The proposed estimate is the \textbf{empirical variance} of the prediction error for the optimal model. The idea behind the formula is simple: suppose $ S\in \mathcal{M} $ (i.e. our model class is rich enough to describe perfectly the true mechanism by which $ y$ is generated) and $\hat{\theta }_{N}$ is so good that $M(\hat{\theta }_{N}) =S$ (i.e. the information collected is enough to unveil $ S$).
 
-Since $ S\in \mathcal{M} \Longrightarrow S$ is an ARMAX process. Thus, there is a white noise $ \xi ( t) \sim \WN\left( 0,\lambda ^{2}\right)$ in the real world that generates $ y$. Then $ \hat{y}( t|t-1,\hat{\theta }_{N})$ is the optimal predictor not only for the model, but also for the system $ S$. Most importantly
+Since $ S\in \mathcal{M} \Longrightarrow S$ is an ARMAX process. Thus, there is a white noise $ \xi (t) \sim \WN\left(0,\lambda ^{2}\right)$ in the real world that generates $ y$. Then $ \hat{y}(t|t-1,\hat{\theta }_{N})$ is the optimal predictor not only for the model, but also for the system $ S$. Most importantly
 \begin{equation*}
-\varepsilon ( t|t-1,\hat{\theta }_{N}) =\xi ( t)
+\varepsilon (t|t-1,\hat{\theta }_{N}) =\xi (t)
 \end{equation*}
 the one-step prediction error in optimal prediction \textit{is} the \gls{wn} in the system. It makes sense to approximate the true variance by means of an empirical variance:
 \begin{gather*}
-\lambda ^{2} =\mathbb{E}\left[ \xi ( t)^{2}\right] =\mathbb{E}[ \varepsilon ( t|t-1,\hat{\theta }_{N}]\\
-\hat{\lambda }_{N}^{2} =J_{N}(\hat{\theta }_{N}) =\frac{1}{N}\sum _{i=1}^{N} \varepsilon ( i|i-1,\hat{\theta }_{N})^{2}
+\lambda ^{2} =\mathbb{E}\left[ \xi (t)^{2}\right] =\mathbb{E}[ \varepsilon (t|t-1,\hat{\theta }_{N}]\\
+\hat{\lambda }_{N}^{2} =J_{N}(\hat{\theta }_{N}) =\frac{1}{N}\sum _{i=1}^{N} \varepsilon (i|i-1,\hat{\theta }_{N})^{2}
 \end{gather*}
 
 \subsection{Least Squares Identification}
 Now that we have our model, we need to study its computational aspect: how can the cost function be minimized with respect to $ \theta ?$
 
-In general $ J_{N}( \theta )$ is a very complicated and non-convex function of $ \theta $, with local minima and often without analytical or explicit expression. However, the subset of AR/ARX models, with good descriptive capabilities, has a quadratic cost function wich can be explicitedly minimized.
+In general $ J_{N}(\theta)$ is a very complicated and non-convex function of $ \theta $, with local minima and often without analytical or explicit expression. However, the subset of AR/ARX models, with good descriptive capabilities, has a quadratic cost function wich can be explicitedly minimized.
 
 In this case \textit{PEM identification} takes the name of \textit{Least Squares Identification. }
 
 Given a generic ARX model
 \begin{gather*}
-y( t) \ =\ \frac{B( z,\theta )}{A( z,\theta )} u( t-d) \ +\ \frac{1}{A( z,\theta )} e( t) ,\ e( t) \ \sim \WN\left( 0,\lambda ^{2}\right)\\
-A( z,\theta ) \ =\ 1-a_{1} z^{-1} -\dotsc -a_{m} z^{-m}\\
-B( z,\theta ) =b_{0} +b_{1} z^{-1} +\dotsc +b_{p} z^{-p}
+y(t) \ =\ \frac{B(z,\theta)}{A(z,\theta)} u(t-d) \ +\ \frac{1}{A(z,\theta)} e(t) ,\ e(t) \ \sim \WN\left(0,\lambda ^{2}\right)\\
+A(z,\theta) \ =\ 1-a_{1} z^{-1} -\dotsc -a_{m} z^{-m}\\
+B(z,\theta) =b_{0} +b_{1} z^{-1} +\dotsc +b_{p} z^{-p}
 \end{gather*}
 with the black-box assumptions that we made, theta is the vector of the coefficients
 \begin{equation*}
@@ -235,109 +235,109 @@ with the black-box assumptions that we made, theta is the vector of the coeffici
 \end{equation*}
 The recursive equations associated to the model are
 \begin{gather*}
-A( z,\theta ) y( t) =B( t,\theta ) u( t-d) +e( t)\\
-\left( 1-a_{1} z^{1} -\dotsc -a_{m} z^{-m}\right) y( t) =\left( b_{0} +b_{1} z^{-1} +\dotsc +b_{p} z^{-p}\right) u( t-d) +e( t)\\
+A(z,\theta) y(t) =B(t,\theta) u(t-d) +e(t)\\
+\left(1-a_{1} z^{1} -\dotsc -a_{m} z^{-m}\right) y(t) =\left(b_{0} +b_{1} z^{-1} +\dotsc +b_{p} z^{-p}\right) u(t-d) +e(t)\\
 \Downarrow \\
-y( t) =a_{1} y( t-1) +\dotsc +a_{m} y( t-m) +b_{0} u( t-d) +b_{1} u( t-d-1) +\dotsc +b_{p} u( t-d-p) +e( t)
+y(t) =a_{1} y(t-1) +\dotsc +a_{m} y(t-m) +b_{0} u(t-d) +b_{1} u(t-d-1) +\dotsc +b_{p} u(t-d-p) +e(t)
 \end{gather*}
 If we introduce the vector of the regression variables $ \varphi $
 \begin{equation*}
-\varphi ( t) =\begin{bmatrix}
-y( t-1)\\
+\varphi (t) =\begin{bmatrix}
+y(t-1)\\
 \vdots \\
-y( t-m)\\
-u( t-d)\\
-u( t-d-1)\\
+y(t-m)\\
+u(t-d)\\
+u(t-d-1)\\
 \vdots \\
-u( t-d-p)
+u(t-d-p)
 \end{bmatrix}
 \end{equation*}
 we can rewrite the recursive equations
 \begin{equation*}
-y( t) =\theta \transpose \varphi ( t) +e( t) =\underbrace{\varphi ( t)\transpose \theta }_{\text{predictable at time} \ t-1} +\underbrace{e( t)}_{\text{unpredictable at time} \ t-1}
+y(t) =\theta \transpose \varphi (t) +e(t) =\underbrace{\varphi (t)\transpose \theta }_{\text{predictable at time} \ t-1} +\underbrace{e(t)}_{\text{unpredictable at time} \ t-1}
 \end{equation*}
 It is now possible to compute the one-step predictor for $ ARX$ model easily: we just need to delete the unpredictable part.
 \begin{align*}
-\hat{M}( \theta ) :\ \hat{y}( t|t-1) & =a_{1} y( t-1) +\dotsc +a_{m} y( t-m) +b_{0} u( t-d) +b_{1} u( t-d-1) +\dotsc +b_{p} u( t-d-p)\\
- & =\ \theta \transpose \varphi ( t) \ \\
- & =\ \varphi ( t)\transpose \theta 
+\hat{M}(\theta) :\ \hat{y}(t|t-1) & =a_{1} y(t-1) +\dotsc +a_{m} y(t-m) +b_{0} u(t-d) +b_{1} u(t-d-1) +\dotsc +b_{p} u(t-d-p)\\
+ & =\ \theta \transpose \varphi (t) \ \\
+ & =\ \varphi (t)\transpose \theta 
 \end{align*}
 The predictor is a very simple expression, a linear function of $ \theta $.
 
 The identification cost is quadratic and positive:		
 \begin{align*}
-J_{N}( \theta ) & =\frac{1}{N}\sum _{i=1}^{N}( y( i) -\hat{y}( i|i-1,\theta ))^{2} & \\
- & =\frac{1}{N}\sum _{i=1}^{N}\left( y( i) -\theta \transpose \varphi ( i)\right)^{2} & (\text{quadratic function of} \ \theta) \\
+J_{N}(\theta) & =\frac{1}{N}\sum _{i=1}^{N}(y(i) -\hat{y}(i|i-1,\theta))^{2} & \\
+ & =\frac{1}{N}\sum _{i=1}^{N}\left(y(i) -\theta \transpose \varphi (i)\right)^{2} & (\text{quadratic function of} \ \theta) \\
  & \geq \ 0 & \text{(sum of squares)}
 \end{align*}
 
 
 $ \hat{\theta }_{N}$ is the minimum of a quadratic and positive function, and is therefore determined by the first order condition:
 \begin{equation*}
-\frac{d}{d\theta } J_{N}( \theta ) =\begin{bmatrix}
-\frac{\partial J_{N}}{\partial a_{1}}( \theta )\\
+\frac{d}{d\theta } J_{N}(\theta) =\begin{bmatrix}
+\frac{\partial J_{N}}{\partial a_{1}}(\theta)\\
 \vdots \\
-\frac{\partial J_{N}}{\partial b_{p}}( \theta )
+\frac{\partial J_{N}}{\partial b_{p}}(\theta)
 \end{bmatrix} =0
 \end{equation*}
-i.e. a system of linear equations whose solutions are all and only minimizers of $ J_{N}( \theta )$.
+i.e. a system of linear equations whose solutions are all and only minimizers of $ J_{N}(\theta)$.
 
 By substitution:
 \begin{equation*}
 \begin{aligned}
-\frac{d}{d\theta } J_{N}( \theta ) & =\frac{d}{d\theta }[\frac{1}{N}\sum _{i=1}^{N}\left( y( i) -\theta \transpose \varphi ( i)\right)^{2}] & \text{(linearity)}\\
- & =\frac{1}{N}\sum _{i=1}^{N}\frac{d}{d\theta }\left( y( i) -\theta \transpose \varphi ( i)\right)^{2} & \\
- & =\frac{1}{N}\sum _{i=1}^{N} 2\left( y( i) -\theta \transpose \varphi ( i)\right)\frac{d}{d\theta }\left( y( i) -\theta \transpose \varphi ( i)\right) & \frac{d}{d\theta } y( i) =\begin{bmatrix}
+\frac{d}{d\theta } J_{N}(\theta) & =\frac{d}{d\theta }[\frac{1}{N}\sum _{i=1}^{N}\left(y(i) -\theta \transpose \varphi (i)\right)^{2}] & \text{(linearity)}\\
+ & =\frac{1}{N}\sum _{i=1}^{N}\frac{d}{d\theta }\left(y(i) -\theta \transpose \varphi (i)\right)^{2} & \\
+ & =\frac{1}{N}\sum _{i=1}^{N} 2\left(y(i) -\theta \transpose \varphi (i)\right)\frac{d}{d\theta }\left(y(i) -\theta \transpose \varphi (i)\right) & \frac{d}{d\theta } y(i) =\begin{bmatrix}
 0\\
 \vdots \\
 0
 \end{bmatrix}\\
- & =\frac{1}{N}\sum _{i=1}^{N} 2\left( y( i) -\theta \transpose \varphi ( i)\right)\frac{d}{d\theta }\left( -\theta \transpose \varphi ( i)\right) & \frac{d}{d\theta }\left( -\theta \transpose \varphi ( i)\right) =-\varphi ( i)\\
- & =\frac{1}{N}\sum _{i=1}^{N} 2\underbrace{\left( y( i) -\varphi ( i)\transpose \theta \right)}_{\text{scalar}}\underbrace{( -\varphi ( i))}_{\text{column vec}} & \\
- & =\frac{2}{N}\sum _{i=1}^{N} \varphi ( i)\left( \varphi ( i)\transpose \theta -y( i)\right) & \\
- & =\frac{2}{N}\sum _{i=1}^{N} \varphi ( i) \varphi ( i)\transpose \theta \ -\frac{2}{N}\sum _{i=1}^{N} \varphi ( i) y( i) & 
+ & =\frac{1}{N}\sum _{i=1}^{N} 2\left(y(i) -\theta \transpose \varphi (i)\right)\frac{d}{d\theta }\left(-\theta \transpose \varphi (i)\right) & \frac{d}{d\theta }\left(-\theta \transpose \varphi (i)\right) =-\varphi (i)\\
+ & =\frac{1}{N}\sum _{i=1}^{N} 2\underbrace{\left(y(i) -\varphi (i)\transpose \theta \right)}_{\text{scalar}}\underbrace{(-\varphi (i))}_{\text{column vec}} & \\
+ & =\frac{2}{N}\sum _{i=1}^{N} \varphi (i)\left(\varphi (i)\transpose \theta -y(i)\right) & \\
+ & =\frac{2}{N}\sum _{i=1}^{N} \varphi (i) \varphi (i)\transpose \theta \ -\frac{2}{N}\sum _{i=1}^{N} \varphi (i) y(i) & 
 \end{aligned} \ 
 \end{equation*}
-Setting $ \frac{d}{d\theta } J_{N}( \theta ) =0$	
+Setting $ \frac{d}{d\theta } J_{N}(\theta) =0$	
 
 
 \begin{equation*}
 \begin{aligned}
-\cancel{\frac{2}{N}}\sum _{i=1}^{N} \varphi ( i) \varphi ( i)\transpose \theta  & =\cancel{\frac{2}{N}}\sum _{i=1}^{N} \varphi ( i) y( i) & \\
-\left[\sum _{i=1}^{N} \varphi ( i) \varphi ( i)\transpose\right] \theta  & =\sum _{i=1}^{N} \varphi ( i) y( i) & \text{system of linear eqs in} \ \theta 
+\cancel{\frac{2}{N}}\sum _{i=1}^{N} \varphi (i) \varphi (i)\transpose \theta  & =\cancel{\frac{2}{N}}\sum _{i=1}^{N} \varphi (i) y(i) & \\
+\left[\sum _{i=1}^{N} \varphi (i) \varphi (i)\transpose\right] \theta  & =\sum _{i=1}^{N} \varphi (i) y(i) & \text{system of linear eqs in} \ \theta 
 \end{aligned}
 \end{equation*}
 This sistem of linear equations is commonly referred to as \textit{Least Squares Normal Equations}. If 
 \begin{equation*}
-\sum _{i=1}^{N} \varphi ( i) \varphi ( i)\transpose \ \text{is nonsingular}
+\sum _{i=1}^{N} \varphi (i) \varphi (i)\transpose \ \text{is nonsingular}
 \end{equation*}
 the solution is unique, and $ \hat{\theta }_{N}$ is univocally determined
 \begin{equation*}
 \boxed{\begin{aligned}
-\hat{\theta }_{N} =\left[\sum _{i=1}^{N} \varphi ( i) \varphi ( i)\transpose\right]^{-1}\sum _{i=1}^{N} \varphi ( i) y( i) & \ \ \mathbf{\text{LS formula}}
+\hat{\theta }_{N} =\left[\sum _{i=1}^{N} \varphi (i) \varphi (i)\transpose\right]^{-1}\sum _{i=1}^{N} \varphi (i) y(i) & \ \ \mathbf{\text{LS formula}}
 \end{aligned}}
 \end{equation*}
-If $ \sum \varphi ( i) \varphi ( i)\transpose$ is singular, there are infinite solutions: $ \hat{\theta }_{N}$ can be determined by introducing tie-break rule (e.g. taking the solution with minimum norm). This may happen when many models have the same predictive capability, such as in a redundant model class or in case of uninformative data.
+If $ \sum \varphi (i) \varphi (i)\transpose$ is singular, there are infinite solutions: $ \hat{\theta }_{N}$ can be determined by introducing tie-break rule (e.g. taking the solution with minimum norm). This may happen when many models have the same predictive capability, such as in a redundant model class or in case of uninformative data.
 
 \textbf{Geometric interpretation:}
 \begin{equation*}
-J_{N}( \theta ) =\frac{1}{N}\sum _{i=1}^{N}\left( y( i) -\theta \transpose \varphi ( i)\right)^{2}
+J_{N}(\theta) =\frac{1}{N}\sum _{i=1}^{N}\left(y(i) -\theta \transpose \varphi (i)\right)^{2}
 \end{equation*}
-is a paraboloid. The Hessian matrix $ \frac{d^{2}}{d\theta ^{2}} J_{N}( \theta )$ completely characterizes the space of quadratic functions.
+is a paraboloid. The Hessian matrix $ \frac{d^{2}}{d\theta ^{2}} J_{N}(\theta)$ completely characterizes the space of quadratic functions.
 \begin{equation*}
 \begin{aligned}
-\frac{d}{d\theta } J_{N}( \theta ) & =\frac{2}{N}\sum _{i=1}^{N} \varphi ( i) \varphi ( i)\transpose \theta \ -\frac{2}{N}\sum _{i=1}^{N} \varphi ( i) y( i)\\
-\frac{d^{2}}{d\theta ^{2}} J_{N}( \theta ) & =\frac{2}{N}\underbrace{\sum _{i=1}^{N} \varphi ( i) \varphi ( i)\transpose}_{\text{information matrix}}
+\frac{d}{d\theta } J_{N}(\theta) & =\frac{2}{N}\sum _{i=1}^{N} \varphi (i) \varphi (i)\transpose \theta \ -\frac{2}{N}\sum _{i=1}^{N} \varphi (i) y(i)\\
+\frac{d^{2}}{d\theta ^{2}} J_{N}(\theta) & =\frac{2}{N}\underbrace{\sum _{i=1}^{N} \varphi (i) \varphi (i)\transpose}_{\text{information matrix}}
 \end{aligned}
 \end{equation*}
 The information matrix is positive semidefinite. Indeed, taking a generic vector $ x$
 \begin{equation*}
 \begin{aligned}
-x\transpose\frac{d^{2}}{d\theta ^{2}} J_{N}( \theta ) \cdotp x & =\frac{2}{N} x\transpose\left[\sum _{i=1}^{N} \varphi ( i) \varphi ( i)\transpose\right] x & \\
- & =\frac{2}{N}\sum _{i=1}^{N}\left( x\transpose \varphi ( i)\right)^{2} \geq 0 & x\transpose \varphi ( i) =\varphi ( i)\transpose x
+x\transpose\frac{d^{2}}{d\theta ^{2}} J_{N}(\theta) \cdotp x & =\frac{2}{N} x\transpose\left[\sum _{i=1}^{N} \varphi (i) \varphi (i)\transpose\right] x & \\
+ & =\frac{2}{N}\sum _{i=1}^{N}\left(x\transpose \varphi (i)\right)^{2} \geq 0 & x\transpose \varphi (i) =\varphi (i)\transpose x
 \end{aligned}
 \end{equation*}
-$ J_{N}( \theta )$ is a paraboloid with minima:
+$ J_{N}(\theta)$ is a paraboloid with minima:
 
 \begin{figure}
 \centering
@@ -358,8 +358,8 @@ $ J_{N}( \theta )$ is a paraboloid with minima:
 
 \begin{equation*}
 \begin{aligned}
-\frac{d^{2}}{d\theta ^{2}} J_{N}( \theta ) & =\frac{2}{N}\sum _{i=1}^{N} \varphi ( i) \varphi ( i)\transpose \ \text{nonsingular} \ \text{(pos. def.)} & \Longrightarrow \ & \text{proper paraboloid (unique min.)}\\
-\frac{d^{2}}{d\theta ^{2}} J_{N}( \theta ) & =\frac{2}{N}\sum _{i=1}^{N} \varphi ( i) \varphi ( i)\transpose\text{ singular} & \ \Longrightarrow \ & \text{degenerate paraboloid}
+\frac{d^{2}}{d\theta ^{2}} J_{N}(\theta) & =\frac{2}{N}\sum _{i=1}^{N} \varphi (i) \varphi (i)\transpose \ \text{nonsingular} \ \text{(pos. def.)} & \Longrightarrow \ & \text{proper paraboloid (unique min.)}\\
+\frac{d^{2}}{d\theta ^{2}} J_{N}(\theta) & =\frac{2}{N}\sum _{i=1}^{N} \varphi (i) \varphi (i)\transpose\text{ singular} & \ \Longrightarrow \ & \text{degenerate paraboloid}
 \end{aligned}
 \end{equation*}
 
