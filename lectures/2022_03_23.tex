@@ -17,7 +17,7 @@ $$
 \ \hat{y}( t|t-1) \ =\frac{B( z,\theta ) E( z,\theta ) \ }{C( z,\theta )} u( t-d) \ +\ \frac{F( z,\theta )}{C( z,\theta )} y( t-1)
 $$
 
-The predictor has a different structure: while $ M( \theta )$ is fed by WN and input $ u$, the predictor $ \hat{M}( \theta ) \ $ is fed by measurements of $ u$ and $ y$ and returns the predicted future values of output, \textbf{there isn't WN}. The predictor model is returning the predicted values for \textit{that} realization of input and output.
+The predictor has a different structure: while $ M( \theta )$ is fed by \gls{wn} and input $ u$, the predictor $ \hat{M}( \theta ) \ $ is fed by measurements of $ u$ and $ y$ and returns the predicted future values of output, \textbf{there isn't \gls{wn}}. The predictor model is returning the predicted values for \textit{that} realization of input and output.
 
 
 \tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
@@ -206,11 +206,11 @@ However, if I'm interested in the description of the complete ARMA process, $ \l
 
 The proposed estimate is the \textbf{empirical variance} of the prediction error for the optimal model. The idea behind the formula is simple: suppose $ S\in \mathcal{M} $ (i.e. our model class is rich enough to describe perfectly the true mechanism by which $ y$ is generated) and $\hat{\theta }_{N}$ is so good that $M(\hat{\theta }_{N}) =S$ (i.e. the information collected is enough to unveil $ S$).
 
-Since $ S\in \mathcal{M} \Longrightarrow S$ is an ARMAX process. Thus, there is a white noise $ \xi ( t) \sim \text{WN}\left( 0,\lambda ^{2}\right)$ in the real world that generates $ y$. Then $ \hat{y}( t|t-1,\hat{\theta }_{N})$ is the optimal predictor not only for the model, but also for the system $ S$. Most importantly
+Since $ S\in \mathcal{M} \Longrightarrow S$ is an ARMAX process. Thus, there is a white noise $ \xi ( t) \sim \WN\left( 0,\lambda ^{2}\right)$ in the real world that generates $ y$. Then $ \hat{y}( t|t-1,\hat{\theta }_{N})$ is the optimal predictor not only for the model, but also for the system $ S$. Most importantly
 \begin{equation*}
 \varepsilon ( t|t-1,\hat{\theta }_{N}) =\xi ( t)
 \end{equation*}
-the one-step prediction error in optimal prediction \textit{is} the WN in the system. It makes sense to approximate the true variance by means of an empirical variance:
+the one-step prediction error in optimal prediction \textit{is} the \gls{wn} in the system. It makes sense to approximate the true variance by means of an empirical variance:
 \begin{gather*}
 \lambda ^{2} =\mathbb{E}\left[ \xi ( t)^{2}\right] =\mathbb{E}[ \varepsilon ( t|t-1,\hat{\theta }_{N}]\\
 \hat{\lambda }_{N}^{2} =J_{N}(\hat{\theta }_{N}) =\frac{1}{N}\sum _{i=1}^{N} \varepsilon ( i|i-1,\hat{\theta }_{N})^{2}
@@ -225,7 +225,7 @@ In this case \textit{PEM identification} takes the name of \textit{Least Squares
 
 Given a generic ARX model
 \begin{gather*}
-y( t) \ =\ \frac{B( z,\theta )}{A( z,\theta )} u( t-d) \ +\ \frac{1}{A( z,\theta )} e( t) ,\ e( t) \ \sim \ WN\left( 0,\lambda ^{2}\right)\\
+y( t) \ =\ \frac{B( z,\theta )}{A( z,\theta )} u( t-d) \ +\ \frac{1}{A( z,\theta )} e( t) ,\ e( t) \ \sim \WN\left( 0,\lambda ^{2}\right)\\
 A( z,\theta ) \ =\ 1-a_{1} z^{-1} -\dotsc -a_{m} z^{-m}\\
 B( z,\theta ) =b_{0} +b_{1} z^{-1} +\dotsc +b_{p} z^{-p}
 \end{gather*}
