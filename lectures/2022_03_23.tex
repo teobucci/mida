@@ -226,19 +226,19 @@ In this case \textit{PEM identification} takes the name of \textit{Least Squares
 Given a generic ARX model
 \begin{gather*}
 y(t) \ =\ \frac{B(z,\theta)}{A(z,\theta)} u(t-d) \ +\ \frac{1}{A(z,\theta)} e(t) ,\ e(t) \ \sim \WN\left(0,\lambda ^{2}\right)\\
-A(z,\theta) \ =\ 1-a_{1} z^{-1} -\dotsc -a_{m} z^{-m}\\
-B(z,\theta) =b_{0} +b_{1} z^{-1} +\dotsc +b_{p} z^{-p}
+A(z,\theta) \ =\ 1-a_{1} z^{-1} -\cdots -a_{m} z^{-m}\\
+B(z,\theta) =b_{0} +b_{1} z^{-1} +\cdots +b_{p} z^{-p}
 \end{gather*}
 with the black-box assumptions that we made, theta is the vector of the coefficients
 \begin{equation*}
-\theta \ =\ [ a_{1} \dotsc a_{m} \ b_{0} \ b_{1} \dotsc b_{p}]\transpose
+\theta \ =\ [ a_{1},\ldots,a_{m},b_{0},b_{1},\ldots,b_{p}]\transpose
 \end{equation*}
 The recursive equations associated to the model are
 \begin{gather*}
 A(z,\theta) y(t) =B(t,\theta) u(t-d) +e(t)\\
-\left(1-a_{1} z^{1} -\dotsc -a_{m} z^{-m}\right) y(t) =\left(b_{0} +b_{1} z^{-1} +\dotsc +b_{p} z^{-p}\right) u(t-d) +e(t)\\
+\left(1-a_{1} z^{1} -\cdots -a_{m} z^{-m}\right) y(t) =\left(b_{0} +b_{1} z^{-1} +\cdots +b_{p} z^{-p}\right) u(t-d) +e(t)\\
 \Downarrow \\
-y(t) =a_{1} y(t-1) +\dotsc +a_{m} y(t-m) +b_{0} u(t-d) +b_{1} u(t-d-1) +\dotsc +b_{p} u(t-d-p) +e(t)
+y(t) =a_{1} y(t-1) +\cdots +a_{m} y(t-m) +b_{0} u(t-d) +b_{1} u(t-d-1) +\cdots +b_{p} u(t-d-p) +e(t)
 \end{gather*}
 If we introduce the vector of the regression variables $ \varphi $
 \begin{equation*}
@@ -258,7 +258,7 @@ y(t) =\theta \transpose \varphi (t) +e(t) =\underbrace{\varphi (t)\transpose \th
 \end{equation*}
 It is now possible to compute the one-step predictor for $ ARX$ model easily: we just need to delete the unpredictable part.
 \begin{align*}
-\hat{M}(\theta) :\ \hat{y}(t\mid t-1) & =a_{1} y(t-1) +\dotsc +a_{m} y(t-m) +b_{0} u(t-d) +b_{1} u(t-d-1) +\dotsc +b_{p} u(t-d-p)\\
+\hat{M}(\theta) :\ \hat{y}(t\mid t-1) & =a_{1} y(t-1) +\cdots +a_{m} y(t-m) +b_{0} u(t-d) +b_{1} u(t-d-1) +\cdots +b_{p} u(t-d-p)\\
  & =\ \theta \transpose \varphi (t) \ \\
  & =\ \varphi (t)\transpose \theta 
 \end{align*}
