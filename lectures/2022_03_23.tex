@@ -225,8 +225,8 @@ In this case \textit{PEM identification} takes the name of \textit{Least Squares
 
 Given a generic ARX model
 \begin{gather*}
-y(t) \ =\ \frac{B(z,\theta)}{A(z,\theta)} u(t-d) \ +\ \frac{1}{A(z,\theta)} e(t) ,\ e(t) \ \sim \WN\left(0,\lambda ^{2}\right)\\
-A(z,\theta) \ =\ 1-a_{1} z^{-1} -\cdots -a_{m} z^{-m}\\
+y(t) =\frac{B(z,\theta)}{A(z,\theta)} u(t-d) +\frac{1}{A(z,\theta)} e(t) \qquad e(t) \sim \WN\left(0,\lambda ^{2}\right)\\
+A(z,\theta) =1-a_{1} z^{-1} -\cdots -a_{m} z^{-m}\\
 B(z,\theta) =b_{0} +b_{1} z^{-1} +\cdots +b_{p} z^{-p}
 \end{gather*}
 with the black-box assumptions that we made, theta is the vector of the coefficients
@@ -259,8 +259,8 @@ y(t) =\theta \transpose \varphi (t) +e(t) =\underbrace{\varphi (t)\transpose \th
 It is now possible to compute the one-step predictor for $ ARX$ model easily: we just need to delete the unpredictable part.
 \begin{align*}
 \hat{M}(\theta) :\ \hat{y}(t\mid t-1) & =a_{1} y(t-1) +\cdots +a_{m} y(t-m) +b_{0} u(t-d) +b_{1} u(t-d-1) +\cdots +b_{p} u(t-d-p)\\
- & =\ \theta \transpose \varphi (t) \ \\
- & =\ \varphi (t)\transpose \theta 
+ & =\theta \transpose \varphi (t) \ \\
+ & =\varphi (t)\transpose \theta 
 \end{align*}
 The predictor is a very simple expression, a linear function of $ \theta $.
 
@@ -283,8 +283,7 @@ $ \hat{\theta }_{N}$ is the minimum of a quadratic and positive function, and is
 i.e. a system of linear equations whose solutions are all and only minimizers of $ J_{N}(\theta)$.
 
 By substitution:
-\begin{equation*}
-\begin{aligned}
+\begin{align*}
 \frac{d}{d\theta } J_{N}(\theta) & =\frac{d}{d\theta }[\frac{1}{N}\sum _{i=1}^{N}\left(y(i) -\theta \transpose \varphi (i)\right)^{2}] & \text{(linearity)}\\
  & =\frac{1}{N}\sum _{i=1}^{N}\frac{d}{d\theta }\left(y(i) -\theta \transpose \varphi (i)\right)^{2} & \\
  & =\frac{1}{N}\sum _{i=1}^{N} 2\left(y(i) -\theta \transpose \varphi (i)\right)\frac{d}{d\theta }\left(y(i) -\theta \transpose \varphi (i)\right) & \frac{d}{d\theta } y(i) =\begin{bmatrix}
@@ -296,26 +295,22 @@ By substitution:
  & =\frac{1}{N}\sum _{i=1}^{N} 2\underbrace{\left(y(i) -\varphi (i)\transpose \theta \right)}_{\text{scalar}}\underbrace{(-\varphi (i))}_{\text{column vec}} & \\
  & =\frac{2}{N}\sum _{i=1}^{N} \varphi (i)\left(\varphi (i)\transpose \theta -y(i)\right) & \\
  & =\frac{2}{N}\sum _{i=1}^{N} \varphi (i) \varphi (i)\transpose \theta \ -\frac{2}{N}\sum _{i=1}^{N} \varphi (i) y(i) & 
-\end{aligned} \ 
-\end{equation*}
+\end{align*} \ 
 Setting $ \frac{d}{d\theta } J_{N}(\theta) =0$	
 
 
-\begin{equation*}
-\begin{aligned}
+\begin{align*}
 \cancel{\frac{2}{N}}\sum _{i=1}^{N} \varphi (i) \varphi (i)\transpose \theta  & =\cancel{\frac{2}{N}}\sum _{i=1}^{N} \varphi (i) y(i) & \\
 \left[\sum _{i=1}^{N} \varphi (i) \varphi (i)\transpose\right] \theta  & =\sum _{i=1}^{N} \varphi (i) y(i) & \text{system of linear eqs in} \ \theta 
-\end{aligned}
-\end{equation*}
+\end{align*}
 This sistem of linear equations is commonly referred to as \textit{Least Squares Normal Equations}. If 
 \begin{equation*}
 \sum _{i=1}^{N} \varphi (i) \varphi (i)\transpose \ \text{is nonsingular}
 \end{equation*}
 the solution is unique, and $ \hat{\theta }_{N}$ is univocally determined
 \begin{equation*}
-\boxed{\begin{aligned}
-\hat{\theta }_{N} =\left[\sum _{i=1}^{N} \varphi (i) \varphi (i)\transpose\right]^{-1}\sum _{i=1}^{N} \varphi (i) y(i) & \ \ \mathbf{\text{LS formula}}
-\end{aligned}}
+\boxed{\hat{\theta }_{N} =\left[\sum _{i=1}^{N} \varphi (i) \varphi (i)\transpose\right]^{-1}\sum _{i=1}^{N} \varphi (i) y(i)}
+\qquad \text{LS formula}
 \end{equation*}
 If $ \sum \varphi (i) \varphi (i)\transpose$ is singular, there are infinite solutions: $ \hat{\theta }_{N}$ can be determined by introducing tie-break rule (e.g. taking the solution with minimum norm). This may happen when many models have the same predictive capability, such as in a redundant model class or in case of uninformative data.
 
@@ -324,19 +319,15 @@ If $ \sum \varphi (i) \varphi (i)\transpose$ is singular, there are infinite sol
 J_{N}(\theta) =\frac{1}{N}\sum _{i=1}^{N}\left(y(i) -\theta \transpose \varphi (i)\right)^{2}
 \end{equation*}
 is a paraboloid. The Hessian matrix $ \frac{d^{2}}{d\theta ^{2}} J_{N}(\theta)$ completely characterizes the space of quadratic functions.
-\begin{equation*}
-\begin{aligned}
+\begin{align*}
 \frac{d}{d\theta } J_{N}(\theta) & =\frac{2}{N}\sum _{i=1}^{N} \varphi (i) \varphi (i)\transpose \theta \ -\frac{2}{N}\sum _{i=1}^{N} \varphi (i) y(i)\\
 \frac{d^{2}}{d\theta ^{2}} J_{N}(\theta) & =\frac{2}{N}\underbrace{\sum _{i=1}^{N} \varphi (i) \varphi (i)\transpose}_{\text{information matrix}}
-\end{aligned}
-\end{equation*}
+\end{align*}
 The information matrix is positive semidefinite. Indeed, taking a generic vector $x$
-\begin{equation*}
-\begin{aligned}
+\begin{align*}
 x\transpose\frac{d^{2}}{d\theta ^{2}} J_{N}(\theta) \cdotp x & =\frac{2}{N} x\transpose\left[\sum _{i=1}^{N} \varphi (i) \varphi (i)\transpose\right] x & \\
  & =\frac{2}{N}\sum _{i=1}^{N}\left(x\transpose \varphi (i)\right)^{2} \geq 0 & x\transpose \varphi (i) =\varphi (i)\transpose x
-\end{aligned}
-\end{equation*}
+\end{align*}
 $ J_{N}(\theta)$ is a paraboloid with minima:
 
 \begin{figure}
@@ -356,10 +347,8 @@ $ J_{N}(\theta)$ is a paraboloid with minima:
 \end{figure}
 
 
-\begin{equation*}
-\begin{aligned}
+\begin{align*}
 \frac{d^{2}}{d\theta ^{2}} J_{N}(\theta) & =\frac{2}{N}\sum _{i=1}^{N} \varphi (i) \varphi (i)\transpose \ \text{nonsingular} \ \text{(pos. def.)} & \Longrightarrow \ & \text{proper paraboloid (unique min.)}\\
 \frac{d^{2}}{d\theta ^{2}} J_{N}(\theta) & =\frac{2}{N}\sum _{i=1}^{N} \varphi (i) \varphi (i)\transpose\text{ singular} & \ \Longrightarrow \ & \text{degenerate paraboloid}
-\end{aligned}
-\end{equation*}
+\end{align*}
 
