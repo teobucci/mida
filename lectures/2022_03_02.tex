@@ -21,7 +21,7 @@ Now, let us consider the \gls{sp} $y(t)$ obtained as output of an asymptotically
 
 \fg{0.7}{Screenshot (18)}
 
-\section{Weak(Wide sense) characterization of AR,ARMA processes}
+\section{Weak (wide-sense) characterization of AR, ARMA processes}
 \textbf{Goal.} Given an AR, ARMA process compute the mean $m_y$ and covariance function $\gamma_y(\tau)$.
 
 %Since the steady-state solution is an MA($\infty$) process we could use such results but are too diffucult
@@ -41,7 +41,6 @@ Let us consider the AR($1$) (or equivalently ARMA($1,0$)) process generated acco
 	\item Compute $m_{y}$ and $\gamma_{y}(\tau)$ for $\tau=0, \pm 1, \pm 2, \ldots$
 \end{itemize}
 
-\todo{have a check here}
 Operatorial representation for $y(t)$:
 
 \begin{align*}
@@ -81,7 +80,7 @@ Remember that $m_{y}=0$. Start from $y(t)=a \cdot y(t-1)+e(t)$, take the square 
 \end{align*}
 Mid-terms evaluation:
 \[
-	2 a \E[y(t-1) e(t)]=0 \qquad \text{(we will show this later)}
+	2 a \E[y(t-1) e(t)]=0
 \]
 Indeed, by using the MA($\infty$) representation for $y(t-1)$ (AR process):
 $$
@@ -91,7 +90,7 @@ we have that:
 \[
 	\E[e(t) y(t-1)]=\E\left[e(t) \cdot\left(e(t-1)+a \cdot e(t-2)+a^{2} \cdot e(t-3)+a^{3} \cdot e(t-4)+\cdots\right)\right]=0
 \]
-(all products give null contribution).
+(all products give null contribution thanks to the whiteness property).
 
 
 $\E\left[(y(t-1))^{2}\right]=\gamma_{y}(0)$ (thanks to stationarity)
@@ -136,7 +135,7 @@ $$
 	\gamma_{y}(\tau)=a^{\tau} \cdot \frac{\lambda^{2}}{1-a^{2}}
 $$
 This result has been established for a generic AR($1$) process.
-Those equations are called \emph{Yule-Walker equations}.
+Those equations are called \emph{Yule-Walker equations} for AR($1$) process.
 
 Grafical representation:
 
