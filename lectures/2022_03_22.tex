@@ -34,9 +34,8 @@ $$
 	\hat{z}(t+k \mid t)=\frac{F(z)}{C(z)} z(t)
 $$
 
-<<<<<<< Updated upstream
 $$
-	y(t)=\frac{B(z)}{A(z)} u(t+k-d)+z(t+k)
+	y(t+k)=\frac{B(z)}{A(z)} u(t+k-d)+z(t+k)
 $$
 The first part is deterministically known, and hence can be trivially predicted.
 \begin{align*}
@@ -46,7 +45,7 @@ The first part is deterministically known, and hence can be trivially predicted.
 	&=\frac{B(z)}{C(z)} \cdot\Bigg(\underbrace{\frac{C(z)}{A(z)}-\frac{z^{-k} F(z)}{A(z)}}_{E(z)}\Bigg) u(t+k-d)+\frac{F(z)}{C(z)} y(t)
 \end{align*}
 $$
-	\hat{y}(t+k \mid t) =\frac{B(z) E(z)}{C(z)} \underbrace{u(t+k-d)}_{\text{known}}+\frac{F(z)}{C(z)} y(t)
+	\boxed{\hat{y}(t+k \mid t) =\frac{B(z) E(z)}{C(z)} \underbrace{u(t+k-d)}_{\text{known}}+\frac{F(z)}{C(z)} y(t)}
 $$
 
 \section{Model Identification}

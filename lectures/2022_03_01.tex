@@ -1,7 +1,8 @@
 %!TEX root = ../main.tex
-Say that $y(t)=W(z)u(t)$, where $W(z)=\frac{C(z)}{A(z)}$ means that $y(t)$ is the steady state solution to the recursive equation:
+
+Say that $y(t)=W(z)e(t)$, where $W(z)=\frac{C(z)}{A(z)}$ means that $y(t)$ is the steady state solution to the recursive equation:
 \[
-	A(z)y(t)=C(z)u(t)
+	A(z)y(t)=C(z)e(t)
 \]
 
 \section{Composition of transfer functions and output processes}
@@ -59,7 +60,7 @@ Consider now $W(z)$ a complex-valued transfer function. Then one can identify:
 \end{itemize}
 When $C(z),A(z)$ are polynomials with positive powers, then
 \[
-	\text{zeros}=\{z:(C(z)=0\} \qquad \text{poles}=\{z:(A(z)=0\}
+	\text{zeros}=\{z:C(z)=0\} \qquad \text{poles}=\{z:A(z)=0\}
 \]
 
 \textbf{Example.}

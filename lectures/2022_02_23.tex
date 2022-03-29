@@ -29,8 +29,8 @@ To calculate the generic covariance, let us proceed with $\tau =1$.
 \begin{align*}
 	\gamma(t, t-1)&=\E[(y(t)-m_{y})(y(t-1)-m_{y})]\\
 	&=\E[y(t) y(t-1)]\\
-	&=\E[(c_{0} e(t)+c_{1} e(t-1)+\ldots+c_{n} e(t-n))\cdot (y(t-1))]\\
-	&=\E[(c_{0} e(t)+c_{1} e(t-1)+\ldots+c_{n} e(t-n))\cdot (c_{0} e(t-1)+\ldots+c_{n-1} e(t-n)+c_{n} e(t-n-1))]
+	&=\E[(c_{0} e(t)+c_{1} e(t-1)+\cdots+c_{n} e(t-n))\cdot (y(t-1))]\\
+	&=\E[(c_{0} e(t)+c_{1} e(t-1)+\cdots+c_{n} e(t-n))\cdot (c_{0} e(t-1)+\cdots+c_{n-1} e(t-n)+c_{n} e(t-n-1))]
 \end{align*}
 
 Only those terms where the \gls{wn} is multiplied by itself at the same time instant are non null.
@@ -72,7 +72,7 @@ doesn't depend on $t$.
 
 \textbf{Variance.}
 \begin{align*}
-	\gamma_{y}(t, t)&=\E[(y(t)-m_{y})^{2}]\\
+	\gamma_{y}(0)&=\E[(y(t)-m_{y})^{2}]\\
 	&=\E\left[\sum_{i=0}^{\infty} c_{i} e(t-i) \cdot \sum_{j=0}^{\infty} c_{j} e(t-j)\right]\\
 	&=\E\left[\sum_{i, j=0}^{\infty} c_{i} c_{j} \cdot e(t-i) e(t-j)\right]\\
 	&=\sum_{i, j=0}^{\infty} c_{i} c_{j} \cdot \E[e(t-i) e(t-j)]\\
@@ -83,7 +83,7 @@ doesn't depend on $t$.
 
 \textbf{Covariance.}
 \begin{align*}
-	\gamma_{y}(t, t-\tau) &=\E[(y(t)-m_{y}) (y(t-\tau)-m_{y})]\\
+	\gamma_{y}(\tau) &=\E[(y(t)-m_{y}) (y(t-\tau)-m_{y})]\\
 	&=\E[y(t) y(t-\tau)]\\
 	&=\E\left[\sum_{i=0}^{\infty} c_{i} e(t-i) \cdot \sum_{j=0}^{\infty} c_{j} e(t-j-\tau)\right]\\
 	&=\E\left[\sum_{i, j=0}^{\infty} c_{i} c_{j} \cdot e(t-i) e(t-j-\tau)\right]\\

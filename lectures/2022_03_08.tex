@@ -33,10 +33,10 @@ $$
 \begin{align*}
 	\tilde{y}(t)&= y(t)-m_{y}\\
 	&= a_{1} y(t-1)+\cdots+a_{m} y(t-m)+c_{0} e(t)+\cdots+c_{n} e(t-n)-m_{y} \\
-	&= a_{1}\left(\bar{y}(t-1)+m_{y}\right)+\cdots+a_{m }\left(\bar{y}(t-m)+m_{y}\right)+\\
-	&\qquad +c_{0}\left(\tilde{e}(t)+m_{e}\right)+\cdots+c_{n}\left(\bar{e}(t-n)+m_{e}\right)-m_{y} \\
+	&= a_{1}\left(\tilde{y}(t-1)+m_{y}\right)+\cdots+a_{m }\left(\tilde{y}(t-m)+m_{y}\right)+\\
+	&\qquad +c_{0}\left(\tilde{e}(t)+m_{e}\right)+\cdots+c_{n}\left(\tilde{e}(t-n)+m_{e}\right)-m_{y} \\
 	&= a_{1} \tilde{y}(t-1)+\cdots+a_{m} \tilde{y}(t-m)+c_{0} \tilde{e}(t)+\cdots+c_{n} \tilde{e}(t-n) \\
-	&\qquad \underbrace{-\left(1-a_{1}-\cdots-a_{m}\right) m_{y}+\left(c_{0}+\cdots c_{n}\right) m_{e}}_{=0\text { since } m_{y}=\frac{c_{0}+c_{1}+\cdots+c_{n}}{1-a_{1}-\cdots-a_{m e}} m_{e}=W(1) \cdot \mu} \\
+	&\qquad \underbrace{-\left(1-a_{1}-\cdots-a_{m}\right) m_{y}+\left(c_{0}+\cdots c_{n}\right) m_{e}}_{=0\text { since } m_{y}=\frac{c_{0}+c_{1}+\cdots+c_{n}}{1-a_{1}-\cdots-a_{m }} m_{e}=W(1) \cdot \mu} \\
 \end{align*}
 Hence,
 $$
@@ -149,14 +149,14 @@ In other words, $\Gamma_y(\omega)$ is defined as the Fourier transform of the co
 
 Properties of $\Gamma_{y}(\omega)$:
 \begin{enumerate}
-	\item is a real function of the real variable $\omega$, $\Im\left(\Gamma_{y}(\omega)\right)=0 \quad \forall \omega \in \Re$
+	\item is a real function of the real variable $\omega$, $\Im\left(\Gamma_{y}(\omega)\right)=0 \quad \forall \omega \in \mathbb{R}$
 	\item is a positive function,
 	$$
 		\Gamma_{y}(\omega) \geq 0 \quad \forall \omega \in \mathbb{Y}^{\mathrm{r}}
 	$$
 	\item is an even function,
 	$$
-		\Gamma_{y}(\omega)=\Gamma_{y}(-\omega) \quad \forall \omega \in \Re
+		\Gamma_{y}(\omega)=\Gamma_{y}(-\omega) \quad \forall \omega \in \mathbb{R}
 	$$
 	\item is $2\pi$-periodic: $\Gamma_{y}(\omega)=\Gamma_{y}(\omega+k \cdot 2 \pi) \quad \forall \omega \in \Re, \forall k \in \mathbb{Z}$.
 \end{enumerate}

@@ -90,7 +90,7 @@ $$
 
 \textbf{Example 1}
 
-$v(t,s)=\alpha (s),\forall t$ where $\alpha (s)\sim G(1,3)$ (Gaussian random variable with mean = 1 and variance = 3).
+$v(t,s)=\alpha (s),\forall t$ where $\alpha (s)\sim \mathcal{N}(1,3)$ (Gaussian random variable with mean = 1 and variance = 3).
 
 Is the process stationary? Yes:
 \begin{itemize}
@@ -105,15 +105,15 @@ Is the process stationary? Yes:
 
 \textbf{Example 2}
 
-$v(t, s)=t \cdot \alpha(s)-t$, where $\alpha(s) \sim G(1,3)$.
+$v(t, s)=t \cdot \alpha(s)-t$, where $\alpha(s) \sim \mathcal{N}(1,3)$.
 \begin{itemize}
 	\item $m_{v}(t)=\E[v(t, s)]=\E[t \cdot \alpha(s)-t]=t \cdot \E[\alpha(s)]-t=t-t=0$ doesn't depend on $t$.
-	\item \begin{align*}
+	\item $\begin{aligned}[t]
 		\gamma_{v}(t, t-\tau)&=\E[(v(t, s)-m_{v}(t))(v(t-\tau, s)-m_{v}(t-\tau))]\\
 	&=\E[(t \cdot \alpha(s)-t)((t-\tau) \cdot \alpha(s)-(t-\tau))]\\
 	&=\E[t \cdot(t-\tau)(\alpha(s)-1)^{2}]\\
 	&=t \cdot(t-\tau) \cdot \E[(\alpha(s)-1)^{2}]=t \cdot(t-\tau) \cdot 3
-	\end{align*}
+	\end{aligned}$
 	\emph{does} depend on $t$.
 \end{itemize}
 The process is not stationary.

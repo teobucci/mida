@@ -17,7 +17,8 @@ is known as \textbf{all-pass filter}.
 		\item $C(z)$ and $A(z)$ are monic (i.e. the coefficients of the maximum degree terms of $C(z)$ and $A(z)$ are equal to 1);
 		\item $C(z)$ and $A(z)$ have null relative degree;
 		\item $C(z)$ and $A(z)$ are coprime (i.e. they have no common factors);
-		\item the poles and the zeroes of $W(z)$ are such that $|z|\leq 1$.
+		\item[4a.]the poles of $W(z)$ are such that $|z|< 1$.
+		\item[4b.]the zeroes of $W(z)$ are such that $|z|\leq 1$.
     \end{enumerate}
 \end{theorem}
 
@@ -25,7 +26,7 @@ When all the four conditions above are satisfied, we will say that $y(t) = W(z)\
 
 \textbf{Observation.} Conditions 1, 2, and 3 remove any ambiguity as due to the process described in Case 1, Case 2, and Case 3, respectively. 
 
-The first part of Condition 4 assure that $W(z)$ is asymptotically stable\todo{in realtà no, chiede solo $|z|\le 1$, mentre per l'a.s. serve $|z|<1$.} so that $y(t)$ is well defined, while the second part removes any ambiguity as due to the process described in Case 4.
+Condition 4a assure that $W(z)$ is asymptotically stable so that $y(t)$ is well defined, while 4b removes any ambiguity as due to the process described in Case 4.
 
 \textbf{Example.}
 
@@ -63,7 +64,7 @@ Let us consider a zero mean ARMA process:
 
 \textbf{Fundamental assumptions:}\label{assumptions-prediction-theory}
 \begin{enumerate}
-	\item[0] $W(z)=\frac{C(z)}{A(z)}$ is an asymptotically stable rational transfer function (i.e. all poles are such that $|z|<1$), which also implies that $y(t)$ is well defined and a \gls{ssp};
+	\item[0.] $W(z)=\frac{C(z)}{A(z)}$ is an asymptotically stable rational transfer function (i.e. all poles are such that $|z|<1$), which also implies that $y(t)$ is well defined and a \gls{ssp};
 	\item $y(t) = W(z)e(t)$ is a canonical representation;
 	\item $W(z)$ is minimum phase (i.e. all zeros are such that $|z|<1$).\footnote{Note that \emph{canonical} implies that all zeros are such that $|z|\le 1$, but it's not enough, we have to exclude zeros on the unit circle.}
 \end{enumerate}
@@ -90,7 +91,7 @@ In general:
 $$\hat{y}(t + k \mid t) = f ( y(t), y(t-1), y(t-2),\ldots)$$
 i.e. the predictor is any function of the available observations of the process $y(t)$.
 
-\textbf{Abstraction.} We suppose to have the whole observations from $-\infty$ up to $t$ (infinite sequence of observations).
+\textbf{Abstraction.} We suppose to have the all the observations from $-\infty$ up to $t$ (infinite sequence of observations).
 
 We will restrict ourselves to functions $f$ which are linear:
 \begin{align*}
