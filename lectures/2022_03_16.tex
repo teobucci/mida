@@ -41,7 +41,7 @@ thus our optimal predictor from noise would be
 \]
 The problem now is that if we try to reconstruct the noise from the output in the predictor $\hat y^{e} (t+1\mid t) = -2e(t)$ obtained by the non canonical form, we get:
 \[
-	y(t)=(1-2z^{-1})e(t) \iff e(t) \frac{1}{1-2z^{-1}} y(t) \implies \hat y^{e} (t+1\mid t) = -2e(t) = -\frac{2}{1-2z^{-1}}y(t)
+	y(t)=(1-2z^{-1})e(t) \iff e(t) =\frac{1}{1-2z^{-1}} y(t) \implies \hat y^{e} (t+1\mid t) = -2e(t) = -\frac{2}{1-2z^{-1}}y(t)
 \]
 this is a \textbf{fatal mistake}, because it's not well defined, $e(t)$ cannot be reconstructed here!
 
