@@ -33,7 +33,7 @@ $$
 \begin{align*}
 	\tilde{y}(t)&= y(t)-m_{y}\\
 	&= a_{1} y(t-1)+\cdots+a_{m} y(t-m)+c_{0} e(t)+\cdots+c_{n} e(t-n)-m_{y} \\
-	&= a_{1}\left(\bar{y}(t-1)+m_{y}\right)+\cdots+a_{m e}\left(\bar{y}(t-m)+m_{y}\right)+\\
+	&= a_{1}\left(\bar{y}(t-1)+m_{y}\right)+\cdots+a_{m }\left(\bar{y}(t-m)+m_{y}\right)+\\
 	&\qquad +c_{0}\left(\tilde{e}(t)+m_{e}\right)+\cdots+c_{n}\left(\bar{e}(t-n)+m_{e}\right)-m_{y} \\
 	&= a_{1} \tilde{y}(t-1)+\cdots+a_{m} \tilde{y}(t-m)+c_{0} \tilde{e}(t)+\cdots+c_{n} \tilde{e}(t-n) \\
 	&\qquad \underbrace{-\left(1-a_{1}-\cdots-a_{m}\right) m_{y}+\left(c_{0}+\cdots c_{n}\right) m_{e}}_{=0\text { since } m_{y}=\frac{c_{0}+c_{1}+\cdots+c_{n}}{1-a_{1}-\cdots-a_{m e}} m_{e}=W(1) \cdot \mu} \\
@@ -141,7 +141,7 @@ In the ARX process $C(z)=1$.
 \begin{definition}
 	The spectral density of a \gls{ssp} $y(t)$ (also called the \textbf{spectrum} of $y(t)$ ) is defined as:
 	\[
-		\Gamma_{y}(\omega)=\sum_{t=-\infty}^{+\infty} \gamma_{y}(\tau) \cdot e^{-j \omega \tau}.
+		\Gamma_{y}(\omega)=\sum_{\tau=-\infty}^{+\infty} \gamma_{y}(\tau) \cdot e^{-j \omega \tau}.
 	\]
 \end{definition}
 
@@ -182,11 +182,11 @@ Spectral density:
 \textbf{Example} (MA(1) process)
 
 $y(t)=e(t)+c \cdot e(t-1), c \in \mathcal{R}$ (real coefficient)
-$e(t)\sim \WN(0,\lambda^{2} )$
+$e(t)\sim \WN(0,1 )$
 
 \begin{align*}
-	&\gamma_{y}(0)=\left(1^{2}+c^{2}\right) \cdot \lambda^{2}=(1+c^{2})\lambda^{2}\\
-	&\gamma_{y}(1)=(1 \cdot c) \cdot \lambda^{2}=c\lambda^{2} \\
+	&\gamma_{y}(0)=\left(1^{2}+c^{2}\right)\cdot \lambda^{2}=(1+c^{2})\\
+	&\gamma_{y}(1)=(1 \cdot c) \cdot \lambda^{2}=c \\
 	&\gamma_{y}(\tau)=0 \text { when } \tau=\ldots, \pm 3, \pm 4, \ldots .
 \end{align*}
 Spectral density (via the definition):
@@ -236,9 +236,10 @@ $$
 Recalling that:
 \begin{itemize}
 	\item $|a+j b|^{2}=(a+j b)(a-j b)=a^{2}+b^{2}$
-	\item $1+c e^{-j \omega}=1+c \cos (-\omega)+j \sin (-\omega)=1+c \cos (\omega)-j \sin (\omega)$ $1+c e^{+j \omega}=1+c \cos (\omega)+j \sin (\omega)$
+	\item $1+c e^{-j \omega}=1+c \cos (-\omega)+jc \sin (-\omega)=1+c \cos (\omega)-j c\sin (\omega)$ 
+	\item$\left|1+c e^{-j \omega}\right|^{2}=\left|1+c \cos (\omega)-j c\sin (\omega)\right|^{2}=\left(1+c \cos (\omega)\right)^2+\left(-c\sin (\omega)\right)^2=1+c^{2}+2 c \cos (\omega)$
 \end{itemize}
-
+Moreover:
 $$
 \Gamma_{y}(\omega)=\left(1+c e^{-j \omega}\right)\left(1+c e^{+j \omega}\right)\cdot \lambda^{2}=(1+c^{2}+c\left(e^{j \omega}+e^{-j \omega}\right))\cdot \lambda^{2}=(1+c^{2}+2 c \cos (\omega))\cdot \lambda^{2}
 $$
