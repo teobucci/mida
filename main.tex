@@ -19,16 +19,8 @@
 
 % Comandi pratici
 
-% Lettere comuni in grassetto
-\newcommand{\x}{\mathbf{x}}
-\newcommand{\y}{\mathbf{y}}
-\newcommand{\zer}{\mathbf{0}}
 
-% Lettere comuni in grassetto greche
-\usepackage{bm} % per avere le lettere greche in bold con \bm{\sigma}
-\newcommand{\sigg}{\bm{\sigma}}
-\newcommand{\nuu}{\bm{\nu}}
-\newcommand{\alphaa}{\bm{\alpha}}
+\newcommand{\RR}{\mathbb{R}}
 
 % d nell'integrale e i rispettivi usi
 \newcommand{\de}{\,\mathrm d}
@@ -54,6 +46,14 @@
 \newacronym{mse}{MSE}{mean square error}
 \newacronym{wn}{WN}{White Noise}
 \DeclareMathOperator{\WN}{WN}
+
+% \usepackage{xifthen}
+% 1 parametro necessario, con valore "nullo" di default (le due quadre vuote)
+% non mettere le seconde quadre equivale a dire che è obbligatorio
+% \newcommand{\ar}[1][]{\ifthenelse{\isempty{#1}}{AR}{AR($#1$)}}
+% \newcommand{\ma}[1][]{\ifthenelse{\isempty{#1}}{MA}{MA($#1$)}}
+% \newcommand{\arma}[1][]{\ifthenelse{\isempty{#1}}{ARMA}{ARMA($#1$)}}
+% \newcommand{\arx}[1][]{\ifthenelse{\isempty{#1}}{ARX}{ARX($#1$)}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
