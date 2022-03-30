@@ -1,10 +1,5 @@
 %!TEX root = ../main.tex
 
-Say that $y(t)=W(z)e(t)$, where $W(z)=\frac{C(z)}{A(z)}$ means that $y(t)$ is the steady state solution to the recursive equation:
-\[
-	A(z)y(t)=C(z)e(t)
-\]
-
 \section{Composition of transfer functions and output processes}
 \subsection{Series}
 Given $u(t)$ \gls{sp}, consider
@@ -33,7 +28,10 @@ Given $u(t)$ \gls{sp}, consider
 	\[
 		y(t)=[W_{1}(z)\cdot W_{2}(z)]u(t)=\frac{C_{1}(z)\cdot C_{2}(z)}{A_{1}(z)\cdot A_{2}(z)}u(t)
 	\]
-	meaning that $y(t)$ is the solution to the recursive equation $A_{1}(z)\cdot A_{2}(z) y(t) = C_{1}(z)\cdot C_{2}(z)u(t)$.
+	meaning that $y(t)$ is the solution to the recursive equation:
+	\[
+		A_{1}(z)\cdot A_{2}(z)\cdot y(t) = C_{1}(z)\cdot C_{2}(z)\cdot u(t).
+	\]
 \end{theorem}
 
 \subsection{Parallel}
@@ -58,7 +56,7 @@ Consider now $W(z)$ a complex-valued transfer function. Then one can identify:
 	\item \textbf{zeros}: all $z\in \mathbb{C}$ such that $W(z)=0$.
 	\item \textbf{poles}: all $z\in \mathbb{C}$ such that $W^{-1} (z)=0$.
 \end{itemize}
-When $C(z),A(z)$ are polynomials with positive powers, then
+When $C(z),A(z)$ are polynomials with \emph{positive powers}, then
 \[
 	\text{zeros}=\{z:C(z)=0\} \qquad \text{poles}=\{z:A(z)=0\}
 \]
@@ -73,16 +71,37 @@ Zeros are $z$ such that $z^{2}+\frac{1}{2} z+\frac{1}{4}=0$
 \[
 	z_{1,2}=\frac{-\frac{1}{2} \pm \sqrt{\left( \frac{1}{2}  \right) ^2 -4\cdot\frac{1}{4} } }{2} = -\frac{1}{4}\pm i\frac{\sqrt{3} }{4}
 \]
-\fg{0.7}{Screen Shot 2022-03-08 at 16.57.50}
+%\fg{0.7}{Screen Shot 2022-03-08 at 16.57.50}
+\begin{figure}[htpb]
+	\centering
+	\begin{tikzpicture}
 
-\textbf{Remark.}
-We say that $W(z)=C(z)/A(z)$ is
-\begin{itemize}
-	\item \textbf{asymptotically stable} if all \emph{poles} are such that $|z|<1$.
-	\item \textbf{minimum phase} if all \emph{zeros} are such that $|z|<1$.
-\end{itemize}
+		% Axes:
+		\draw [-stealth] (-4,0) -- (4,0) node [above left]  {$\Re$};
+		\draw [-stealth] (0,-2.5) -- (0,2.5) node [below right] {$\Im$};
 
-When ARMA processes are well-defined? Consider $W(z)$ rational transfer function, $v(t)$ \gls{sp} (input), $y(t)=W(z)v(t)$.
+		% pole
+		\node[cross out,draw=black] at (0,0) {};
+
+		\draw[dashed] (-1,-1.73) -- (-1,1.73) node[midway, below left]{$-\frac{1}{4}$};
+		
+		% zeros    
+		\draw[dashed] (0,1.73) node[right] {$i \frac{\sqrt{3}}{4}$} --  (-1,1.73) node[solid, fill=white, circle,draw=black] {};
+		\draw[dashed] (0,-1.73) node[right] {$-i \frac{\sqrt{3}}{4}$} --  (-1,-1.73) node[solid, fill=white, circle,draw=black] {};
+
+	\end{tikzpicture}
+\end{figure}
+\FloatBarrier
+
+\begin{definition}
+	We say that $W(z)=\frac{C(z)}{A(z)}$ is:
+	\begin{itemize}
+		\item \textbf{asymptotically stable} if all \emph{poles} are such that $|z|<1$.
+		\item \textbf{minimum phase} if all \emph{zeros} are such that $|z|<1$.
+	\end{itemize}
+\end{definition}
+
+Consider $W(z)$ rational transfer function, $v(t)$ \gls{sp} (input), $y(t)=W(z)v(t)$.
 
 \begin{theorem}
 	If
@@ -90,7 +109,7 @@ When ARMA processes are well-defined? Consider $W(z)$ rational transfer function
 		\item $v(t)$ is a \gls{ssp};
 		\item $W(z)$ is asymptotically stable;
 	\end{itemize}
-	then $y(t)$ is well-defined and is also \emph{stationary}.
+	then $y(t)$ is well-defined and is also \emph{stationary} (is a \gls{ssp}).
 \end{theorem}
 
 In the case of ARMA processes, the input is a \gls{wn}, which is stationary by definition. Thus we just need to check the second condition.

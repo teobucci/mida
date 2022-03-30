@@ -1,6 +1,6 @@
 %!TEX root = ../main.tex
-\chapter{Stochastic Processes}
-A \gls{sp} is an infinite sequence of random variables all defined on the same probabilistic space:
+\chapter{Stochastic Processes and Model Classes}
+A \gls{sp} is an infinite sequence of random variables all defined on the same probabilistic space $(\Omega,\mathcal{A},\mathbb{P})$:
 \[
 	\ldots,v(1,s),v(2,s),v(3,s),\ldots,v(t,s),\ldots
 \]
@@ -8,49 +8,50 @@ with $s$: random experiment realization and $t=0,\pm 1,\pm 2,\ldots$: time index
 
 \textbf{Observation.} SP extends the notion of random vector (SP is a random vector with infinite entries).
 
-\textbf{Observation.} For a fixed value of the random experiment $s = \overline{s}$, the \gls{sp} becomes the numeric sequence:
+\textbf{Observation.} For a \emph{fixed} value of the random experiment $s = \overline{s}$, the \gls{sp} becomes the numeric sequence:
 \[
 	\ldots,v(1,\overline{s}),v(2,\overline{s}),v(3,\overline{s}),\ldots,v(t,\overline{s}),\ldots
 \]
 which is called \textbf{realization} of the \gls{sp}.
 For different values of $s$, one gets different realizations of the \gls{sp}.
 
-We will think of available observations ${u(1),u(2),\ldots,u(N)}$ and ${y(1), y(2),\ldots, y(N)}$ as finite length realizations of \gls{sp} (stochastic process = uncertain model for a time series or I/O system).
+We will think of available observations ${u(1),u(2),\ldots,u(N)}$ and ${y(1), y(2),\ldots, y(N)}$ as finite length realizations.
 
 \textbf{Mean value} $m(t)$: it is the expected value of random variable $v(t,s)$ at time $t$:
 \[
-	m(t)=\E[v(t, s)]=\int v(t, s) \mathbb{P}(ds)
+	m(t)=\E[v(t, s)]=\int_{\Omega} v(t, s) \mathbb{P}(ds)
 \]
 $m(t)$ returns the value around which the process take value at time $t$.
 
 \textbf{Covariance function} $\gamma(t_{1}, t_{2})$: it is the expected value of the product of unbiased random variables $(v(t, s)-m(t))$ at two time instants $(t_{1}, t_{2}):$
 \begin{align*}
 	\gamma(t_{1}, t_{2}) &=\E[(v(t_{1}, s)-m(t_{1}))(v(t_{2}, s)-m(t_{2}))] \\
-	&=\int(v(t_{1}, s)-m(t_{1}))(v(t_{2}, s)-m(t_{2})) \mathbb{P}(ds)
+	&=\int_{\Omega}(v(t_{1}, s)-m(t_{1}))(v(t_{2}, s)-m(t_{2})) \mathbb{P}(ds)
 \end{align*}
 $\gamma(t_{1}, t_{2})$ quantifies the relation existing between the \emph{gaps} between the process realizations and the mean value at two different time instants.
 
 Particular case: $t_{1}=t_{2}=t$.
 \[
-	\gamma(t, t)=\E[(v(t, s)-m(t))^{2}]=\int(v(t, s)-m(t))^{2} \mathbb{P}(ds)
+	\gamma(t, t)=\E[(v(t, s)-m(t))^{2}]=\int_{\Omega}(v(t, s)-m(t))^{2} \mathbb{P}(ds)
 \]
 is called the process \textbf{variance function} (it quantifies the process dispersion around its mean value at each time instant).
 
 \section{Stationary Stochastic Processes}
-A stochastic process is called \textbf{\gls{ssp}} (wide sense) if:
+A stochastic process is called \textbf{\gls{ssp}} (wide-sense) if:
 \begin{itemize}
-	\item $m(t)=m \quad \forall t$
-	\item $\gamma(t_{1}, t_{2})$ depends on $\tau=t_{1}-t_{2}$ only, i.e.: $\gamma(t_{1}, t_{2})=\gamma(t_{3}, t_{4})$ if $t_{1}-t_{2}=t_{3}-t_{4}=\tau \quad \forall t_{1}, t_{2}, t_{3}, t_{4}$
+	\item $m(t)=m, \forall t$;
+	\item $\gamma(t_{1}, t_{2})$ only depends on $\tau=t_{1}-t_{2}$,\\
+	i.e. $\gamma(t_{1}, t_{2})=\gamma(t_{3}, t_{4})$ if $t_{1}-t_{2}=t_{3}-t_{4}=\tau, \forall t_{1}, t_{2}, t_{3}, t_{4}$.
 \end{itemize}
 Idea: the probabilistic properties of a \gls{ssp} are time-translation invariant.
 
 \glspl{ssp} admit a \emph{simplified} representation of the covariance function:
-\begin{gather*}
-\gamma(\tau)=\gamma(t, t-\tau)=\E[(v(t)-m)(v(t-\tau)-m)]\qquad (t_{1}=t, t_{2}=t-\tau, t_{1}-t_{2}=\tau)
-\end{gather*}
-and
 \[
-	\gamma(0)=\E[(v(t)-m)^{2}]=\lambda^2  \qquad \text{is the variance of the process}
+	\boxed{\gamma(\tau)=\gamma(t, t-\tau)=\E[(v(t)-m)(v(t-\tau)-m)]}
+\]
+where
+\[
+	\boxed{\gamma(0)=\E[(v(t)-m)^{2}]=\lambda^2} \quad \text{is the variance of the process}
 \]
 Why \glspl{ssp}?
 \begin{itemize}
@@ -59,10 +60,7 @@ Why \glspl{ssp}?
 	\item Non-stationary processes can be recast in the framework of \gls{ssp} by first eliminating the non-stationary part from data (data pre-processing).
 \end{itemize}
 
-\textbf{Covariance function properties for an \gls{ssp}}
-$$
-\gamma(\tau)=\E[(v(t)-m)(v(t-\tau)-m)]
-$$
+\textbf{Properties of the covariance function for a \gls{ssp}.}
 \begin{itemize}
 	\item $\gamma(0)=\E[(v(t)-m)^{2}] \geq 0$ (non negative at initial time)
 	\item $|\gamma(\tau)| \leq \gamma(0)$ (bounded)
@@ -77,8 +75,8 @@ $$
 
 \fg{0.7}{Screen Shot 2022-03-06 at 00.50.16}
 
-\textbf{Observation}
-\begin{enumerate}
+\textbf{Observation.}
+\begin{itemize}
 	\item Given a \gls{ssp} $x(t)$, we will write $m_{x}$ e $\gamma_{x}(\tau)$ for its mean and covariance function
 	\item Two \gls{ssp} $y_{1}(t)$ and $y_{2}(t)$ are wide-sense equivalent if $m_{y_{1}}=m_{y_{2}}$ e $\gamma_{y_{1}}(\tau)=\gamma_{y_{2}}(\tau), \forall \tau$
 	\item The \emph{covariance function}
@@ -86,47 +84,48 @@ $$
 		\E[(v(t)-m) \cdot(v(t-\tau)-m)]
 	$$
 	is very \emph{different} from the $2^{\text{nd}}$ order moment function $\E[v(t) \cdot v(t-\tau)]$.
-\end{enumerate}
-
-\textbf{Example 1}
-
-$v(t,s)=\alpha (s),\forall t$ where $\alpha (s)\sim \mathcal{N}(1,3)$ (Gaussian random variable with mean = 1 and variance = 3).
-
-Is the process stationary? Yes:
-\begin{itemize}
-	\item $m_{v}(t)=\E[v(t, s)]=\E[\alpha(s)]=1=m_{v}$ doesn't depend on $t$.
-	\item recalling that $v(t, s)=\alpha(s), \forall t$ and that $m_{v}(t)=1=m_{v}$
-	\begin{align*}
-		\gamma_{v}(t, t-\tau)&=\E[(v(t, s)-m_{v}(t))(v(t-\tau, s)-m_{v}(t-\tau))]\\
-		&=\E[(\alpha(s)-1)(\alpha(s)-1)]=3=\gamma_{v}(\tau)
-	\end{align*}
-	 doesn't depend on $t$.
 \end{itemize}
 
-\textbf{Example 2}
+\textbf{Example 1.}
 
-$v(t, s)=t \cdot \alpha(s)-t$, where $\alpha(s) \sim \mathcal{N}(1,3)$.
+$\boxed{v(t,s)=\alpha (s)}$, where $\alpha (s)\sim \mathcal{N}(1,3)$.
+
 \begin{itemize}
-	\item $m_{v}(t)=\E[v(t, s)]=\E[t \cdot \alpha(s)-t]=t \cdot \E[\alpha(s)]-t=t-t=0$ doesn't depend on $t$.
+	\item $m_{v}(t)=\E[v(t, s)]=\E[\alpha(s)]=1=m_{v}$\\
+	doesn't depend on $t$;
+	\item $\begin{aligned}[t]
+		\gamma_{v}(t, t-\tau)&=\E[(v(t, s)-m_{v}(t))(v(t-\tau, s)-m_{v}(t-\tau))]\\
+		&=\E[(\alpha(s)-1)(\alpha(s)-1)]=3=\gamma_{v}(\tau)
+	\end{aligned}$\\
+	doesn't depend on $t$.\\
+	Then the process is stationary.
+\end{itemize}
+
+\textbf{Example 2.}
+
+$\boxed{v(t, s)=t \cdot \alpha(s)-t}$, where $\alpha(s) \sim \mathcal{N}(1,3)$.
+\begin{itemize}
+	\item $m_{v}(t)=\E[v(t, s)]=\E[t \cdot \alpha(s)-t]=t \cdot \E[\alpha(s)]-t=t-t=0$\\
+	doesn't depend on $t$;
 	\item $\begin{aligned}[t]
 		\gamma_{v}(t, t-\tau)&=\E[(v(t, s)-m_{v}(t))(v(t-\tau, s)-m_{v}(t-\tau))]\\
 	&=\E[(t \cdot \alpha(s)-t)((t-\tau) \cdot \alpha(s)-(t-\tau))]\\
 	&=\E[t \cdot(t-\tau)(\alpha(s)-1)^{2}]\\
 	&=t \cdot(t-\tau) \cdot \E[(\alpha(s)-1)^{2}]=t \cdot(t-\tau) \cdot 3
-	\end{aligned}$
-	\emph{does} depend on $t$.
+	\end{aligned}$\\
+	\emph{does} depend on $t$.\\
+	Then the process is not stationary.
 \end{itemize}
-The process is not stationary.
 
 \textbf{Observation.}
 
-If $\gamma(t, \tau)>0$ then there is a tendency of preserving the sign of the deviation from $t$ to $\tau $. Otherwise there is a tendency of changing the sign.
+If $\gamma(t, \tau)>0$ then there is a tendency of preserving the sign going from $t$ to $\tau $. The opposite otherwise.
 
 \section{White Noise}
 
 An \gls{ssp} $e(t)$ is called \textbf{\gls{wn}} with mean $\mu$ and variance $\lambda^{2}$, we shall write
 \[
-	e(t) \sim \WN(\mu, \lambda^{2}),
+	\boxed{e(t) \sim \WN(\mu, \lambda^{2})}
 \]
 if the following conditions hold:
 \begin{itemize}
@@ -167,14 +166,14 @@ Read \emph{Moving Average of order $n$}.
 
 Let $e(t) \sim \WN(0, \lambda^{2})$, and MA process is obtained as
 \[
-	\boxed{y(t)=c_{0} e(t)+c_{1} e(t-1)+c_{2} e(t-2)+\ldots+c_{n} e(t-n).}
+	\boxed{y(t)=c_{0} e(t)+c_{1} e(t-1)+c_{2} e(t-2)+\ldots+c_{n} e(t-n)}
 \]
 In other words, the output $y(t)$ of a MA process is given by a linear combination of the last $n+1$ past values of the input \gls{wn} $e(t)$.
 While $t$ is let vary, the linear combination is made on a sliding window (moving average).
 
 \textbf{Mean.}
 \[
-	m_{y}(t)=\E[y(t)] = \E[c_{0} e(t)+c_{1} e(t-1)+c_{2} e(t-2)+\cdots+c_{n} e(t-n)] = 0+0+\cdots+0=m_{y}=0 \quad \forall t
+	m_{y}(t)=\E[y(t)] = \E[c_{0} e(t)+c_{1} e(t-1)+c_{2} e(t-2)+\cdots+c_{n} e(t-n)] = 0+\cdots+0=m_{y}=0,
 \]
 hence $m_{y}(t)$ doesn't depend on $t$.
 

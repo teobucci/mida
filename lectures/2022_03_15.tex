@@ -27,10 +27,14 @@ Any linear predictor based on past output observations, can be rewritten as a (l
 We will solve the Optimal Predictor problem in the \emph{linear predictors from noise} set since it admits an easy solution, and then we will prove that the inclusion is actually an \emph{equality}.
 
 The problem can be now formulated as follows:
-\begin{gather*}
-	\text{find } \beta_{0}, \beta_{1}, \beta_{2}, \ldots \text{ s.t. } \E\left[(y(t+k)-\hat{y}(t+k \mid t))^{2}\right] \text{ is minimum,}\\
-	\text{where } \hat{y}(t+k \mid t) = \sum_{i=0}^{\infty} \beta_{i} e(t-i).
-\end{gather*}
+\[
+\boxed{
+	\begin{gathered}
+		\text{find } \beta_{0}, \beta_{1}, \beta_{2}, \ldots \text{ s.t. } \E\left[(y(t+k)-\hat{y}(t+k \mid t))^{2}\right] \text{ is minimum,}\\
+		\text{where } \hat{y}(t+k \mid t) = \sum_{i=0}^{\infty} \beta_{i} e(t-i).
+	\end{gathered}
+	}
+\]
 
 \textbf{Observation.} $y(t+k)$ admits a MA($\infty$) representation
 \begin{align*}
@@ -64,7 +68,7 @@ Hence:
 \end{align*}
 When we minimize with respect to $\beta_{0}, \beta_{1}, \beta_{2}, \ldots$, the first term cannot be modified, while at best the second term can be made equal to zero by choosing:
 \[
-	\beta_{i} = w_{k+i}
+	\boxed{\beta_{i} = w_{k+i}}
 \]
 So the optimal linear predictor based on noise measurements is:
 \begin{align*}
@@ -106,7 +110,7 @@ In order to use it practice, we need to express the predict value as a function 
 
 \textbf{Is it possible to reconstruct the noise $e(t)$ from the output $y(t)$?}
 
-If the transfer function is \emph{canonical} and \emph{asymptotically stable} the answer is yes.
+If the transfer function is \emph{canonical} (and thus \emph{asymptotically stable}) the answer is \emph{yes}.
 
 Since
 \begin{equation}\label{eq:reconstruction-noise-from-data}
@@ -118,7 +122,7 @@ then we can substitute this expression in the predictor
 \]
 which is now a predictor form output and it is also optimal.
 
-Suppose it is not, then $\exists \hat{y}(t+k \mid t)=\sum_{i=0}^{\infty} \tilde{\alpha_i}y(t-i)$ which is better than our predictor from noise. But since the first can be written itself as a predictor from noise this is a contradiction.
-\[
-	\E\left[(y(t+k)-\sum_{i=0}^{\infty} \tilde{\alpha_i}y(t-i))^2\right]<\E\left[(y(t+k)-\hat{y}(t+k \mid t))^{2}\right]
-\]
+%Suppose it is not, then $\exists \hat{y}(t+k \mid t)=\sum_{i=0}^{\infty} \tilde{\alpha_i}y(t-i)$ which is better than our predictor from noise. But since the first can be written itself as a predictor from noise this is a contradiction.
+%\[
+%	\E\left[(y(t+k)-\sum_{i=0}^{\infty} \tilde{\alpha_i}y(t-i))^2\right]<\E\left[(y(t+k)-\hat{y}(t+k \mid t))^{2}\right]
+%\]

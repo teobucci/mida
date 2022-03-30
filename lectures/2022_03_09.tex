@@ -1,6 +1,6 @@
 %!TEX root = ../main.tex
 \section{Spectrum of a \glsentrylong{ssp}}
-Given $y(t)$ a \gls{ssp}, we can calculate:
+Given $y(t)$ a \gls{ssp}, we can compute:
 \begin{itemize}
 	\item Fourier transform
 	\[
@@ -25,14 +25,14 @@ There is bijective relationship between the spectrum and the covariance function
 Suppose that an \gls{ssp} $y(t)$ is filtered through an (ideal) pass-band filter:
 \fg{0.7}{Screen Shot 2022-03-12 at 16.36.12}
 where $\tilde{y}(t)$ is the filtered output process.
-\begin{theorem}[Kinchine-Wiener]
+\begin{theorem}[Kinchine--Wiener]
 	The spectral density at a fixed $\omega$ equals to the mean energy of process realizations frequency by frequency:
 	\[
 		\Gamma _{y}(\overline{\omega})=\lim_{\delta  \to 0} \gamma _{\tilde{y}}(0)
 	\]
 \end{theorem}
 
-\emph{Example (\gls{wn}).}
+\emph{Example.}
 The \gls{wn} spectral density is constant, i.e. \gls{wn} energy is \emph{equally-distributed} all over the frequency domain.
 \fg{0.7}{Screen Shot 2022-03-12 at 16.41.55}
 
@@ -61,8 +61,11 @@ Consider $y(t)=\frac{C(z)}{A(z)}e(t)$
 \[
 	\Gamma _{y}(\omega )=\left|\frac{C(e^{j\omega})}{A(e^{j\omega})}\right|^2 \cdot\lambda^2 =\frac{C(e^{j\omega})}{A(e^{j\omega} )} \cdot \frac{C(e^{-j\omega})}{A(e^{-j\omega} )}\cdot\lambda^2 
 \]
-$y(t)$ has a \emph{rational} spectral density. Is the reverse (i.e. having a spectral density means that the process is ARMA) true? Yes.
-
+$y(t)$ has a \emph{rational} spectral density. The reverse il also true:
+\[
+	y(t) \text{ ARMA} \iff W(z) \text{ rational}
+\]
+Indeed we have the following result:
 \begin{theorem}
 	Let $y(t)$ be a \gls{ssp} with rational spectral density.
 	Then, there exists a \gls{wn} process $\xi(t)$ with suitable mean and variance and a rational transfer function $W(z)$ such that:
@@ -72,65 +75,70 @@ $y(t)$ has a \emph{rational} spectral density. Is the reverse (i.e. having a spe
 	i.e. $y(t)$ is an ARMA process.
 \end{theorem}
 
-Question: is the ARMA representation (i.e. the \emph{choice} of $\xi(t)$ and of $W(z))$ \emph{unique}? No.
-
+However, the \emph{choice} of $\xi(t)$ and of $W(z))$ \emph{is not unique}.
 The \emph{same} process $y(t)$ can be generated according to an infinite number of different ARMA models.
 
-Let $y(t)=W(z)\xi(t)$, where $\xi(t)$ is a \gls{wn}. Our goal is show how to construct $\tilde{W}(z)$ and $\tilde{\xi}(t)$ such that $\tilde{W}(z)\neq W(z)$ and $\tilde{\xi}(t)\neq \xi(t)$, but $y(t)=\tilde W(z)\tilde\xi(t)$
+Let $y(t)=W(z)\xi(t)$, where $\xi(t)$ is a \gls{wn}. Our goal is show how to construct $\tilde{W}(z)$ and $\tilde{\xi}(t)$ such that $\tilde{W}(z)\neq W(z)$ and $\tilde{\xi}(t)\neq \xi(t)$, but $y(t)=\tilde W(z)\tilde\xi(t)$. Let us consider four different cases:
+\begin{enumerate}
+	\item 
+	Let $\alpha \in \R$
+	\[
+		y(t)=W(z) \xi(t) = \underbrace{\frac{W(z)}{\alpha}}_{\tilde{W}(z)} \cdot \underbrace{\alpha \xi(t)}_{\tilde{\xi}(t)} = \tilde{W}(z)\tilde{\xi}(t)
+	\]
+	where they are still both respectively a rational transfer function and a \gls{wn}, indeed:
+	\begin{align*}
+		\E[\tilde{\xi}(t)]&=\E[\alpha \xi(t)]=\alpha \E[\xi(t)]=\alpha \mu\\
+		\gamma_{\tilde{\xi}}(\tau)&=\E[(\alpha\xi(t)-\alpha\mu)(\alpha \xi(t-\tau)-\alpha \mu)]=\alpha^2 \E[(\xi(t)-\mu)( \xi(t-\tau)- \mu)] = \alpha^2 \gamma_{\xi}(\tau)
+	\end{align*}
 
-\textbf{Case 1.}
-Let $\alpha \in \R$
-\[
-	y(t)=W(z) \xi(t)=W(z) \cdot \frac{\alpha}{\alpha} \xi(t)=\left[\frac{1}{\alpha} \cdot W(z)\right] \alpha \xi(t)=\tilde{W}(z) \tilde{\xi}(t)
-\]
-where they are still both respectively a rational transfer function and a \gls{wn}, indeed:
-\begin{align*}
-	\E[\tilde{\xi}(t)]&=\E[\alpha \xi(t)]=\alpha \E[\xi(t)]=\alpha \mu\\
-	\gamma_{\tilde{\xi}}(\tau)&=\E[(\alpha\xi(t)-\alpha\mu)(\alpha \xi(t-\tau)-\alpha \mu)]\\
-	&=\alpha^2 \E[(\xi(t)-\mu)( \xi(t-\tau)- \mu)] = \alpha^2 \gamma_{\xi}(\tau)
-\end{align*}
+	\item 
+	Let $n \in \N$
+	\[
+		y(t)=W(z) \xi(t)=W(z) \cdot \frac{z^{n}}{z^{n}} \xi(t)=\left[z^{n} \cdot W(z)\right] \xi(t-n)=\tilde{W}(z) \tilde{\xi}(t)
+	\]
+	where they are still both respectively a rational transfer function and a \gls{wn}, indeed:
+	\begin{align*}
+		\E[\tilde{\xi}(t)]&=\E[\xi(t-n)]=\mu \\
+		\gamma_{\tilde{\xi}}(\tau)&=\E[(\xi(t-n)-\mu)(\xi(t-n-\tau)-\mu)]=\gamma_{\xi}(\tau)
+	\end{align*}
 
-\textbf{Case 2.}
-Let $n \in \N$
-\[
-	y(t)=W(z) \xi(t)=W(z) \cdot \frac{z^{n}}{z^{n}} \xi(t)=\left[z^{n} \cdot W(z)\right] \xi(t-n)=\tilde{W}(z) \tilde{\xi}(t)
-\]
-where they are still both respectively a rational transfer function and a \gls{wn}, indeed:
-\begin{align*}
-	\E[\tilde{\xi}(t)]&=\E[\xi(t-n)]=\mu \\
-	\gamma_{\tilde{\xi}}(\tau)&=\E[(\xi(t-n)-\mu)(\xi(t-n-\tau)-\mu)]=\gamma_{\xi}(\tau)
-\end{align*}
+	\item 
+	Let $p \in \C$ such that $|p|<1$
+	\[
+		y(t)=W(z) \xi(t) = \underbrace{\left[W(z) \cdot \frac{z-p}{z-p}\right]}_{\tilde{W}(z)} \xi(t)=\tilde{W}(z) \xi(t)
+	\]
+	where they are still both respectively a rational transfer function and a \gls{wn}.
 
-\textbf{Case 3.}
-Let $p \in \C$ such that $|p|<1$
-\[
-	y(t)=W(z) \xi(t)=\left[W(z) \cdot \frac{z-p}{z-p}\right] \xi(t)=\tilde{W}(z) \xi(t)
-\]
-where they are still both respectively a rational transfer function and a \gls{wn}.
+	\item 
+	Let $q$ be a zero of $W(z)$ such that $|q|>1$, that is
+	\[
+		W(z)=W_{1}(z)\cdot(z-q)
+	\]
+	then
+	\begin{align*}
+		y(t)&=W(z) \xi(t)=W_{1}(z) \cdot(z-q) \xi(t)=\left[W_{1}(z) \cdot(z-q) \cdot \frac{z-\frac{1}{q}}{z-\frac{1}{q}}\right] \xi(t)= \\
+		&=\underbrace{W_{1}(z)\left(z-\frac{1}{q}\right)}_{\tilde{W}(z)}\cdot\underbrace{\frac{z-q}{z-\frac{1}{q}} \xi(t)}_{\tilde{\xi}(t)} = \tilde{W}(z) \tilde{\xi}(t)
+	\end{align*}
+	Note that $\tilde{\xi}$ is well-defined and stationary since we multiplied $\xi(t)$ by an asymptotically stable transfer function ($|z|=\left|\frac{1}{q}\right|<1$).\\
+	Moreover they are still both respectively a rational transfer function and a \gls{wn}, indeed let us compute the spectral density of $\tilde{\xi}(t)$
+	\begin{align*}
+		\Gamma_{\tilde\xi}(\omega) &=\frac{\left|e^{j \omega}-q\right|^{2}}{\left|e^{j \omega}-\frac{1}{q}\right|^{2}} \cdot \lambda^{2}=\frac{\left(e^{j \omega}-q\right)\left(e^{-j \omega}-q\right)}{\left(e^{j \omega}-\frac{1}{q}\right)\left(e^{-j \omega}-\frac{1}{q}\right)} \cdot \lambda^{2}\\
+		&=\frac{1+q^{2}-q\left(e^{j \omega}+e^{-j \omega}\right)}{1+\frac{1}{q^{2}}-\frac{1}{q}\left(e^{j \omega}+e^{-j \omega}\right)} \cdot \lambda^{2}=\frac{1+q^{2}-2 q \cos (\omega)}{1+\frac{1}{q^{2}}-\frac{2}{q} \cos (\omega)} \cdot \lambda^{2}\\
+		&=q^{2} \frac{\frac{1}{q^{2}}+1-\frac{2}{q} \cos (\omega)}{1+\frac{1}{q^{2}}-\frac{2}{q} \cos (\omega)} \cdot \lambda^{2}=q^{2} \cdot \lambda^{2}
+	\end{align*}
+	which is always constant and characterises a \gls{wn}; while
+	\[
+		\boxed{\tilde \xi(t) = \frac{z-q}{z-\frac{1}{q}} \xi(t)} \implies \tilde \xi(t+1)-\frac{1}{q}\tilde \xi(t)=\xi(t+1)-q\xi(t)
+	\]
+	taking $\E[\cdot]$ on both sides
+	\[
+		m_{\tilde\xi} - \frac{1}{q} m_{\tilde\xi} = \mu - q\mu \implies m_{\tilde\xi} = \frac{1-q}{1-\frac{1}{q}} \cdot \mu = -q \frac{\cancel{1-\frac{1}{q}}}{\cancel{1-\frac{1}{q}}}=  - q \cdot \mu
+	\]
+	so in the end we have $\boxed{\tilde\xi(t)\sim \WN(-q\mu,q^2 \lambda^2 )}$.
 
-\textbf{Case 4.}
-Let $q$ be a zero of $W(z)$ such that $|q|>1$, that is
-\[
-	W(z)=W_{1}(z)\cdot(z-q)
-\]
-then
-\begin{align*}
-	y(t)&=W(z) \xi(t)=W_{1}(z) \cdot(z-q) \xi(t)=\left[W_{1}(z) \cdot(z-q) \cdot \frac{z-\frac{1}{q}}{z-\frac{1}{q}}\right] \xi(t)= \\
-	&=W_{1}(z) \cdot\left(z-\frac{1}{q}\right)\left[\frac{z-q}{z-\frac{1}{q}} \xi(t)\right]=\tilde{W}(z) \tilde{\xi}(t)
-\end{align*}
-Note that $\tilde{\xi}$ is well-defined and stationary since we multiplied $\xi$ by an asymptotically stable transfer function ($|z|=\left|\frac{1}{q}\right|<1$).\\
-Moreover they are still both respectively a rational transfer function and a \gls{wn}, indeed let us computer the spectral density of $\tilde{\xi}(t)$
-\begin{align*}
-	\Gamma_{\tilde\xi}(\omega) &=\frac{\left|e^{j \omega}-q\right|^{2}}{\left|e^{j \omega}-\frac{1}{q}\right|^{2}} \cdot \lambda^{2}=\frac{\left(e^{j \omega}-q\right)\left(e^{-j \omega}-q\right)}{\left(e^{j \omega}-\frac{1}{q}\right)\left(e^{-j \omega}-\frac{1}{q}\right)} \cdot \lambda^{2}\\
-	&=\frac{1+q^{2}-q\left(e^{j \omega}+e^{-j \omega}\right)}{1+\frac{1}{q^{2}}-\frac{1}{q}\left(e^{j \omega}+e^{-j \omega}\right)} \cdot \lambda^{2}=\frac{1+q^{2}-2 q \cos (\omega)}{1+\frac{1}{q^{2}}-\frac{2}{q} \cos (\omega)} \cdot \lambda^{2}\\
-	&=q^{2} \frac{\frac{1}{q^{2}}+1-\frac{2}{q} \cos (\omega)}{1+\frac{1}{q^{2}}-\frac{2}{q} \cos (\omega)} \cdot \lambda^{2}=q^{2} \cdot \lambda^{2}
-\end{align*}
-which is always constant and characterises a \gls{wn}; while
-\[
-	\tilde \xi(t) = \frac{z-q}{z-\frac{1}{q}} \xi(t) \implies \tilde \xi(t+1)-\frac{1}{q}\tilde \xi(t)=\xi(t+1)-q\xi(t)
-\]
-taking $\E[\cdot]$ on both sides
-\[
-	m_{\tilde\xi} - \frac{1}{q} m_{\tilde\xi} = \mu - q\mu \implies m_{\tilde\xi} = \frac{1-q}{1-\frac{1}{q}} \cdot \mu = -q \frac{\cancel{1-\frac{1}{q}}}{\cancel{1-\frac{1}{q}}}=  - q \cdot \mu
-\]
-so in the end we have $\tilde\xi(t)\sim \WN(-q\mu,q^2 \lambda^2 )$.
+	The quantity
+	\[
+		\boxed{\frac{z-q}{z-\frac{1}{q}}}
+	\]
+	is known as \textbf{all-pass filter}.
+\end{enumerate}

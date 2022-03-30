@@ -21,9 +21,9 @@ Let $e(t)\sim \WN(0,1)$.
 	&=\left( 1-\frac{1}{2} z^{-1}  \right) \cdot\frac{1-2z^{-1}}{1-\frac{1}{2} z^{-1}} e(t)\\
 	&=\left( 1-\frac{1}{2} z^{-1}  \right) \xi(t) &\text{canonical}
 \end{align*}
-where $\xi(t)\sim \WN(0,4)$. The first form was non-canonical because there was a zero ($2$) outside the unit circle.
+where $\xi(t)\sim \WN(0,4)$. The first form was non-canonical because there was a zero ($z=2$) outside the unit circle.
 
-The process original process (non-canonical) can be written as
+The original process (non-canonical) can be written as
 \[
 	y(t+1)=\underbrace{e(t+1)}_{\substack{\text{unpred.}\\\text{at $t$}}}-\underbrace{2e(t)}_{\substack{\text{pred.}\\\text{at $t$}}}
 \]
@@ -102,7 +102,7 @@ Thanks to the asymptotic stability of $F(z)/C(z)$ the effect of the conventional
 \[
 	y(t)=\frac{C(z)}{A(z)}e(t)\qquad e(t)\sim \WN(\mu,\lambda^2 )
 \]
-Hypothesis: canonical and minimum phase (i.e. all zeros are such that $|z|<1$). How do we compute $\hat y(t+k\mid t)$?
+Same assumptions as page \pageref{assumptions-prediction-theory}. How do we compute $\hat y(t+k\mid t)$?
 \[
 	\E[e(t)] = \mu \implies \E[y(t)]=\frac{C(1)}{A(1)}\cdot\mu=m_{y} \quad \forall t
 \]

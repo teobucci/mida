@@ -20,7 +20,7 @@ Hence, the output $y(t)$ of an AR process is recursively defined as the linear c
 \textbf{Observation.}
 The difference equation generating the AR process admits non-unique solution unless we specify an \emph{initial condition}. Which solution do we consider as the AR process?
 
-By AR process we mean the solution obtained by taking the initial condition $\boxed{y(t_{0})=0}$ and letting $t_{0} \to -\infty$ (in short, we will write $\mathbf{y}(-\infty)=0$)). In other words, the AR process is the \textbf{steady-state solution}.
+By AR process we mean the solution obtained by taking the initial condition $\boxed{y(t_{0})=0}$ and letting $t_{0} \to -\infty$ (in short, we will write $y(-\infty)=0$)). In other words, the AR process is the \textbf{steady-state solution}.
 
 \textbf{Example.} (AR($1$) process)
 
@@ -41,7 +41,6 @@ The steady state solution is an MA($\infty$) process with coefficients: $c_{0}=1
 In general, AR processes are MA($\infty$) processes with coefficients determined by the AR model coefficients by recursively apply the difference equation.
 
 MA($\infty$) processes are well defined if:
-\todo{check this shit}
 \begin{align*}
 	\sum_{i=0}^{\infty} \left(c_{i}\right)^2=\sum_{i=0}^{\infty} \left(a^{i}\right)^2=\sum_{i=0}^{\infty} \left(a^{2}\right)^i< +\infty \iff a^2< 1
 \end{align*}
@@ -106,13 +105,11 @@ We can rewrite an ARMA process as follows:
 \end{align*}
 
 Even more compact notation:
-\begin{align*}
-	y(t)=\frac{\left(c_{0}+c_{1} z^{-1}+\cdots+c_{n} z^{-n}\right)}{\left(1-a_{1} z^{-1}-a_{2} z^{-2}-\cdots-a_{m} z^{-m}\right)} e(t)=\frac{C(z)}{A(z)} e(t)
-\end{align*}
+\[
+	\boxed{y(t)=\frac{\left(c_{0}+c_{1} z^{-1}+\cdots+c_{n} z^{-n}\right)}{\left(1-a_{1} z^{-1}-a_{2} z^{-2}-\cdots-a_{m} z^{-m}\right)} e(t)=\frac{C(z)}{A(z)} e(t)}
+\]
 where:
-\begin{align*}
-	C(z)&=\left(c_{0}+c_{1} z^{-1}+\cdots+c_{n} z^{-n}\right) \\
-	A(z)&=\left(1-a_{1} z^{-1}-a_{2} z^{-2}-\cdots-a_{m} z^{-m}\right)
-\end{align*}
-
+\[
+	\boxed{C(z)=\left(c_{0}+c_{1} z^{-1}+\cdots+c_{n} z^{-n}\right)} \quad \boxed{A(z)=\left(1-a_{1} z^{-1}-a_{2} z^{-2}-\cdots-a_{m} z^{-m}\right)}
+\]
 $\frac{C(z)}{A(z)}$ is called \textbf{discrete time transfer function} and it simply says that $y(t)$ is generated as the steady-state output of a linear operator that receive as input $e(t)$.

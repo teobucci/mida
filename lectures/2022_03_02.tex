@@ -22,7 +22,7 @@ Now, let us consider the \gls{sp} $y(t)$ obtained as output of an asymptotically
 \fg{0.7}{Screenshot (18)}
 
 \section{Weak (wide-sense) characterization of AR, ARMA processes}
-\textbf{Goal.} Given an AR, ARMA process compute the mean $m_y$ and covariance function $\gamma_y(\tau)$.
+\textbf{Goal:} given an AR, ARMA process compute the mean $m_y$ and covariance function $\gamma_y(\tau)$.
 
 %Since the steady-state solution is an MA($\infty$) process we could use such results but are too diffucult
 
@@ -78,11 +78,11 @@ Remember that $m_{y}=0$. Start from $y(t)=a \cdot y(t-1)+e(t)$, take the square 
 	&=\E\left[(a \cdot y(t-1)+e(t))^{2}\right]\\
 	&=a^{2} \E\left[y(t-1)^{2}\right]+\E\left[e(t)^{2}\right]+2 a \E[y(t-1) e(t)]\\
 \end{align*}
-Mid-terms evaluation:
+Mid-term evaluation:
 \[
-	2 a \E[y(t-1) e(t)]=0
+	2 a \E[y(t-1) e(t)]=0,
 \]
-Indeed, by using the MA($\infty$) representation for $y(t-1)$ (AR process):
+indeed, by using the MA($\infty$) representation for $y(t-1)$ (AR process):
 $$
 y(t-1)=e(t-1)+a \cdot e(t-2)+a^{2} \cdot e(t-3)+a^{3} \cdot e(t-4)+\cdots
 $$
@@ -93,7 +93,7 @@ we have that:
 (all products give null contribution thanks to the whiteness property).
 
 
-$\E\left[(y(t-1))^{2}\right]=\gamma_{y}(0)$ (thanks to stationarity)
+$\E\left[(y(t-1))^{2}\right]=\gamma_{y}(0)$
 
 $\E\left[(e(t))^{2}\right]=\lambda^{2}$
 
@@ -158,45 +158,25 @@ $$
 m_{y}=a_{1} m_{y}+\cdots+a_{m} m_{y}+c_{0} \cdot 0+\cdots+c_{n} \cdot 0
 $$
 
-By asintotical stability we can prove that $(1-a_1-\cdots-a_m)\neq0$, i.e. $m_{y}=0$.
+By asintotical stability we can prove\footnote{It will not be done in this text.} that $(1-a_1-\cdots-a_m)\neq 0$, i.e. $m_{y}=0$.
 
 \textbf{Covariance.}
 \begin{align*}
-	\gamma_{y}(0) = \E\left[y(t)^{2}\right]&=\E\left[\left(a_{1} y(t-1)+\cdots+a_{m} y(t-m)+c_{0} e(t)+\cdots+c_{n} e(t-n)\right)^{2}\right]\\
-	&= a_{1}^{2} \E\left[y(t-1)^{2}\right]+a_{2}^{2} \E\left[y(t-2)^{2}\right]+2 a_{1} a_{2} \E[y(t-1) y(t-2)]+\cdots \\
-	&\qquad+c_{0}^{2} \E\left[e(t)^{2}\right]+2 a_{1} c_{0} \E[y(t-1) e(t)]+\cdots
+	\gamma_{y}(0) = \E[y(t)^{2}] &= \E\left[\left(a_{1} y(t-1) + \cdots + a_{m} y(t-m) + c_{0} e(t) + \cdots + c_{n} e(t-n)\right)^{2}\right]\\
+	&= a_{1}^{2} \E[y(t-1)^{2}] + a_{2}^{2} \E[y(t-2)^{2}] + \cdots+a_{m}^{2} \E[y(t-m)^{2}]\\
+	&\qquad + 2 a_{1} a_{2} \E[y(t-1) y(t-2)] + 2 a_{1} a_{3} \E[y(t-1) y(t-3)] + \cdots \\
+	&\qquad + c_{0}^{2} \E[e(t)^{2}] + c_{1}^2 \E[e(t-1)^2] + \cdots+c_{n}^2 \E[e(t-n)^2]\\
+	&\qquad + 2 a_{1} c_{0} \E[y(t-1) e(t)] + 2 a_{1} c_{1} \E[y(t-1) e(t-1)] + \cdots\\
+	&= (a_{1}^{2} + a_{2}^{2} + \cdots+a_{m}^{2})\cdot\gamma_{y}(0)\\
+	&\qquad + 2 a_{1} a_{2} \gamma_{y}(1) + 2 a_{1} a_{3} \gamma_{y}(2) + \cdots \\
+	&\qquad + (c_{0}^{2} + c_{1}^2 + \cdots+c_{n}^2)\cdot\lambda^2\\
+	&\qquad + 2 a_{1} c_{0} \E[y(t-1) e(t)] + 2 a_{1} c_{1} \E[y(t-1) e(t-1)] + \cdots\\
 \end{align*}
-
-Hence
-$$
-\gamma_{y}(0)=a_{1}^{2} \gamma_{y}(0)+a_{2}^{2} \gamma_{y}(0)+2 a_{1} a_{2} \gamma_{y}(1)+\cdots
-$$
 
 Then
-\begin{align*}
-	\E[y(t) y(t-1)]&=\E\left[\left(a_{1} y(t-1)+\cdots+a_{m} y(t-m)+c_{0} e(t)+\cdots+c_{n} e(t-n)\right) y(t-1)\right]= \\
-	&=a_{1} \E\left[y(t-1)^{2}\right]+\cdots+c_{0} \E[e(t) y(t-1)]+\cdots
-\end{align*}
-
-Proceeding this way:
 \[
-	\boxed{
-		\begin{cases}
-			\gamma_{y}(0)=a_{1}^{2} \gamma_{y}(0)+a_{2}^{2} \gamma_{y}(0)+2 a_{1} a_{2} \gamma_{y}(1) \\
-			\gamma_{y}(1)=a_{1} \gamma_{y}(0)+\cdots+c_{0} \E[e(t) y(t-1)] \\
-			\vdots \\
-			\gamma_{y}(m-1)=a_{1} \gamma_{y}(m-2)+\cdots
-		\end{cases}
-	}
+	\gamma (1)=\E[y(t) y(t-1)] = \E\left[\left(a_{1} y(t-1)+\cdots+a_{m} y(t-m)+c_{0} e(t)+\cdots+c_{n} e(t-n)\right) y(t-1)\right]
 \]
+Proceeding this way we get $m$ variables and $m$ linear equations (\emph{Yule-Walker equations} for an ARMA process).
 
-$m$ variables and $m$ linear equations (\emph{Yule-walker equations} for an ARMA process).
-
-Then, $\gamma_{y}(m), \gamma_{y}(m+1), \ldots$ can be recursevely computed from
-$$
-\gamma_{y}(0), \gamma_{y}(1), \ldots, \gamma_{y}(m-1)
-$$
-\begin{align*}
-	\gamma_{y}(m)&=\E[y(t) y(t-m)] \\
-	&=\E\left[\left(a_{1} y(t-1)+\ldots+a_{m} y(t-m)+c_{0} e(t)+\ldots+c_{n} e(t-n)\right) y(t-m)\right]=\ldots
-\end{align*}
+Then $\gamma_{y}(m), \gamma_{y}(m+1), \ldots$ can be recursevely computed from $\gamma_{y}(0), \gamma_{y}(1), \ldots, \gamma_{y}(m-1)$.

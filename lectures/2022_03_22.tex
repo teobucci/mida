@@ -5,18 +5,15 @@
 	y(t)=\underbrace{\frac{B(z)}{A(z)} u(t-a)}_{\text{deterministic}}+
 	\underbrace{\frac{C(z)}{A(z)} e(t)}_{\text{stochastic}}\qquad e(t)\sim \WN(0,\lambda^2 )
 \]
-Without loss of generality NON zero mean can be always incorporated in $u$.
-
-available information:
+Without loss of generality, non-zero mean can be always incorporated in $u$. Available information:
 \begin{gather*}
 	y(t),y(t-1),\ldots \\
 	u(t),u(t-1),\ldots
 \end{gather*}
-
 \textbf{Hypothesis:}
 \begin{itemize}
-	\item $\frac{C(z)}{A(z)}e(t)$  is a canonical representation (otherwise compute it)
-	\item either $u$ is completely known(pre deterministic signal) from $t=-\infty$ up to $t=+\infty$ or $d\geq k$ (delay bigger than prediction error).
+	\item $\frac{C(z)}{A(z)}e(t)$ is a canonical representation (otherwise compute it);
+	\item either $u$ is completely known (pre-deterministic signal) from $t=-\infty$ up to $t=+\infty$ or $d\geq k$ (delay bigger than prediction error).
 \end{itemize}
 
 Let 
@@ -24,7 +21,7 @@ $$
 	z(t)=y(t)-\frac{B(z)}{A(z)} u(t-d)
 $$
 
-Then, $z(t)=\frac{C(z)}{A(z)} e(t)$ i.e. it is an ARMA process s.t.:
+Then, $z(t)=\frac{C(z)}{A(z)} e(t)$ i.e. it is an ARMA process such that:
 
 $$
 	\frac{C(z)}{A(z)}=E(z)+z^{-k} \frac{F(z)}{A(z)} \quad\text{($k$-steps division between $C(z)$ and $A(z)$)}
@@ -48,7 +45,7 @@ $$
 	\boxed{\hat{y}(t+k \mid t) =\frac{B(z) E(z)}{C(z)} \underbrace{u(t+k-d)}_{\text{known}}+\frac{F(z)}{C(z)} y(t)}
 $$
 
-\section{Model Identification}
+\chapter{Model Identification}
 
 Up to now, we considered (ARMA/ARMAX) models and studied their properties: covariance and spectrum computation, prediction.
 
@@ -161,10 +158,7 @@ ARMAX in $\mathcal{M}$ for a given value of $\vartheta$:
 
 \fg{0.7}{Screenshot (29)}
 
-
-=======
-$$y(t)=\underbrace{\frac{B(z)}{A(z)} u(t+k-d)}_{\text{This part of the process 
-		is deterministically 
-		known, and hence can 
-		be trivially predicted}} +z(t+k)$$
->>>>>>> Stashed changes
+$$y(t)=\underbrace{\frac{B(z)}{A(z)} u(t+k-d)}_{\substack{\text{This part of the process}\\ 
+		\text{is deterministically}\\
+		\text{known, and hence can}\\
+		\text{be trivially predicted}}} +z(t+k)$$

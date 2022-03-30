@@ -1,61 +1,53 @@
 %!TEX root = ../main.tex
 
-The quantity
-\[
-	\frac{z-q}{z-\frac{1}{q}}
-\]
-is known as \textbf{all-pass filter}.
-
 \begin{theorem}[Spectral Factorization]
 	Let $y(t)$ be a \gls{ssp} with rational spectral density. 
 	Then, there exists an unique \gls{wn} process $\xi(t)$ with suitable mean and variance and an unique rational transfer function $W(z)$ such that:
 	\begin{align*}
-		y(t) = W(z)\xi(t)
+		y(t) = W(z)\xi(t)=\frac{C(z)}{A(z)}\xi(t)
 	\end{align*}
-    and, ($C(z)$ and $A(z)$ are the numerator and denominator of $W(z)$):
+    and:
     \begin{enumerate}
 		\item $C(z)$ and $A(z)$ are monic (i.e. the coefficients of the maximum degree terms of $C(z)$ and $A(z)$ are equal to 1);
 		\item $C(z)$ and $A(z)$ have null relative degree;
 		\item $C(z)$ and $A(z)$ are coprime (i.e. they have no common factors);
-		\item[4a.]the poles of $W(z)$ are such that $|z|< 1$.
+		\item[4a.]the poles of $W(z)$ are such that $|z|< 1$;
 		\item[4b.]the zeroes of $W(z)$ are such that $|z|\leq 1$.
     \end{enumerate}
 \end{theorem}
 
 When all the four conditions above are satisfied, we will say that $y(t) = W(z)\xi(t)$ is a \textbf{canonical representation} of $y(t)$.
 
-\textbf{Observation.} Conditions 1, 2, and 3 remove any ambiguity as due to the process described in Case 1, Case 2, and Case 3, respectively. 
+\textbf{Observation.} Conditions 1, 2, and 3 remove any ambiguity due to the process described in Case 1, Case 2, and Case 3, respectively. 
 
-Condition 4a assure that $W(z)$ is asymptotically stable so that $y(t)$ is well defined, while 4b removes any ambiguity as due to the process described in Case 4.
+Condition 4a ensures that $W(z)$ is asymptotically stable so that $y(t)$ is well defined, while 4b removes any ambiguity due to the process described in Case 4.
 
 \textbf{Example.}
-
+We want to find the canonical representation of:
 \begin{align*}
 	y(t)=\frac{2+5z^{-1}+2z^{-2}}{z^2+\frac{5}{6}z+\frac{1}{6}}\cdot e(t)  \qquad \text{where } e(t)\sim \WN(0,1)
 \end{align*}
-$W(z)$ is not monic so we can proceed modifying the input in order to have a transfer function that satisfies all the above properties.
+We first need to have the same degree and positive powers, which we can achieve by multiplying by a proper factor and consider a new \gls{wn}:
 \begin{align*}
-	y(t)&=\frac{2+5z^{-1}+2z^{-2}}{z^2+\frac{5}{6}z+\frac{1}{6}}\cdot e(t) \\
-	&=\frac{2+5z^{-1}+2z^{-2}}{z^2+\frac{5}{6}z+\frac{1}{6}}\cdot\frac{z^2}{2}\cdot\frac{2}{z^2}\cdot e(t)\\
-	&=\frac{z^2+\frac{5}{2}z+1}{z^2+\frac{5}{6}z+\frac{1}{6}}\cdot \eta(t)
+	y(t)&=\frac{2+5z^{-1}+2z^{-2}}{z^2+\frac{5}{6}z+\frac{1}{6}}\cdot e(t)=\frac{2+5z^{-1}+2z^{-2}}{z^2+\frac{5}{6}z+\frac{1}{6}}\cdot\frac{z^2}{2}\cdot\frac{2}{z^2}\cdot e(t)=\frac{z^2+\frac{5}{2}z+1}{z^2+\frac{5}{6}z+\frac{1}{6}}\cdot \eta(t)
 \end{align*}
-where $\eta(t)=2z^{-2}e(t)=2e(t-2)\sim \WN(2\cdot0,4\cdot 1)\sim \WN(0,4)$.
-
+where $\eta(t)=2z^{-2}e(t)=2e(t-2)\sim \WN(2\cdot0,4\cdot 1)\sim \WN(0,4)$.\\
+We know check if some terms cancel out:
 \begin{align*}
-	&\text{zeros:}\quad z^2+\frac{5}{2}z+1=(z+2)(z+\frac{1}{2}) \implies z_{1,2}=-2,-\frac{1}{2}.\\
-	&\text{poles:}\quad z^2+\frac{5}{6}z+\frac{1}{6}=(z+\frac{1}{3})(z+\frac{1}{2}) \implies p_{1,2}=-\frac{1}{3},-\frac{1}{2}.
+	&\text{zeros:}\quad z^2+\frac{5}{2}z+1=(z+2)\left( z+\frac{1}{2} \right)   \implies z_{1,2}=-2,-\frac{1}{2}\\
+	&\text{poles:}\quad z^2+\frac{5}{6}z+\frac{1}{6}=\left( z+\frac{1}{3} \right)  \left( z+\frac{1}{2} \right) \implies p_{1,2}=-\frac{1}{3},-\frac{1}{2}
 \end{align*}
-
 Then:
 \begin{align*}
 	y(t)=\frac{(z+2)\cancel{(z+\frac{1}{2})}}{(z+\frac{1}{3})\cancel{(z+\frac{1}{2})}}\cdot \eta(t) 
 \end{align*}
-Since numerator and denominator are not coprime, we can proceed as follows:
+We can now make sure that all zeros and poles are strictly inside the unit circle. In this case it is particularly useful to remember the all-pass filter:
 \begin{align*}
 	y(t)=\frac{z+2}{z+\frac{1}{3}}\cdot\frac{z+\frac{1}{2} }{z+\frac{1}{2}}\cdot\eta(t)=\frac{z+\frac{1}{2}}{z+\frac{1}{3}}\underbrace{\frac{z+2}{(z+\frac{1}{2})}\eta(t)}_{\xi(t)}=\frac{(z+\frac{1}{2})}{(z+\frac{1}{3})}\cdot \xi(t)
 \end{align*}
-where $\xi(t)\sim \WN(0,4\cdot2^2)\sim \WN(0,16)$. So this is our canonical representation. Most of the times if we have zeros or poles outside the unit circle we can take advantage of an all-pass filter.
+where $\xi(t)\sim \WN(0,4\cdot2^2)\sim \WN(0,16)$. This is our canonical representation.
 
+\chapter{Prediction}
 \section{Linear optimal prediction theory (for ARMA processes)}
 Let us consider a zero mean ARMA process:
 \[
@@ -64,7 +56,6 @@ Let us consider a zero mean ARMA process:
 
 \textbf{Fundamental assumptions:}\label{assumptions-prediction-theory}
 \begin{enumerate}
-	\item[0.] $W(z)=\frac{C(z)}{A(z)}$ is an asymptotically stable rational transfer function (i.e. all poles are such that $|z|<1$), which also implies that $y(t)$ is well defined and a \gls{ssp};
 	\item $y(t) = W(z)e(t)$ is a canonical representation;
 	\item $W(z)$ is minimum phase (i.e. all zeros are such that $|z|<1$).\footnote{Note that \emph{canonical} implies that all zeros are such that $|z|\le 1$, but it's not enough, we have to exclude zeros on the unit circle.}
 \end{enumerate}
@@ -91,9 +82,9 @@ In general:
 $$\hat{y}(t + k \mid t) = f ( y(t), y(t-1), y(t-2),\ldots)$$
 i.e. the predictor is any function of the available observations of the process $y(t)$.
 
-\textbf{Abstraction.} We suppose to have the all the observations from $-\infty$ up to $t$ (infinite sequence of observations).
+\textbf{Abstraction.} We suppose to have all the observations from $-\infty$ up to $t$ (infinite sequence of observations).
 
-We will restrict ourselves to functions $f$ which are linear:
+We will \emph{restrict} ourselves to functions $f$ which are \emph{linear}:
 \begin{align*}
 	\hat{y}(t + k \mid t)=\sum_{i=0}^{\infty}\alpha_i y(t-i)
 \end{align*}
