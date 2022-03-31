@@ -15,14 +15,11 @@ Without loss of generality, non-zero mean can be always incorporated in $u$. Ava
 	\item $\frac{C(z)}{A(z)}e(t)$ is a canonical representation (otherwise compute it);
 	\item either $u$ is completely known (pre-deterministic signal) from $t=-\infty$ up to $t=+\infty$ or $d\geq k$ (delay bigger than prediction error).
 \end{itemize}
-
 Let 
 $$
 	z(t)=y(t)-\frac{B(z)}{A(z)} u(t-d)
 $$
-
 Then, $z(t)=\frac{C(z)}{A(z)} e(t)$ i.e. it is an ARMA process such that:
-
 $$
 	\frac{C(z)}{A(z)}=E(z)+z^{-k} \frac{F(z)}{A(z)} \quad\text{($k$-steps division between $C(z)$ and $A(z)$)}
 $$
@@ -30,7 +27,6 @@ Then:
 $$
 	\hat{z}(t+k \mid t)=\frac{F(z)}{C(z)} z(t)
 $$
-
 $$
 	y(t+k)=\frac{B(z)}{A(z)} u(t+k-d)+z(t+k)
 $$
@@ -79,7 +75,7 @@ Identification problem: define an automatic procedure to find a model for $S$ ba
 \end{figure}
 \FloatBarrier
 
-\subsection{Parametric model identification}
+\section{Parametric model identification}
 
 First we select a parametric model class $\mathcal{M}(\vartheta)$ ($\vartheta$= parameters vector – each different $\vartheta$ corresponds to a different model).
 
@@ -130,7 +126,7 @@ The requirement that there are no zeroes on the unit circle instead poses some l
 	\item the behavior of models with zeroes on the unit circle can be approximate by means of models with zeroes close to the unit circle
 \end{itemize} 
 
-\subsection{PEM (Prediction Error Minimization) identification}
+\section{PEM (Prediction Error Minimization) identification}
 
 Paradigm to map data into a value of $\overline{\vartheta}$.
 $$
