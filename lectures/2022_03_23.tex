@@ -190,7 +190,7 @@ J_{N}(\theta) =\frac{1}{N}\sum _{i=1}^{N}(y(i) -\hat{y}(i\mid i-1,\theta))^{2} =
 \end{equation*}
 also known as \textbf{PEM minimization cost}, which can be interpreted as the \emph{empirical variance} of prediction error over the collected data. Then 
 \begin{equation*}
-\hat{\theta }_{N} =\underset{\theta \in \Theta}{\mathrm{arg}\min} J_{N}(\theta) =\underset{\theta \in \Theta}{\mathrm{arg}\min}\frac{1}{N}\sum _{i=1}^{N} \varepsilon (i\mid i-1,\theta)^{2}
+\hat{\theta }_{N} =\underset{\theta \in \Theta}{\argmin} J_{N}(\theta) =\underset{\theta \in \Theta}{\argmin}\frac{1}{N}\sum _{i=1}^{N} \varepsilon (i\mid i-1,\theta)^{2}
 \end{equation*}
 The better the prediction, the better the model to unveil the mechanisms through which $y$ is generated in $S$. 
 
