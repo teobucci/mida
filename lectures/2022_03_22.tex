@@ -77,48 +77,48 @@ Identification problem: define an automatic procedure to find a model for $S$ ba
 
 \section{Parametric model identification}
 
-First we select a parametric model class $\mathcal{M}(\vartheta)$ ($\vartheta$= parameters vector – each different $\vartheta$ corresponds to a different model).
+First we select a parametric model class $\mathcal{M}(\theta)$ ($\theta$= parameters vector – each different $\theta$ corresponds to a different model).
 
 For example:
 $$
-	\mathcal{M}=\left\{y(t)=\frac{B(z, \vartheta)}{A(z, \vartheta)} u(t-d)+\frac{C(z, \vartheta)}{A(z, \vartheta)} e(t), \quad e(t) \sim WN\left(0, \lambda^{2}\right), \vartheta\in\Theta\right\}
+	\mathcal{M}=\left\{y(t)=\frac{B(z, \theta)}{A(z, \theta)} u(t-d)+\frac{C(z, \theta)}{A(z, \theta)} e(t), \quad e(t) \sim WN\left(0, \lambda^{2}\right), \theta\in\Theta\right\}
 $$
 is the family of ARMAX models whose coefficients are polynomjals.
 \begin{align*}
-	A(z, \vartheta)&=1-a_{1}(\vartheta) z^{-1}-\cdots-a_{m}(\vartheta) z^{-m} \\
-	B(z, \vartheta)&=b_{1}(\vartheta)+b_{2}(\vartheta) z^{-1}+\cdots+b_{p}(\vartheta) z^{-p}\\
-	C(z, \vartheta)&=c_0(\vartheta)+c_{1}(\vartheta) z^{-1}+\cdots+c_{n}(\vartheta) z^{-n}
+	A(z, \theta)&=1-a_{1}(\theta) z^{-1}-\cdots-a_{m}(\theta) z^{-m} \\
+	B(z, \theta)&=b_{1}(\theta)+b_{2}(\theta) z^{-1}+\cdots+b_{p}(\theta) z^{-p}\\
+	C(z, \theta)&=c_0(\theta)+c_{1}(\theta) z^{-1}+\cdots+c_{n}(\theta) z^{-n}
 \end{align*}
 
 We will talk of \textbf{black-box identification} when no knowledge on the system is available and the model structure must be found from data only.
 
-$\vartheta$ is directly the vector of coefficients of $A(z, \vartheta),B(z, \vartheta),C(z, \vartheta)$.
+$\theta$ is directly the vector of coefficients of $A(z, \theta),B(z, \theta),C(z, \theta)$.
 
 $$
-	\vartheta=[a_{1},\ldots,a_{m},b_{1},\ldots,b_{p},c_{1},\ldots,c_{n}]\transpose
+	\theta=[a_{1},\ldots,a_{m},b_{1},\ldots,b_{p},c_{1},\ldots,c_{n}]\transpose
 $$
 
 In all other cases: \textbf{grey-box identification}.
 
-We try to incorporate some a priori information about the real $S$ in the model class. $\vartheta$ may have some physical interpretation.
+We try to incorporate some a priori information about the real $S$ in the model class. $\theta$ may have some physical interpretation.
 
 \emph{Example.}
 $$
-	M(\vartheta): y(t)=\frac{b+b^{2} z^{-1}}{1-a z^{-1}} u(t-d)+\frac{1+a z^{-1}}{1-a z^{-1}} e(t)
+	M(\theta): y(t)=\frac{b+b^{2} z^{-1}}{1-a z^{-1}} u(t-d)+\frac{1+a z^{-1}}{1-a z^{-1}} e(t)
 $$
-Here, the parameter vector is given by $\vartheta=\begin{bmatrix}a \\ b\end{bmatrix}$ only.
+Here, the parameter vector is given by $\theta=\begin{bmatrix}a \\ b\end{bmatrix}$ only.
 
 
 \textbf{Observation.}
-$\lambda^2$ is a parameter too which needs to be identified, however, $\lambda^2$ is much less important than other parameters. So, we will indicate by $\vartheta$ the vector of \emph{important} parameters and keep $\lambda^2$ aside.
+$\lambda^2$ is a parameter too which needs to be identified, however, $\lambda^2$ is much less important than other parameters. So, we will indicate by $\theta$ the vector of \emph{important} parameters and keep $\lambda^2$ aside.
 
-$\Theta$ is the set of admissible values for the parameter vector $\vartheta$.
+$\Theta$ is the set of admissible values for the parameter vector $\theta$.
 
 It incorporates a-priori information on the possible value for the parameters. In the blackbox case $\Theta$ is as free as possible.
 
 As we will see, to perform identification we will rely on the theory of prediction. Hence, we will assume the following assumption:
 
-\boxedText{For every $\vartheta \in \Theta$, the stochastic part of $M(\vartheta)$ (i.e. the part depending on the white noise $\left.e(t) \sim W N\left(0, \lambda^{2}\right)\right)$ is \textbf{canonical} and has \textbf{no zeroes on the unit circle}.}
+\boxedText{For every $\theta \in \Theta$, the stochastic part of $M(\theta)$ (i.e. the part depending on the white noise $\left.e(t) \sim W N\left(0, \lambda^{2}\right)\right)$ is \textbf{canonical} and has \textbf{no zeroes on the unit circle}.}
 
 The requirement that there are no zeroes on the unit circle instead poses some limitations on the systems we can identify. However:
 \begin{itemize}
@@ -128,7 +128,7 @@ The requirement that there are no zeroes on the unit circle instead poses some l
 
 \section{PEM (Prediction Error Minimization) identification}
 
-Paradigm to map data into a value of $\overline{\vartheta}$.
+Paradigm to map data into a value of $\overline{\theta}$.
 $$
 	D^N=\left\{\overline{y(1)},\ldots,\overline{y(N)},\overline{u(1)},\ldots,\overline{u(N)}\right\}
 $$
@@ -142,14 +142,14 @@ How to compare $\overline{y(1)},\ldots,\overline{y(N)}$ with $y(1,s),\ldots,y(N,
 
 \textbf{Idea}(Prediction Error Minimization)
 
-$M(\vartheta)\implies \hat{M}(\vartheta)$ from stochastic models to predictive models.
+$M(\theta)\implies \hat{M}(\theta)$ from stochastic models to predictive models.
 
-ARMAX in $\mathcal{M}$ for a given value of $\vartheta$:
+ARMAX in $\mathcal{M}$ for a given value of $\theta$:
 
 \begin{align*}
-	M(\vartheta)&:\quad y(t)=\frac{B(z, \vartheta)}{A(z, \vartheta)} u(t-d)+\frac{C(z, \vartheta)}{A(z, \vartheta)} e(t)\\
+	M(\theta)&:\quad y(t)=\frac{B(z, \theta)}{A(z, \theta)} u(t-d)+\frac{C(z, \theta)}{A(z, \theta)} e(t)\\
 	&\qquad\Downarrow\\
-	\hat{M}(\vartheta)&: \quad \hat{y}(t \mid t-1) =\frac{B(z,\vartheta) E(z,\vartheta)}{C(z,\vartheta)} u(t-d)+\frac{F(z,\vartheta)}{C(z,\vartheta)} y(t-1) \qquad \text{one step prediction}
+	\hat{M}(\theta)&: \quad \hat{y}(t \mid t-1) =\frac{B(z,\theta) E(z,\theta)}{C(z,\theta)} u(t-d)+\frac{F(z,\theta)}{C(z,\theta)} y(t-1) \qquad \text{one step prediction}
 \end{align*}
 
 \fg{0.7}{Screenshot (29)}

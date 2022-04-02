@@ -253,7 +253,7 @@ u(t-d-p)
 \end{equation*}
 we can rewrite the recursive equations
 \begin{equation*}
-y(t) =\theta \transpose \varphi (t) +e(t) =\underbrace{\varphi (t)\transpose \theta }_{\text{predictable at time} \ t-1} +\underbrace{e(t)}_{\text{unpredictable at time} \ t-1}
+	y(t) =\theta \transpose \varphi (t) +e(t) =\underbrace{\varphi (t)\transpose \theta }_{\substack{\text{predictable}\\\text{at }t-1}} +\underbrace{e(t)}_{\substack{\text{unpredictable}\\\text{at }t-1}}
 \end{equation*}
 It is now possible to compute the one-step predictor for $ ARX$ model easily: we just need to delete the unpredictable part.
 \begin{align*}
@@ -328,26 +328,24 @@ x\transpose\frac{d^{2}}{d\theta ^{2}} J_{N}(\theta) \cdotp x & =\frac{2}{N} x\tr
  & =\frac{2}{N}\sum _{i=1}^{N}\left(x\transpose \varphi (i)\right)^{2} \geq 0 & x\transpose \varphi (i) =\varphi (i)\transpose x
 \end{align*}
 $ J_{N}(\theta)$ is a paraboloid with minima:
-
-\begin{figure}
-\centering
-\begin{subfigure}{.5\textwidth}
-  \centering
-  \includegraphics[width=.8\linewidth]{Screenshot (30)}
-  \captionof{figure}{Proper paraboloid}
-  \label{fig:test1}
-\end{subfigure}%
-\begin{subfigure}{.5\textwidth}
-  \centering
-  \includegraphics[width=.8\linewidth]{Screenshot (31)}
-  \captionof{figure}{Degenerate paraboloid}
-  \label{fig:test2}
-\end{subfigure}
+\begin{figure}[htpb]
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=.8\linewidth]{Screenshot (30)}
+		\captionof{figure}{Proper paraboloid}
+		\label{fig:test1}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=.8\linewidth]{Screenshot (31)}
+		\captionof{figure}{Degenerate paraboloid}
+		\label{fig:test2}
+	\end{subfigure}
 \end{figure}
-
-
+\FloatBarrier
 \begin{align*}
-\frac{d^{2}}{d\theta ^{2}} J_{N}(\theta) & =\frac{2}{N}\sum _{i=1}^{N} \varphi (i) \varphi (i)\transpose \ \text{nonsingular} \ \text{(pos. def.)} & \Longrightarrow \ & \text{proper paraboloid (unique min.)}\\
-\frac{d^{2}}{d\theta ^{2}} J_{N}(\theta) & =\frac{2}{N}\sum _{i=1}^{N} \varphi (i) \varphi (i)\transpose\text{ singular} & \ \Longrightarrow \ & \text{degenerate paraboloid}
+\frac{d^{2}}{d\theta ^{2}} J_{N}(\theta) & =\frac{2}{N}\sum _{i=1}^{N} \varphi (i) \varphi (i)\transpose \text{ nonsingular (pos. def.)} & \Longrightarrow\quad& \text{proper paraboloid (unique min.)}\\
+\frac{d^{2}}{d\theta ^{2}} J_{N}(\theta) & =\frac{2}{N}\sum _{i=1}^{N} \varphi (i) \varphi (i)\transpose \text{ singular} &\Longrightarrow\quad& \text{degenerate paraboloid}
 \end{align*}
 

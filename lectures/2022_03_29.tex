@@ -4,7 +4,7 @@
 
 We consider a generic ARMAX:
 \[
-	M(\vartheta ): \quad y(t)=\frac{B(z,\vartheta )}{A(z,\vartheta)} u(t-d)+\frac{C(z,\vartheta )}{A(z,\vartheta)}e(t)\quad e(t)\sim \WN(0,\lambda^2)
+	M(\theta ): \quad y(t)=\frac{B(z,\theta )}{A(z,\theta)} u(t-d)+\frac{C(z,\theta )}{A(z,\theta)}e(t)\quad e(t)\sim \WN(0,\lambda^2)
 \]
 where
 \begin{align*}
@@ -12,32 +12,32 @@ where
 	B(z)&=b_{0}+b_{1} z^{-1}+b_{2} z^{-2}+\cdots+b_{p} z^{-p} \\
 	C(z)&=1+c_{1} z^{-1}+c_{2} z^{-2}+\cdots+c_{n} z^{-n}
 \end{align*}
-We assume that $C(z,\vartheta)\neq 1$. Since $A$ and $C$ are monic the first term of the long division always gives $1$ and the remainder is always $C-A$. The predictor is then:
+We assume that $C(z,\theta)\neq 1$. Since $A$ and $C$ are monic the first term of the long division always gives $1$ and the remainder is always $C-A$. The predictor is then:
 \[
-	\hat{M}(\vartheta): \quad \hat{y}(t \mid t-1, \vartheta)=\frac{C(z,\vartheta)-A(z,\vartheta)}{C(z,\vartheta)} y(t)+\frac{B(z,\vartheta)}{C(z,\vartheta)} u(t-d)
+	\hat{M}(\theta): \quad \hat{y}(t \mid t-1, \theta)=\frac{C(z,\theta)-A(z,\theta)}{C(z,\theta)} y(t)+\frac{B(z,\theta)}{C(z,\theta)} u(t-d)
 \]
 And the prediction error is:
 \begin{align*}
-	\varepsilon(t, \vartheta)=y(t)-\hat{y}(t \mid t-1, \vartheta)&=\left[1-\frac{C(z,\vartheta)-A(z,\vartheta)}{C(z,\vartheta)}\right] y(t)-\frac{B(z,\vartheta)}{C(z,\vartheta)} u(t-d)\\
-	&=\frac{A(z,\vartheta)}{C(z,\vartheta)} y(t)-\frac{B(z,\vartheta)}{C(z,\vartheta)} u(t-d)
+	\varepsilon(t, \theta)=y(t)-\hat{y}(t \mid t-1, \theta)&=\left[1-\frac{C(z,\theta)-A(z,\theta)}{C(z,\theta)}\right] y(t)-\frac{B(z,\theta)}{C(z,\theta)} u(t-d)\\
+	&=\frac{A(z,\theta)}{C(z,\theta)} y(t)-\frac{B(z,\theta)}{C(z,\theta)} u(t-d)
 \end{align*}
-Since we have $C(z,\vartheta)$ in the denominator, the error is \emph{no more linear} in $\vartheta$.
+Since we have $C(z,\theta)$ in the denominator, the error is \emph{no more linear} in $\theta$.
 The cost function is \emph{non-convex} and may present \emph{local} minima:
 \[
-	J_{N}(\vartheta)=\frac{1}{N} \sum_{t=1}^{N} \varepsilon(t, \vartheta)^{2}
+	J_{N}(\theta)=\frac{1}{N} \sum_{t=1}^{N} \varepsilon(t, \theta)^{2}
 \]
 To tackle the non-linearity we can use some kinds of numerical optimization using descent methods:
 \begin{itemize}
-	\item the algorithm is initialized with an initial estimate (typically randomly chosen) of the optimal parameter vector: $\vartheta^{0}$;
-	\item update rule: $\vartheta^{i+1} = f (\vartheta^{i})$;
-	\item the sequence of estimates should converge to $\hat\vartheta_{N}$.
+	\item the algorithm is initialized with an initial estimate (typically randomly chosen) of the optimal parameter vector: $\theta^{0}$;
+	\item update rule: $\theta^{i+1} = f (\theta^{i})$;
+	\item the sequence of estimates should converge to $\hat\theta_{N}$.
 \end{itemize}
 If there are local minima, we can just use an \emph{empirical} approach by running the algorithm with many different starting values getting a range of candidates of minimum values, hoping to explore the entire domain and not miss the global minimum. This of course comes with the cost of computational complexity.
 
 
 \section{Asymptotic Analysis of PEM Identification}
 
-Is $M(\hat\vartheta_{N})$ a good model for the process $y(t)$?
+Is $M(\hat\theta_{N})$ a good model for the process $y(t)$?
 We can give an asymptotic answer as $N\to \infty$
 
 \textbf{Assumption on the data generating system:}
@@ -81,14 +81,14 @@ The measured data sequence corresponds to a particular \textbf{realization} of i
 \]
 Hence also the predictor computed from the given realization should be thought as:
 \[
-	\hat{y}(i\mid i-1,\vartheta) = f(D^{N}) = \hat{y}(i\mid i-1,\vartheta,\overline{s})
+	\hat{y}(i\mid i-1,\theta) = f(D^{N}) = \hat{y}(i\mid i-1,\theta,\overline{s})
 \]
 and also:
 \begin{gather*}
-	\varepsilon(i,\vartheta) = y(i,\overline{s}) - \hat{y}(i\mid i-1,\vartheta,\overline{s}) = \varepsilon(i,\vartheta,\overline{s})
+	\varepsilon(i,\theta) = y(i,\overline{s}) - \hat{y}(i\mid i-1,\theta,\overline{s}) = \varepsilon(i,\theta,\overline{s})
 	\quad
-	J_{N}(\vartheta) = \frac{1}{N}\sum_{i=1}^{N} \varepsilon(i,\vartheta,\overline{s})^2 = J_{N}(\vartheta,\overline{s})\\
-	\hat{\vartheta}_{N} = \argmin_{\vartheta} J_{N}(\vartheta,\overline{s}) = \hat{\vartheta}_{N}(\overline{s})
+	J_{N}(\theta) = \frac{1}{N}\sum_{i=1}^{N} \varepsilon(i,\theta,\overline{s})^2 = J_{N}(\theta,\overline{s})\\
+	\hat{\theta}_{N} = \argmin_{\theta} J_{N}(\theta,\overline{s}) = \hat{\theta}_{N}(\overline{s})
 \end{gather*}
 \fg{0.6}{Screen Shot 2022-04-02 at 11.01.06}
 Depending on the experiment, different costs and minimizers. As $N\to \infty$, the sequence of minimizers \textbf{converges:}\footnote{In practice, a good number could be $N\geq 300$.}
@@ -97,24 +97,24 @@ Indeed we have the following result.
 \begin{theorem}
 	Under the current assumptions, as the number of data points becomes larger and larger, we have with probability one that:
 	\[
-		J_{N}(\vartheta,s) = \frac{1}{N}\sum_{i=1}^{N} \varepsilon(i,\vartheta,s)^2 \xrightarrow{N\to\infty} \E[\varepsilon(t,\vartheta,s)^2] = \overline{J}(\vartheta)
+		J_{N}(\theta,s) = \frac{1}{N}\sum_{i=1}^{N} \varepsilon(i,\theta,s)^2 \xrightarrow{N\to\infty} \E[\varepsilon(t,\theta,s)^2] = \overline{J}(\theta)
 	\]
-	The convergence is almost sure w.r.t. $s$, uniform w.r.t. $\vartheta$ (the error goes to $0$ with the same rate for all $\vartheta$).\\
+	The convergence is almost sure w.r.t. $s$, uniform w.r.t. $\theta$ (the error goes to $0$ with the same rate for all $\theta$).\\
 	Moreover if we define the \textbf{set of all minimizers:}
 	\[
-		\Delta = \left\{ \vartheta ^{\star} : \overline{J}(\vartheta ^{\star}\le \overline{J}(\vartheta),\forall \vartheta  \right\}
+		\Delta = \left\{ \theta ^{\star} : \overline{J}(\theta ^{\star}\le \overline{J}(\theta),\forall \theta  \right\}
 	\]
 	we have:
 	\[
-		\text{distance}[\hat{\vartheta}_{N}(s), \Delta]\xrightarrow{N\to\infty} 0
+		\text{distance}[\hat{\theta}_{N}(s), \Delta]\xrightarrow{N\to\infty} 0
 	\]
 \end{theorem}
-As a corollary we have that if $\Delta ={\vartheta ^{\star} }$ (i.e. $J_{N}(\vartheta)$ has a unique minimum point), then:
+As a corollary we have that if $\Delta ={\theta ^{\star} }$ (i.e. $J_{N}(\theta)$ has a unique minimum point), then:
 \[
-	\hat{\vartheta}_{N}(s) \xrightarrow{N\to\infty} \vartheta ^{\star} 
+	\hat{\theta}_{N}(s) \xrightarrow{N\to\infty} \theta ^{\star} 
 \]
 almost surely and regardless of the experiment.
 
-To sum up, as $N$ is large enough we can approximate $M(\hat{\vartheta}(s)\approx M(\vartheta ^{\star}$.
+To sum up, as $N$ is large enough we can approximate $M(\hat{\theta}(s)\approx M(\theta ^{\star}$.
 
-Question: is $M(\vartheta^{\star}$ satisfactory? Let's assume that the systeam we are dealing with belongs to the class in which we construct the model, $S\in \mathcal{M}$. This is an ideal situation, we have enough degrees of freedom to describe the mechanism by which $y(t)$ is generated. That means that $\exists\vartheta^{0}: M(\vartheta^{0}) = S$.
+Question: is $M(\theta^{\star}$ satisfactory? Let's assume that the systeam we are dealing with belongs to the class in which we construct the model, $S\in \mathcal{M}$. This is an ideal situation, we have enough degrees of freedom to describe the mechanism by which $y(t)$ is generated. That means that $\exists\theta^{0}: M(\theta^{0}) = S$.
