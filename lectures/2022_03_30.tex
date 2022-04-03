@@ -1,5 +1,4 @@
 %!TEX root = ../main.tex
-%!TEX root = ../main.tex
 We want to use this theory to justify more formally the method we introduced.
 
 Let's start under the hypothesis that our model class is rich enough to describe our system.
@@ -99,11 +98,12 @@ This naive idea does NOT work in practice: $ J_{N}\left(\hat{\theta }_{N}^{m}\ri
 
 
 
-Example: function interpolation
-
-
-
-image
+\textbf{Example}: function interpolation
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=0.5\linewidth]{Screenshot (33)}
+\end{figure}
+\FloatBarrier
 
 A very simple but powerful idea to solve the problem is to perform \textbf{cross validation}.
 
@@ -124,8 +124,11 @@ Where $ J_{V}$ is the performance of the model obtained from the training set ev
 m^{*} =\underset{m}{\mathrm{arg}\min} J_{V}\left(\hat{\theta }_{T}^{m}\right) ,\hat{\theta }_{N} =\hat{\theta }_{T}^{m^{*}}
 \end{equation*}
 
-
-
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=.8\linewidth]{Screenshot(32)}
+\end{figure}
+\FloatBarrier
 The drawback of cross-validation is that the dataset has to be splitted: less information is used to tune the model and data collection can be expensive.
 
 
@@ -148,9 +151,9 @@ m^{*} =\underset{m}{\mathrm{arg}\min} V(m) ,\hat{\theta }_{N} =\hat{\theta }_{T}
 \end{equation*}
 Some common choice are
 \begin{align*}
-FPE & =\text{Final Prediction Error} & \text{(probability)}\\
-AIC & =\text{Akaike's Identification Criterion} & \text{(statistics)}\\
-MDL & =\text{Minimum Description Length} & \text{(information theory)}
+\text{FPE} & =\text{Final Prediction Error} & \text{(probability)}\\
+\text{AIC} & =\text{Akaike's Identification Criterion} & \text{(statistics)}\\
+\text{MDL} & =\text{Minimum Description Length} & \text{(information theory)}
 \end{align*}
 \begin{equation*}
  \begin{aligned}
@@ -160,14 +163,14 @@ MDL(m) = & & \ln(n)\frac{m}{N} & & +\ln\left(J_{N}\left(\hat{\theta }_{N}^{m}\ri
  & & \text{increasing with m} & & \text{decreasing with m}
 \end{aligned}
 \end{equation*}
-In fact, $ FPE$ and $ AIC$ are approximately equivalent:
+In fact, FPE and AIC are approximately equivalent:
 \begin{equation*}
 \begin{aligned}
-\ln(FPE) & =\ln\left(\frac{N+m}{N-m} J_{N}\left(\hat{\theta }_{N}^{m}\right)\right) &  & \\
+\ln(\text{FPE}) & =\ln\left(\frac{N+m}{N-m} J_{N}\left(\hat{\theta }_{N}^{m}\right)\right) &  & \\
  & =\ln\left(\frac{1+\frac{m}{N}}{1-\frac{m}{N}} J_{N}\left(\hat{\theta }_{N}^{m}\right)\right) &  & \\
  & =\ln\left(1+\frac{m}{N}\right) +\ln\left(1-\frac{m}{N}\right) +\ln\left(J_{N}\left(\hat{\theta }_{N}^{m}\right)\right) & m\ll n & \ , \frac{m}{n} \approx 0\\
  & \approx \frac{m}{N} -\left(-\frac{m}{N}\right) +\ln\left(J_{N}\left(\hat{\theta }_{N}^{m}\right)\right) &  & \\
  & =2\frac{m}{N} +\ln\left(J_{N}\left(\hat{\theta }_{N}^{m}\right)\right) =AIC &  & 
 \end{aligned}
 \end{equation*}
-$ MDL$ is equal to $ AIC$ with 2 replaced by $ \ln(N)$. Since typically $ \ln(N)  >2$ (i.e. dataset has more than eight data points) $ MDL$ penalizes m
+MDL is equal to AIC with 2 replaced by $ \ln(N)$. Since typically $ \ln(N)  >2$ (i.e. dataset has more than eight data points) MDL penalizes model order more than AIC and FPE.
