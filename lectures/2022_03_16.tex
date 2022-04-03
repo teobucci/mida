@@ -1,6 +1,6 @@
 %!TEX root = ../main.tex
 
-What we did \eqref{eq:reconstruction-noise-from-data} is indeed possibile (meaning we can reconstruct $e(t)$ from $y(t)$) thanks to the further assumptions we made at page \pageref{assumptions-prediction-theory}. In fact, this means that $W(z)^{-1}=\frac{A(z)}{C(z)}$ is asymptotically stable too.
+What we did \eqref{eq:reconstruction-noise-from-data} is indeed possible (meaning we can reconstruct $e(t)$ from $y(t)$) thanks to the further assumptions we made at page \pageref{assumptions-prediction-theory}. In fact, this means that $W(z)^{-1}=\frac{A(z)}{C(z)}$ is asymptotically stable too.
 
 From the point of view of transfer functions we have that:
 \[
@@ -45,7 +45,7 @@ The problem now is that if we try to reconstruct the noise from the output in th
 \]
 this is a \textbf{fatal mistake}, because it's not well defined, $e(t)$ cannot be reconstructed here!
 
-The corret way is indeed using the canonical representation:
+The correct way is indeed using the canonical representation:
 \[
 	y(t) = \left( 1-\frac{1}{2} z^{-1}  \right) \xi(t) \iff \xi(t) = \frac{1}{1-\frac{1}{2} z^{-1} } y(t) \implies \boxed{\hat y^{\xi} (t+1\mid t)= -\frac{1}{2} \xi(t) = \frac{-\frac{1}{2} }{1-\frac{1}{2} z^{-1} } y(t)}
 \]
