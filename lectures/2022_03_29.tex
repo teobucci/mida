@@ -97,12 +97,12 @@ Indeed we have the following result.
 \begin{theorem}
 	Under the current assumptions, as the number of data points becomes larger and larger, we have with probability one that:
 	\[
-		J_{N}(\theta,s) = \frac{1}{N}\sum_{i=1}^{N} \varepsilon(i,\theta,s)^2 \xrightarrow{N\to\infty} \E[\varepsilon(t,\theta,s)^2] = \overline{J}(\theta)
+		J_{N}(\theta,s) = \frac{1}{N}\sum_{i=1}^{N} \varepsilon(i,\theta,s)^2 \xrightarrow{N\to\infty} \E[\varepsilon(t,\theta,s)^2] = \bar{J}(\theta)
 	\]
 	The convergence is almost sure w.r.t. $s$, uniform w.r.t. $\theta$ (the error goes to $0$ with the same rate for all $\theta$).\\
 	Moreover if we define the \textbf{set of all minimizers:}
 	\[
-		\Delta = \left\{ \theta ^{\star} : \overline{J}(\theta ^{\star})\leq \overline{J}(\theta),\forall \theta  \right\}
+		\Delta = \left\{ \theta ^{\star} : \bar{J}(\theta ^{\star})\leq \bar{J}(\theta),\forall \theta  \right\}
 	\]
 	we have:
 	\[
