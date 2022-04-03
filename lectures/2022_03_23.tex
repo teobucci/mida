@@ -1,22 +1,22 @@
 %!TEX root = ../main.tex
 
-To sum up, \textit{PEM identification} is a common paradigm for finding suitable models from data, based on prediction theory.
+To sum up, \textit{\gls{pem} identification} is a common paradigm for finding suitable models from data, based on prediction theory.
 
 We have to move from stochastic models (ARMAX models) of type: 
 
 $$
-M(\theta):
-y(t) \ =\ \frac{B(z,\theta)}{A(z,\theta)} u(t-d) \ +\ \frac{C(z,\theta)}{A(z,\theta)} e(t) ,\ e(t)\sim \WN \left(0,\lambda ^{2}\right)
+\Mc(\theta):\quad
+y(t) = \frac{B(z,\theta)}{A(z,\theta)} u(t-d) +\ \frac{C(z,\theta)}{A(z,\theta)} e(t) ,\ e(t)\sim \WN \left(0,\lambda ^{2}\right)
 $$
 
 to models in prediction form, i.e. the optimal predictors obtained through the theory we developed. In particular, we can focus on the one-step predictor already introduced:
 
 $$
-\hat{M}(\theta) :
-\ \hat{y}(t\mid t-1) \ =\frac{B(z,\theta) E(z,\theta) \ }{C(z,\theta)} u(t-d) \ +\ \frac{F(z,\theta)}{C(z,\theta)} y(t-1)
+\hat{\Mc}(\theta):\quad
+\hat{y}(t\mid t-1) = \frac{B(z,\theta) E(z,\theta) \ }{C(z,\theta)} u(t-d) + \frac{F(z,\theta)}{C(z,\theta)} y(t-1)
 $$
 
-The predictor has a different structure: while $ M(\theta)$ is fed by \gls{wn} and input $u$, the predictor $\hat{M}(\theta)$ is fed by measurements of $u$ and $y$ and returns the predicted future values of output, \textbf{there isn't \gls{wn}}. The predictor model is returning the predicted values for \textit{that} realization of input and output.
+The predictor has a different structure: while $ \Mc(\theta)$ is fed by a \gls{wn} and an input $u$, the predictor $\hat{\Mc}(\theta)$ is fed by measurements of $u$ and $y$ and returns the predicted future values of output, \textbf{there isn't a \gls{wn}}. The predictor model is returning the predicted values for \textit{that} realization of input and output.
 
 
 \tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
@@ -48,7 +48,7 @@ The predictor has a different structure: while $ M(\theta)$ is fed by \gls{wn} a
 \draw [shift={(348,131.94)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
 
 % Text Node
-\draw (95,93.4) node [anchor=north west][inner sep=0.75pt]    {$M(\theta)$};
+\draw (95,93.4) node [anchor=north west][inner sep=0.75pt]    {$\Mc(\theta)$};
 % Text Node
 \draw (85,18.4) node [anchor=north west][inner sep=0.75pt]    {$e(t)$};
 % Text Node
@@ -56,7 +56,7 @@ The predictor has a different structure: while $ M(\theta)$ is fed by \gls{wn} a
 % Text Node
 \draw (176,78.4) node [anchor=north west][inner sep=0.75pt]    {$y(t)$};
 % Text Node
-\draw (378,87.34) node [anchor=north west][inner sep=0.75pt]    {$\hat{M}(\theta)$};
+\draw (378,87.34) node [anchor=north west][inner sep=0.75pt]    {$\hat{\Mc}(\theta)$};
 % Text Node
 \draw (295,70.34) node [anchor=north west][inner sep=0.75pt]    {$u(t-d)$};
 % Text Node
@@ -67,7 +67,7 @@ The predictor has a different structure: while $ M(\theta)$ is fed by \gls{wn} a
 
 \end{tikzpicture}
 
-The idea is that, when dealing with a real system, values of $u$ and $y$ from time $t=1,\ldots,n$ can be collected, subsequently taking the predictor (introducing proper delays $ z^{-1}$) and feeding it with the measurement of $u$ and $y$ collected during the experiment. Then, the output of the predictor $ \hat{M}(\theta $) can be used to construct the value of the \textbf{prediction error} $ \varepsilon $. 
+The idea is that, when dealing with a real system, the values of $u$ and $y$ from time $t=1,\ldots,n$ can be collected, subsequently taking the predictor (introducing proper delays $ z^{-1}$) and feeding it with the measurement of $u$ and $y$ collected during the experiment. Then, the output of the predictor $\hat{\Mc}(\theta $) can be used to construct the value of the \textbf{prediction error} $ \varepsilon $. 
 
 
 
@@ -128,7 +128,7 @@ The idea is that, when dealing with a real system, values of $u$ and $y$ from ti
 % Text Node
 \draw (160,83.4) node [anchor=north west][inner sep=0.75pt]    {$S$};
 % Text Node
-\draw (173,227.34) node [anchor=north west][inner sep=0.75pt]    {$\hat{M}(\theta)$};
+\draw (173,227.34) node [anchor=north west][inner sep=0.75pt]    {$\hat{\Mc}(\theta)$};
 % Text Node
 \draw (82,210.4) node [anchor=north west][inner sep=0.75pt]    {$z^{-1}$};
 % Text Node
@@ -181,31 +181,28 @@ $n$ & $ u(n)$ & $ y(n)$ & $ \hat{y}(n\mid n-1)$ & $ \varepsilon (n\mid n-1,\thet
 \textbf{Observation.}
 All the values $ \hat{y} ,\ \varepsilon $ depend on the chosen $ \theta $. By inspecting the value of $ \varepsilon $, $ \theta $ can be tuned to make the prediction error as small as possible through a minimization process.
 
-\textbf{Idea} (Prediction Error Minimization)
-choose $ \hat{\theta }_{N}$ that minimizes the magnitude of prediction error.
+\textbf{We want to choose $\hat{\theta}_{N}$ that minimizes the prediction error.}
 
-We have to introduce a metric to formalize the magnitude of the error. We define a \textbf{cost funtion} 
+We have to introduce a metric to quantify the error. We define a \textbf{cost function:} 
 \begin{equation*}
-J_{N}(\theta) =\frac{1}{N}\sum _{i=1}^{N}(y(i) -\hat{y}(i\mid i-1,\theta))^{2} =\frac{1}{N}\sum _{i=1}^{N} \varepsilon (i\mid i-1,\theta)^{2}
+	\boxed{J_{N}(\theta) =\frac{1}{N}\sum _{i=1}^{N}(y(i) -\hat{y}(i\mid i-1,\theta))^{2} =\frac{1}{N}\sum _{i=1}^{N} \varepsilon (i\mid i-1,\theta)^{2}}
 \end{equation*}
-also known as \textbf{PEM minimization cost}, which can be interpreted as the \emph{empirical variance} of prediction error over the collected data. Then 
+also known as \textbf{\gls{pem} minimization cost}, which can be interpreted as the \emph{empirical variance} of the prediction error over the collected data. Then:
 \begin{equation*}
 \hat{\theta }_{N} =\underset{\theta \in \Theta}{\argmin} J_{N}(\theta) =\underset{\theta \in \Theta}{\argmin}\frac{1}{N}\sum _{i=1}^{N} \varepsilon (i\mid i-1,\theta)^{2}
 \end{equation*}
-The better the prediction, the better the model to unveil the mechanisms through which $y$ is generated in $S$. 
 
 \subsection{Estimation of \texorpdfstring{$\lambda$}{lambda}}
 
-$ \hat{M}(\theta)$ depends only on $ \theta $ and $ \min J_{N}(\theta)$ returns only the best estimate for  parameter $ \theta $, the part of the model that we need in order to reconstruct the predictor.
+$ \hat{\Mc}(\theta)$ depends only on $ \theta $ and the minimization of $J_{N}(\theta)$ returns only the best estimate for $\theta$, the part of the model that we need in order to reconstruct the predictor.
 
-However, if I'm interested in the description of the complete ARMA process, $ \lambda ^{2}$ is to be estimated. 
+However, if we're interested in the description of the complete ARMA process, also $\lambda^{2}$ has to be estimated. 
 \begin{equation*}
-\hat{\lambda }_{N}^{2} =J_{N}(\hat{\theta }_{N}) =\frac{1}{N}\sum _{i=1}^{N} \varepsilon (i\mid i-1,\hat{\theta }_{N})^{2}
+	\boxed{\hat{\lambda }_{N}^{2} =J_{N}(\hat{\theta }_{N}) =\frac{1}{N}\sum _{i=1}^{N} \varepsilon (i\mid i-1,\hat{\theta }_{N})^{2}}
 \end{equation*}
+The proposed estimate is the \textbf{empirical variance} of the prediction error for the optimal model. The idea behind the formula is simple: suppose $ S\in \Mc $ (i.e. our model class is rich enough to describe perfectly the true mechanism by which $y$ is generated) and $\hat{\theta }_{N}$ is so good that $\Mc(\hat{\theta }_{N}) =S$ (i.e. the information collected is enough to unveil $S$).
 
-The proposed estimate is the \textbf{empirical variance} of the prediction error for the optimal model. The idea behind the formula is simple: suppose $ S\in \mathcal{M} $ (i.e. our model class is rich enough to describe perfectly the true mechanism by which $y$ is generated) and $\hat{\theta }_{N}$ is so good that $M(\hat{\theta }_{N}) =S$ (i.e. the information collected is enough to unveil $S$).
-
-Since $ S\in \mathcal{M} \Longrightarrow S$ is an ARMAX process. Thus, there is a white noise $ \xi (t) \sim \WN\left(0,\lambda ^{2}\right)$ in the real world that generates $y$. Then $ \hat{y}(t\mid t-1,\hat{\theta }_{N})$ is the optimal predictor not only for the model, but also for the system $S$. Most importantly
+Since $ S\in \Mc \Longrightarrow S$ is an ARMAX process. Thus, there is a white noise $ \xi (t) \sim \WN\left(0,\lambda ^{2}\right)$ in the real world that generates $y$. Then $ \hat{y}(t\mid t-1,\hat{\theta }_{N})$ is the optimal predictor not only for the model, but also for the system $S$. Most importantly
 \begin{equation*}
 \varepsilon (t\mid t-1,\hat{\theta }_{N}) =\xi (t)
 \end{equation*}
@@ -220,7 +217,7 @@ Now that we have our model, we need to study its computational aspect: how can t
 
 In general $ J_{N}(\theta)$ is a very complicated and non-convex function of $ \theta $, with local minima and often without analytical or explicit expression. However, the subset of AR/ARX models, with good descriptive capabilities, has a quadratic cost function wich can be explicitedly minimized.
 
-In this case \textit{PEM identification} takes the name of \textit{Least Squares Identification.}
+In this case \textit{\gls{pem} identification} takes the name of \textit{Least Squares Identification.}
 
 Given a generic ARX model
 \begin{gather*}
@@ -255,9 +252,9 @@ we can rewrite the recursive equations
 \begin{equation*}
 	y(t) =\theta \transpose \varphi (t) +e(t) =\underbrace{\varphi (t)\transpose \theta }_{\substack{\text{predictable}\\\text{at }t-1}} +\underbrace{e(t)}_{\substack{\text{unpredictable}\\\text{at }t-1}}
 \end{equation*}
-It is now possible to compute the one-step predictor for $ ARX$ model easily: we just need to delete the unpredictable part.
+It is now possible to compute the one-step predictor for ARX model easily: we just need to delete the unpredictable part.
 \begin{align*}
-\hat{M}(\theta) :\ \hat{y}(t\mid t-1) & =a_{1} y(t-1) +\cdots +a_{m} y(t-m) +b_{0} u(t-d) +b_{1} u(t-d-1) +\cdots +b_{p} u(t-d-p)\\
+\hat{\Mc}(\theta) :\ \hat{y}(t\mid t-1) & =a_{1} y(t-1) +\cdots +a_{m} y(t-m) +b_{0} u(t-d) +b_{1} u(t-d-1) +\cdots +b_{p} u(t-d-p)\\
  & =\theta \transpose \varphi (t) \ \\
  & =\varphi (t)\transpose \theta 
 \end{align*}
@@ -306,12 +303,12 @@ This sistem of linear equations is commonly referred to as \textit{Least Squares
 \begin{equation*}
 \sum _{i=1}^{N} \varphi (i) \varphi (i)\transpose \ \text{is nonsingular}
 \end{equation*}
-the solution is unique, and $ \hat{\theta }_{N}$ is univocally determined
+the solution is unique, and $ \hat{\theta }_{N}$ is uniquely determined
 \begin{equation*}
 \boxed{\hat{\theta }_{N} =\left[\sum _{i=1}^{N} \varphi (i) \varphi (i)\transpose\right]^{-1}\sum _{i=1}^{N} \varphi (i) y(i)}
-\qquad \text{LS formula}
+\qquad \text{Least Squres formula}
 \end{equation*}
-If $ \sum \varphi (i) \varphi (i)\transpose$ is singular, there are infinite solutions: $ \hat{\theta }_{N}$ can be determined by introducing tie-break rule (e.g. taking the solution with minimum norm). This may happen when many models have the same predictive capability, such as in a redundant model class or in case of uninformative data.
+If $ \sum \varphi (i) \varphi (i)\transpose$ is singular, there are infinite solutions: $ \hat{\theta }_{N}$ can be determined by introducing a tie-break rule (e.g. taking the solution with minimum norm). This may happen when many models have the same predictive capability, such as in a redundant model class or in case of uninformative data.
 
 \textbf{Geometric interpretation:}
 \begin{equation*}
@@ -348,4 +345,3 @@ $ J_{N}(\theta)$ is a paraboloid with minima:
 \frac{d^{2}}{d\theta ^{2}} J_{N}(\theta) & =\frac{2}{N}\sum _{i=1}^{N} \varphi (i) \varphi (i)\transpose \text{ nonsingular (pos. def.)} & \Longrightarrow\quad& \text{proper paraboloid (unique min.)}\\
 \frac{d^{2}}{d\theta ^{2}} J_{N}(\theta) & =\frac{2}{N}\sum _{i=1}^{N} \varphi (i) \varphi (i)\transpose \text{ singular} &\Longrightarrow\quad& \text{degenerate paraboloid}
 \end{align*}
-

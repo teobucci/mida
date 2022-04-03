@@ -43,15 +43,15 @@ $$
 
 \chapter{Model Identification}
 
-Up to now, we considered (ARMA/ARMAX) models and studied their properties: covariance and spectrum computation, prediction.
+Up to now, we considered models and studied their properties: covariance and spectrum computation, prediction.
 
 But where does the model come from?
 
-Model identification: retrieve suitable model from experiments on the real system 
+Model identification: retrieve a suitable model from experiments on the real system.
 
 \fg{0.4}{Screenshot (25)}
 
-Identification problem: define an automatic procedure to find a model for $S$ based on available (input/output or time series) data.
+\textbf{Identification problem:} define an automatic procedure to find a model for $S$ based on available (input/output or time series) data.
 
 %\fg{0.7}{Screenshot (26)}
 \begin{figure}[htpb]
@@ -77,11 +77,11 @@ Identification problem: define an automatic procedure to find a model for $S$ ba
 
 \section{Parametric model identification}
 
-First we select a parametric model class $\mathcal{M}(\theta)$ ($\theta$= parameters vector – each different $\theta$ corresponds to a different model).
+First we select a \textbf{parametric model class} $\Mc(\theta)$, where $\theta$ is the vector of parameters (each different $\theta$ corresponds to a different model in that class).
 
 For example:
 $$
-	\mathcal{M}=\left\{y(t)=\frac{B(z, \theta)}{A(z, \theta)} u(t-d)+\frac{C(z, \theta)}{A(z, \theta)} e(t), \quad e(t) \sim WN\left(0, \lambda^{2}\right), \theta\in\Theta\right\}
+	\Mc(\theta)=\left\{y(t)=\frac{B(z, \theta)}{A(z, \theta)} u(t-d)+\frac{C(z, \theta)}{A(z, \theta)} e(t), \quad e(t) \sim WN\left(0, \lambda^{2}\right), \theta\in\Theta\right\}
 $$
 is the family of ARMAX models whose coefficients are polynomjals.
 \begin{align*}
@@ -90,23 +90,20 @@ is the family of ARMAX models whose coefficients are polynomjals.
 	C(z, \theta)&=c_0(\theta)+c_{1}(\theta) z^{-1}+\cdots+c_{n}(\theta) z^{-n}
 \end{align*}
 
-We will talk of \textbf{black-box identification} when no knowledge on the system is available and the model structure must be found from data only.
-
+We will talk of \textbf{black-box identification} when no knowledge on the system is available and the model structure must be found from data only.\\
 $\theta$ is directly the vector of coefficients of $A(z, \theta),B(z, \theta),C(z, \theta)$.
-
 $$
 	\theta=[a_{1},\ldots,a_{m},b_{1},\ldots,b_{p},c_{1},\ldots,c_{n}]\transpose
 $$
-
 In all other cases: \textbf{grey-box identification}.
 
 We try to incorporate some a priori information about the real $S$ in the model class. $\theta$ may have some physical interpretation.
 
 \emph{Example.}
 $$
-	M(\theta): y(t)=\frac{b+b^{2} z^{-1}}{1-a z^{-1}} u(t-d)+\frac{1+a z^{-1}}{1-a z^{-1}} e(t)
+	\Mc(\theta): y(t)=\frac{b+b^{2} z^{-1}}{1-a z^{-1}} u(t-d)+\frac{1+a z^{-1}}{1-a z^{-1}} e(t)
 $$
-Here, the parameter vector is given by $\theta=\begin{bmatrix}a \\ b\end{bmatrix}$ only.
+Here, the parameter vector is given by $\theta=\begin{bmatrix}a,b\end{bmatrix}\transpose$ only.
 
 
 \textbf{Observation.}
@@ -116,14 +113,14 @@ $\Theta$ is the set of admissible values for the parameter vector $\theta$.
 
 It incorporates a-priori information on the possible value for the parameters. In the blackbox case $\Theta$ is as free as possible.
 
-As we will see, to perform identification we will rely on the theory of prediction. Hence, we will assume the following assumption:
+As we will see, to perform identification we will rely on the theory of prediction. Hence, we will assume the following:
 
-\boxedText{For every $\theta \in \Theta$, the stochastic part of $M(\theta)$ (i.e. the part depending on the white noise $\left.e(t) \sim W N\left(0, \lambda^{2}\right)\right)$ is \textbf{canonical} and has \textbf{no zeroes on the unit circle}.}
+\boxedText{For every $\theta \in \Theta$, the stochastic part of $\Mc(\theta)$ (i.e. the part depending on the white noise $e(t) \sim \WN(0, \lambda^{2})$) is \textbf{canonical} and has \textbf{no zeroes on the unit circle}.}
 
 The requirement that there are no zeroes on the unit circle instead poses some limitations on the systems we can identify. However:
 \begin{itemize}
-	\item zeroes on the unit circle are not usually required to model the behavior of a given system
-	\item the behavior of models with zeroes on the unit circle can be approximate by means of models with zeroes close to the unit circle
+	\item zeroes on the unit circle are not usually required to model the behavior of a given system;
+	\item the behavior of models with zeroes on the unit circle can be approximated by models with zeroes \emph{close} to the unit circle.
 \end{itemize} 
 
 \section{PEM (Prediction Error Minimization) identification}
@@ -132,28 +129,21 @@ Paradigm to map data into a value of $\overline{\theta}$.
 $$
 	D^N=\left\{\overline{y(1)},\ldots,\overline{y(N)},\overline{u(1)},\ldots,\overline{u(N)}\right\}
 $$
-$D^N$ is a finite sequence of real numbers, observation of $y$ and $u$ over some horizon. $N$ is the length of the dataset.
-
-\fg{0.3}{Screenshot (27)}
-
+$D^N$ is a finite sequence of real numbers, observations of $y$ and $u$ over some horizon. $N$ is the length of the dataset.
+\fg{0.2}{Screenshot (27)}
 How to compare $\overline{y(1)},\ldots,\overline{y(N)}$ with $y(1,s),\ldots,y(N,s)$?
-
 \fg{0.7}{Screenshot (28)}
-
-\textbf{Idea}(Prediction Error Minimization)
-
-$M(\theta)\implies \hat{M}(\theta)$ from stochastic models to predictive models.
-
-ARMAX in $\mathcal{M}$ for a given value of $\theta$:
-
+The idea of the \gls{pem} is that we move \textbf{from stochastic models to predictive models.}
+\[
+	\Mc(\theta) \to \hat{\Mc}(\theta)
+\]
+For example this is an ARMAX in $\Mc(\theta)$ for a given value of $\theta$:
 \begin{align*}
-	M(\theta)&:\quad y(t)=\frac{B(z, \theta)}{A(z, \theta)} u(t-d)+\frac{C(z, \theta)}{A(z, \theta)} e(t)\\
-	&\qquad\Downarrow\\
-	\hat{M}(\theta)&: \quad \hat{y}(t \mid t-1) =\frac{B(z,\theta) E(z,\theta)}{C(z,\theta)} u(t-d)+\frac{F(z,\theta)}{C(z,\theta)} y(t-1) \qquad \text{one step prediction}
+	\Mc(\theta)&:\quad y(t)=\frac{B(z, \theta)}{A(z, \theta)} u(t-d)+\frac{C(z, \theta)}{A(z, \theta)} e(t)\\
+	&\qquad\downarrow\\
+	\hat{\Mc}(\theta)&: \quad \hat{y}(t \mid t-1) =\frac{B(z,\theta) E(z,\theta)}{C(z,\theta)} u(t-d)+\frac{F(z,\theta)}{C(z,\theta)} y(t-1) \qquad \text{one step predictor}
 \end{align*}
-
-\fg{0.7}{Screenshot (29)}
-
+\fg[The \gls{pem} identification scheme.]{0.7}{Screenshot (29)}
 $$y(t)=\underbrace{\frac{B(z)}{A(z)} u(t+k-d)}_{\substack{\text{This part of the process}\\ 
 		\text{is deterministically}\\
 		\text{known, and hence can}\\
