@@ -332,6 +332,7 @@
 
 \theoremstyle{unnumbered}
 \newtheorem*{ossT}{Remark}
+\newtheorem*{exT}{Example}
 \newtheorem*{dimT}{Proof}
 
 \RequirePackage[framemethod=default]{mdframed} % Required for creating the theorem, definition, exercise and corollary boxes
@@ -407,6 +408,7 @@ innerbottommargin=5pt]{dimBox}
 \newenvironment{theorem}{\begin{gBox}\begin{theoremT}}{\end{theoremT}\end{gBox}}	
 \newenvironment{definition}{\begin{bBox}\begin{definitionT}}{\end{definitionT}\end{bBox}}	
 \newenvironment{oss}{\begin{oBox}\begin{ossT}}{\end{ossT}\end{oBox}}
+\newenvironment{example}{\begin{dimBox}\begin{exT}}{\end{exT}\end{dimBox}}
 \newenvironment{dimostrazione}{\begin{dimBox}\begin{dimT}}{\[\qed\]\end{dimT}\end{dimBox}}
 
 %----------------------------------------------------------------------------------------

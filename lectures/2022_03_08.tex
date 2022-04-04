@@ -177,9 +177,8 @@ Spectral density:
 \]
 \gls{wn} have constant and equal to $\lambda^{2}$ spectral density.
 
-\textbf{Example} (MA(1) process)
-
-$y(t)=e(t)+c \cdot e(t-1)$, with $c \in \RR$, $e(t)\sim \WN(0,1)$.\\
+\begin{example}
+Let us consider the generic MA($1$) process defined by $y(t)=e(t)+c \cdot e(t-1)$, with $c \in \RR$, $e(t)\sim \WN(0,1)$.\\
 We know that:
 \begin{align*}
 	&\gamma_{y}(0)=(1^{2}+c^{2})\cdot \lambda^{2}=(1+c^{2})\\
@@ -202,7 +201,7 @@ $$
 	\Gamma_y(\omega)=1+c^{2}+2 c \cdot \cos (\omega).
 $$
 which is real, non-negative, even and $2 \pi$-periodic.
-
+\end{example}
 Let the process $y(t)$ be the steady-state output of an asymptotically stable digital filter fed by an \gls{ssp}, i.e. $y(t)=F(z) v(t)$. Then, the following formula for the spectral density of $y(t)$ holds:
 \[
 	\boxed{\Gamma_{y}(\omega)=|F(e^{j \omega})|^{2} \cdot \Gamma_{v}(\omega)}
@@ -212,15 +211,29 @@ $$
 \Gamma_{y}(\omega)=|F(e^{j \omega})|^{2} \lambda^{2}
 $$
 
-\textbf{Example.} (MA(1) process)
-
-$y(t)=e(t)+c \cdot e(t-1)$, with $c \in \RR$, $e(t)\sim \WN(0,\lambda^2)$.\\
+Let us consider again the generic MA($1$) process defined by $y(t)=e(t)+c \cdot e(t-1)$, with $c \in \RR$, $e(t)\sim \WN(0,\lambda^2)$.\\
 Then:
 \begin{align*}
 	y(t)=\left(1+c z^{-1}\right) e(t) \implies \Gamma_{y}(\omega)&=\left|1+c e^{-j \omega}\right|^{2} \cdot \lambda^{2}\\
 	&=\left|1+c \cos (\omega)-j c\sin (\omega)\right|^{2}\cdot\lambda^2\\
 	&=[\left(1+c \cos (\omega)\right)^2+\left(-c\sin (\omega)\right)^2]\cdot\lambda^2\\
 	&=[1+c^{2}+2 c \cos (\omega)]\cdot\lambda^2
+\end{align*}
+See Figure \ref{fig:example-density} to see the spectral density.
+
+Moreover:
+\begin{align*}
+	|1+c e^{-j \omega}|^2&=\left(1+c e^{-j \omega}\right)\left(1+c e^{+j \omega}\right)\\
+	&=\underbrace{\left(1+c z^{-1}\right)}_\text{where $z=e^{j \omega}$}\underbrace{\left(1+c z^{-1}\right)}_\text{where $z=e^{-j \omega}$}
+\end{align*}
+\begin{align*}
+	W(z)=\frac{C(z)}{A(z)}=\frac{(1+q_1z^{-1})\cdots(1+q_nz^{-1})}{(1+p_1z^{-1})\cdots(1+p_mz^{-1})}
+\end{align*}
+where $q_i$ are the zeros and $p_i$ the poles.
+\begin{align*}
+	\left|W\left(e^{j \omega}\right)\right|^{2}&=\frac{|1+q_1e^{-j \omega}|^2\cdots|1+q_ne^{-j \omega}|^2}{|1+p_1e^{-j \omega}|^2\cdots|1+p_me^{-j \omega}|^2}\\
+	&=\frac{(1+q_1e^{-j \omega})\cdots(1+q_ne^{-j \omega})}{(1+p_1e^{-j \omega})\cdots(1+p_me^{-j \omega})}\cdot\frac{(1+q_1e^{j \omega})\cdots(1+q_ne^{j \omega})}{(1+p_1e^{j \omega})\cdots(1+p_me^{j \omega})}\\
+			&=W\left(e^{j \omega}\right)\cdot W\left(e^{-j \omega}\right)
 \end{align*}
 %\fg{0.7}{Screenshot (20)}
 \begin{figure}[htpb]
@@ -248,20 +261,6 @@ Then:
 	        circle [radius=2pt];
 
 	\end{tikzpicture}
+	\caption{Spectral density for MA($1$) process.}
+	\label{fig:example-density}
 \end{figure}
-\FloatBarrier
-
-Moreover:
-\begin{align*}
-	|1+c e^{-j \omega}|^2&=\left(1+c e^{-j \omega}\right)\left(1+c e^{+j \omega}\right)\\
-	&=\underbrace{\left(1+c z^{-1}\right)}_\text{where $z=e^{j \omega}$}\underbrace{\left(1+c z^{-1}\right)}_\text{where $z=e^{-j \omega}$}
-\end{align*}
-\begin{align*}
-	W(z)=\frac{C(z)}{A(z)}=\frac{(1+q_1z^{-1})\cdots(1+q_nz^{-1})}{(1+p_1z^{-1})\cdots(1+p_mz^{-1})}
-\end{align*}
-where $q_i$ are the zeros and $p_i$ the poles.
-\begin{align*}
-	\left|W\left(e^{j \omega}\right)\right|^{2}&=\frac{|1+q_1e^{-j \omega}|^2\cdots|1+q_ne^{-j \omega}|^2}{|1+p_1e^{-j \omega}|^2\cdots|1+p_me^{-j \omega}|^2}\\
-	&=\frac{(1+q_1e^{-j \omega})\cdots(1+q_ne^{-j \omega})}{(1+p_1e^{-j \omega})\cdots(1+p_me^{-j \omega})}\cdot\frac{(1+q_1e^{j \omega})\cdots(1+q_ne^{j \omega})}{(1+p_1e^{j \omega})\cdots(1+p_me^{j \omega})}\\
-			&=W\left(e^{j \omega}\right)\cdot W\left(e^{-j \omega}\right)
-\end{align*}

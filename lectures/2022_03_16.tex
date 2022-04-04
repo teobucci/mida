@@ -13,8 +13,8 @@ The correct expression of the linear predictor can \emph{only} be obtained by us
 
 Let us illustrate this fact through an example.
 
-\emph{Example. MA($1$)}
-Let $e(t)\sim \WN(0,1)$.
+\begin{example}
+Let $e(t)\sim \WN(0,1)$ and consider MA($1$) process:
 \begin{align*}
 	y(t) &= e(t) - 2 e(t-1)\\
 	&= (1-2z^{-1} )e(t) &\text{non-canonical}\\
@@ -54,7 +54,7 @@ If we consider the prediction error we see that they are different:
 	\E\left[ \left( y(t+1)-\hat y^{e}(t+1\mid t)  \right) ^2   \right]  =\E[e(t+1)^2 ]=1\neq 4=\E[\xi(t+1)^2 ]=\E\left[ \left( y(t+1)-\hat y ^{\xi}(t+1\mid t)  \right)^2    \right]  
 \]
 this means that $\hat y^{e} $ and $\hat y^{\xi} $ cannot be both the canonical predictor from output.
-
+\end{example}
 \textbf{Observation.}
 
 \begin{align*}

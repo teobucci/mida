@@ -3,7 +3,7 @@ We want to use this theory to justify more formally the method we introduced.
 
 Let's start under the hypothesis that our model class is rich enough to describe our system.
 \begin{equation*}
-S\in \Mc \left(\exists \theta ^{0} \in \Theta :S\equiv y(t) =\frac{B\left(z,\theta ^{0}\right)}{A\left(z,\theta ^{0}\right)} u(t-d) +\frac{C\left(z,\theta ^{0}\right)}{A\left(z,\theta ^{0}\right)} e(t) ,e(t) \sim \WN \left(0,\lambda ^{2}\right)\right)
+S\in \Mc \quad \left(\text{i.e. }\exists \theta ^{0} \in \Theta :S\equiv y(t) =\frac{B\left(z,\theta ^{0}\right)}{A\left(z,\theta ^{0}\right)} u(t-d) +\frac{C\left(z,\theta ^{0}\right)}{A\left(z,\theta ^{0}\right)} e(t) ,e(t) \sim \WN \left(0,\lambda ^{2}\right)\right)
 \end{equation*}
 Our model is not a model, but the true system through which $ y(t)$ is generated.
 
@@ -44,12 +44,12 @@ Thus, the \gls{pem} identification is \textbf{asymptotically consistent}: if $ \
 
 \section{Model order selection (model validation and hyper-parameter tuning)}
 
-The identification of model consists in 4 steps:
+The identification of model consists of 4 steps:
 \begin{enumerate}
-\item Data collection
-\item Choice of $ \Mc$
-\item Optimal model selection (\gls{pem}: $ \hat{\theta }_{N} =\underset{\theta \in \Theta }{\argmin} J_{N}(\theta)$)
-\item Model validation (evaluate the performance of $\Mc(\hat{\theta }_{N})$)
+\item data collection;
+\item choice of $ \Mc$;
+\item optimal model selection\footnote{\gls{pem}: $ \hat{\theta }_{N} =\underset{\theta \in \Theta }{\argmin} J_{N}(\theta)$};
+\item model validation\footnote{evaluate the performance of $\Mc(\hat{\theta }_{N})$}.
 \end{enumerate}
 
 The process is not linear: it is common to loop from model validation to another choice of $ \Mc$ (if the model is not satisfactory) or even to data collection.
@@ -91,16 +91,12 @@ At the end of the cycle we select:
 \hat{\theta }_{N} =\hat{\theta }_{N}^{m} \text{ with lowest } J_{N}\left(\hat{\theta }_{N}^{m}\right)
 \end{equation*}
 This naive idea does NOT work in practice: $ J_{N}\left(\hat{\theta }_{N}^{m}\right)$ is always decreasing with $ m$, so that the highest possible order is selected. As $ m$ increases, the model runs in the problem of over-fitting: it's perfectly good for describing the data collected but it does not generalizes to new data. The model has overall a bad predictive performance on new data.
-
-
-
-\textbf{Example}: function interpolation
 \begin{figure}[htpb]
     \centering
     \includegraphics[width=0.5\linewidth]{Screenshot (33)}
+    \caption{Example of function interpolation.}
 \end{figure}
 \FloatBarrier
-
 A very simple but powerful idea to solve the problem is to perform \textbf{cross validation}.
 
 Cross validation consists in evaluating the performance of an identified model on new data: the dataset is divided in two parts, using the first (\textbf{training dataset}) for selecting the parameters and the second (\textbf{validation dataset}) for cross validation.

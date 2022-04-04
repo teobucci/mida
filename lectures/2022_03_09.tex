@@ -32,15 +32,16 @@ where $\tilde{y}(t)$ is the filtered output process.
 	\]
 \end{theorem}
 
-\emph{Example.}
+\begin{example}
 The \gls{wn} spectral density is constant, i.e. \gls{wn} energy is \emph{equally-distributed} all over the frequency domain.
+\end{example}
 \fg{0.7}{Screen Shot 2022-03-12 at 16.41.55}
 
-\emph{Example (AR($1$)).}
-Consider $y(t)=ay(t-1)+e(t)$.
+\begin{example}
+Consider the AR($1$) process $y(t)=ay(t-1)+e(t)$.
 \begin{itemize}
-	\item if $a>0$ the sign tends to be maintained
-	\item if $a<0$ the sign tends to changed
+	\item if $a>0$ the sign tends to be maintained;
+	\item if $a<0$ the sign tends to changed.
 \end{itemize}
 The transfer function is $y(t)=\frac{1}{1-az^{-1} }e(t)$, then
 \begin{align*}
@@ -49,6 +50,7 @@ The transfer function is $y(t)=\frac{1}{1-az^{-1} }e(t)$, then
 	&=\frac{1}{1+a^2 -a\left( \frac{e^{j\omega}+e^{-j\omega}}{2} \right)\cdot 2}\\
 	&=\frac{1}{1+a^2-2a\cos (\omega)} \cdot\lambda^2
 \end{align*}
+\end{example}
 Depending on the values of $a$ we have different behaviors.
 
 If $a>0$ energy is concentrated at low frequencies
@@ -56,8 +58,8 @@ If $a>0$ energy is concentrated at low frequencies
 If $a<0$ energy is concentrated at larger frequencies
 \fg{0.8}{Screen Shot 2022-03-12 at 16.58.25}
 
-\emph{Example (ARMA).}
-Consider $y(t)=\frac{C(z)}{A(z)}e(t)$
+\begin{example}
+Consider the ARMA process $y(t)=\frac{C(z)}{A(z)}e(t)$
 \[
 	\Gamma _{y}(\omega )=\left|\frac{C(e^{j\omega})}{A(e^{j\omega})}\right|^2 \cdot\lambda^2 =\frac{C(e^{j\omega})}{A(e^{j\omega} )} \cdot \frac{C(e^{-j\omega})}{A(e^{-j\omega} )}\cdot\lambda^2 
 \]
@@ -65,6 +67,7 @@ $y(t)$ has a \emph{rational} spectral density. The reverse is also true:
 \[
 	y(t) \text{ ARMA} \iff W(z) \text{ rational}
 \]
+\end{example}
 Indeed we have the following result:
 \begin{theorem}
 	Let $y(t)$ be a \gls{ssp} with rational spectral density.
