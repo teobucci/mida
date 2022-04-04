@@ -331,7 +331,7 @@
 \newtheorem{theoremT}[dummy]{Theorem}
 
 \theoremstyle{unnumbered}
-\newtheorem*{ossT}{Remark}
+\newtheorem*{ossT}{Observation}
 \newtheorem*{exT}{Example}
 \newtheorem*{dimT}{Proof}
 
@@ -407,7 +407,7 @@ innerbottommargin=5pt]{dimBox}
 
 \newenvironment{theorem}{\begin{gBox}\begin{theoremT}}{\end{theoremT}\end{gBox}}	
 \newenvironment{definition}{\begin{bBox}\begin{definitionT}}{\end{definitionT}\end{bBox}}	
-\newenvironment{oss}{\begin{oBox}\begin{ossT}}{\end{ossT}\end{oBox}}
+\newenvironment{obs}{\begin{dimBox}\begin{ossT}}{\end{ossT}\end{dimBox}}
 \newenvironment{example}{\begin{dimBox}\begin{exT}}{\end{exT}\end{dimBox}}
 \newenvironment{dimostrazione}{\begin{dimBox}\begin{dimT}}{\[\qed\]\end{dimT}\end{dimBox}}
 

@@ -55,8 +55,8 @@ If we consider the prediction error we see that they are different:
 \]
 this means that $\hat y^{e} $ and $\hat y^{\xi} $ cannot be both the canonical predictor from output.
 \end{example}
-\textbf{Observation.}
 
+\begin{obs}
 \begin{align*}
 	y(t+1)=e(t+1)-2e(t) \iff e(t)&=-\frac{1}{2} y(t+1)+\frac{1}{2} e(t+1)\\
 	&= -\frac{1}{2} y(t+1)\underbrace{-\frac{1}{2} y(t+2)+\frac{1}{4}e(t+2)}_{\frac{1}{2} e(t+1)}\\
@@ -72,6 +72,7 @@ If instead we try to get something using values from the past we get a term whic
 	&=y(t)+2y(t-1)+4y(t-2)+4e(t-3)\\
 	&\quad\vdots
 \end{align*}
+\end{obs}
 
 \textbf{Remark.}
 In the assumptions we made at page \pageref{assumptions-prediction-theory} the really fundamental ones are that all zeros and poles are such that $|z|<1$, without this we cannot proceed; the other requests ($C(z),A(z)$ monic, coprime, null relative degree) allows for simplified formulas.

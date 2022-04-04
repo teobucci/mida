@@ -18,10 +18,11 @@
 
 When all the four conditions above are satisfied, we will say that $y(t) = W(z)\xi(t)$ is a \textbf{canonical representation} of $y(t)$.
 
-\textbf{Observation.} Conditions 1, 2, and 3 remove any ambiguity due to the process described in Case 1, Case 2, and Case 3, respectively. 
+\begin{obs}
+Conditions 1, 2, and 3 remove any ambiguity due to the process described in Case 1, Case 2, and Case 3, respectively. 
 
 Condition 4a ensures that $W(z)$ is asymptotically stable so that $y(t)$ is well defined, while 4b removes any ambiguity due to the process described in Case 4.
-
+\end{obs}
 \begin{example}
 We want to find the canonical representation of:
 \begin{align*}
@@ -60,10 +61,11 @@ Let us consider a zero mean ARMA process:
 	\item $W(z)$ is minimum phase (i.e. all zeros are such that $|z|<1$).\footnote{Note that \emph{canonical} implies that all zeros are such that $|z|\leq 1$, but it's not enough, we have to exclude zeros on the unit circle.}
 \end{enumerate}
  
-\textbf{Observations.}
+\begin{obs}
 The first assumption is not much of a hurdle since every ARMA process admits a canonical representation, and if $y(t)$ is not given in its canonical representation one can easily reconstruct it. The reason why ask for it will be clear later. 
 
 The second one is a limiting assumption (mild) that excludes models belonging to a small subclass that can be approximated by other ARMA. For example the process $y(t)=e(t)+e(t-1)$, which can be written as $y(t)=(1+z^{-1})e(t)$ has a zero in $-1$, but it can be approximated with $y(t)=(1+0.999z^{-1})e(t)$.
+\end{obs}
 
 \textbf{Problem} ($k$-step prediction.)
 
