@@ -18,151 +18,81 @@ $$
 
 The predictor has a different structure: while $ \Mc(\theta)$ is fed by a \gls{wn} and an input $u$, the predictor $\hat{\Mc}(\theta)$ is fed by measurements of $u$ and $y$ and returns the predicted future values of output, \textbf{there isn't a \gls{wn}}. The predictor model is returning the predicted values for \textit{that} realization of input and output.
 
-
-\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
-
-\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
-%uncomment if require: \path (0,173); %set diagram left start at 0, and has height of 173
-
-%Shape: Square [id:dp2606700449895307] 
-\draw   (66.94,52) -- (164,52) -- (164,149.06) -- (66.94,149.06) -- cycle ;
-%Straight Lines [id:da7364516735552062] 
-\draw    (114,14.06) -- (114,49) ;
-\draw [shift={(114,51)}, rotate = 270] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
-%Straight Lines [id:da3618183623060065] 
-\draw    (15,100) -- (61,100) ;
-\draw [shift={(63,100)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
-%Straight Lines [id:da40706010732580533] 
-\draw    (167,102) -- (213,102) ;
-\draw [shift={(215,102)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
-%Shape: Square [id:dp23583643845840108] 
-\draw   (349.94,53.94) -- (447,53.94) -- (447,151) -- (349.94,151) -- cycle ;
-%Straight Lines [id:da7226691724323739] 
-\draw    (298,92.94) -- (344,92.94) ;
-\draw [shift={(346,92.94)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
-%Straight Lines [id:da7790245551294717] 
-\draw    (450,103.94) -- (515,103.94) ;
-\draw [shift={(517,103.94)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
-%Straight Lines [id:da18553981986249823] 
-\draw    (300,131.94) -- (346,131.94) ;
-\draw [shift={(348,131.94)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
-
-% Text Node
-\draw (95,93.4) node [anchor=north west][inner sep=0.75pt]    {$\Mc(\theta)$};
-% Text Node
-\draw (85,18.4) node [anchor=north west][inner sep=0.75pt]    {$e(t)$};
-% Text Node
-\draw (24,77.4) node [anchor=north west][inner sep=0.75pt]    {$u(t)$};
-% Text Node
-\draw (176,78.4) node [anchor=north west][inner sep=0.75pt]    {$y(t)$};
-% Text Node
-\draw (378,87.34) node [anchor=north west][inner sep=0.75pt]    {$\hat{\Mc}(\theta)$};
-% Text Node
-\draw (295,70.34) node [anchor=north west][inner sep=0.75pt]    {$u(t-d)$};
-% Text Node
-\draw (455,80.34) node [anchor=north west][inner sep=0.75pt]    {$\hat{y}(t\mid t-1)$};
-% Text Node
-\draw (296,110.34) node [anchor=north west][inner sep=0.75pt]    {$y(t-1)$};
-
-
-\end{tikzpicture}
+\begin{figure}[htpb]
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\begin{tikzpicture}
+			% place nodes
+			\node [block] (m) at (0,0) {$\mathcal{M}(\vartheta)$};
+			% connect nodes
+			\draw [stealth-] (m.west) -- ++(-2,0) node[midway,above] {$u(t)$};
+			\draw [stealth-] (m.north) -- ++(0,1) node[midway,right] {$e(t)$};
+			\draw [-stealth] (m.east) -- ++(2,0) node[midway,above] {$y(t)$};
+		\end{tikzpicture}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\begin{tikzpicture}
+			% place nodes
+			\node [block] (m) at (0,0) {$\hat{\mathcal{M}}(\vartheta)$};
+			% connect nodes
+			\draw [stealth-] ([shift={(0, 0.2)}]m.west) -- ++(-2,0) node[midway,above] {$u(t-d)$};
+			\draw [stealth-] ([shift={(0,-0.2)}]m.west) -- ++(-2,0) node[midway,below] {$y(t-1)$};
+			\draw [-stealth] (m.east) -- ++(2,0) node[midway,above] {$\hat{y}(t\mid t-1)$};
+		\end{tikzpicture}
+	\end{subfigure}
+\end{figure}
+\FloatBarrier
 
 The idea is that, when dealing with a real system, the values of $u$ and $y$ from time $t=1,\ldots,n$ can be collected, subsequently taking the predictor (introducing proper delays $ z^{-1}$) and feeding it with the measurement of $u$ and $y$ collected during the experiment. Then, the output of the predictor $\hat{\Mc}(\theta $) can be used to construct the value of the \textbf{prediction error} $ \varepsilon $. 
+\begin{figure}[htpb]
+	\centering
+	\begin{tikzpicture}
 
-
-
-
-
-\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
-
-\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
-%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
-
-%Shape: Cloud [id:dp9405713107767868] 
-\draw   (111.2,74.8) .. controls (110.03,66.04) and (113.86,57.36) .. (121.07,52.45) .. controls (128.28,47.54) and (137.59,47.26) .. (145.07,51.74) .. controls (147.72,46.64) and (152.56,43.12) .. (158.14,42.24) .. controls (163.72,41.36) and (169.37,43.23) .. (173.4,47.28) .. controls (175.65,42.66) and (180.08,39.55) .. (185.11,39.07) .. controls (190.14,38.58) and (195.06,40.78) .. (198.12,44.89) .. controls (202.2,39.99) and (208.68,37.93) .. (214.77,39.59) .. controls (220.85,41.26) and (225.45,46.35) .. (226.57,52.68) .. controls (231.56,54.07) and (235.72,57.61) .. (237.97,62.38) .. controls (240.22,67.15) and (240.34,72.68) .. (238.3,77.55) .. controls (243.22,84.09) and (244.37,92.8) .. (241.32,100.43) .. controls (238.28,108.07) and (231.49,113.48) .. (223.5,114.65) .. controls (223.45,121.81) and (219.6,128.39) .. (213.45,131.84) .. controls (207.3,135.29) and (199.8,135.08) .. (193.84,131.28) .. controls (191.31,139.86) and (184.17,146.18) .. (175.51,147.5) .. controls (166.85,148.82) and (158.23,144.9) .. (153.36,137.45) .. controls (147.4,141.12) and (140.25,142.18) .. (133.52,140.38) .. controls (126.78,138.59) and (121.04,134.09) .. (117.58,127.9) .. controls (111.49,128.63) and (105.6,125.4) .. (102.83,119.82) .. controls (100.07,114.24) and (101.01,107.5) .. (105.21,102.93) .. controls (99.77,99.66) and (97,93.18) .. (98.33,86.85) .. controls (99.67,80.53) and (104.81,75.81) .. (111.07,75.14) ; \draw   (105.21,102.93) .. controls (107.77,104.48) and (110.73,105.18) .. (113.7,104.94)(117.58,127.9) .. controls (118.85,127.75) and (120.1,127.42) .. (121.3,126.94)(153.36,137.45) .. controls (152.47,136.07) and (151.72,134.6) .. (151.13,133.07)(193.84,131.28) .. controls (194.31,129.72) and (194.61,128.1) .. (194.74,126.47)(223.5,114.65) .. controls (223.56,107.02) and (219.32,100.03) .. (212.6,96.69)(238.3,77.55) .. controls (237.21,80.15) and (235.55,82.45) .. (233.45,84.28)(226.57,52.68) .. controls (226.75,53.73) and (226.84,54.79) .. (226.82,55.86)(198.12,44.89) .. controls (197.11,46.11) and (196.27,47.48) .. (195.64,48.94)(173.4,47.28) .. controls (172.86,48.39) and (172.45,49.57) .. (172.19,50.78)(145.07,51.74) .. controls (146.65,52.68) and (148.11,53.82) .. (149.42,55.13)(111.2,74.8) .. controls (111.36,76.01) and (111.61,77.21) .. (111.95,78.37) ;
-%Straight Lines [id:da14261299446641984] 
-\draw    (19,88) -- (95,88) ;
-\draw [shift={(97,88)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
-%Straight Lines [id:da25912476814098584] 
-\draw    (241,86.27) -- (329.6,86.01) ;
-\draw [shift={(331.6,86)}, rotate = 179.83] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
-%Straight Lines [id:da5081454591632601] 
-\draw    (121,222) -- (159,222) ;
-\draw [shift={(161,222)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
-%Straight Lines [id:da4200986918290637] 
-\draw    (229,242) -- (329.6,242) ;
-\draw [shift={(331.6,242)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
-%Straight Lines [id:da4094784213264089] 
-\draw    (120,261) -- (158,261) ;
-\draw [shift={(160,261)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
-%Shape: Square [id:dp8122731422115212] 
-\draw   (159.94,207.06) -- (227.88,207.06) -- (227.88,275) -- (159.94,275) -- cycle ;
-%Straight Lines [id:da908171537673635] 
-\draw    (32,87) -- (32,259.2) ;
-%Straight Lines [id:da8800162432572618] 
-\draw    (49,220) -- (66,220) ;
-%Straight Lines [id:da8482189437756391] 
-\draw    (32,259.2) -- (67,259.2) ;
-%Shape: Rectangle [id:dp380347788068776] 
-\draw   (67,204) -- (121,204) -- (121,235.2) -- (67,235.2) -- cycle ;
-%Shape: Rectangle [id:dp31523487953797846] 
-\draw   (67,245) -- (121,245) -- (121,276.2) -- (67,276.2) -- cycle ;
-%Straight Lines [id:da12922420940431545] 
-\draw    (312.6,86.2) -- (312.6,148.2) ;
-\draw [shift={(312.6,150.2)}, rotate = 270] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
-%Straight Lines [id:da17484084938101363] 
-\draw    (312.6,241.2) -- (312.6,183.2) ;
-\draw [shift={(312.6,181.2)}, rotate = 90] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
-%Shape: Circle [id:dp45860661350281506] 
-\draw   (297.1,165.7) .. controls (297.1,157.14) and (304.04,150.2) .. (312.6,150.2) .. controls (321.16,150.2) and (328.1,157.14) .. (328.1,165.7) .. controls (328.1,174.26) and (321.16,181.2) .. (312.6,181.2) .. controls (304.04,181.2) and (297.1,174.26) .. (297.1,165.7) -- cycle ;
-%Straight Lines [id:da8300058804860804] 
-\draw    (328.1,165.7) -- (412.7,165.7) ;
-\draw [shift={(414.7,165.7)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
-%Straight Lines [id:da9207367364892305] 
-\draw    (50,179.27) -- (50,220) ;
-%Straight Lines [id:da5900746064451419] 
-\draw    (50,179.27) -- (251,179.27) ;
-%Straight Lines [id:da918142101550995] 
-\draw    (251,86.27) -- (251,179.27) ;
-
-% Text Node
-\draw (160,83.4) node [anchor=north west][inner sep=0.75pt]    {$S$};
-% Text Node
-\draw (173,227.34) node [anchor=north west][inner sep=0.75pt]    {$\hat{\Mc}(\theta)$};
-% Text Node
-\draw (82,210.4) node [anchor=north west][inner sep=0.75pt]    {$z^{-1}$};
-% Text Node
-\draw (82,252.4) node [anchor=north west][inner sep=0.75pt]    {$z^{-1}$};
-% Text Node
-\draw (53,66.4) node [anchor=north west][inner sep=0.75pt]    {$u$};
-% Text Node
-\draw (277,64.4) node [anchor=north west][inner sep=0.75pt]    {$y$};
-% Text Node
-\draw (51,99.4) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize]  {$ \begin{array}{c}
-\overline{u}(1)\\
-\vdots \\
-\overline{u}(n)
-\end{array}$};
-% Text Node
-\draw (265,97.4) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize]  {$ \begin{array}{c}
-\overline{y}(1)\\
-\vdots \\
-\overline{y}(n)
-\end{array}$};
-% Text Node
-\draw (235,219.4) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize]  {$\hat{y}(t\mid t-1,\theta)$};
-% Text Node
-\draw (329,140.4) node [anchor=north west][inner sep=0.75pt]    {$+$};
-% Text Node
-\draw (330.1,169.1) node [anchor=north west][inner sep=0.75pt]    {$-$};
-% Text Node
-\draw (349,138.4) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize]  {$\varepsilon (t\mid t-1,\theta) =y(t) -\hat{y}(t\mid t-1,\theta)$};
-
-
-\end{tikzpicture}
-
-
-
+		\node (origin) at (0,0) {};
+		\node[cloud, draw, right=1.5cm of origin,
+		    minimum width = 3cm,
+	        minimum height = 2cm] (c) {$S$};
+		
+		\draw[-stealth] (origin.east) -- (c.west)
+		    node[midway,above] {$u(t)$}
+		    node[midway,below] {$ \begin{array}{c} \bar{u}(1)\\ \vdots \\ \bar{u}(n) \end{array}$}
+		    node[near end] (u) {}
+		    node[at end] (inputR) {};
+		    
+		\node[sum,below right = 1cm and 6cm of c.east] (s) {};
+		\node[draw,
+		minimum width=2cm,
+	    minimum height=1.5cm,below left = 1cm and 1cm of s.center] (M) {$\hat{\mathcal{M}}(\theta)$};
+	    
+		\node[block,above left = 0.1cm and 1cm of M.west] (z1) {$z^{-1}$};
+		\node[block,below left = 0.1cm and 1cm of M.west] (z2) {$z^{-1}$};
+		
+		\draw[-stealth] (c.east)-|(s.north)
+		    node[pos=0.05] (fed) {}
+		    node[near start,above] {$y(t)$}
+		    node[near start,below] {$ \begin{array}{c}\bar{y}(1)\\ \vdots \\ \bar{y}(n)\end{array}$}
+		    node[very near end, right] {$+$}
+		;
+		
+		\draw[-stealth] (fed.center) |- (z1.west);
+		\draw[-stealth]   (u.center) |- (z2.west);
+		
+		\draw[-stealth] (z1.east) -- ++(1,0);
+		\draw[-stealth] (z2.east) -- ++(1,0);
+		
+		\draw[-stealth] (M.east)-|(s.south)
+		    node[midway,right] {$\hat{y}(t\mid t-1,\theta)$}
+		    node[very near end, right] {$-$}
+		;
+		
+		\draw[-stealth] (s.east) -- ++(3,0)
+		    node[midway,above]{$\varepsilon (t\mid t-1,\theta)$}
+		;
+	\end{tikzpicture}
+\end{figure}
+\FloatBarrier
 
 \begin{center}
 
