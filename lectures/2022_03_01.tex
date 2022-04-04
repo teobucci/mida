@@ -41,7 +41,42 @@ Given $u(t)$ \gls{sp}, consider
 	y_{2}(t)&=W_{2}(z)u(t)\\
 	y(t)&=y_{1}(t)+y_{2}(t)=W_{1}(z)u(t)+W_{2}(z)u(t)=[W_{1}(z)+W_{2}(z)]u(t)
 \end{align*}
-\fg{0.7}{Screen Shot 2022-03-08 at 16.36.03}
+%\fg{0.7}{Screen Shot 2022-03-08 at 16.36.03}
+\begin{figure}[htpb]
+	\centering
+	\begin{tikzpicture}
+
+		\node (input) at (0,0) {};
+		\draw[-] (input.east) -- +(1,0)
+		    node[midway,above] {$u(t)$}
+		    node[at end] (inputR) {};
+		
+		% blocks
+		\node[block, above right=0.5cm and 1cm of inputR] (w1) {$W_1(z)$};
+		\node[block, below right=0.5cm and 1cm of inputR] (w2) {$W_2(z)$};
+		
+		% connect block with input
+		\draw[-stealth] (inputR.center)|-(w1.west);
+		\draw[-stealth] (inputR.center)|-(w2.west);
+		
+		% sum node
+		\node[sum, right=3.5cm of inputR] (s) {};
+		
+		% connect sum node
+		\draw[-stealth] (w1.east)-|(s.north)
+		    node[near start, above] {$y_1(t)$}
+		    node[very near end, right] {$+$}
+		;
+		\draw[-stealth] (w2.east)-|(s.south)
+		    node[near start, below] {$y_2(t)$}
+		    node[very near end, right] {$+$}
+		;
+		\draw[-stealth] (s.east) -- ++(1,0)
+		    node[midway, above] {$y(t)$}
+		;
+	\end{tikzpicture}
+\end{figure}
+\FloatBarrier
 \begin{theorem}
 	The process $y(t)$ is the steady state output of a new filter having transfer function $W_{1}(z)+W_{2}(z)$ fed by $u(t)$.
 \end{theorem}
