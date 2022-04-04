@@ -40,18 +40,24 @@ thus our optimal predictor from noise would be
 	\hat y^{\xi} (t+1\mid t)=-\frac{1}{2} \xi(t).
 \]
 The problem now is that if we try to reconstruct the noise from the output in the predictor $\hat y^{e} (t+1\mid t) = -2e(t)$ obtained by the non canonical form, we get:
-\[
-	y(t)=(1-2z^{-1})e(t) \iff e(t) =\frac{1}{1-2z^{-1}} y(t) \implies \hat y^{e} (t+1\mid t) = -2e(t) = -\frac{2}{1-2z^{-1}}y(t)
-\]
+\begin{align*}
+	y(t)=(1-2z^{-1})e(t) \iff & e(t) =\frac{1}{1-2z^{-1}} y(t)\\
+	\implies & \hat y^{e} (t+1\mid t) = -2e(t) = -\frac{2}{1-2z^{-1}}y(t)
+\end{align*}
 this is a \textbf{fatal mistake}, because it's not well defined, $e(t)$ cannot be reconstructed here!
 
 The correct way is indeed using the canonical representation:
-\[
-	y(t) = \left( 1-\frac{1}{2} z^{-1}  \right) \xi(t) \iff \xi(t) = \frac{1}{1-\frac{1}{2} z^{-1} } y(t) \implies \boxed{\hat y^{\xi} (t+1\mid t)= -\frac{1}{2} \xi(t) = \frac{-\frac{1}{2} }{1-\frac{1}{2} z^{-1} } y(t)}
-\]
+\begin{align*}
+	y(t) = \left( 1-\frac{1}{2} z^{-1}  \right) \xi(t) \iff & \xi(t) = \frac{1}{1-\frac{1}{2} z^{-1} } y(t)\\
+	\implies & \boxed{\hat y^{\xi} (t+1\mid t)= -\frac{1}{2} \xi(t) = \frac{-\frac{1}{2} }{1-\frac{1}{2} z^{-1} } y(t)}
+\end{align*}
 If we consider the prediction error we see that they are different:
 \[
-	\E\left[ \left( y(t+1)-\hat y^{e}(t+1\mid t)  \right) ^2   \right]  =\E[e(t+1)^2 ]=1\neq 4=\E[\xi(t+1)^2 ]=\E\left[ \left( y(t+1)-\hat y ^{\xi}(t+1\mid t)  \right)^2    \right]  
+	\begin{rcases}
+		\E\left[\left( y(t+1)-\hat    y^{e}(t+1\mid t) \right)^2 \right] = \E[e(t+1)^2]   = 1\\
+		\E\left[\left( y(t+1)-\hat y ^{\xi}(t+1\mid t) \right)^2 \right] = \E[\xi(t+1)^2] = 4
+	\end{rcases}
+	\neq
 \]
 this means that $\hat y^{e} $ and $\hat y^{\xi} $ cannot be both the canonical predictor from output.
 \end{example}
