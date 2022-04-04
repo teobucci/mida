@@ -136,11 +136,56 @@ $$
 This result has been established for a generic AR($1$) process.
 Those equations are called \emph{Yule-Walker equations} for AR($1$) process.
 
-Graphical representation:
+\begin{figure}[htpb]
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\scalebox{0.7}{
+		\begin{tikzpicture}
 
-\fg{0.7}{Screenshot (14)}
+			\begin{axis}
+			[
+				axis x line=middle,
+			    axis y line=middle,
+			    ytick = \empty,
+				xlabel={$\tau$},
+				ylabel={$\gamma_y(\tau)$},
+				xmin=-6, xmax=6,
+				ymin=-1, ymax=1.5,
+			]
+			\addplot+[domain=-6:6, samples at={-6,...,6},color=black,mark options={fill=black}]{(0.5)^abs(x)/(1-(-0.5)^2)};
+			\end{axis}
 
-\fg{0.7}{Screenshot (16)}
+		\end{tikzpicture}}
+		\caption{Case $0<a<1$.}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\scalebox{0.7}{
+		\begin{tikzpicture}
+
+		\begin{axis}
+		[
+			axis x line=middle,
+			axis y line=middle,
+			ytick = \empty,
+			xlabel={$\tau$},
+			ylabel={$\gamma_y(\tau)$},
+			xmin=-6, xmax=6,
+			ymin=-1, ymax=1.5,
+		]
+		\addplot+[domain=-6:6, samples at={-6,...,6},color=black,mark options={
+		fill=black}]{(-0.5)^abs(x)/(1-(-0.5)^2)};
+		\end{axis}
+
+		\end{tikzpicture}}
+		\caption{Case $-1<a<0$.}
+	\end{subfigure}
+	\caption{Graphical representation of the convariance function for AR($1$) processes.}
+\end{figure}
+\FloatBarrier
+%\fg{0.7}{Screenshot (14)}
+%\fg{0.7}{Screenshot (16)}
 
 \subsection{ARMA processes}
 $$
