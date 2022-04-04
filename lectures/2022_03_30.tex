@@ -21,25 +21,23 @@ The expression of the asymptotic cost function is:
 \text{uncorrelated with } e^{0}(t)
 \end{array}\\
  & =\E\left[ e^{0}(t)^{2}\right] +\E\left[\left(\hat{y}\left(t\mid t-1,\theta ^{0}\right) -\hat{y}(t\mid t-1,\theta)\right)^{2}\right] & \\
- & =\underbrace{\lambda {^{0}}^{2}}_{\text{constant}} +\underbrace{\E\left[\left(\hat{y}\left(t\mid t-1,\theta ^{0}\right) -\hat{y}(t\mid t-1,\theta)\right)^{2}\right]}_{\geq 0,=0\text{ if} \theta =\theta ^{0}} & 
+ & =\underbrace{\lambda {^{0}}^{2}}_{\text{constant}} +\underbrace{\E\left[\left(\hat{y}\left(t\mid t-1,\theta ^{0}\right) -\hat{y}(t\mid t-1,\theta)\right)^{2}\right]}_{\geq 0,\ =0\text{ if } \theta =\theta ^{0}} & 
 \end{aligned}
 \end{equation*}
 
 So that
 \begin{equation*}
-\bar{J}\left(\theta ^{0}\right) \leq \lambda {^{0}}^{2} \leq \bar{J}(\theta) \forall \theta \Longrightarrow \theta ^{0} \text{is a minimum of} \bar{J}(\theta)
+\bar{J}\left(\theta ^{0}\right) \leq \lambda {^{0}}^{2} \leq \bar{J}(\theta)\  \forall \theta \quad\Longrightarrow\quad \theta ^{0} \text{ is a minimum of } \bar{J}(\theta)
 \end{equation*}
 Using \gls{pem} asymptotic theory
 \begin{equation*}
-\hat{\theta }_{N}\xrightarrow{N\rightarrow \infty} \Delta ,\theta ^{0} \in \Delta 
+\hat{\theta }_{N}\xrightarrow{N\rightarrow \infty} \Delta ,\quad\theta ^{0} \in \Delta 
 \end{equation*}
 If $ \Delta =\left\{\theta ^{0}\right\}$ is a singleton (i.e. $ \bar{J}$ has unique minimum) then:
-\begin{equation*}
-\begin{aligned}
-\hat{\theta }_{N} & \xrightarrow{N\rightarrow \infty} & \theta ^{0}\\
-\Mc(\hat{\theta }_{N}) & \xrightarrow{N\rightarrow \infty} & S
-\end{aligned}
-\end{equation*}
+\begin{align*}
+	\hat{\theta }_{N} & \xrightarrow{N\rightarrow \infty} \theta ^{0}\\
+	\Mc(\hat{\theta }_{N}) & \xrightarrow{N\rightarrow \infty} S
+\end{align*}
 Thus, the \gls{pem} identification is \textbf{asymptotically consistent}: if $ \Mc$ is rich enough and the number of collected data is big enough, \gls{pem} identification provides a good description of $ S$.
 
 
@@ -70,14 +68,12 @@ The model order is: $ (m,p,n)$, the delay $ d$ between $ I/O$ is neglected as it
 Notice that some trivial choices for model selection that change the structure of the model:
 \begin{equation*}
 \begin{cases}
-n=0 & ARX\\
-n=0,p=0 & AR\\
-n\neq 0,p=0 & ARMA
+n=0 & \text{ARX}\\
+n=0,p=0 & \text{AR}\\
+n\neq 0,p=0 & \text{ARMA}
 \end{cases}
 \end{equation*}
-However, we will deal with the case where the structure is fixed ($ n,m,p\neq 0\Longrightarrow ARMAX$) and we just want to select a proper number. To keep the notation simple we will focus on one hyper-parameter ($ m=n=p$) without loss of generalization.
-
-
+However, we will deal with the case where the structure is fixed ($ n,m,p\neq 0\Longrightarrow$ ARMAX) and we just want to select a proper number. To keep the notation simple we will focus on one hyper-parameter ($ m=n=p$) without loss of generalization.
 
 A naive idea is to use $ J_{N}$ as an indicator for model quality, selecting a maximum value for the model order. Cycling for $ m=1:\overline{m}$
 
@@ -138,7 +134,7 @@ The structure is similar, we run a cycle up to a maximum model order
 $ \mathtt{For } \ m=1:\overline{m}$
 \begin{equation*}
 \begin{aligned}
-\Mc^{m} & =ARMAX(m) =\left\{\Mc(\theta) ,\theta \in \Theta ^{m}\right\} & \\
+\Mc^{m} & =\text{ARMAX}(m) =\left\{\Mc(\theta) ,\theta \in \Theta ^{m}\right\} & \\
 \hat{\theta }_{N}^{m}  & =\underset{\theta }{\argmin}\frac{1}{N}\sum _{i=1}^{N}(y(i) -\hat{y}(i\mid i-1,\theta))^{2} & \text{all data are used to tune the model}\\
 \text{evaluate } V(m) & =V\left(m,J_{n}\left(\hat{\theta }_{N}^{m}\right)\right) & \text{model cost with model order penalization}
 \end{aligned}
@@ -156,21 +152,19 @@ Some common choice are
 \text{MDL} & =\text{Minimum Description Length} & \text{(information theory)}
 \end{align*}
 \begin{equation*}
- \begin{aligned}
-FPE(m) = & & \frac{N+m}{N-m}  & & \cdotp J_{N}\left(\hat{\theta }_{N}^{m}\right)\\
-AIC(m) = & & 2\frac{m}{N}  & & +\ln\left(J_{N}\left(\hat{\theta }_{N}^{m}\right)\right)\\
-MDL(m) = & & \ln(n)\frac{m}{N} & & +\ln\left(J_{N}\left(\hat{\theta }_{N}^{m}\right)\right)\\
- & & \text{increasing with m} & & \text{decreasing with m}
-\end{aligned}
+	\begin{array}{rcc}
+		\text{FPE}(m) = & \frac{N+m}{N-m}          &  \cdot J_{N}\left(\hat{\theta }_{N}^{m}\right)\\
+		\text{AIC}(m) = & 2\frac{m}{N}             &  +\ln\left(J_{N}\left(\hat{\theta }_{N}^{m}\right)\right)\\
+		\text{MDL}(m) = & \ln(n)\frac{m}{N}        &  +\ln\left(J_{N}\left(\hat{\theta }_{N}^{m}\right)\right)\\
+		                & \text{increasing with }m &  \text{decreasing with }m
+	\end{array}
 \end{equation*}
 In fact, FPE and AIC are approximately equivalent:
-\begin{equation*}
-\begin{aligned}
-\ln(\text{FPE}) & =\ln\left(\frac{N+m}{N-m} J_{N}\left(\hat{\theta }_{N}^{m}\right)\right) &  & \\
- & =\ln\left(\frac{1+\frac{m}{N}}{1-\frac{m}{N}} J_{N}\left(\hat{\theta }_{N}^{m}\right)\right) &  & \\
- & =\ln\left(1+\frac{m}{N}\right) +\ln\left(1-\frac{m}{N}\right) +\ln\left(J_{N}\left(\hat{\theta }_{N}^{m}\right)\right) & m\ll n & \ , \frac{m}{n} \approx 0\\
- & \approx \frac{m}{N} -\left(-\frac{m}{N}\right) +\ln\left(J_{N}\left(\hat{\theta }_{N}^{m}\right)\right) &  & \\
- & =2\frac{m}{N} +\ln\left(J_{N}\left(\hat{\theta }_{N}^{m}\right)\right) =AIC &  & 
-\end{aligned}
-\end{equation*}
+\begin{align*}
+\ln(\text{FPE}) & =\ln\left(\frac{N+m}{N-m} J_{N}\left(\hat{\theta }_{N}^{m}\right)\right) \\
+ & =\ln\left(\frac{1+\frac{m}{N}}{1-\frac{m}{N}} J_{N}\left(\hat{\theta }_{N}^{m}\right)\right) \\
+ & =\ln\left(1+\frac{m}{N}\right) +\ln\left(1-\frac{m}{N}\right) +\ln\left(J_{N}\left(\hat{\theta }_{N}^{m}\right)\right) \quad m\ll n, \frac{m}{n} \approx 0\\
+ & \approx \frac{m}{N} -\left(-\frac{m}{N}\right) +\ln\left(J_{N}\left(\hat{\theta }_{N}^{m}\right)\right) \\
+ & =2\frac{m}{N} +\ln\left(J_{N}\left(\hat{\theta }_{N}^{m}\right)\right) =AIC & 
+\end{align*}
 MDL is equal to AIC with 2 replaced by $ \ln(N)$. Since typically $ \ln(N)  >2$ (i.e. dataset has more than eight data points) MDL penalizes model order more than AIC and FPE.
