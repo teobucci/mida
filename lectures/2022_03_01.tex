@@ -155,4 +155,28 @@ In general one can factorize the denominator:
 	&=C(z)\cdot\frac{1}{z-p_{1}}\cdot\frac{1}{z-p_{2}}\cdots\frac{1}{z-p_{m}}v(t)\\
 	&=\frac{1}{z-p_{m}}\left[ \frac{1}{z-p_{m-1}}\left[ \cdots\frac{1}{z-p_{1}}\left[ C(z)v(t) \right]   \right]   \right]  
 \end{align*}
-\fg{0.7}{Screen Shot 2022-03-08 at 17.10.36}
+%\fg{0.7}{Screen Shot 2022-03-08 at 17.10.36}
+\begin{figure}[htpb]
+	\centering
+	\begin{tikzpicture}
+
+	% place nodes
+	\node [block] (c) at (0,0) {$C(z)$};
+	\node [block] (p1) at (2.5,0) {$\frac{1}{z-p_1}$};
+	\node [block] (p2) at (5,0) {$\frac{1}{z-p_2}$};
+
+	\node [block] (pm) at (7.5,0) {$\frac{1}{z-p_m}$};
+
+	% connect nodes
+	\draw[stealth-] (c) -- ++(-1.5,0) node[midway,above] {$v(t)$};
+
+	\draw[-stealth]  (c.east) -- (p1.west) node[midway,above] {$x_1(t)$};
+	\draw[-stealth] (p1.east) -- (p2.west) node[midway,above] {$x_2(t)$};
+
+	\draw[-] (p2.east) -- ++(0.2,0) node[at end,right] {$\ldots$};
+	\draw[stealth-] (pm.west) -- ++(-0.4,0);
+	\draw[-stealth] (pm.east) -- ++(1,0) node[midway,above] {$y(t)$};
+
+	\end{tikzpicture}
+\end{figure}
+\FloatBarrier
