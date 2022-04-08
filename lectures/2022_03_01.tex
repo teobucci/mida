@@ -83,18 +83,19 @@ Given $u(t)$ \gls{sp}, consider
 
 \section{Poles and zeros}
 
-\textbf{Remark.}
-One can always multiply a transfer function by $z^{m}/z^{m}$.
+\begin{obs}
+	One can always multiply a transfer function by $z^{m}/z^{m}$.
 
-Consider now $W(z)$ a complex-valued transfer function. Then one can identify:
-\begin{itemize}
-	\item \textbf{zeros}: all $z\in \mathbb{C}$ such that $W(z)=0$.
-	\item \textbf{poles}: all $z\in \mathbb{C}$ such that $W^{-1} (z)=0$.
-\end{itemize}
-When $C(z),A(z)$ are polynomials with \emph{positive powers}, then
-\[
-	\text{zeros}=\{z:C(z)=0\} \qquad \text{poles}=\{z:A(z)=0\}
-\]
+	Consider a complex-valued transfer function $W(z)=C(z)/A(z)$. Then one can identify:
+	\begin{itemize}
+		\item \textbf{zeros}: all $z\in \mathbb{C}$ such that $W(z)=0$.
+		\item \textbf{poles}: all $z\in \mathbb{C}$ such that $W^{-1} (z)=0$.
+	\end{itemize}
+	When $C(z),A(z)$ are polynomials with \emph{positive powers}, then
+	\[
+		\text{zeros}=\{z:C(z)=0\} \qquad \text{poles}=\{z:A(z)=0\}
+	\]
+\end{obs}
 \begin{example}
 \begin{align*}
 y(t) &=e(t)+\frac{1}{2} e(t-1)+\frac{1}{4} e(t-2) =\left(1+\frac{1}{2} z^{-1}+\frac{1}{4} z^{-2}\right) e(t) \\
@@ -109,11 +110,11 @@ Zeros are $z$ such that $z^{2}+\frac{1}{2} z+\frac{1}{4}=0$
 %\fg{0.7}{Screen Shot 2022-03-08 at 16.57.50}
 \begin{figure}[htpb]
 	\centering
-	\begin{tikzpicture}
+	\begin{tikzpicture}[scale=0.5]
 
 		% Axes:
-		\draw [-stealth] (-4,0) -- (4,0) node [above left]  {$\Re$};
-		\draw [-stealth] (0,-2.5) -- (0,2.5) node [below right] {$\Im$};
+		\draw [-stealth] (-5,0) -- (5,0) node [below right]  {$\Re$};
+		\draw [-stealth] (0,-5) -- (0,5) node [left] {$\Im$};
 
 		% pole
 		\node[cross out,draw=black] at (0,0) {};
@@ -124,6 +125,10 @@ Zeros are $z$ such that $z^{2}+\frac{1}{2} z+\frac{1}{4}=0$
 		\draw[dashed] (0,1.73) node[right] {$i \frac{\sqrt{3}}{4}$} --  (-1,1.73) node[solid, fill=white, circle,draw=black] {};
 		\draw[dashed] (0,-1.73) node[right] {$-i \frac{\sqrt{3}}{4}$} --  (-1,-1.73) node[solid, fill=white, circle,draw=black] {};
 
+		% unit circle
+		\draw (0,0) circle (4);
+		\node[below right] at (4,0) {$1$};
+		\node[above right] at (0,4) {$i$};
 	\end{tikzpicture}
 \end{figure}
 \FloatBarrier
@@ -136,10 +141,8 @@ Zeros are $z$ such that $z^{2}+\frac{1}{2} z+\frac{1}{4}=0$
 	\end{itemize}
 \end{definition}
 
-Consider $W(z)$ rational transfer function, $v(t)$ \gls{sp} (input), $y(t)=W(z)v(t)$.
-
 \begin{theorem}
-	If
+	Consider a rational transfer function $W(z)$ fed by a \gls{sp} $v(t)$, $y(t)=W(z)v(t)$. If
 	\begin{itemize}
 		\item $v(t)$ is a \gls{ssp};
 		\item $W(z)$ is asymptotically stable;
@@ -147,7 +150,7 @@ Consider $W(z)$ rational transfer function, $v(t)$ \gls{sp} (input), $y(t)=W(z)v
 	then $y(t)$ is well-defined and is also \emph{stationary} (is a \gls{ssp}).
 \end{theorem}
 
-In the case of ARMA processes, the input is a \gls{wn}, which is stationary by definition. Thus we just need to check the second condition.
+In the case of ARMA processes, the input is a \gls{wn}, which is stationary by definition. Thus we just need to check the asymptotical stability.
 
 In general one can factorize the denominator:
 \begin{align*}

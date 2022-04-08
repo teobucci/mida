@@ -41,7 +41,7 @@ The \gls{wn} spectral density is constant, i.e. \gls{wn} energy is \emph{equally
 Consider the AR($1$) process $y(t)=ay(t-1)+e(t)$.
 \begin{itemize}
 	\item if $a>0$ the sign tends to be maintained;
-	\item if $a<0$ the sign tends to changed.
+	\item if $a<0$ the sign tends to change.
 \end{itemize}
 The transfer function is $y(t)=\frac{1}{1-az^{-1} }e(t)$, then
 \begin{align*}
@@ -54,9 +54,9 @@ The transfer function is $y(t)=\frac{1}{1-az^{-1} }e(t)$, then
 Depending on the values of $a$ we have different behaviors.
 
 If $a>0$ energy is concentrated at low frequencies
-\fg{0.8}{Screen Shot 2022-03-12 at 16.59.06}
+\fg[Left: signal. Right: spectrum.]{0.8}{Screen Shot 2022-03-12 at 16.59.06}
 If $a<0$ energy is concentrated at larger frequencies
-\fg{0.8}{Screen Shot 2022-03-12 at 16.58.25}
+\fg[Left: signal. Right: spectrum.]{0.8}{Screen Shot 2022-03-12 at 16.58.25}
 
 \begin{example}
 Consider the ARMA process $y(t)=\frac{C(z)}{A(z)}e(t)$
@@ -81,7 +81,7 @@ Indeed we have the following result:
 However, the \emph{choice} of $\xi(t)$ and of $W(z))$ \emph{is not unique}.
 The \emph{same} process $y(t)$ can be generated according to an infinite number of different ARMA models.
 
-Let $y(t)=W(z)\xi(t)$, where $\xi(t)$ is a \gls{wn}. Our goal is show how to construct $\tilde{W}(z)$ and $\tilde{\xi}(t)$ such that $\tilde{W}(z)\neq W(z)$ and $\tilde{\xi}(t)\neq \xi(t)$, but $y(t)=\tilde W(z)\tilde\xi(t)$. Let us consider four different cases:
+Let $y(t)=W(z)\xi(t)$, where $\xi(t)$ is a $\WN\sim(\mu,\lambda^2)$. Our goal is show how to construct $\tilde{W}(z)$ and $\tilde{\xi}(t)$ such that $\tilde{W}(z)\neq W(z)$ and $\tilde{\xi}(t)\neq \xi(t)$, but $y(t)=\tilde W(z)\tilde\xi(t)$. Let us consider four different cases:
 \begin{enumerate}
 	\item 
 	Let $\alpha \in \R$
@@ -119,11 +119,11 @@ Let $y(t)=W(z)\xi(t)$, where $\xi(t)$ is a \gls{wn}. Our goal is show how to con
 	\]
 	then
 	\begin{align*}
-		y(t)&=W(z) \xi(t)=W_{1}(z) \cdot(z-q) \xi(t)=\left[W_{1}(z) \cdot(z-q) \cdot \frac{z-\frac{1}{q}}{z-\frac{1}{q}}\right] \xi(t)= \\
+		y(t)&=W(z) \xi(t)=W_{1}(z) \cdot(z-q) \xi(t)=W_{1}(z) \cdot(z-q) \left[ \frac{z-\frac{1}{q}}{z-\frac{1}{q}}\right] \xi(t)= \\
 		&=\underbrace{W_{1}(z)\left(z-\frac{1}{q}\right)}_{\tilde{W}(z)}\cdot\underbrace{\frac{z-q}{z-\frac{1}{q}} \xi(t)}_{\tilde{\xi}(t)} = \tilde{W}(z) \tilde{\xi}(t)
 	\end{align*}
-	Note that $\tilde{\xi}$ is well-defined and stationary since we multiplied $\xi(t)$ by an asymptotically stable transfer function ($|z|=\left|\frac{1}{q}\right|<1$).\\
-	Moreover they are still both respectively a rational transfer function and a \gls{wn}, indeed let us compute the spectral density of $\tilde{\xi}(t)$
+	Notice that $\tilde{\xi}$ is well-defined and stationary since we multiplied $\xi(t)$ by an asymptotically stable transfer function ($|z|=\left|\frac{1}{q}\right|<1$).\\
+	Moreover they are still both respectively a rational transfer function and a \gls{wn}, indeed let us compute the spectral density of $\tilde{\xi}(t)$:
 	\begin{align*}
 		\Gamma_{\tilde\xi}(\omega) &=\frac{\left|e^{j \omega}-q\right|^{2}}{\left|e^{j \omega}-\frac{1}{q}\right|^{2}} \cdot \lambda^{2}=\frac{\left(e^{j \omega}-q\right)\left(e^{-j \omega}-q\right)}{\left(e^{j \omega}-\frac{1}{q}\right)\left(e^{-j \omega}-\frac{1}{q}\right)} \cdot \lambda^{2}\\
 		&=\frac{1+q^{2}-q\left(e^{j \omega}+e^{-j \omega}\right)}{1+\frac{1}{q^{2}}-\frac{1}{q}\left(e^{j \omega}+e^{-j \omega}\right)} \cdot \lambda^{2}=\frac{1+q^{2}-2 q \cos (\omega)}{1+\frac{1}{q^{2}}-\frac{2}{q} \cos (\omega)} \cdot \lambda^{2}\\

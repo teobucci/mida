@@ -12,7 +12,7 @@
 		\item $C(z)$ and $A(z)$ have null relative degree;
 		\item $C(z)$ and $A(z)$ are coprime (i.e. they have no common factors);
 		\item[4a.]the poles of $W(z)$ are such that $|z|< 1$;
-		\item[4b.]the zeroes of $W(z)$ are such that $|z|\leq 1$.
+		\item[4b.]the zeros of $W(z)$ are such that $|z|\leq 1$.
     \end{enumerate}
 \end{theorem}
 
@@ -26,12 +26,15 @@ Condition 4a ensures that $W(z)$ is asymptotically stable so that $y(t)$ is well
 \begin{example}
 We want to find the canonical representation of:
 \begin{align*}
-	y(t)=\frac{2+5z^{-1}+2z^{-2}}{z^2+\frac{5}{6}z+\frac{1}{6}}\cdot e(t)  \qquad \text{where } e(t)\sim \WN(0,1)
+	y(t)=\frac{2+5z^{-1}+2z^{-2}}{z^2+\frac{5}{6}z+\frac{1}{6}}\cdot e(t)  \qquad e(t)\sim \WN(0,1)
 \end{align*}
-We first need to have the same degree and positive powers, which we can achieve by multiplying by a proper factor and consider a new \gls{wn}:
-\begin{align*}
-	y(t)&=\frac{2+5z^{-1}+2z^{-2}}{z^2+\frac{5}{6}z+\frac{1}{6}}\cdot e(t)=\frac{2+5z^{-1}+2z^{-2}}{z^2+\frac{5}{6}z+\frac{1}{6}}\cdot\frac{z^2}{2}\cdot\frac{2}{z^2}\cdot e(t)=\frac{z^2+\frac{5}{2}z+1}{z^2+\frac{5}{6}z+\frac{1}{6}}\cdot \eta(t)
-\end{align*}
+We first need to have the same degree and positive powers, which we can achieved by multiplying by a proper factor and consider a new \gls{wn}:
+\begin{equation*}
+	y(t)=
+	\frac{2+5z^{-1}+2z^{-2}}{z^2+\frac{5}{6}z+\frac{1}{6}}\cdot e(t)
+	=\frac{2+5z^{-1}+2z^{-2}}{z^2+\frac{5}{6}z+\frac{1}{6}}\cdot\frac{z^2}{2}\cdot\underbrace{\frac{2}{z^2}}_{\eta(t)}\cdot e(t)
+	=\frac{z^2+\frac{5}{2}z+1}{z^2+\frac{5}{6}z+\frac{1}{6}}\cdot \eta(t)
+\end{equation*}
 where $\eta(t)=2z^{-2}e(t)=2e(t-2)\sim \WN(2\cdot0,4\cdot 1)\sim \WN(0,4)$.\\
 We know check if some terms cancel out:
 \begin{align*}
@@ -49,16 +52,16 @@ We can now make sure that all zeros and poles are strictly inside the unit circl
 where $\xi(t)\sim \WN(0,4\cdot2^2)\sim \WN(0,16)$. This is our canonical representation.
 \end{example}
 \chapter{Prediction}
-\section{Linear optimal prediction theory (for ARMA processes)}
+\section{Optimal prediction for ARMA processes}
 Let us consider a zero mean ARMA process:
 \[
-	y(t)=W(z)e(t) \quad \text{where }e(t)\sim \WN(0,\lambda^{2} )
+	y(t)=W(z)e(t) \qquad e(t)\sim \WN(0,\lambda^{2} )
 \]
 
 \textbf{Fundamental assumptions:}\label{assumptions-prediction-theory}
 \begin{enumerate}
 	\item $y(t) = W(z)e(t)$ is a canonical representation;
-	\item $W(z)$ is minimum phase (i.e. all zeros are such that $|z|<1$).\footnote{Note that \emph{canonical} implies that all zeros are such that $|z|\leq 1$, but it's not enough, we have to exclude zeros on the unit circle.}
+	\item $W(z)$ is minimum phase (i.e. all zeros are such that $|z|<1$).\footnote{Notice that \emph{canonical} implies that all zeros are such that $|z|\leq 1$, but it's not enough, we have to exclude zeros on the unit circle.}
 \end{enumerate}
  
 \begin{obs}
@@ -66,8 +69,6 @@ The first assumption is not much of a hurdle since every ARMA process admits a c
 
 The second one is a limiting assumption (mild) that excludes models belonging to a small subclass that can be approximated by other ARMA. For example the process $y(t)=e(t)+e(t-1)$, which can be written as $y(t)=(1+z^{-1})e(t)$ has a zero in $-1$, but it can be approximated with $y(t)=(1+0.999z^{-1})e(t)$.
 \end{obs}
-
-\textbf{Problem} ($k$-step prediction.)
 
 Given the observations of the process $y(t)$ up to time $t$:
 $$
@@ -82,23 +83,23 @@ $\hat{y}(t + k \mid t) =$ predictor of $y(t + k)$ given the observations up to t
 
 In general: 
 $$\hat{y}(t + k \mid t) = f ( y(t), y(t-1), y(t-2),\ldots)$$
-i.e. the predictor is any function of the available observations of the process $y(t)$.
+i.e. the predictor is \emph{any} function of the available observations of the process $y(t)$.
 
-\textbf{Abstraction.} We suppose to have all the observations from $-\infty$ up to $t$ (infinite sequence of observations).
+We will suppose to have all the observations from $-\infty$ up to $t$ (infinite sequence of observations).
 
 We will \emph{restrict} ourselves to functions $f$ which are \emph{linear}:
 \begin{align*}
 	\hat{y}(t + k \mid t)=\sum_{i=0}^{\infty}\alpha_i y(t-i)
+	\quad \text{identical to} \quad
+	\hat{y}(t \mid t - k)=\sum_{i=0}^{\infty}\alpha_i y(t-k-i)
 \end{align*}
 where ${\{\alpha_i\}}_{i=0}^\infty$ are parameters to be selected in order to achieve the \emph{best} result.
 
 \textbf{Intuitive Goal.} 
-We want a predictor which is good with respect $S$ (of the specific experiment).
+We want a predictor which is good with respect to $S$ (of the specific experiment).
 \[
 	\hat{y}(t + k \mid t)\approx y(t+k)
 \]
-
-We need to quantify this intuitive closeness concept be rewritten in some rigorous mathematical notion of distance valid for random variables.
 
 \begin{definition}[\Gls{mse} of prediction]
 	\[

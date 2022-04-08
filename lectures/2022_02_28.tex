@@ -2,17 +2,18 @@
 \section{AR and ARMA processes}
 
 \subsection{AR processes}
-A process $y(t)$ is an AR (Auto Regressive) process if it is generated as:
-\[
-	\boxed{y(t)=a_{1} y(t-1)+a_{2} y(t-2)+\cdots+a_{m} y(t-m)+e(t)}
-\]
-where $e(t) \sim \WN\left(\mu, \lambda^{2}\right)$.
+
+\begin{definition}
+	Let $e(t) \sim \WN(0, \lambda^{2})$. An \textbf{\gls{ar}} process of order $m$ is obtained as:
+	\[
+		\boxed{y(t)=a_{1} y(t-1)+a_{2} y(t-2)+\cdots+a_{m} y(t-m)+e(t)}
+	\]
+\end{definition}
 
 Terminology:
 \begin{itemize}
-	\item $a_{1}, a_{2}, \ldots, a_{m}$: AR process (model) coefficient.
+	\item $a_{1}, a_{2}, \ldots, a_{m}$: model coefficients.
 	\item $m$: process (model) order.
-	\item AR($m$): AR process of order $m$.
 \end{itemize}
  
 Hence, the output $y(t)$ of an AR process is recursively defined as the linear combination of last $m$ past values of the process itself plus the input $e(t)$ at the same time instant.
@@ -37,7 +38,6 @@ What is the steady state solution?
 	&=\sum_{i=0}^{\infty} a^{i} e(t-i)
 \end{align*}
 The steady state solution is an MA($\infty$) process with coefficients: $c_{0}=1, c_{1}=a, c_{2}=a^{2}, \ldots, c_{i}=a^{i}, \ldots$
-\end{example}
 
 In general, AR processes are MA($\infty$) processes with coefficients determined by the AR model coefficients by recursively apply the difference equation.
 
@@ -47,40 +47,47 @@ MA($\infty$) processes are well defined if:
 \end{align*}
 
 So if $|a|<1$ the steady-state solution is well defined and \gls{ssp}.
+\end{example}
 
-\subsection{ARMA (Auto Regressive Moving Average) processes}
+\subsection{ARMA processes}
 
-A process $y(t)$ is an ARMA process if it is generated as:
-\begin{align*}
-	y(t)&=a_{1} y(t-1)+a_{2} y(t-2)+\cdots+a_{m} y(t-m)\quad & \text{AR($m$) part}\\
-	&\qquad+c_{0} e(t)+c_{1} e(t-1)+\cdots+c_{n} e(t-n) . \quad & \text{MA($n$) part}
-\end{align*}
-
-where $e(t) \sim \WN\left(\mu, \lambda^{2}\right)$.
+\begin{definition}
+	Let $e(t) \sim \WN(\mu, \lambda^{2})$. An \textbf{\gls{arma}} process of order $m,n$ is obtained as:
+	\[
+		\boxed{
+			\begin{aligned}
+				y(t)&=a_{1} y(t-1)+a_{2} y(t-2)+\cdots+a_{m} y(t-m)\quad & \text{AR($m$) part}\\
+				&\qquad+c_{0} e(t)+c_{1} e(t-1)+\cdots+c_{n} e(t-n) . \quad & \text{MA($n$) part}
+			\end{aligned}
+		}
+	\]
+\end{definition}
 
 Again by ARMA process we mean the steady-state solution obtained by letting $y(-\infty)=0$.
  
-Similarly to AR processes, the steady-state solution is an MA( $\infty)$ process whose coefficients are obtained from the ARMA model coefficients by recursively apply the difference equation.
+Similarly to AR processes, the steady-state solution is an MA($\infty)$ process whose coefficients are obtained from the ARMA model coefficients by recursively apply the difference equation.
  
 Terminology:
 \begin{itemize}
 	\item $m$ AR part order.
 	\item $n$ MA part order.
-	\item ARMA($m,n$) ARMA process of orders $m$ and $n$.
 \end{itemize}
 
 An ARMA process is well defined and stationary under some conditions which are too complicated to verify directly.
-We'll see how to solve this problem after introducing the operatorial 
-representation of ARMA processes.
+We'll see how to solve this problem after introducing the operatorial representation of ARMA processes.
 
 \subsection{Operatorial representation of ARMA processes}
 
-\begin{definition}[backward and forward shift operators]
-Backward shift operator $z^{-1}$ is defined as: $z^{-1} x(t)=x(t-1)$.\\
-Forward shift operator, $z$ is defined as: $z x(t)=x(t+1)$.	
+\begin{definition}[Backward and forward shift operators]
+	We define two useful operators as:
+	\begin{itemize}
+		\item Backward shift operator $z^{-1}$ is defined as: $z^{-1} x(t)=x(t-1)$.
+		\item Forward shift operator $z$ is defined as: $z x(t)=x(t+1)$.	
+	\end{itemize}
+	
 \end{definition}
 
-\textbf{Properties of operators $z^{-1}$ and $z$}
+\textbf{Properties of operators $z^{-1}$ and $z$.}
 
 \begin{itemize}
 	\item $z^{-1}$ and $z$ are \textbf{linear}:

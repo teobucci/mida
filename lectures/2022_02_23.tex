@@ -15,11 +15,11 @@ $$
 $$
 and that
 $$
-\E[e(t) e(t-1)]=\cdots=\E[e(t-n-1) e(t-n)]=0
+\E[e(t) e(t-1)] = \E[e(t-1) e(t-2)] = \cdots = \E[e(t-n-1) e(t-n)]=0
 $$
 thus
 \[
-	\boxed{\gamma (t,0)=\gamma (0)=(c_{1}^2 +c_{1}^2 +\cdots+c_{n}^2 )\cdot\lambda^2}
+	\boxed{\gamma (0)=(c_{1}^2 +c_{1}^2 +\cdots+c_{n}^2 )\cdot\lambda^2}
 \]
 hence $\gamma (0)$ doesn't depend on $t$.
 
@@ -61,14 +61,20 @@ since all products are uncorrelated. In conclusion
 \]
 \subsection{MA(\texorpdfstring{$\infty$}{infinity}) processes}
 
-\[
-	\boxed{y(t)=c_{0} e(t)+c_{1} e(t-1)+\cdots+c_{i} e(t-i)+\cdots=\sum_{i=0}^{\infty} c_{i} e(t-i)} \quad e(t) \sim \WN\left(0, \lambda^{2}\right)
-\]
-Assumption: $\sum_{i=0}^{\infty} c_{i}^{2}<\infty$ (it guarantees that $y(t)$ is well defined).
+\begin{definition}
+	Let $e(t) \sim \WN(0, \lambda^{2})$. A \textbf{\gls{ma}}($\infty$) process is obtained as:
+	\[
+		\boxed{y(t)=c_{0} e(t)+c_{1} e(t-1)+\cdots+c_{i} e(t-i)+\cdots=\sum_{i=0}^{\infty} c_{i} e(t-i)}
+	\]
+	under the assumption that:
+	\[
+		\sum_{i=0}^{\infty} (c_{i})^{2}<\infty
+	\]
+\end{definition}
 
 \textbf{Mean.}
 \[
-	m_{y}(t)=\E[y(t)]=\E\left[\sum_{i=0}^{\infty} c_{i} e(t-i)\right]=\sum_{i=0}^{\infty} c_{i} \E[e(t-i)]=\sum_{i=0}^{\infty} c_{i} \cdot 0=0
+	m_{y}(t)=\E[y(t)]=\E\left[\sum_{i=0}^{\infty} c_{i} e(t-i)\right]=\sum_{i=0}^{\infty} c_{i} \E[e(t-i)]=\sum_{i=0}^{\infty} (c_{i} \cdot 0) =0
 \]
 doesn't depend on $t$.
 
@@ -95,10 +101,10 @@ doesn't depend on $t$.
 \end{align*}
 doesn't depend on $t$.
 
-So if $\sum_{i=0}^{\infty} c_{i}^{2}<\infty$ then the MA($\infty $) process is well defined and is a \gls{ssp}.
+Since $\sum_{i=0}^{\infty} c_{i}^{2}<\infty$, the MA($\infty $) process is well defined and is an \gls{ssp}.
 
 \begin{obs}
-MA($\infty$) processes are very general, they almost \emph{cover} the class of \glspl{ssp} (i.e. apart from few exceptions, all \gls{ssp} can be written as MA($\infty$)).
+MA($\infty$) processes are very general, they almost \emph{cover} the class of \glspl{ssp} (i.e. apart from few exceptions, all \glspl{ssp} can be written as MA($\infty$), we say that they admit an MA($\infty$) representation).
 
 However, MA($\infty$) are difficult to handle since there are infinite coefficients and, moreover, the computation of the covariance function requires the computation of the sum of an infinite series (hard in general).
 
