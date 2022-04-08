@@ -21,8 +21,7 @@ And the prediction error is:
 	\varepsilon(t, \theta)=y(t)-\hat{y}(t \mid t-1, \theta)&=\left[1-\frac{C(z,\theta)-A(z,\theta)}{C(z,\theta)}\right] y(t)-\frac{B(z,\theta)}{C(z,\theta)} u(t-d)\\
 	&=\frac{A(z,\theta)}{C(z,\theta)} y(t)-\frac{B(z,\theta)}{C(z,\theta)} u(t-d)
 \end{align*}
-Since we have $C(z,\theta)$ in the denominator, the error is \emph{no more linear} in $\theta$.
-The cost function is \emph{non-convex} and may present \emph{local} minima:
+Since we have $C(z,\theta)$ in the denominator, the error \emph{could be no more linear} in $\theta$ and thus the cost function could be \emph{non-convex}\footnote{i.e. non-quadratic.} and may present \emph{local} minima:
 \[
 	J_{N}(\theta)=\frac{1}{N} \sum_{t=1}^{N} \varepsilon(t, \theta)^{2}
 \]

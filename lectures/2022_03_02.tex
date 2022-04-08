@@ -22,7 +22,7 @@ Now, let us consider the \gls{sp} $y(t)$ obtained as output of an asymptotically
 \fg{0.7}{Screenshot (18)}
 
 \section{Weak (wide-sense) characterization of AR, ARMA processes}
-\textbf{Goal:} given an AR, ARMA process compute the mean $m_y$ and covariance function $\gamma_y(\tau)$.
+Our goal now is to consider AR and ARMA processes and compute their mean $m_y$ and covariance function $\gamma_y(\tau)$.
 
 %Since the steady-state solution is an MA($\infty$) process we could use such results but are too diffucult
 
@@ -35,11 +35,6 @@ Let us consider the AR($1$) (or equivalently ARMA($1,0$)) process generated acco
 	y(t)=a \cdot y(t-1)+e(t) \quad \text{where} \quad e(t) \sim \WN\left(0, \lambda^{2}\right)
 \end{align*}
 
-\begin{itemize}
-	\item Is $y(t)$ stationary?
-	\item Compute $m_{y}$ and $\gamma_{y}(\tau)$ for $\tau=0, \pm 1, \pm 2, \ldots$
-\end{itemize}
-
 Operatorial representation for $y(t)$:
 
 \begin{align*}
@@ -48,7 +43,7 @@ Operatorial representation for $y(t)$:
 	y(t)&=\frac{1}{1-z^{-1} a} e(t)
 \end{align*}
 
-The transfer function with positive powers (to identify zeroes and poles) is $y(t)=\frac{z}{z-a} e(t) \quad$.
+The transfer function with positive powers (to identify zeros and poles) is $y(t)=\frac{z}{z-a} e(t) \quad$.
 
 There is just one pole: $z=a .$
 
@@ -124,7 +119,7 @@ Summary:
 			\gamma_{y}(0)=\frac{\lambda^{2}}{1-a^{2}} \\
 			\gamma_{y}(1)=\gamma_{y}(-1)=a \cdot \gamma_{y}(0) \\
 			\gamma_{y}(2)=\gamma_{y}(-2)=a \cdot \gamma_{y}(1) \\
-			\vdots
+			\quad\vdots
 		\end{cases}
 	}
 \end{equation*}
@@ -181,17 +176,19 @@ Those equations are called \emph{Yule-Walker equations} for AR($1$) process.
 		\end{tikzpicture}}
 		\caption{Case $-1<a<0$.}
 	\end{subfigure}
-	\caption{Graphical representation of the convariance function for AR($1$) processes.}
+	\caption{Graphical representation of the covariance function for AR($1$) processes.}
 \end{figure}
 \FloatBarrier
 %\fg{0.7}{Screenshot (14)}
 %\fg{0.7}{Screenshot (16)}
 
 \subsection{ARMA processes}
-$$
-y(t)=a_{1} y(t-1)+\cdots+a_{m} y(t-m)+c_{0} e(t)+\cdots+c_{n} e(t-n)
-$$
-where $e(t) \sim \WN\left(0, \lambda^{2}\right)$.
+Let us consider the ARMA($m,n$) process generated according to:
+\begin{align*}
+	y(t) & = a_{1} y(t-1)+\cdots+a_{m} y(t-m)\\
+	     &\quad +c_{0} e(t)+\cdots+c_{n} e(t-n) \quad \text{where} \quad e(t) \sim \WN(0, \lambda^{2})
+\end{align*}
+
 
 \textbf{Mean.}
 \begin{align*}

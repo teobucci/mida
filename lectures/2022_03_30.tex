@@ -5,7 +5,7 @@ Let's start under the hypothesis that our model class is rich enough to describe
 \begin{equation*}
 S\in \Mc \quad \left(\text{i.e. }\exists \theta ^{0} \in \Theta :S\equiv y(t) =\frac{B\left(z,\theta ^{0}\right)}{A\left(z,\theta ^{0}\right)} u(t-d) +\frac{C\left(z,\theta ^{0}\right)}{A\left(z,\theta ^{0}\right)} e(t) ,e(t) \sim \WN \left(0,\lambda ^{2}\right)\right)
 \end{equation*}
-Our model is not a model, but the true system through which $ y(t)$ is generated.
+Our model is not just a model, but the true system through which $ y(t)$ is generated.
 
 The expression of the asymptotic cost function is:
 \begin{equation*}
@@ -27,7 +27,7 @@ The expression of the asymptotic cost function is:
 
 So that
 \begin{equation*}
-\bar{J}\left(\theta ^{0}\right) \leq \lambda {^{0}}^{2} \leq \bar{J}(\theta)\  \forall \theta \quad\Longrightarrow\quad \theta ^{0} \text{ is a minimum of } \bar{J}(\theta)
+\bar{J}\left(\theta ^{0}\right) = \lambda {^{0}}^{2} \leq \bar{J}(\theta)\  \forall \theta \quad\Longrightarrow\quad \theta ^{0} \text{ is a minimum of } \bar{J}(\theta)
 \end{equation*}
 Using \gls{pem} asymptotic theory
 \begin{equation*}
@@ -42,7 +42,7 @@ Thus, the \gls{pem} identification is \textbf{asymptotically consistent}: if $ \
 
 
 
-\section{Model order selection (model validation and hyper-parameter tuning)}
+\section{Model order selection}
 
 The identification of model consists of 4 steps:
 \begin{enumerate}
@@ -65,7 +65,7 @@ C(z,\theta) & =1+c_{1} z^{-1} +\cdots +c_{n} z^{-n} &
 \end{gather*}
 The model order is: $ (m,p,n)$, the delay $ d$ between $ I/O$ is neglected as it can be easily retrieved from data.
 
-Notice that some trivial choices for model selection that change the structure of the model:
+Notice that some trivial choices for model selection change the structure of the model:
 \begin{equation*}
 \begin{cases}
 n=0 & \text{ARX}\\
@@ -75,7 +75,7 @@ n\neq 0,p=0 & \text{ARMA}
 \end{equation*}
 However, we will deal with the case where the structure is fixed ($ n,m,p\neq 0\Longrightarrow$ ARMAX) and we just want to select a proper number. To keep the notation simple we will focus on one hyper-parameter ($ m=n=p$) without loss of generalization.
 
-A naive idea is to use $ J_{N}$ as an indicator for model quality, selecting a maximum value for the model order. Cycling for $ m=1:\overline{m}$
+A naive idea is to use $ J_{N}$ as an indicator for model quality, selecting a maximum value for the model order. Cycling for $ m=1:\overline{m}$, where $\overline{m}$ is the maximum model order we allow for:
 
 $ \mathtt{For }\ m=1:\overline{m}$
 \begin{equation*}
@@ -90,7 +90,9 @@ At the end of the cycle we select:
 \begin{equation*}
 \hat{\theta }_{N} =\hat{\theta }_{N}^{m} \text{ with lowest } J_{N}\left(\hat{\theta }_{N}^{m}\right)
 \end{equation*}
-This naive idea does NOT work in practice: $ J_{N}\left(\hat{\theta }_{N}^{m}\right)$ is always decreasing with $ m$, so that the highest possible order is selected. As $ m$ increases, the model runs in the problem of over-fitting: it's perfectly good for describing the data collected but it does not generalizes to new data. The model has overall a bad predictive performance on new data.
+\begin{obs}
+	This naive idea does NOT work in practice: $ J_{N}\left(\hat{\theta }_{N}^{m}\right)$ is always decreasing with $ m$, so that the highest possible order is selected. As $m$ increases, the model runs in the problem of over-fitting: it's perfectly good for describing the data collected but it does not generalizes to new data. The model has overall a bad predictive performance on new data.
+\end{obs}
 \begin{figure}[htpb]
     \centering
     \includegraphics[width=0.5\linewidth]{Screenshot (33)}
@@ -105,7 +107,7 @@ The for-loop becomes:
 
 $ \mathtt{For } \ m=1:\overline{m}$
 \begin{gather*}
-\Mc^{m} =ARMAX(m) =\left\{\Mc(\theta) ,\theta \in \Theta ^{m}\right\}\\
+\Mc^{m} =\text{ARMAX}(m) =\left\{\Mc(\theta) ,\theta \in \Theta ^{m}\right\}\\
 \hat{\theta }_{T}^{m} =\underset{\theta \in \Theta ^{m}}{\argmin} J_{T}(\theta) =\underset{\theta \in \Theta ^{m}}{\argmin}\frac{1}{M}\sum _{i=1}^{M}(y(i) -\hat{y}(i\mid i-1,\theta))^{2}\\
 \text{evaluate } J_{V}\left(\hat{\theta }_{T}^{m}\right) =\frac{1}{N-M}\sum _{i=M+1}^{N}\left(y(i) -\hat{y}\left(i\mid i-1,\hat{\theta }_{T}^{m}\right)\right)^{2}
 \end{gather*}
@@ -124,7 +126,7 @@ m^{\star} =\underset{m}{\argmin} J_{V}\left(\hat{\theta }_{T}^{m}\right) ,\hat{\
 The drawback of cross-validation is that the dataset has to be split: less information is used to tune the model and data collection can be expensive.
 
 
-\subsection{Alternative approaches: direct model order penalizations}
+\subsection{Alternative approach: direct model order penalization}
 The structure is similar, we run a cycle up to a maximum model order
 
 $ \mathtt{For } \ m=1:\overline{m}$
@@ -132,7 +134,7 @@ $ \mathtt{For } \ m=1:\overline{m}$
 \begin{aligned}
 \Mc^{m} & =\text{ARMAX}(m) =\left\{\Mc(\theta) ,\theta \in \Theta ^{m}\right\} & \\
 \hat{\theta }_{N}^{m}  & =\underset{\theta }{\argmin}\frac{1}{N}\sum _{i=1}^{N}(y(i) -\hat{y}(i\mid i-1,\theta))^{2} & \text{all data are used to tune the model}\\
-\text{evaluate } V(m) & =V\left(m,J_{n}\left(\hat{\theta }_{N}^{m}\right)\right) & \text{model cost with model order penalization}
+\text{evaluate } V(m) & =V(m,J_{N}(\hat{\theta }_{N}^{m})),\forall m & \text{model cost with model order penalization}
 \end{aligned}
 \end{equation*}
 $ \mathtt{END}$
@@ -150,17 +152,17 @@ Some common choice are
 \begin{equation*}
 	\begin{array}{rcc}
 		\text{FPE}(m) = & \frac{N+m}{N-m}          &  \cdot J_{N}\left(\hat{\theta }_{N}^{m}\right)\\
-		\text{AIC}(m) = & 2\frac{m}{N}             &  +\ln\left(J_{N}\left(\hat{\theta }_{N}^{m}\right)\right)\\
-		\text{MDL}(m) = & \ln(n)\frac{m}{N}        &  +\ln\left(J_{N}\left(\hat{\theta }_{N}^{m}\right)\right)\\
+		\text{AIC}(m) = & 2\frac{m}{N}             &  +\ln\left(J_{N}(\hat{\theta }_{N}^{m})\right)\\
+		\text{MDL}(m) = & \ln(N)\frac{m}{N}        &  +\ln\left(J_{N}(\hat{\theta }_{N}^{m})\right)\\
 		                & \text{increasing with }m &  \text{decreasing with }m
 	\end{array}
 \end{equation*}
 In fact, FPE and AIC are approximately equivalent:
 \begin{align*}
-\ln(\text{FPE}) & =\ln\left(\frac{N+m}{N-m} J_{N}\left(\hat{\theta }_{N}^{m}\right)\right) \\
- & =\ln\left(\frac{1+\frac{m}{N}}{1-\frac{m}{N}} J_{N}\left(\hat{\theta }_{N}^{m}\right)\right) \\
- & =\ln\left(1+\frac{m}{N}\right) +\ln\left(1-\frac{m}{N}\right) +\ln\left(J_{N}\left(\hat{\theta }_{N}^{m}\right)\right) \quad m\ll n, \frac{m}{n} \approx 0\\
- & \approx \frac{m}{N} -\left(-\frac{m}{N}\right) +\ln\left(J_{N}\left(\hat{\theta }_{N}^{m}\right)\right) \\
- & =2\frac{m}{N} +\ln\left(J_{N}\left(\hat{\theta }_{N}^{m}\right)\right) =AIC & 
+\ln(\text{FPE}) & =\ln\left(\frac{N+m}{N-m} J_{N}(\hat{\theta }_{N}^{m})\right) \\
+ & =\ln\left(\frac{1+\frac{m}{N}}{1-\frac{m}{N}} J_{N}(\hat{\theta }_{N}^{m})\right) \\
+ & =\ln\left(1+\frac{m}{N}\right) -\ln\left(1-\frac{m}{N}\right) +\ln\left(J_{N}(\hat{\theta }_{N}^{m})\right) \quad m\ll N, \frac{m}{N} \approx 0\\
+ & \approx \frac{m}{N} -\left(-\frac{m}{N}\right) +\ln\left(J_{N}(\hat{\theta }_{N}^{m})\right) \\
+ & =2\frac{m}{N} +\ln\left(J_{N}(\hat{\theta }_{N}^{m})\right) = \text{AIC} & 
 \end{align*}
-MDL is equal to AIC with 2 replaced by $ \ln(N)$. Since typically $ \ln(N)  >2$ (i.e. dataset has more than eight data points) MDL penalizes model order more than AIC and FPE.
+MDL is equal to AIC with 2 replaced by $ \ln(N)$. Since typically $ \ln(N)  >2$ (i.e. dataset has more than 8 data points) MDL penalizes model order more than AIC and FPE.

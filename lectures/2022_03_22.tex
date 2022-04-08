@@ -1,5 +1,5 @@
 %!TEX root = ../main.tex
-\section{Optimal prediction of ARMAX processes}
+\section{Optimal prediction for ARMAX processes}
 
 \[
 	y(t)=\underbrace{\frac{B(z)}{A(z)} u(t-d)}_{\text{deterministic}}+
@@ -54,36 +54,36 @@ Model identification: retrieve a suitable model from experiments on the real sys
 \textbf{Identification problem:} define an automatic procedure to find a model for $S$ based on available (input/output or time series) data.
 
 %\fg{0.7}{Screenshot (26)}
-\begin{figure}[htpb]
-	\centering
-	\begin{tikzpicture}
+% \begin{figure}[htpb]
+% 	\centering
+% 	\begin{tikzpicture}
 
-	% place nodes
-		\node [sum] (sum) at (0,0) {};
-		\node [block,above=1cm of sum]  (ca) {$\frac{C(z)}{A(z)}$};
-		\node [block,left =1cm of sum]  (ba) {$\frac{B(z)}{A(z)}$};
-		%\node [above left = 0cm and 2.5cm of ba] {$\begin{array}{c} y(1),y(2),\ldots,y(N) \\ u(1),u(2),\ldots,u(N) \end{array}\implies$};
+% 	% place nodes
+% 		\node [sum] (sum) at (0,0) {};
+% 		\node [block,above=1cm of sum]  (ca) {$\frac{C(z)}{A(z)}$};
+% 		\node [block,left =1cm of sum]  (ba) {$\frac{B(z)}{A(z)}$};
+% 		%\node [above left = 0cm and 2.5cm of ba] {$\begin{array}{c} y(1),y(2),\ldots,y(N) \\ u(1),u(2),\ldots,u(N) \end{array}\implies$};
 
-		% connect nodes
-		\draw[-stealth] (ba.east) -- (sum.west) node[near end,above]{$+$};
-		\draw[-stealth] (ca.south) -- (sum.north) node[near end,left]{$+$};
-		\draw[-stealth] (sum.east) -- ++(2,0) node[midway,above]{$y(t)$};
-		\draw[stealth-] (ca.west) -- ++(-2,0) node[midway, above]{$e(t)$};
-		\draw[stealth-] (ba.west) -- ++(-2,0) node[midway, above]{$u(t-d)$};
+% 		% connect nodes
+% 		\draw[-stealth] (ba.east) -- (sum.west) node[near end,above]{$+$};
+% 		\draw[-stealth] (ca.south) -- (sum.north) node[near end,left]{$+$};
+% 		\draw[-stealth] (sum.east) -- ++(2,0) node[midway,above]{$y(t)$};
+% 		\draw[stealth-] (ca.west) -- ++(-2,0) node[midway, above]{$e(t)$};
+% 		\draw[stealth-] (ba.west) -- ++(-2,0) node[midway, above]{$u(t-d)$};
 
-	\end{tikzpicture}
-\end{figure}
-\FloatBarrier
+% 	\end{tikzpicture}
+% \end{figure}
+% \FloatBarrier
 
 \section{Parametric model identification}
 
-First we select a \textbf{parametric model class} $\Mc(\theta)$, where $\theta$ is the vector of parameters (each different $\theta$ corresponds to a different model in that class).
+First we select a \textbf{parametric model class} $\Mc(\theta)$, where $\theta$ is the \textbf{vector of parameters} (each different $\theta$ corresponds to a different model in that class).
 
-For example:
+For example the family of ARMAX models whose coefficients are polynomials is:
 $$
-	\Mc(\theta)=\left\{y(t)=\frac{B(z, \theta)}{A(z, \theta)} u(t-d)+\frac{C(z, \theta)}{A(z, \theta)} e(t), \quad e(t) \sim WN\left(0, \lambda^{2}\right), \theta\in\Theta\right\}
+	\Mc(\theta)=\left\{y(t)=\frac{B(z, \theta)}{A(z, \theta)} u(t-d)+\frac{C(z, \theta)}{A(z, \theta)} e(t), \quad e(t) \sim \WN\left(0, \lambda^{2}\right), \theta\in\Theta\right\}
 $$
-is the family of ARMAX models whose coefficients are polynomials.
+where:
 \begin{align*}
 	A(z, \theta)&=1-a_{1}(\theta) z^{-1}-\cdots-a_{m}(\theta) z^{-m} \\
 	B(z, \theta)&=b_{1}(\theta)+b_{2}(\theta) z^{-1}+\cdots+b_{p}(\theta) z^{-p}\\
@@ -97,41 +97,41 @@ $$
 $$
 In all other cases: \textbf{grey-box identification}.
 
-We try to incorporate some a priori information about the real $S$ in the model class. $\theta$ may have some physical interpretation.
+We try to incorporate some \emph{a priori} information about the real $S$ in the model class. $\theta$ may have some physical interpretation.
 
 \begin{example}
 $$
-	\Mc(\theta): y(t)=\frac{b+b^{2} z^{-1}}{1-a z^{-1}} u(t-d)+\frac{1+a z^{-1}}{1-a z^{-1}} e(t)
+	\Mc(\theta) = \left\{ y(t)=\frac{b+b^{2} z^{-1}}{1-a z^{-1}} u(t-d)+\frac{1+a z^{-1}}{1-a z^{-1}} e(t) \right\}  
 $$
 Here the parameter vector is given by $\theta=\begin{bmatrix}a,b\end{bmatrix}\transpose$ only.
 \end{example}
 
 \begin{obs}
-$\lambda^2$ is a parameter too which needs to be identified, however, $\lambda^2$ is much less important than other parameters. So, we will indicate by $\theta$ the vector of \emph{important} parameters and keep $\lambda^2$ aside.
+$\lambda^2$ is a parameter which needs to be identified too, however, $\lambda^2$ is much less important than other parameters. So, we will indicate by $\theta$ the vector of \emph{important} parameters and keep $\lambda^2$ aside.
 \end{obs}
 
 $\Theta$ is the set of admissible values for the parameter vector $\theta$.
 
-It incorporates a-priori information on the possible value for the parameters. In the black-box case $\Theta$ is as free as possible.
+It incorporates a-priori information on the possible values for the parameters. In the black-box case $\Theta$ is as free as possible.
 
 As we will see, to perform identification we will rely on the theory of prediction. Hence, we will assume the following:
 
-\boxedText{For every $\theta \in \Theta$, the stochastic part of $\Mc(\theta)$ (i.e. the part depending on the white noise $e(t) \sim \WN(0, \lambda^{2})$) is \textbf{canonical} and has \textbf{no zeroes on the unit circle}.}
+\boxedText{For every $\theta \in \Theta$, the stochastic part of $\Mc(\theta)$ (i.e. the part depending on the white noise $e(t) \sim \WN(0, \lambda^{2})$) is \textbf{canonical} and has \textbf{no zeros on the unit circle}.}
 
-The requirement that there are no zeroes on the unit circle instead poses some limitations on the systems we can identify. However:
+The requirement that there are no zeros on the unit circle instead poses some limitations on the systems we can identify. However:
 \begin{itemize}
-	\item zeroes on the unit circle are not usually required to model the behavior of a given system;
-	\item the behavior of models with zeroes on the unit circle can be approximated by models with zeroes \emph{close} to the unit circle.
+	\item zeros on the unit circle are not usually required to model the behavior of a given system;
+	\item the behavior of models with zeros on the unit circle can be approximated by models with zeros \emph{close} to the unit circle.
 \end{itemize} 
 
-\section{PEM (Prediction Error Minimization) identification}
+\section{Prediction Error Minimization (PEM) Identification}
 
 Paradigm to map data into a value of $\overline{\theta}$.
 $$
 	D^N=\left\{\overline{y(1)},\ldots,\overline{y(N)},\overline{u(1)},\ldots,\overline{u(N)}\right\}
 $$
 $D^N$ is a finite sequence of real numbers, observations of $y$ and $u$ over some horizon. $N$ is the length of the dataset.
-\fg{0.2}{Screenshot (27)}
+% \fg{0.2}{Screenshot (27)}
 How to compare $\overline{y(1)},\ldots,\overline{y(N)}$ with $y(1,s),\ldots,y(N,s)$?
 \fg{0.7}{Screenshot (28)}
 The idea of the \gls{pem} is that we move \textbf{from stochastic models to predictive models.}
@@ -145,7 +145,7 @@ For example this is an ARMAX in $\Mc(\theta)$ for a given value of $\theta$:
 	\hat{\Mc}(\theta)&: \quad \hat{y}(t \mid t-1) =\frac{B(z,\theta) E(z,\theta)}{C(z,\theta)} u(t-d)+\frac{F(z,\theta)}{C(z,\theta)} y(t-1) \qquad \text{one step predictor}
 \end{align*}
 \fg[The \gls{pem} identification scheme.]{0.7}{Screenshot (29)}
-$$y(t)=\underbrace{\frac{B(z)}{A(z)} u(t+k-d)}_{\substack{\text{This part of the process}\\ 
-		\text{is deterministically}\\
-		\text{known, and hence can}\\
-		\text{be trivially predicted}}} +z(t+k)$$
+% $$y(t)=\underbrace{\frac{B(z)}{A(z)} u(t+k-d)}_{\substack{\text{This part of the process}\\ 
+% 		\text{is deterministically}\\
+% 		\text{known, and hence can}\\
+% 		\text{be trivially predicted}}} +z(t+k)$$

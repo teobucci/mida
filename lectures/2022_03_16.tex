@@ -86,7 +86,7 @@ In the assumptions we made at page \pageref{assumptions-prediction-theory} the r
 \textbf{Remark.}
 Given the construction of $\hat y(t+k\mid t)$, since it's the output of an asymptotically stable filter ($F/C$) fed by $y(t)$ (which is a \gls{ssp}), also $\hat y(t+k\mid t)$ is a \gls{ssp}. The statistical properties of $\hat y(t+k\mid t)$ don't depend on $t$, thus
 \[
-	\hat y(t+k\mid t)\frac{F(z)}{C(z)}y(t) \quad \text{and} \quad \hat y(t\mid t-k)\frac{F(z)}{C(z)}y(t-k)
+	\hat y(t+k\mid t) = \frac{F(z)}{C(z)}y(t) \quad \text{and} \quad \hat y(t\mid t-k) = \frac{F(z)}{C(z)}y(t-k)
 \]
 are completely equivalent.
 
@@ -101,15 +101,15 @@ but in practice we only have a finite sequence back until $t=1$, the time where 
 \]
 so usually we use the optimal predictor, but instead of considering the steady-solution, we initialize it with:
 \[
-	\hat y(k\mid 0) = \hat y(k-1\mid -1) = \hat y(k-2\mid -2) = \cdots = 0 = y(0) = y(-1) = y(-2) = \cdots
+	\boxed{\hat y(k\mid 0) = \hat y(k-1\mid -1) = \hat y(k-2\mid -2) = \cdots = 0 = y(0) = y(-1) = y(-2) = \cdots}
 \]
 Thanks to the asymptotic stability of $F(z)/C(z)$ the effect of the conventional initialization rapidly vanishes, and is negligible provided that $t$ is large enough.
 
-\section{Optimal prediction of non zero mean ARMA}
+\section{Optimal prediction for non-zero mean ARMA processes}
 \[
 	y(t)=\frac{C(z)}{A(z)}e(t)\qquad e(t)\sim \WN(\mu,\lambda^2 )
 \]
-Same assumptions as page \pageref{assumptions-prediction-theory}. How do we compute $\hat y(t+k\mid t)$?
+Same assumptions as in page \pageref{assumptions-prediction-theory}. How do we compute $\hat y(t+k\mid t)$?
 \[
 	\E[e(t)] = \mu \implies \E[y(t)]=\frac{C(1)}{A(1)}\cdot\mu=m_{y} \quad \forall t
 \]

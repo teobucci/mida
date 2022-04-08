@@ -13,7 +13,7 @@ where
 \[
 	W(z)=\frac{C(z)}{A(z)}=w_{0}+w_{1} z^{-1}+w_{2} z^{-2}+\cdots
 \]
-We can substitute in our predictor:
+We can substitute our predictor:
 \begin{align*}
 	\hat{y}(t+k \mid t) &=\alpha_{0} y(t)+\alpha_{1} y(t-1)+\cdots \\
 	&=\alpha_{0} \sum_{i=0}^{\infty} w_{i} e(t-i)+\alpha_{1} \sum_{i=0}^{\infty} w_{i} e(t-1-i)+\cdots \\
@@ -74,7 +74,7 @@ So the optimal linear predictor based on noise measurements is:
 \begin{align*}
 	\boxed{\hat{y}(t+k \mid t) = \sum_{i=0}^{\infty}w_{k+i} e(t-i)}
 \end{align*}
-Note that $y(t+k)$ can be written as the sum of a function of future, unpredictable from the info at $t$, and a predictable part. 
+Notice that $y(t+k)$ can be written as the sum of a function of future, unpredictable from the info at $t$, and a predictable part. 
 \begin{align*}
 	y(t+k)= \underbrace{\sum_{j=0}^{k-1} w_{j} e(t+k-j)}_{\text{unpredictable at time $t$}} + \underbrace{\sum_{i=0}^{\infty} w_{k+i} e(t-i)}_{\substack{\text{predictable at time $t$}\\\hat{y}(t+k \mid t)}}
 \end{align*}
@@ -112,7 +112,7 @@ Hence,
 	y(t+k) &=\frac{C(z)}{A(z)} e(t+k)=\left[E(z)+z^{-k} \frac{F(z)}{A(z)}\right] e(t+k)\\
 	&=\underbrace{E(z)e(t+k)}_{\text{unpredictable at }t}+\underbrace{\frac{F(z)}{A(z)}e(t)}_{\text{predictable at }t}
 \end{align*}
-The optimal predictor is given by the predictable part of $y(t + k)$:
+The optimal predictor from noise is given by the predictable part of $y(t + k)$:
 \[
 	\boxed{\hat{y}(t+k \mid t) = \frac{F(z)}{A(z)}e(t)}
 \]
@@ -122,7 +122,7 @@ $\hat{y}(t+k \mid t)$ is the steady-state output of a suitable linear filter fed
 
 In order to actually compute the predicted value for the output variable based on the above expression for $\hat{y}(t+k \mid t)$, past values of the noise process $e(t),e(t_1),e(t_2),\ldots$ should be accessible, but the output $y(t)$ is the only information in reality which we can access.
 
-In order to use it practice, we need to express the predict value as a function of past values of the output variable $y(t), y(t_1), y(t_2),\ldots$.
+In order to use it in practice, we need to express the predicted value as a function of past values of the output variable $y(t), y(t_1), y(t_2),\ldots$.
 
 \textbf{Is it possible to reconstruct the noise $e(t)$ from the output $y(t)$?}
 
