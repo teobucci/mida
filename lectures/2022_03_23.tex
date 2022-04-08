@@ -89,10 +89,18 @@ The idea is that, when dealing with a real system, the values of $u$ and $y$ fro
 		
 		\draw[-stealth] (s.east) -- ++(3,0)
 		    node[midway,above]{$\varepsilon (t\mid t-1,\theta)$}
+		    node[very near end] (startMin) {}
+		;
+
+		\draw[dashed,-stealth]
+		    (startMin) -- ++(0,-3) -- ++(-5,0) 
+		    node[midway,above]{$\min$}
+		    -- ++(0,0.5)
 		;
 	\end{tikzpicture}
+	\caption{The \gls{pem} identification scheme.}
 \end{figure}
-\FloatBarrier
+% \FloatBarrier
 
 \begin{center}
 

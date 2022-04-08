@@ -133,7 +133,7 @@ $$
 $D^N$ is a finite sequence of real numbers, observations of $y$ and $u$ over some horizon. $N$ is the length of the dataset.
 % \fg{0.2}{Screenshot (27)}
 How to compare $\overline{y(1)},\ldots,\overline{y(N)}$ with $y(1,s),\ldots,y(N,s)$?
-\fg{0.7}{Screenshot (28)}
+\fg{0.6}{Screenshot (28)}
 The idea of the \gls{pem} is that we move \textbf{from stochastic models to predictive models.}
 \[
 	\Mc(\theta) \to \hat{\Mc}(\theta)
@@ -144,7 +144,7 @@ For example this is an ARMAX in $\Mc(\theta)$ for a given value of $\theta$:
 	&\qquad\downarrow\\
 	\hat{\Mc}(\theta)&: \quad \hat{y}(t \mid t-1) =\frac{B(z,\theta) E(z,\theta)}{C(z,\theta)} u(t-d)+\frac{F(z,\theta)}{C(z,\theta)} y(t-1) \qquad \text{one step predictor}
 \end{align*}
-\fg[The \gls{pem} identification scheme.]{0.7}{Screenshot (29)}
+% \fg[The \gls{pem} identification scheme.]{0.7}{Screenshot (29)}
 % $$y(t)=\underbrace{\frac{B(z)}{A(z)} u(t+k-d)}_{\substack{\text{This part of the process}\\ 
 % 		\text{is deterministically}\\
 % 		\text{known, and hence can}\\
