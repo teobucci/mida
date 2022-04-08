@@ -32,7 +32,7 @@ $$
 $$
 The first part is deterministically known, and hence can be trivially predicted.
 \begin{align*}
-	\hat{y}(t+k \mid t)&=\frac{B(z)}{A(z)} u(t+k-d)+z(t+k \mid t) \\
+	\hat{y}(t+k \mid t)&=\frac{B(z)}{A(z)} u(t+k-d)+\hat{z}(t+k \mid t) \\
 	&=\frac{B(z)}{A(z)} u(t+k-d)+\frac{F(z)}{C(z)} z(t) \\
 	& =\frac{B(z)}{A(z)} u(t+k-d)+\frac{F(z)}{C(z)}\Bigg(y(t)-\frac{B(z)}{A(z)} \underbrace{u(t-d)}_{z^{-k}u(t+k-d)}\Bigg) \\
 	&=\frac{B(z)}{C(z)} \cdot\Bigg(\underbrace{\frac{C(z)}{A(z)}-\frac{z^{-k} F(z)}{A(z)}}_{E(z)}\Bigg) u(t+k-d)+\frac{F(z)}{C(z)} y(t)
