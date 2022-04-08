@@ -88,10 +88,10 @@ $ \mathtt{END}$
 
 At the end of the cycle we select:
 \begin{equation*}
-\hat{\theta }_{N} =\hat{\theta }_{N}^{m} \text{ with lowest } J_{N}\left(\hat{\theta }_{N}^{m}\right)
+\hat{\theta }_{N} =\hat{\theta }_{N}^{m} \text{ with lowest } J_{N}(\hat{\theta }_{N}^{m})
 \end{equation*}
 \begin{obs}
-	This naive idea does NOT work in practice: $ J_{N}\left(\hat{\theta }_{N}^{m}\right)$ is always decreasing with $ m$, so that the highest possible order is selected. As $m$ increases, the model runs in the problem of over-fitting: it's perfectly good for describing the data collected but it does not generalizes to new data. The model has overall a bad predictive performance on new data.
+	This naive idea does NOT work in practice: $ J_{N}(\hat{\theta }_{N}^{m})$ is always decreasing with $ m$, so that the highest possible order is selected. As $m$ increases, the model runs in the problem of over-fitting: it's perfectly good for describing the data collected but it does not generalizes to new data. The model has overall a bad predictive performance on new data.
 \end{obs}
 \begin{figure}[htpb]
     \centering
@@ -109,13 +109,13 @@ $ \mathtt{For } \ m=1:\overline{m}$
 \begin{gather*}
 \Mc^{m} =\text{ARMAX}(m) =\left\{\Mc(\theta) ,\theta \in \Theta ^{m}\right\}\\
 \hat{\theta }_{T}^{m} =\underset{\theta \in \Theta ^{m}}{\argmin} J_{T}(\theta) =\underset{\theta \in \Theta ^{m}}{\argmin}\frac{1}{M}\sum _{i=1}^{M}(y(i) -\hat{y}(i\mid i-1,\theta))^{2}\\
-\text{evaluate } J_{V}\left(\hat{\theta }_{T}^{m}\right) =\frac{1}{N-M}\sum _{i=M+1}^{N}\left(y(i) -\hat{y}\left(i\mid i-1,\hat{\theta }_{T}^{m}\right)\right)^{2}
+\text{evaluate } J_{V}(\hat{\theta }_{T}^{m}) =\frac{1}{N-M}\sum _{i=M+1}^{N}\left(y(i) -\hat{y}\left(i\mid i-1,\hat{\theta }_{T}^{m}\right)\right)^{2}
 \end{gather*}
 $ \mathtt{END}$
 
 Where $ J_{V}$ is the performance of the model obtained from the training set evaluated on the validation dataset. Then we select
 \begin{equation*}
-m^{\star} =\underset{m}{\argmin} J_{V}\left(\hat{\theta }_{T}^{m}\right) ,\hat{\theta }_{N} =\hat{\theta }_{T}^{m^{\star}}
+m^{\star} =\underset{m}{\argmin} J_{V}(\hat{\theta }_{T}^{m}) ,\hat{\theta }_{N} =\hat{\theta }_{T}^{m^{\star}}
 \end{equation*}
 
 \fg{0.6}{Screenshot(32)}
@@ -147,9 +147,9 @@ Some common choice are
 \end{align*}
 \begin{equation*}
 	\begin{array}{rcc}
-		\text{FPE}(m) = & \frac{N+m}{N-m}          &  \cdot J_{N}\left(\hat{\theta }_{N}^{m}\right)\\
-		\text{AIC}(m) = & 2\frac{m}{N}             &  +\ln\left(J_{N}(\hat{\theta }_{N}^{m})\right)\\
-		\text{MDL}(m) = & \ln(N)\frac{m}{N}        &  +\ln\left(J_{N}(\hat{\theta }_{N}^{m})\right)\\
+		\text{FPE}(m) = & \frac{N+m}{N-m}          &  \cdot J_{N}(\hat{\theta }_{N}^{m})\\
+		\text{AIC}(m) = & 2\frac{m}{N}             &  +\ln(J_{N}(\hat{\theta }_{N}^{m}))\\
+		\text{MDL}(m) = & \ln(N)\frac{m}{N}        &  +\ln(J_{N}(\hat{\theta }_{N}^{m}))\\
 		                & \text{increasing with }m &  \text{decreasing with }m
 	\end{array}
 \end{equation*}
@@ -157,8 +157,8 @@ In fact, FPE and AIC are approximately equivalent:
 \begin{align*}
 \ln(\text{FPE}) & =\ln\left(\frac{N+m}{N-m} J_{N}(\hat{\theta }_{N}^{m})\right) \\
  & =\ln\left(\frac{1+\frac{m}{N}}{1-\frac{m}{N}} J_{N}(\hat{\theta }_{N}^{m})\right) \\
- & =\ln\left(1+\frac{m}{N}\right) -\ln\left(1-\frac{m}{N}\right) +\ln\left(J_{N}(\hat{\theta }_{N}^{m})\right) \quad m\ll N, \frac{m}{N} \approx 0\\
- & \approx \frac{m}{N} -\left(-\frac{m}{N}\right) +\ln\left(J_{N}(\hat{\theta }_{N}^{m})\right) \\
- & =2\frac{m}{N} +\ln\left(J_{N}(\hat{\theta }_{N}^{m})\right) = \text{AIC} & 
+ & =\ln\left(1+\frac{m}{N}\right) -\ln\left(1-\frac{m}{N}\right) +\ln(J_{N}(\hat{\theta }_{N}^{m})) \quad m\ll N, \frac{m}{N} \approx 0\\
+ & \approx \frac{m}{N} -\left(-\frac{m}{N}\right) +\ln(J_{N}(\hat{\theta }_{N}^{m})) \\
+ & =2\frac{m}{N} +\ln(J_{N}(\hat{\theta }_{N}^{m})) = \text{AIC} & 
 \end{align*}
 MDL is equal to AIC with 2 replaced by $ \ln(N)$. Since typically $ \ln(N)  >2$ (i.e. dataset has more than 8 data points) MDL penalizes model order more than AIC and FPE.
