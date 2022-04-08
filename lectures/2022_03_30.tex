@@ -3,7 +3,7 @@ We want to use this theory to justify more formally the method we introduced.
 
 Let's start under the hypothesis that our model class is rich enough to describe our system.
 \begin{equation*}
-S\in \Mc \quad \left(\text{i.e. }\exists \theta ^{0} \in \Theta :S\equiv y(t) =\frac{B\left(z,\theta ^{0}\right)}{A\left(z,\theta ^{0}\right)} u(t-d) +\frac{C\left(z,\theta ^{0}\right)}{A\left(z,\theta ^{0}\right)} e(t) ,e(t) \sim \WN \left(0,\lambda ^{2}\right)\right)
+S\in \Mc \quad \left(\text{i.e. }\exists \theta ^{0} \in \Theta :S\equiv y(t) =\frac{B\left(z,\theta ^{0}\right)}{A\left(z,\theta ^{0}\right)} u(t-d) +\frac{C\left(z,\theta ^{0}\right)}{A\left(z,\theta ^{0}\right)} e(t) ,e(t) \sim \WN(0,\lambda ^{2})\right)
 \end{equation*}
 Our model is not just a model, but the true system through which $ y(t)$ is generated.
 
@@ -57,7 +57,7 @@ The process is not linear: it is common to loop from model validation to another
 An important choice for $ \Mc$ is the model order selection. Given an ARMAX model (black-box case):
 \begin{gather*}
 \begin{aligned}
-y(t)  & =\frac{B(z,\theta)}{A(z,\theta)} u(t-d) +\frac{1}{A(z,\theta)} e(t) & e(t) \sim \WN \left(0,\lambda ^{2}\right)\\
+y(t)  & =\frac{B(z,\theta)}{A(z,\theta)} u(t-d) +\frac{1}{A(z,\theta)} e(t) & e(t) \sim \WN (0,\lambda ^{2})\\
 A(z,\theta)  & =1-a_{1} z^{-1} -\cdots -a_{m} z^{-m} & \\
 B(z,\theta) & =b_{0} +b_{1} z^{-1} +\cdots +b_{p} z^{-p} & \\
 C(z,\theta) & =1+c_{1} z^{-1} +\cdots +c_{n} z^{-n} & 

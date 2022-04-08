@@ -6,7 +6,7 @@ We have to move from stochastic models (ARMAX models) of type:
 
 $$
 \Mc(\theta):\quad
-y(t) = \frac{B(z,\theta)}{A(z,\theta)} u(t-d) +\ \frac{C(z,\theta)}{A(z,\theta)} e(t) ,\ e(t)\sim \WN \left(0,\lambda ^{2}\right)
+y(t) = \frac{B(z,\theta)}{A(z,\theta)} u(t-d) +\ \frac{C(z,\theta)}{A(z,\theta)} e(t) ,\ e(t)\sim \WN(0,\lambda ^{2})
 $$
 
 to models in prediction form, i.e. the optimal predictors obtained through the theory we developed. In particular, we can focus on the \textbf{one-step predictor} already introduced:
@@ -131,7 +131,7 @@ However, if we're interested in the description of the complete ARMA process, al
 \end{equation*}
 The proposed estimate is the \textbf{empirical variance} of the prediction error for the optimal model. The idea behind the formula is simple: suppose $ S\in \Mc $ (i.e. our model class is rich enough to describe perfectly the true mechanism by which $y$ is generated) and $\hat{\theta }_{N}$ is so good that $\Mc(\hat{\theta }_{N}) =S$ (i.e. the information collected is enough to unveil $S$).
 
-Since $ S\in \Mc \Longrightarrow S$ is an ARMAX process. Thus, there is a white noise $ \xi (t) \sim \WN\left(0,\lambda ^{2}\right)$ in the real world that generates $y$. Then $ \hat{y}(t\mid t-1,\hat{\theta }_{N})$ is the optimal predictor not only for the model, but also for the system $S$. Most importantly
+Since $ S\in \Mc \Longrightarrow S$ is an ARMAX process. Thus, there is a white noise $ \xi (t) \sim \WN(0,\lambda ^{2})$ in the real world that generates $y$. Then $ \hat{y}(t\mid t-1,\hat{\theta }_{N})$ is the optimal predictor not only for the model, but also for the system $S$. Most importantly
 \begin{equation*}
 \varepsilon (t\mid t-1,\hat{\theta }_{N}) =\xi (t)
 \end{equation*}
@@ -150,7 +150,7 @@ In this case \textit{\gls{pem} Identification} takes the name of \textit{Least S
 
 Given a generic ARX model
 \begin{gather*}
-y(t) =\frac{B(z,\theta)}{A(z,\theta)} u(t-d) +\frac{1}{A(z,\theta)} e(t) \qquad e(t) \sim \WN\left(0,\lambda ^{2}\right)\\
+y(t) =\frac{B(z,\theta)}{A(z,\theta)} u(t-d) +\frac{1}{A(z,\theta)} e(t) \qquad e(t) \sim \WN(0,\lambda ^{2})\\
 A(z,\theta) =1-a_{1} z^{-1} -\cdots -a_{m} z^{-m}\\
 B(z,\theta) =b_{0} +b_{1} z^{-1} +\cdots +b_{p} z^{-p}
 \end{gather*}
