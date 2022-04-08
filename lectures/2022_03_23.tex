@@ -191,7 +191,7 @@ we can rewrite the recursive equations
 \end{equation*}
 It is now possible to compute the one-step predictor for ARX model easily: we just need to delete the unpredictable part.
 \begin{align*}
-	\hat{\Mc}(\theta) :\ \hat{y}(t\mid t-1) & =a_{1} y(t-1) +\cdots +a_{m} y(t-m) +b_{0} u(t-d) +b_{1} u(t-d-1) +\cdots +b_{p} u(t-d-p)\\
+	\hat{\Mc}(\theta) :\ \hat{y}(t\mid t-1) & =a_{1} y(t-1) +\cdots +a_{m} y(t-m) +b_{0} u(t-d) +\cdots +b_{p} u(t-d-p)\\
 	& =\varphi (t)\transpose \theta 
 \end{align*}
 The predictor is a very simple expression, a linear function of $ \theta $.
