@@ -79,17 +79,15 @@ Why \glspl{ssp}?
 \textbf{Properties of the covariance function for a \gls{ssp}.}
 \begin{itemize}
 	\item $\gamma(0)=\E[(v(t)-m)^{2}] \geq 0$ (non negative at initial time).
-	\item $|\gamma(\tau)| \leq \gamma(0)$ (bounded).
-	\quad  \text{\hspace{2em}considering the non-negative quantity} $\E[(v(t) \pm v(t-\tau))^2]\ge0$ :\\
-	\vspace{-3ex}
+	\item $|\gamma(\tau)| \leq \gamma(0)$ (bounded), indeed consider the non-negative quantity:
 	\begin{align*}
 		\E[(v(t) \pm v(t-\tau))^2] &= \E[v(t)^2] \pm \E[2v(t-\tau)v(t)]+\E[v(t-\tau)^2]\\
 		&=\E[v(t)^2] \pm 2\gamma(\tau)+\E[v(t)^2]\\
-		&=2\gamma(0) \pm 2\gamma(\tau) \ge 0 
+		&=2\gamma(0) \pm 2\gamma(\tau) \geq 0 
 		\implies -\gamma(0) \leq \gamma(\tau) \leq \gamma(0)\\
 		&\implies |\gamma(\tau)| \leq \gamma(0)
 	\end{align*}
-	\item $\gamma(\tau)=\gamma(-\tau)$ (symmetric) indeed:
+	\item $\gamma(\tau)=\gamma(-\tau)$ (symmetric), indeed:
 	\begin{align*}
 		\gamma(-\tau)&=\E[(v(t)-m)(v(t-(-\tau))-m)]\\
 		&=\E[(v(t)-m)(v(t+\tau))-m)]\\
