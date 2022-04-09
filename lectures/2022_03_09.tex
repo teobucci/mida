@@ -35,7 +35,32 @@ where $\tilde{y}(t)$ is the filtered output process.
 \begin{example}
 The \gls{wn} spectral density is constant, i.e. \gls{wn} energy is \emph{equally-distributed} all over the frequency domain.
 \end{example}
-\fg{0.7}{Screen Shot 2022-03-12 at 16.41.55}
+% \fg{0.7}{Screen Shot 2022-03-12 at 16.41.55}
+\begin{figure}[htpb]
+	\centering
+	\begin{tikzpicture}
+
+	    % x axis
+	    \draw[-stealth]
+	        (-4,0) -- (0,0) node[below] {$0$}
+	        ( 0,0) -- (4,0) node[right] {$\omega$};
+	    
+	    \draw[-stealth] (0,0) -- (0,2) node[left] {$\Gamma_y(\omega)$};
+	    
+	    % plot
+	    \draw[very thick]
+	        (-pi,1) -- (0,1) node[below left] {$\lambda^2$}
+	        (  0,1) -- (pi,1){};
+	    
+	    % projections
+	    \draw[dashed]
+	        (-pi,1) -- (-pi,0) node[below] {$-\pi$}
+	        ( pi,1) -- ( pi,0) node[below] {$ \pi$}
+	        {};
+
+	\end{tikzpicture}
+\end{figure}
+\FloatBarrier
 
 \begin{example}
 Consider the AR($1$) process $y(t)=ay(t-1)+e(t)$.
