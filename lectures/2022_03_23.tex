@@ -154,7 +154,7 @@ Now that we have our model, we need to study its computational aspect: how can t
 
 In general $ J_{N}(\theta)$ is a very complicated and non-convex function of $ \theta $, with local minima and often without analytical or explicit expression. However, the subset of AR/ARX models, with good descriptive capabilities, has a quadratic cost function which can be explicitly minimized.
 
-In this case \textit{\gls{pem} Identification} takes the name of \textit{Least Squares Identification.}
+In this case \gls{pem} Identification takes the name of \textbf{Least Squares Identification.}
 
 Given a generic ARX model
 \begin{gather*}
@@ -235,14 +235,13 @@ Setting $ \frac{d}{d\theta } J_{N}(\theta) =0$
 \cancel{\frac{2}{N}}\sum _{t=1}^{N} \varphi (t) \varphi (t)\transpose \theta  & =\cancel{\frac{2}{N}}\sum _{t=1}^{N} \varphi (t) y(t) & \\
 \left[\sum _{t=1}^{N} \varphi (t) \varphi (t)\transpose\right] \theta  & =\sum _{t=1}^{N} \varphi (t) y(t) & \text{system of linear eqs in} \ \theta 
 \end{align*}
-This system of linear equations is commonly referred to as \textit{Least Squares Normal Equations}. If 
+This system of linear equations is commonly referred to as \textbf{Least Squares Normal Equations}. If 
 \begin{equation*}
 \sum _{t=1}^{N} \varphi (t) \varphi (t)\transpose \ \text{is non-singular}
 \end{equation*}
 the solution is unique, and $ \hat{\theta }_{N}$ is uniquely determined
 \begin{equation*}
 \boxed{\hat{\theta }_{N} =\left[\sum _{t=1}^{N} \varphi (t) \varphi (t)\transpose\right]^{-1}\sum _{t=1}^{N} \varphi (t) y(t)}
-\qquad \text{Least Squares formula}
 \end{equation*}
 If $ \sum \varphi (t) \varphi (t)\transpose$ is singular, there are infinite solutions: $ \hat{\theta }_{N}$ can be determined by introducing a tie-break rule (e.g. taking the solution with minimum norm). This may happen when many models have the same predictive capability, such as in a redundant model class or in case of uninformative data.
 
