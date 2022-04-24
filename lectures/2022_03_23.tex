@@ -149,7 +149,7 @@ the one-step prediction error in optimal prediction \textit{is} the \gls{wn} in 
 \hat{\lambda }_{N}^{2} =J_{N}(\hat{\theta }_{N}) =\frac{1}{N}\sum _{i=1}^{N} \varepsilon (i\mid i-1,\hat{\theta }_{N})^{2}
 \end{gather*}
 
-\subsection{Least Squares Identification}
+\subsection{Least Squares Identification (AR/ARX processes)}
 Now that we have our model, we need to study its computational aspect: how can the cost function be minimized with respect to $ \theta ?$
 
 In general $ J_{N}(\theta)$ is a very complicated and non-convex function of $ \theta $, with local minima and often without analytical or explicit expression. However, the subset of AR/ARX models, with good descriptive capabilities, has a quadratic cost function which can be explicitly minimized.

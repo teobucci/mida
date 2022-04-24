@@ -1,6 +1,6 @@
 %!TEX root = ../main.tex
 
-\section{Identification of ARMA/ARMAX models (Maximum Likelihood (ML) method)}
+\subsection{Maximum Likelihood (ML) method (ARMA/ARMAX processes)}
 
 We consider a generic ARMAX:
 \[
@@ -34,7 +34,7 @@ To tackle the non-linearity we can use some kinds of numerical optimization usin
 If there are local minima, we can just use an \emph{empirical} approach by running the algorithm with many different starting values getting a range of candidates of minimum values, hoping to explore the entire domain and not miss the global minimum. This of course comes with the cost of computational complexity.
 
 
-\section{Asymptotic Analysis of \gls{pem} Identification}
+\section{Asymptotic Analysis of PEM Identification}
 
 Is $\Mc(\hat\theta_{N})$ a good model for the process $y(t)$?
 We can give an asymptotic answer as $N\to \infty$
