@@ -173,3 +173,63 @@ In fact, FPE and AIC are approximately equivalent:
  & =2\frac{m}{N} +\ln(J_{N}(\hat{\theta }_{N}^{m})) = \text{AIC} & 
 \end{align*}
 MDL is equal to AIC with 2 replaced by $ \ln(N)$. Since typically $ \ln(N)  >2$ (i.e. dataset has more than 8 data points) MDL penalizes model order more than AIC and FPE.
+
+
+% esercitazione 10
+
+\section{Estimation of mean, covariance and spectrum}
+
+\subsection{Mean}
+
+We use the sample mean:
+\[
+	\boxed{\hat{m}_{N}=\frac{1}{N}\sum_{t=1}^{N} y(t)} 
+\]
+\begin{itemize}
+	\item it is \textbf{correct}: $\E[\hat{m}_{N}]=m=\E[y(t)]$;
+	\item if $\gamma _{y}(\tau )\xrightarrow{|\tau|\to\infty} 0$ then it is \textbf{consistent}: $\E[(\hat{m}_{N}-m)^2]\xrightarrow{N\to\infty} 0$.
+\end{itemize}
+
+\subsection{Covariance}
+
+We estimate it through
+\[
+	\boxed{\hat{\gamma}_{y}(\tau) = \frac{1}{N-|\tau|} \sum_{t=1}^{N-|\tau|} y(t)\cdot y(t+|\tau|), \qquad |\tau|\leq N-1}
+\]
+Increasing $|\tau|$, the number of terms to add is lower and lower. It works well when $|\tau|$ is smaller than $N$ (generally $N\geq 50$ and $|\tau|\leq N/4$).
+\begin{itemize}
+	\item it is \textbf{correct}: $\E[\hat{\gamma}_{y}(\tau)]=\gamma_{y}(\tau)$;
+	\item if $\gamma _{y}(\tau )\xrightarrow{|\tau|\to\infty} 0$ then it is \textbf{consistent}.
+\end{itemize}
+
+Usually, another estimator for the covariance function is used:
+\[
+	\boxed{\hat{\gamma}_{y}'(\tau) = \frac{1}{N} \sum_{t=1}^{N-|\tau|} y(t)\cdot y(t+|\tau|), \qquad |\tau|\leq N-1}
+\]
+\begin{itemize}
+	\item it is \textbf{not correct}: $\E[\hat{\gamma}_{y}'(\tau)]=\frac{N-|\tau|}{N}\gamma _{y}(\tau)$, but it is \textbf{asymptotically correct} (it becomes so for $N\to\infty$);
+	\item if $\gamma _{y}(\tau )\xrightarrow{|\tau|\to\infty} 0$ then it is \textbf{consistent};
+	\item leads to simpler methods for spectrum estimation.
+\end{itemize}
+
+\subsection{Spectrum}
+
+We define two estimators:
+\[
+	\boxed{\hat{\Gamma}_{y}(\omega) = \sum_{\tau = -N+1}^{N-1} \hat{\gamma}_{y}(\tau) e^{-j\omega\tau}}
+	\qquad
+	\boxed{\hat{\Gamma}_{y}'(\omega) = \sum_{\tau = -N+1}^{N-1} \hat{\gamma}_{y}'(\tau) e^{-j\omega\tau}}
+\]
+We cut off the sum because otherwise they are not defined.
+
+Why to use $\hat{\Gamma}_{y}'(\omega)$?
+\begin{itemize}
+	\item $\hat{\Gamma}_{y}'(\omega)$ satisfies the positivity condition of the spectrum while $\hat{\Gamma}_{y}(\omega)$ may be negative for some $\omega$;
+	\item we can write it in terms of the Discrete Fourier Transform.
+\end{itemize}
+
+Properties of $\hat{\Gamma}_{y}'(\omega)$:
+\begin{itemize}
+	\item it is \textbf{not correct}, but it is \textbf{asymptotically correct};
+	\item it is \textbf{not consistent}. To reduce the variance of the estimator error some methods can be used (e.g. the Bartlett method).
+\end{itemize}
