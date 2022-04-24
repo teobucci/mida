@@ -84,14 +84,14 @@ However, we will deal with the case where the structure is fixed ($ n,m,p\neq 0\
 
 A naive idea is to use $ J_{N}$ as an indicator for model quality, selecting a maximum value for the model order. Cycling for $ m=1:\overline{m}$, where $\overline{m}$ is the maximum model order we allow for:
 
-$ \mathtt{For }\ m=1:\overline{m}$
-\begin{equation*}
-\begin{aligned}
-\Mc^{m} & =\text{ARMAX}(m) =\left\{\Mc(\theta) ,\theta \in \Theta ^{m}\right\}\\
-\hat{\theta }_{N}^{m} & =\underset{\theta \in \Theta ^{m}}{\argmin}\frac{1}{N}\sum _{i=1}^{N}(y(i) -\hat{y}(i\mid i-1,\theta))^{2}
-\end{aligned}
-\end{equation*}
-$ \mathtt{END}$
+\boxedText{
+	$\mathtt{For }\ m=1:\overline{m}$
+	\begin{gather*}
+		\Mc^{m} =\text{ARMAX}(m) =\left\{\Mc(\theta) ,\theta \in \Theta ^{m}\right\}\\
+		\hat{\theta }_{N}^{m} =\underset{\theta \in \Theta ^{m}}{\argmin}\frac{1}{N}\sum _{i=1}^{N}(y(i) -\hat{y}(i\mid i-1,\theta))^{2}
+	\end{gather*}
+	$\mathtt{END}$
+}
 
 At the end of the cycle we select:
 \begin{equation*}
@@ -112,13 +112,15 @@ Cross validation consists in evaluating the performance of an identified model o
 
 The for-loop becomes:
 
-$ \mathtt{For } \ m=1:\overline{m}$
-\begin{gather*}
-\Mc^{m} =\text{ARMAX}(m) =\left\{\Mc(\theta) ,\theta \in \Theta ^{m}\right\}\\
-\hat{\theta }_{T}^{m} =\underset{\theta \in \Theta ^{m}}{\argmin} J_{T}(\theta) =\underset{\theta \in \Theta ^{m}}{\argmin}\frac{1}{M}\sum _{i=1}^{M}(y(i) -\hat{y}(i\mid i-1,\theta))^{2}\\
-\text{evaluate } J_{V}(\hat{\theta }_{T}^{m}) =\frac{1}{N-M}\sum _{i=M+1}^{N}\left(y(i) -\hat{y}\left(i\mid i-1,\hat{\theta }_{T}^{m}\right)\right)^{2}
-\end{gather*}
-$ \mathtt{END}$
+\boxedText{
+	$\mathtt{For } \ m=1:\overline{m}$
+	\begin{gather*}
+		\Mc^{m} =\text{ARMAX}(m) =\left\{\Mc(\theta) ,\theta \in \Theta ^{m}\right\}\\
+		\hat{\theta }_{T}^{m} =\underset{\theta \in \Theta ^{m}}{\argmin} J_{T}(\theta) =\underset{\theta \in \Theta ^{m}}{\argmin}\frac{1}{M}\sum _{i=1}^{M}(y(i) -\hat{y}(i\mid i-1,\theta))^{2}\\
+		J_{V}(\hat{\theta }_{T}^{m}) =\frac{1}{N-M}\sum _{i=M+1}^{N}\left(y(i) -\hat{y}\left(i\mid i-1,\hat{\theta }_{T}^{m}\right)\right)^{2}
+	\end{gather*}
+	$\mathtt{END}$
+}
 
 Where $ J_{V}$ is the performance of the model obtained from the training set evaluated on the validation dataset. Then we select
 \begin{equation*}
@@ -132,15 +134,17 @@ The drawback of cross-validation is that the dataset has to be split: less infor
 \subsection{Alternative approach: direct model order penalization}
 The structure is similar, we run a cycle up to a maximum model order
 
-$ \mathtt{For } \ m=1:\overline{m}$
-\begin{equation*}
-\begin{aligned}
-\Mc^{m} & =\text{ARMAX}(m) =\left\{\Mc(\theta) ,\theta \in \Theta ^{m}\right\} & \\
-\hat{\theta }_{N}^{m}  & =\underset{\theta }{\argmin}\frac{1}{N}\sum _{i=1}^{N}(y(i) -\hat{y}(i\mid i-1,\theta))^{2} & \text{all data are used to tune the model}\\
-\text{evaluate } V(m) & =V(m,J_{N}(\hat{\theta }_{N}^{m})),\forall m & \text{model cost with model order penalization}
-\end{aligned}
-\end{equation*}
-$ \mathtt{END}$
+\boxedText{
+	$\mathtt{For } \ m=1:\overline{m}$
+	\begin{gather*}
+		\Mc^{m} =\text{ARMAX}(m) =\left\{\Mc(\theta) ,\theta \in \Theta ^{m}\right\} \\
+		\hat{\theta }_{N}^{m}  =\underset{\theta }{\argmin}\frac{1}{N}\sum _{i=1}^{N}(y(i) -\hat{y}(i\mid i-1,\theta))^{2}\\
+		V(m) =V(m,J_{N}(\hat{\theta }_{N}^{m})),\forall m
+	\end{gather*}
+	$\mathtt{END}$
+}
+
+All data is used to tune the model.
 
 Then we select
 \begin{equation*}
