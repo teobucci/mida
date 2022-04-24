@@ -254,11 +254,10 @@ is a paraboloid. The Hessian matrix $ \frac{d^{2}}{d\theta ^{2}} J_{N}(\theta)$ 
 \frac{d}{d\theta } J_{N}(\theta) & =\frac{2}{N}\sum _{t=1}^{N} \varphi (t) \varphi (t)\transpose \theta \ -\frac{2}{N}\sum _{t=1}^{N} \varphi (t) y(t)\\
 \frac{d^{2}}{d\theta ^{2}} J_{N}(\theta) & =\frac{2}{N}\underbrace{\sum _{t=1}^{N} \varphi (t) \varphi (t)\transpose}_{\text{information matrix}}
 \end{align*}
-The information matrix is positive semi-definite. Indeed, taking a generic vector $x$
-\begin{align*}
-x\transpose\frac{d^{2}}{d\theta ^{2}} J_{N}(\theta) \cdotp x & =\frac{2}{N} x\transpose\left[\sum _{t=1}^{N} \varphi (t) \varphi (t)\transpose\right] x & \\
- & =\frac{2}{N}\sum _{t=1}^{N}\left(x\transpose \varphi (t)\right)^{2} \geq 0 & x\transpose \varphi (t) =\varphi (t)\transpose x
-\end{align*}
+The information matrix is positive semi-definite. Indeed, taking a generic vector $x$ and remembering that $x\transpose \varphi (t) =\varphi (t)\transpose x$,
+\[
+	x\transpose\frac{d^{2}}{d\theta ^{2}} J_{N}(\theta) x = \frac{2}{N} x\transpose\left[\sum _{t=1}^{N} \varphi (t) \varphi (t)\transpose\right] x=\frac{2}{N}\sum _{t=1}^{N}\left(x\transpose \varphi (t)\right)^{2} \geq 0 \quad \forall x\neq 0
+\]
 $ J_{N}(\theta)$ is a paraboloid with minima:
 \begin{figure}[htpb]
 	\centering
