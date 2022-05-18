@@ -23,7 +23,7 @@ There is bijective relationship between the spectrum and the covariance function
 
 \subsection{An alternative interpretation of the spectral density}
 Suppose that an \gls{ssp} $y(t)$ is filtered through an (ideal) pass-band filter:
-\fg{0.7}{Screen Shot 2022-03-12 at 16.36.12}
+\fg{0.7}{kinchine-wiener}
 where $\tilde{y}(t)$ is the filtered output process.
 \begin{theorem}[Kinchine--Wiener]
 	The spectral density at a fixed $\omega$ equals to the mean energy of process realizations frequency by frequency:
@@ -35,7 +35,7 @@ where $\tilde{y}(t)$ is the filtered output process.
 \begin{example}
 The \gls{wn} spectral density is constant, i.e. \gls{wn} energy is \emph{equally-distributed} all over the frequency domain.
 \end{example}
-% \fg{0.7}{Screen Shot 2022-03-12 at 16.41.55}
+
 \begin{figure}[htpb]
 	\centering
 	\begin{tikzpicture}
@@ -79,9 +79,9 @@ The transfer function is $y(t)=\frac{1}{1-az^{-1} }e(t)$, then
 Depending on the values of $a$ we have different behaviors.
 
 If $a>0$ energy is concentrated at low frequencies
-\fg[Left: signal. Right: spectrum.]{0.8}{Screen Shot 2022-03-12 at 16.59.06}
+\fg[Left: signal. Right: spectrum.]{0.8}{ar-1-frequency-fig1}
 If $a<0$ energy is concentrated at larger frequencies
-\fg[Left: signal. Right: spectrum.]{0.8}{Screen Shot 2022-03-12 at 16.58.25}
+\fg[Left: signal. Right: spectrum.]{0.8}{ar-1-frequency-fig2}
 
 \begin{example}
 Consider the ARMA process $y(t)=\frac{C(z)}{A(z)}e(t)$

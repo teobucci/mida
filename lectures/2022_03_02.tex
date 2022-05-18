@@ -1,7 +1,6 @@
 %!TEX root = ../main.tex
 Now, let us consider the \gls{sp} $y(t)$ obtained as output of an asymptotically stable digital filter $F(z)$ fed by a \gls{ssp} $v(t)$ as input, but with a generic initialization (not steady-state output).
 
-%\fg{0.4}{Screenshot (17)}
 \begin{figure}[htpb]
 	\centering
 	\begin{tikzpicture}
@@ -19,7 +18,7 @@ Now, let us consider the \gls{sp} $y(t)$ obtained as output of an asymptotically
 	There is just one stationary output which corresponds to the steady-state solution. However, if $F(z)$ is asymptotically stable, then all possible outputs obtained for different initialization of the digital filter $F(z)$ tends asymptotically (as $t \rightarrow \infty$) to the steady-state solution, i.e. to the stationary output.
 \end{theorem}
 
-\fg{0.7}{Screenshot (18)}
+\fg{0.7}{steady-state}
 
 \section{Weak (wide-sense) characterization of AR, ARMA processes}
 Our goal now is to consider AR and ARMA processes and compute their mean $m_y$ and covariance function $\gamma_y(\tau)$.
@@ -179,8 +178,6 @@ Those equations are called \emph{Yule-Walker equations} for AR($1$) process.
 	\caption{Graphical representation of the covariance function for AR($1$) processes.}
 \end{figure}
 \FloatBarrier
-%\fg{0.7}{Screenshot (14)}
-%\fg{0.7}{Screenshot (16)}
 
 \subsection{ARMA processes}
 Let us consider the ARMA($m,n$) process generated according to:

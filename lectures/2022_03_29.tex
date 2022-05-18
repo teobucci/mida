@@ -59,9 +59,9 @@ where $G(z),H(z),F(z),S(z)$ are \textbf{asymptotically stable, rational} transfe
 The most typical cases are when:
 \begin{itemize}
 	\item $S(z)=0$ (\textbf{open-loop experiment})
-	\fg{0.6}{Screen Shot 2022-04-02 at 10.44.03}
+	\fg{0.6}{loop-open}
 	\item $S(z)\neq 0$ (\textbf{closed-loop experiment}), $S(z)$ accounts for $u(t)$ depending on $e(t)$ because of the feedback.
-	\fg{0.6}{Screen Shot 2022-04-02 at 10.45.22}
+	\fg{0.6}{loop-closed}
 \end{itemize}
 The measured data sequence corresponds to a particular \textbf{realization} of input/output signals of $S$:
 \[
@@ -89,9 +89,9 @@ and also:
 	J_{N}(\theta) = \frac{1}{N}\sum_{i=1}^{N} \varepsilon(i,\theta,\overline{s})^2 = J_{N}(\theta,\overline{s})\\
 	\hat{\theta}_{N} = \argmin_{\theta} J_{N}(\theta,\overline{s}) = \hat{\theta}_{N}(\overline{s})
 \end{gather*}
-\fg{0.4}{Screen Shot 2022-04-02 at 11.01.06}
+\fg{0.4}{pem-asymptotic-fig1}
 Depending on the experiment, different costs and minimizers. As $N\to \infty$, the sequence of minimizers \textbf{converges:}\footnote{In practice, a good number could be $N\geq 300$.}
-\fg{0.4}{Screen Shot 2022-04-02 at 11.04.00}
+\fg{0.4}{pem-asymptotic-fig2}
 Indeed we have the following result.
 \begin{theorem}
 	Under the current assumptions, as the number of data points becomes larger and larger, we have with probability one that:
