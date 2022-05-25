@@ -106,7 +106,10 @@
 
 \vspace*{1cm}
 
-Revision of \today
+File created on \today
+\IfFileExists{commit_hash.part}
+	{ - Revision \texttt{\input{commit_hash.part}}}
+	{}
 
 Developed by\\
 Teo Bucci - \texttt{teo.bucci@mail.polimi.it}\\
