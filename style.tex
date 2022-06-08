@@ -82,14 +82,22 @@
 
 \usepackage{fancyhdr}
 
-\pagestyle{empty} % Il fancy serve a partire al primo capitolo
-\fancyhead{} % Pulisci header
-\fancyfoot{} % Pulisci footer
 
-\fancyhead[RE]{\nouppercase{\leftmark}}
-%\fancyhead[LO]{}
-\fancyhead[LO]{\nouppercase{\rightmark}}
-\fancyhead[LE,RO]{\thepage}
+\fancypagestyle{toc}{%
+\fancyhf{}%
+\fancyfoot[C]{\thepage}%
+\renewcommand{\headrulewidth}{0pt}%
+\renewcommand{\footrulewidth}{0pt}
+}
+
+\fancypagestyle{fancy}{%
+\fancyhf{}%
+\fancyhead[RE]{\nouppercase{\leftmark}}%
+\fancyhead[LO]{\nouppercase{\rightmark}}%
+\fancyhead[LE,RO]{\thepage}%
+\renewcommand{\footrulewidth}{0pt}%
+\renewcommand{\headrulewidth}{0.4pt}
+}
 
 % Removes the header from odd empty pages at the end of chapters
 \makeatletter
@@ -110,6 +118,7 @@
 \newcommand{\degree}{^\circ\text{C}} % SIMBOLO GRADI
 \newcommand{\notimplies}{\mathrel{{\ooalign{\hidewidth$\not\phantom{=}$\hidewidth\cr$\implies$}}}}
 \renewcommand{\qed}{\tag*{$\blacksquare$}}
+\usepackage{xspace}
 \newcommand{\latex}{\LaTeX\xspace}
 \newcommand{\tex}{\TeX\xspace}
 \newcommand{\questeq}{\overset{?}{=}} % è vero che?
@@ -282,7 +291,19 @@ innerbottommargin=5pt]{dimBox}
 \setcounter{secnumdepth}{3} % DI DEFAULT LE SUBSUBSECTION NON SONO NUMERATE, COSÌ SÌ
 \setcounter{tocdepth}{2} % FISSA LA PROFONDITÀ DELLE COSE MOSTRATE NELL'INDICE
 
-\usepackage[hidelinks]{hyperref} % Rende l'indice interattivo e hidelinks nasconde il bordo rosso dai riferimenti
+%\usepackage[hidelinks,bookmarksnumbered]{hyperref} % Rende l'indice interattivo e hidelinks nasconde il bordo rosso dai riferimenti
+
+\usepackage{bookmark}% loads hyperref too
+    \hypersetup{
+        %pdftitle={Fundamentos de C\'alculo},
+        %pdfsubject={C\'alculo diferencial},
+        bookmarksnumbered=true,
+        bookmarksopen=true,
+        bookmarksopenlevel=1,
+        hidelinks,% remove border and color
+        pdfstartview=Fit, % Fits the page to the window.
+        pdfpagemode=UseOutlines, %Determines how the file is opening in Acrobat; the possibilities are UseNone, UseThumbs (show thumbnails), UseOutlines (show bookmarks), FullScreen, UseOC (PDF 1.5), and UseAttachments (PDF 1.6). If no mode if explicitly chosen, but the bookmarks option is set, UseOutlines is used.
+    }
 
 \usepackage{glossaries} % certain packages that must be loaded before glossaries, if they are required: hyperref, babel, polyglossia, inputenc and fontenc
 \setacronymstyle{long-short}
