@@ -10,55 +10,55 @@ with:
  	\item $t$: time index.
  \end{itemize}
 
-\begin{obs}
+\begin{rem}
 	\gls{sp} extends the notion of random vector (\gls{sp} is a random vector with infinite entries).
-\end{obs}
+\end{rem}
 
-\begin{obs}
+\begin{rem}
 For a \emph{fixed} value of the random experiment $s = \overline{s}$, the \gls{sp} becomes the numeric sequence:
 \[
 	\ldots,v(1,\overline{s}),v(2,\overline{s}),v(3,\overline{s}),\ldots,v(t,\overline{s}),\ldots
 \]
 which is called \textbf{realization} of the \gls{sp}.
 For different values of $s$, one gets different realizations of the \gls{sp}.
-\end{obs}
+\end{rem}
 
 We will think of available observations ${u(1),u(2),\ldots,u(N)}$ and ${y(1), y(2),\ldots, y(N)}$ as \emph{finite} length realizations.
 
-\begin{definition}[Mean value]
+\begin{defn}[Mean value]
 	The mean value $m(t)$ is the expected value of the random variable $v(t,s)$ at time $t$:
 	\[
 		m(t)=\E[v(t, s)]=\int_{\Omega} v(t, s) \mathbb{P}(ds)
 	\]
 	$m(t)$ returns the value around which the process take value at time $t$.
-\end{definition}
+\end{defn}
 
-\begin{definition}[Covariance function]
+\begin{defn}[Covariance function]
 	The covariance function $\gamma(t_{1}, t_{2})$ is the expected value of the product of unbiased random variables $(v(t, s)-m(t))$ at two time instants $(t_{1}, t_{2})$:
 	\begin{align*}
 		\gamma(t_{1}, t_{2}) &=\E[(v(t_{1}, s)-m(t_{1}))(v(t_{2}, s)-m(t_{2}))] \\
 		&=\int_{\Omega}(v(t_{1}, s)-m(t_{1}))(v(t_{2}, s)-m(t_{2})) \mathbb{P}(ds)
 	\end{align*}
 	$\gamma(t_{1}, t_{2})$ quantifies the relation existing between the process realizations and the mean value at two different time instants.
-\end{definition}
+\end{defn}
 
 Particular case: $t_{1}=t_{2}=t$.
-\begin{definition}[Variance]
+\begin{defn}[Variance]
 	The variance quantifies the process dispersion around its mean value at each time instant:
 	\[
 		\gamma(t, t)=\E[(v(t, s)-m(t))^{2}]=\int_{\Omega}(v(t, s)-m(t))^{2} \mathbb{P}(ds)
 	\]
-\end{definition}
+\end{defn}
 
 \section{Stationary Stochastic Processes}
-\begin{definition}
+\begin{defn}
 	A stochastic process is called \textbf{\gls{ssp}} (wide-sense) if:
 	\begin{itemize}
 		\item $m(t)=m, \forall t$;
 		\item $\gamma(t_{1}, t_{2})$ only depends on $\tau=t_{1}-t_{2}$,\\
 		i.e. $\gamma(t_{1}, t_{2})=\gamma(t_{3}, t_{4})$ if $t_{1}-t_{2}=t_{3}-t_{4}=\tau, \forall t_{1}, t_{2}, t_{3}, t_{4}$.
 	\end{itemize}
-\end{definition}
+\end{defn}
 The idea is that the probabilistic properties of a \gls{ssp} are time-translation invariant.
 
 \glspl{ssp} admit a \emph{simplified} representation of the covariance function:
@@ -107,7 +107,7 @@ $$
 $$
 is very \emph{different} from the $2^{\text{nd}}$ order moment function $\E[v(t) \cdot v(t-\tau)]$.
 
-\begin{example}
+\begin{exa}
 $\boxed{v(t,s)=\alpha (s)}$, where $\alpha (s)\sim \mathcal{N}(1,3)$.
 
 \begin{itemize}
@@ -120,9 +120,9 @@ $\boxed{v(t,s)=\alpha (s)}$, where $\alpha (s)\sim \mathcal{N}(1,3)$.
 	doesn't depend on $t$.\\
 	Then the process is stationary.
 \end{itemize}
-\end{example}
+\end{exa}
 
-\begin{example}
+\begin{exa}
 $\boxed{v(t, s)=t \cdot \alpha(s)-t}$, where $\alpha(s) \sim \mathcal{N}(1,3)$.
 \begin{itemize}
 	\item $m_{v}(t)=\E[v(t, s)]=\E[t \cdot \alpha(s)-t]=t \cdot \E[\alpha(s)]-t=t-t=0$\\
@@ -136,14 +136,14 @@ $\boxed{v(t, s)=t \cdot \alpha(s)-t}$, where $\alpha(s) \sim \mathcal{N}(1,3)$.
 	\emph{does} depend on $t$.\\
 	Then the process is not stationary.
 \end{itemize}
-\end{example}
+\end{exa}
 
-\begin{obs}
+\begin{rem}
 If $\gamma(t, \tau)>0$ then there is a tendency of preserving the sign going from $t$ to $\tau $. The opposite otherwise.
-\end{obs}
+\end{rem}
 \section{White Noise}
 
-\begin{definition}
+\begin{defn}
 	An \gls{ssp} $e(t)$ is called \textbf{\gls{wn}} with mean $\mu$ and variance $\lambda^{2}$, we shall write
 	\[
 		\boxed{e(t) \sim \WN(\mu, \lambda^{2})}
@@ -154,7 +154,7 @@ If $\gamma(t, \tau)>0$ then there is a tendency of preserving the sign going fro
 		\item $\gamma_{e}(0)=\E[(e(t)-\mu)^{2}]=\lambda^{2} \quad \forall t$
 		\item $\gamma_{e}(\tau)=\E[(e(t)-\mu) \cdot(e(t-\tau)-\mu)]=0 \quad \forall t, \forall \tau \neq 0$
 	\end{itemize}	
-\end{definition}
+\end{defn}
 The last property is the fundamental one. It says that there is complete incorrelation between random variables at different time instants. The realizations of $e(t)$ are erratic and unpredictable (\textbf{whiteness property}).
 
 \begin{figure}[htpb]
@@ -171,26 +171,26 @@ The last property is the fundamental one. It says that there is complete incorre
 \end{figure}
 \FloatBarrier
 
-\begin{obs}
+\begin{rem}
 The probability distribution of each single random variables $e(t,s)$ does not matter and is not made explicit in general (wide-sense description of \gls{ssp}).
 It could be Gaussian, uniform, etc. (WGN = White Gaussian Noise, WUN = White Uniform Noise, etc.).
-\end{obs}
+\end{rem}
 
-\begin{obs}
+\begin{rem}
 Is a constant realization admissible? Yes, it is, but such realization is \emph{highly unlikely}.
-\end{obs}
+\end{rem}
 \gls{wn} is a sort of \emph{building block} to construct a number of different \glspl{ssp}.
 
 To ease the notation, in the following we will consider \emph{zero mean} \glspl{wn}. The extension to the general case presents no conceptual difficulties.
 
 \subsection{MA processes}
 
-\begin{definition}
+\begin{defn}
 	Let $e(t) \sim \WN(0, \lambda^{2})$. A \textbf{\gls{ma}} process of order $n$ is obtained as:
 	\[
 		\boxed{y(t)=c_{0} e(t)+c_{1} e(t-1)+c_{2} e(t-2)+\cdots+c_{n} e(t-n)}
 	\]
-\end{definition}
+\end{defn}
 In other words, the output $y(t)$ of a MA process is given by a linear combination of the last $n+1$ past values of the input \gls{wn} $e(t)$.
 While $t$ is let vary, the linear combination is made on a sliding window (moving average).
 

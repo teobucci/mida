@@ -93,7 +93,7 @@ and also:
 Depending on the experiment, different costs and minimizers. As $N\to \infty$, the sequence of minimizers \textbf{converges:}\footnote{In practice, a good number could be $N\geq 300$.}
 \fg{0.4}{pem-asymptotic-fig2}
 Indeed we have the following result.
-\begin{theorem}
+\begin{thm}
 	Under the current assumptions, as the number of data points becomes larger and larger, we have with probability one that:
 	\[
 		J_{N}(\theta,s) = \frac{1}{N}\sum_{i=1}^{N} \varepsilon(i,\theta,s)^2 \xrightarrow{N\to\infty} \E[\varepsilon(t,\theta,s)^2] = \bar{J}(\theta)
@@ -107,7 +107,7 @@ Indeed we have the following result.
 	\[
 		\text{distance}[\hat{\theta}_{N}(s), \Delta]\xrightarrow{N\to\infty} 0
 	\]
-\end{theorem}
+\end{thm}
 As a corollary we have that if $\Delta =\{\theta^{\star}\}$ (i.e. $J_{N}(\theta)$ has a unique minimum point), then:
 \[
 	\hat{\theta}_{N}(s) \xrightarrow{N\to\infty} \theta ^{\star} 

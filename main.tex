@@ -1,44 +1,31 @@
-\documentclass[10pt,a4paper,oneside,openright]{book}
+\documentclass[10pt,a4paper,twoside]{book}
 
-% TODO
-% among us
+% TODO: among us
 
 \input{style}
 
-%\usepackage[nomarginpar,margin=1in]{geometry}
-\usepackage[paperwidth=210mm,
-            paperheight=297mm,
-            left=1in,
-            %top=50pt,
-            textwidth=400pt,
-            marginparsep=25pt,
-            marginparwidth=1in,
-            %textheight=692pt,
-            footskip=50pt
-            ]
-           {geometry}
+\usepackage[
+	left=2.5cm, % inner
+	right=2.5cm, % outer
+	top=2.5cm,
+	bottom=3cm,
+	%showframe,
+	]{geometry}
 
-
-% Comandi pratici
-
-\newcommand{\RR}{\mathbb{R}}
-
-% d nell'integrale e i rispettivi usi
-\newcommand{\de}{\,\mathrm d}
-\newcommand{\dx}{\de x}
-\newcommand{\dy}{\de y}
 \newcommand{\dl}{\de l}
 \newcommand{\dr}{\de r}
-\newcommand{\ds}{\de s}
-\newcommand{\dt}{\de t}
-\newcommand{\dv}{\de v}
 \newcommand{\dxi}{\de \xi}
 \newcommand{\drho}{\de \rho}
-
-% d nell'integrale con differenziale vettoriale
 \newcommand{\dxx}{\de \x}
 \newcommand{\dyy}{\de \y}
 \newcommand{\dsig}{\de \sigg}
+
+\newcommand{\fou}[1]{\mathcal{F}\left\{#1\right\}}
+\newcommand{\ifou}[1]{\mathcal{F}^{-1}\left\{#1\right\}}
+
+\DeclareMathOperator{\WN}{WN}
+
+\newcommand{\E}{\mathbb{E}}
 
 \allowdisplaybreaks[4] % Consente di rompere equazioni su più pagine
 
@@ -50,9 +37,6 @@
 \newacronym{mse}{MSE}{mean square error}
 \newacronym{wn}{WN}{White Noise}
 \newacronym{pem}{PEM}{Prediction Error Minimization}
-\DeclareMathOperator{\WN}{WN}
-\DeclareMathOperator*{\argmax}{arg\,max}
-\DeclareMathOperator*{\argmin}{arg\,min}
 
 \begin{document}
 

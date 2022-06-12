@@ -12,12 +12,12 @@ Given $y(t)$ a \gls{ssp}, we can compute:
 	\]
 \end{itemize}
 
-\begin{obs}
+\begin{rem}
 If $\tau =0$ we have
 \[
 	\gamma _{y}(0)=\E[(y(t)-m_{y})^2 ]=\frac{1}{2\pi }\int_{-\pi }^{\pi } \Gamma _{y}(\omega )d\omega 
 \]
-\end{obs}
+\end{rem}
 \textbf{Remark.}
 There is bijective relationship between the spectrum and the covariance function. Namely to describe $y(t)$ one could use $m_{y}$ and $\gamma _{y}(\tau )$ or $m_{y}$ and $\Gamma _{y}(\omega)$. It gives the same information from a different perspective, but it's useful to understand some properties.
 
@@ -25,16 +25,16 @@ There is bijective relationship between the spectrum and the covariance function
 Suppose that an \gls{ssp} $y(t)$ is filtered through an (ideal) pass-band filter:
 \fg{0.7}{kinchine-wiener}
 where $\tilde{y}(t)$ is the filtered output process.
-\begin{theorem}[Kinchine--Wiener]
+\begin{thm}[Kinchine--Wiener]
 	The spectral density at a fixed $\omega$ equals to the mean energy of process realizations frequency by frequency:
 	\[
 		\Gamma _{y}(\overline{\omega})=\lim_{\delta  \to 0} \gamma _{\tilde{y}}(0)
 	\]
-\end{theorem}
+\end{thm}
 
-\begin{example}
+\begin{exa}
 The \gls{wn} spectral density is constant, i.e. \gls{wn} energy is \emph{equally-distributed} all over the frequency domain.
-\end{example}
+\end{exa}
 
 \begin{figure}[htpb]
 	\centering
@@ -62,7 +62,7 @@ The \gls{wn} spectral density is constant, i.e. \gls{wn} energy is \emph{equally
 \end{figure}
 \FloatBarrier
 
-\begin{example}
+\begin{exa}
 Consider the AR($1$) process $y(t)=ay(t-1)+e(t)$.
 \begin{itemize}
 	\item if $a>0$ the sign tends to be maintained;
@@ -75,7 +75,7 @@ The transfer function is $y(t)=\frac{1}{1-az^{-1} }e(t)$, then
 	&=\frac{1}{1+a^2 -a\left( \frac{e^{j\omega}+e^{-j\omega}}{2} \right)\cdot 2}\\
 	&=\frac{1}{1+a^2-2a\cos (\omega)} \cdot\lambda^2
 \end{align*}
-\end{example}
+\end{exa}
 Depending on the values of $a$ we have different behaviors.
 
 If $a>0$ energy is concentrated at low frequencies
@@ -83,7 +83,7 @@ If $a>0$ energy is concentrated at low frequencies
 If $a<0$ energy is concentrated at larger frequencies
 \fg[Left: signal. Right: spectrum.]{0.8}{ar-1-frequency-fig2}
 
-\begin{example}
+\begin{exa}
 Consider the ARMA process $y(t)=\frac{C(z)}{A(z)}e(t)$
 \[
 	\Gamma _{y}(\omega )=\left|\frac{C(e^{j\omega})}{A(e^{j\omega})}\right|^2 \cdot\lambda^2 =\frac{C(e^{j\omega})}{A(e^{j\omega} )} \cdot \frac{C(e^{-j\omega})}{A(e^{-j\omega} )}\cdot\lambda^2 
@@ -92,16 +92,16 @@ $y(t)$ has a \emph{rational} spectral density. The reverse is also true:
 \[
 	y(t) \text{ ARMA} \iff W(z) \text{ rational}
 \]
-\end{example}
+\end{exa}
 Indeed we have the following result:
-\begin{theorem}
+\begin{thm}
 	Let $y(t)$ be a \gls{ssp} with rational spectral density.
 	Then, there exists a \gls{wn} process $\xi(t)$ with suitable mean and variance and a rational transfer function $W(z)$ such that:
 	\[
 		y(t)=W(z)\xi(t)
 	\]
 	i.e. $y(t)$ is an ARMA process.
-\end{theorem}
+\end{thm}
 
 However, the \emph{choice} of $\xi(t)$ and of $W(z))$ \emph{is not unique}.
 The \emph{same} process $y(t)$ can be generated according to an infinite number of different ARMA models.
@@ -109,7 +109,7 @@ The \emph{same} process $y(t)$ can be generated according to an infinite number 
 Let $y(t)=W(z)\xi(t)$, where $\xi(t)$ is a $\WN\sim(\mu,\lambda^2)$. Our goal is show how to construct $\tilde{W}(z)$ and $\tilde{\xi}(t)$ such that $\tilde{W}(z)\neq W(z)$ and $\tilde{\xi}(t)\neq \xi(t)$, but $y(t)=\tilde W(z)\tilde\xi(t)$. Let us consider four different cases:
 \begin{enumerate}
 	\item 
-	Let $\alpha \in \R$
+	Let $\alpha \in \RR$
 	\[
 		y(t)=W(z) \xi(t) = \underbrace{\frac{W(z)}{\alpha}}_{\tilde{W}(z)} \cdot \underbrace{\alpha \xi(t)}_{\tilde{\xi}(t)} = \tilde{W}(z)\tilde{\xi}(t)
 	\]
@@ -120,7 +120,7 @@ Let $y(t)=W(z)\xi(t)$, where $\xi(t)$ is a $\WN\sim(\mu,\lambda^2)$. Our goal is
 	\end{align*}
 
 	\item 
-	Let $n \in \N$
+	Let $n \in \NN$
 	\[
 		y(t)=W(z) \xi(t)=W(z) \cdot \frac{z^{n}}{z^{n}} \xi(t)=\left[z^{n} \cdot W(z)\right] \xi(t-n)=\tilde{W}(z) \tilde{\xi}(t)
 	\]
@@ -131,7 +131,7 @@ Let $y(t)=W(z)\xi(t)$, where $\xi(t)$ is a $\WN\sim(\mu,\lambda^2)$. Our goal is
 	\end{align*}
 
 	\item 
-	Let $p \in \C$ such that $|p|<1$
+	Let $p \in \CC$ such that $|p|<1$
 	\[
 		y(t)=W(z) \xi(t) = \underbrace{\left[W(z) \cdot \frac{z-p}{z-p}\right]}_{\tilde{W}(z)} \xi(t)=\tilde{W}(z) \xi(t)
 	\]

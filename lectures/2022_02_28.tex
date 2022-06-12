@@ -3,12 +3,12 @@
 
 \subsection{AR processes}
 
-\begin{definition}
+\begin{defn}
 	Let $e(t) \sim \WN(0, \lambda^{2})$. An \textbf{\gls{ar}} process of order $m$ is obtained as:
 	\[
 		\boxed{y(t)=a_{1} y(t-1)+a_{2} y(t-2)+\cdots+a_{m} y(t-m)+e(t)}
 	\]
-\end{definition}
+\end{defn}
 
 Terminology:
 \begin{itemize}
@@ -18,13 +18,13 @@ Terminology:
  
 Hence, the output $y(t)$ of an AR process is recursively defined as the linear combination of last $m$ past values of the process itself plus the input $e(t)$ at the same time instant.
 
-\begin{obs}
+\begin{rem}
 The difference equation generating the AR process admits non-unique solution unless we specify an \emph{initial condition}. Which solution do we consider as the AR process?
 
 By AR process we mean the solution obtained by taking the initial condition $\boxed{y(t_{0})=0}$ and letting $t_{0} \to -\infty$ (in short, we will write $y(-\infty)=0$)). In other words, the AR process is the \textbf{steady-state solution}.
-\end{obs}
+\end{rem}
 
-\begin{example}
+\begin{exa}
 Let us consider the AR($1$) process defined by $y(t)=a y(t-1)+e(t)$, where $e(t) \sim \WN(\mu, \lambda^{2})$
 
 What is the steady state solution?
@@ -46,11 +46,11 @@ MA($\infty$) processes are well defined if:
 \end{align*}
 
 So if $|a|<1$ the steady-state solution is well defined and \gls{ssp}.
-\end{example}
+\end{exa}
 
 \subsection{ARMA processes}
 
-\begin{definition}
+\begin{defn}
 	Let $e(t) \sim \WN(\mu, \lambda^{2})$. An \textbf{\gls{arma}} process of order $m,n$ is obtained as:
 	\[
 		\boxed{
@@ -60,7 +60,7 @@ So if $|a|<1$ the steady-state solution is well defined and \gls{ssp}.
 			\end{aligned}
 		}
 	\]
-\end{definition}
+\end{defn}
 
 Again by ARMA process we mean the steady-state solution obtained by letting $y(-\infty)=0$.
  
@@ -77,14 +77,14 @@ We'll see how to solve this problem after introducing the operatorial representa
 
 \subsection{Operatorial representation of ARMA processes}
 
-\begin{definition}[Backward and forward shift operators]
+\begin{defn}[Backward and forward shift operators]
 	We define two useful operators as:
 	\begin{itemize}
 		\item Backward shift operator $z^{-1}$ is defined as: $z^{-1} x(t)=x(t-1)$.
 		\item Forward shift operator $z$ is defined as: $z x(t)=x(t+1)$.	
 	\end{itemize}
 	
-\end{definition}
+\end{defn}
 
 \textbf{Properties of operators $z^{-1}$ and $z$.}
 

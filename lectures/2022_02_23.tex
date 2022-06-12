@@ -61,7 +61,7 @@ since all products are uncorrelated. In conclusion
 \]
 \subsection{MA(\texorpdfstring{$\infty$}{infinity}) processes}
 
-\begin{definition}
+\begin{defn}
 	Let $e(t) \sim \WN(0, \lambda^{2})$. A \textbf{\gls{ma}}($\infty$) process is obtained as:
 	\[
 		\boxed{y(t)=c_{0} e(t)+c_{1} e(t-1)+\cdots+c_{i} e(t-i)+\cdots=\sum_{i=0}^{\infty} c_{i} e(t-i)}
@@ -70,7 +70,7 @@ since all products are uncorrelated. In conclusion
 	\[
 		\sum_{i=0}^{\infty} (c_{i})^{2}<\infty
 	\]
-\end{definition}
+\end{defn}
 
 \textbf{Mean.}
 \[
@@ -103,10 +103,10 @@ doesn't depend on $t$.
 
 Since $\sum_{i=0}^{\infty} c_{i}^{2}<\infty$, the MA($\infty $) process is well defined and is an \gls{ssp}.
 
-\begin{obs}
+\begin{rem}
 MA($\infty$) processes are very general, they almost \emph{cover} the class of \glspl{ssp} (i.e. apart from few exceptions, all \glspl{ssp} can be written as MA($\infty$), we say that they admit an MA($\infty$) representation).
 
 However, MA($\infty$) are difficult to handle since there are infinite coefficients and, moreover, the computation of the covariance function requires the computation of the sum of an infinite series (hard in general).
 
 On the other hand, MA($n$) are too limited, that is why we will look into AR and ARMA models.
-\end{obs}
+\end{rem}

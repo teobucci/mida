@@ -1,6 +1,6 @@
 %!TEX root = ../main.tex
 
-\begin{theorem}[Spectral Factorization]
+\begin{thm}[Spectral Factorization]
 	Let $y(t)$ be a \gls{ssp} with rational spectral density. 
 	Then, there exists an unique \gls{wn} process $\xi(t)$ with suitable mean and variance and an unique rational transfer function $W(z)$ such that:
 	\begin{align*}
@@ -14,16 +14,16 @@
 		\item[4a.]the poles of $W(z)$ are such that $|z|< 1$;
 		\item[4b.]the zeros of $W(z)$ are such that $|z|\leq 1$.
     \end{enumerate}
-\end{theorem}
+\end{thm}
 
 When all the four conditions above are satisfied, we will say that $y(t) = W(z)\xi(t)$ is a \textbf{canonical representation} of $y(t)$.
 
-\begin{obs}
+\begin{rem}
 Conditions 1, 2, and 3 remove any ambiguity due to the process described in Case 1, Case 2, and Case 3, respectively. 
 
 Condition 4a ensures that $W(z)$ is asymptotically stable so that $y(t)$ is well defined, while 4b removes any ambiguity due to the process described in Case 4.
-\end{obs}
-\begin{example}
+\end{rem}
+\begin{exa}
 We want to find the canonical representation of:
 \begin{align*}
 	y(t)=\frac{2+5z^{-1}+2z^{-2}}{z^2+\frac{5}{6}z+\frac{1}{6}}\cdot e(t)  \qquad e(t)\sim \WN(0,1)
@@ -50,7 +50,7 @@ We can now make sure that all zeros and poles are strictly inside the unit circl
 	y(t)=\frac{z+2}{z+\frac{1}{3}}\cdot\frac{z+\frac{1}{2} }{z+\frac{1}{2}}\cdot\eta(t)=\frac{z+\frac{1}{2}}{z+\frac{1}{3}}\underbrace{\frac{z+2}{(z+\frac{1}{2})}\eta(t)}_{\xi(t)}=\frac{(z+\frac{1}{2})}{(z+\frac{1}{3})}\cdot \xi(t)
 \end{align*}
 where $\xi(t)\sim \WN(0,4\cdot2^2)\sim \WN(0,16)$. This is our canonical representation.
-\end{example}
+\end{exa}
 \chapter{Prediction}
 \section{Optimal prediction for ARMA processes}
 Let us consider a zero mean ARMA process:
@@ -64,11 +64,11 @@ Let us consider a zero mean ARMA process:
 	\item $W(z)$ is minimum phase (i.e. all zeros are such that $|z|<1$).\footnote{Notice that \emph{canonical} implies that all zeros are such that $|z|\leq 1$, but it's not enough, we have to exclude zeros on the unit circle.}
 \end{enumerate}
  
-\begin{obs}
+\begin{rem}
 The first assumption is not much of a hurdle since every ARMA process admits a canonical representation, and if $y(t)$ is not given in its canonical representation one can easily reconstruct it. The reason why ask for it will be clear later. 
 
 The second one is a limiting assumption (mild) that excludes models belonging to a small subclass that can be approximated by other ARMA. For example the process $y(t)=e(t)+e(t-1)$, which can be written as $y(t)=(1+z^{-1})e(t)$ has a zero in $-1$, but it can be approximated with $y(t)=(1+0.999z^{-1})e(t)$.
-\end{obs}
+\end{rem}
 
 Given the observations of the process $y(t)$ up to time $t$:
 $$
@@ -101,10 +101,10 @@ We want a predictor which is good with respect to $S$ (of the specific experimen
 	\hat{y}(t + k \mid t)\approx y(t+k)
 \]
 
-\begin{definition}[\Gls{mse} of prediction]
+\begin{defn}[\Gls{mse} of prediction]
 	\[
 		\E[(y(t+k,s)-\hat{y}(t+k\mid t,s))^2]
 	\]
-\end{definition}
+\end{defn}
 
 \textbf{Goal:} choose $\alpha_0,\ldots,\alpha_i,\ldots$ in order to minimize the \gls{mse}.

@@ -23,7 +23,7 @@ Given $u(t)$ \gls{sp}, consider
 \end{figure}
 \FloatBarrier
 
-\begin{theorem}
+\begin{thm}
 	The process $y(t)$ is the steady state output of a new filter having transfer function $W_{1}(z)\cdot W_{2}(z)$ fed by $u(t)$. That is,
 	\[
 		y(t)=[W_{1}(z)\cdot W_{2}(z)]u(t)=\frac{C_{1}(z)\cdot C_{2}(z)}{A_{1}(z)\cdot A_{2}(z)}u(t)
@@ -32,7 +32,7 @@ Given $u(t)$ \gls{sp}, consider
 	\[
 		A_{1}(z)\cdot A_{2}(z)\cdot y(t) = C_{1}(z)\cdot C_{2}(z)\cdot u(t).
 	\]
-\end{theorem}
+\end{thm}
 
 \subsection{Parallel}
 Given $u(t)$ \gls{sp}, consider
@@ -77,13 +77,13 @@ Given $u(t)$ \gls{sp}, consider
 	\end{tikzpicture}
 \end{figure}
 \FloatBarrier
-\begin{theorem}
+\begin{thm}
 	The process $y(t)$ is the steady state output of a new filter having transfer function $W_{1}(z)+W_{2}(z)$ fed by $u(t)$.
-\end{theorem}
+\end{thm}
 
 \section{Poles and zeros}
 
-\begin{obs}
+\begin{rem}
 	One can always multiply a transfer function by $z^{m}/z^{m}$.
 
 	Consider a complex-valued transfer function $W(z)=C(z)/A(z)$. Then one can identify:
@@ -95,8 +95,8 @@ Given $u(t)$ \gls{sp}, consider
 	\[
 		\text{zeros}=\{z:C(z)=0\} \qquad \text{poles}=\{z:A(z)=0\}
 	\]
-\end{obs}
-\begin{example}
+\end{rem}
+\begin{exa}
 \begin{align*}
 y(t) &=e(t)+\frac{1}{2} e(t-1)+\frac{1}{4} e(t-2) =\left(1+\frac{1}{2} z^{-1}+\frac{1}{4} z^{-2}\right) e(t) \\
 &=\frac{1+\frac{1}{2} z^{-1}+\frac{1}{4} z^{-2}}{1} \cdot \frac{z^{2}}{z^{2}}\cdot e(t) =\frac{z^{2}+\frac{1}{2} z+\frac{1}{4}}{z^{2}} e(t)
@@ -106,7 +106,7 @@ Zeros are $z$ such that $z^{2}+\frac{1}{2} z+\frac{1}{4}=0$
 \[
 	z_{1,2}=\frac{-\frac{1}{2} \pm \sqrt{\left( \frac{1}{2}  \right) ^2 -4\cdot\frac{1}{4} } }{2} = -\frac{1}{4}\pm i\frac{\sqrt{3} }{4}
 \]
-\end{example}
+\end{exa}
 
 \begin{figure}[htpb]
 	\centering
@@ -133,22 +133,22 @@ Zeros are $z$ such that $z^{2}+\frac{1}{2} z+\frac{1}{4}=0$
 \end{figure}
 \FloatBarrier
 
-\begin{definition}
+\begin{defn}
 	We say that $W(z)=\frac{C(z)}{A(z)}$ is:
 	\begin{itemize}
 		\item \textbf{asymptotically stable} if all \emph{poles} are such that $|z|<1$.
 		\item \textbf{minimum phase} if all \emph{zeros} are such that $|z|<1$.
 	\end{itemize}
-\end{definition}
+\end{defn}
 
-\begin{theorem}
+\begin{thm}
 	Consider a rational transfer function $W(z)$ fed by a \gls{sp} $v(t)$, $y(t)=W(z)v(t)$. If
 	\begin{itemize}
 		\item $v(t)$ is a \gls{ssp};
 		\item $W(z)$ is asymptotically stable;
 	\end{itemize}
 	then $y(t)$ is well-defined and is also \emph{stationary} (is a \gls{ssp}).
-\end{theorem}
+\end{thm}
 
 In the case of ARMA processes, the input is a \gls{wn}, which is stationary by definition. Thus we just need to check the asymptotical stability.
 
