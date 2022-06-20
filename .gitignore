@@ -301,3 +301,4 @@ TSWLatexianTemp*
 #*Notes.bib
 main.pdf
 commit_hash.part
+*.DS_Store
